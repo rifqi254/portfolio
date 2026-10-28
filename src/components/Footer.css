@@ -1,0 +1,294 @@
+﻿/* ============================================================
+   FOOTER - Y2K CYBERCORE MAGAZINE
+   ============================================================ */
+
+.footer {
+  background: linear-gradient(180deg, #001566 0%, #000d44 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Star field background */
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+    radial-gradient(circle, rgba(0,204,255,0.6) 1px, transparent 1px);
+  background-size: 80px 80px, 130px 130px;
+  background-position: 0 0, 40px 40px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* Grid lines */
+.footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,204,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,204,255,0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+/* --- Ticker strip --- */
+.footer__ticker {
+  background: linear-gradient(135deg, #ff0099, #cc0077);
+  padding: 10px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.footer__ticker-inner {
+  display: inline-flex;
+}
+
+.footer__ticker-item {
+  font-family: var(--font-tech);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0 28px;
+  white-space: nowrap;
+}
+
+/* --- Main Footer --- */
+.footer__main {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+  gap: 48px;
+  padding: 56px 24px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Logo Area --- */
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.footer__logo-star {
+  font-size: 1.4rem;
+  color: #00ccff;
+  filter: drop-shadow(0 0 8px rgba(0, 204, 255, 0.8));
+}
+
+.footer__logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.02em;
+}
+
+.footer__logo-accent {
+  background: linear-gradient(135deg, #00ccff, #0066ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(0, 204, 255, 0.5));
+}
+
+.footer__tagline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__social {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 250ms ease;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.footer__social:hover {
+  background: rgba(0, 204, 255, 0.2);
+  border-color: rgba(0, 204, 255, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0, 204, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* --- Links Group --- */
+.footer__links-title {
+  font-family: var(--font-tech);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 16px;
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer__link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer__link:hover {
+  color: #00ccff;
+  transform: translateX(4px);
+}
+
+.footer__link::before {
+  content: '›';
+  color: rgba(0, 204, 255, 0.4);
+  transition: color 200ms ease;
+}
+
+.footer__link:hover::before {
+  color: #00ccff;
+}
+
+/* --- Badge Column --- */
+.footer__badge-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+/* Chrome badge override for dark footer */
+.footer__badge.chrome-surface {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(0, 204, 255, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 68, 238, 0.2), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.footer__badge.chrome-surface::after {
+  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%);
+}
+
+.footer__badge.glass-card {
+  background: rgba(255, 0, 153, 0.08);
+  border: 1.5px solid rgba(255, 0, 153, 0.25);
+  box-shadow: 0 4px 16px rgba(255, 0, 153, 0.12), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.footer__badge-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.footer__badge-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer__badge-sub {
+  font-family: var(--font-tech);
+  font-size: 0.54rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+/* --- Bottom Bar --- */
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+/* Holographic line above bottom bar */
+.footer__bottom::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #0044ee, #00ccff, #ff0099, #55ff00, transparent);
+  opacity: 0.5;
+}
+
+.footer__bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  gap: 16px;
+}
+
+.footer__copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.footer__made {
+  font-family: var(--font-tech);
+  font-size: 0.56rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .footer__main {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer__main {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 40px 16px 32px;
+  }
+  .footer__bottom-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  .footer__badge-col {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,174 @@
+import { useState, useEffect } from 'react'
+import './Navbar.css'
+
+const navLinks = [
+  { label: 'About', href: '#about', code: '01', name: 'Profile & Philosophy' },
+  { label: 'Projects', href: '#projects', code: '02', name: 'Featured Works' },
+  { label: 'Skills', href: '#skills', code: '03', name: 'Tech Stack & Arsenal' },
+  { label: 'Timeline', href: '#timeline', code: '04', name: 'Career & Growth' },
+  { label: 'Certificates', href: '#certificates', code: '05', name: 'Verified Credentials' },
+  { label: 'Contact', href: '#contact', code: '06', name: 'Let’s Collaborate' },
+]
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { threshold: 0.25, rootMargin: '-70px 0px -40% 0px' }
+    )
+    navLinks.forEach(({ href }) => {
+      const el = document.querySelector(href)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [])
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault()
+    const id = href.startsWith('#') ? href.slice(1) : href
+    const matched = navLinks.find((l) => l.href === href)
+
+    window.dispatchEvent(
+      new CustomEvent('warp-to-section', {
+        detail: {
+          id,
+          name: matched ? matched.name : id.toUpperCase(),
+          code: matched ? matched.code : '00',
+        },
+      })
+    )
+    setMobileOpen(false)
+  }
+
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    window.dispatchEvent(
+      new CustomEvent('warp-to-section', {
+        detail: {
+          id: 'hero',
+          name: 'Identity & Home',
+          code: '00',
+        },
+      })
+    )
+  }
+
+  return (
+    <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} role="banner">
+      <div className="navbar__inner">
+        {/* Logo */}
+        <a href="#hero" className="navbar__logo" onClick={handleLogoClick}>
+          <span className="navbar__logo-icon">
+            <StarIcon />
+          </span>
+          <span className="navbar__logo-text">
+            <span className="logo-main">Rifqi</span>
+            <span className="logo-accent">M.</span>
+          </span>
+          <span className="navbar__logo-badge">Y2K</span>
+        </a>
+
+        {/* Desktop Nav */}
+        <nav className="navbar__nav" aria-label="Main navigation">
+          <ul className="navbar__links">
+            {navLinks.map(({ label, href, code }, i) => {
+              const isActive = activeSection === href.slice(1)
+              return (
+                <li key={label}>
+                  {i > 0 && <span className="navbar__sep" aria-hidden="true" />}
+                  <a
+                    href={href}
+                    className={`navbar__link ${isActive ? 'navbar__link--active' : ''}`}
+                    onClick={(e) => handleNavClick(e, href)}
+                  >
+                    <span className="navbar__link-num">{code}</span>
+                    <span className="navbar__link-text">{label}</span>
+                    {isActive && <span className="navbar__link-spark">✦</span>}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+
+        {/* CTA */}
+        <a
+          href="#contact"
+          className="navbar__cta btn btn-primary"
+          onClick={(e) => handleNavClick(e, '#contact')}
+        >
+          <span>Hire Me</span>
+          <span>✦</span>
+        </a>
+
+        {/* Mobile Toggle */}
+        <button
+          id="mobile-menu-toggle"
+          className={`navbar__hamburger ${mobileOpen ? 'open' : ''}`}
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle mobile menu"
+          aria-expanded={mobileOpen}
+        >
+          <span /><span /><span />
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <nav className="navbar__mobile" aria-label="Mobile navigation">
+          <ul className="navbar__mobile-links">
+            {navLinks.map(({ label, href, code }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  className={`navbar__mobile-link ${activeSection === href.slice(1) ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, href)}
+                >
+                  <span className="mobile-code">{code}</span>
+                  <span className="mobile-label">{label}</span>
+                  <span className="mobile-dot">✦</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </header>
+  )
+}
+
+function StarIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path
+        d="M10 2L11.8 7.8H18L12.9 11.4L14.7 17.2L10 13.6L5.3 17.2L7.1 11.4L2 7.8H8.2L10 2Z"
+        fill="url(#logoGrad)"
+      />
+      <defs>
+        <linearGradient id="logoGrad" x1="0" y1="0" x2="20" y2="20">
+          <stop offset="0%" stopColor="#0066ff" />
+          <stop offset="50%" stopColor="#00ccff" />
+          <stop offset="100%" stopColor="#ff007f" />
+        </linearGradient>
+      </defs>
+    </svg>
+  )
+}

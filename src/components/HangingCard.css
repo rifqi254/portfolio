@@ -1,0 +1,443 @@
+/* ============================================================
+   HANGING ID BADGE - INTERACTIVE ELASTIC LANYARD CARD
+   ============================================================ */
+
+.hanging-badge-container {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: visible;
+}
+
+/* SVG Elastic Strap Canvas */
+.hanging-badge__svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  overflow: visible;
+}
+
+.hanging-badge__strap-ribbon {
+  filter: drop-shadow(0 3px 6px rgba(0, 15, 60, 0.45));
+  transition: stroke 200ms ease;
+}
+
+.hanging-badge__strap-stitch {
+  pointer-events: none;
+}
+
+/* Chrome Swivel Hook (Connector) */
+.hanging-badge__clip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 26px;
+  margin-left: -10px;
+  margin-top: -12px;
+  pointer-events: none;
+  z-index: 6;
+  will-change: transform;
+}
+
+.hanging-badge__clip-ring {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid #e2e8f0;
+  margin: 0 auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  background: radial-gradient(circle, #cbd5e1 0%, #64748b 100%);
+}
+
+.hanging-badge__clip-body {
+  width: 8px;
+  height: 14px;
+  background: linear-gradient(180deg, #f8fafc 0%, #94a3b8 50%, #475569 100%);
+  margin: -3px auto 0;
+  border-radius: 2px 2px 4px 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* --- THE CARD --- */
+.hanging-badge__card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 254px;
+  height: 374px;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1.8px solid rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  z-index: 5;
+  will-change: transform, filter;
+  overflow: hidden;
+  box-sizing: border-box;
+  transform-origin: center center;
+  box-shadow:
+    0 18px 44px rgba(0, 50, 160, 0.22),
+    0 0 24px rgba(0, 204, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.hanging-badge-container.is-dragging .hanging-badge__card {
+  cursor: grabbing !important;
+}
+
+/* Acrylic Lanyard Holder Slot */
+.hanging-badge__slot-wrap {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 9px;
+  background: rgba(15, 23, 42, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.35);
+  z-index: 3;
+}
+
+.hanging-badge__slot-hole {
+  width: 24px;
+  height: 4px;
+  background: rgba(0, 10, 30, 0.5);
+  border-radius: 999px;
+}
+
+/* Holographic dynamic sheen */
+.hanging-badge__shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 10;
+  mix-blend-mode: overlay;
+  opacity: 0.85;
+}
+
+/* Header Strip */
+.hanging-badge__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 0 2px;
+}
+
+.hanging-badge__pass-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #0044cc;
+  background: rgba(0, 102, 255, 0.08);
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 102, 255, 0.2);
+}
+
+.hanging-badge__tag-dot {
+  color: #00ccff;
+  font-size: 0.65rem;
+}
+
+/* Security Smart Chip */
+.hanging-badge__chip {
+  width: 22px;
+  height: 16px;
+  background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+  border: 1px solid #a16207;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2px 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.hanging-badge__chip-line {
+  height: 1px;
+  background: #854d0e;
+  border-radius: 1px;
+}
+
+/* --- PHOTO FRAME --- */
+.hanging-badge__photo-frame {
+  position: relative;
+  width: 100%;
+  height: 204px;
+  background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid #ffffff;
+  box-shadow:
+    0 4px 16px rgba(0, 40, 120, 0.25),
+    inset 0 0 12px rgba(0, 204, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hanging-badge__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.hanging-badge__photo-fallback {
+  font-family: var(--font-tech, monospace);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 16px rgba(56, 189, 248, 0.8);
+}
+
+.hanging-badge__photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.04) 0px,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+
+.hanging-badge__photo-badge {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.44rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #a5f3fc;
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(4px);
+  padding: 2px 5px;
+  border-radius: 3px;
+  border: 0.8px solid rgba(56, 189, 248, 0.4);
+}
+
+/* Corner Reticle Accents */
+.hanging-badge__photo-corners .corner {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-color: #38bdf8;
+  border-style: solid;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.corner--tl { top: 5px; left: 5px; border-width: 1.5px 0 0 1.5px; }
+.corner--tr { top: 5px; right: 5px; border-width: 1.5px 1.5px 0 0; }
+.corner--bl { bottom: 5px; left: 5px; border-width: 0 0 1.5px 1.5px; }
+.corner--br { bottom: 5px; right: 5px; border-width: 0 1.5px 1.5px 0; }
+
+/* Info Area */
+.hanging-badge__info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.hanging-badge__name-main {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #001899 0%, #0066ee 50%, #00ccff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hanging-badge__name-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.02em;
+}
+
+.hanging-badge__role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  background: rgba(0, 204, 102, 0.1);
+  border: 1px solid rgba(0, 204, 102, 0.4);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.hanging-badge__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00cc66;
+  box-shadow: 0 0 6px #00cc66;
+  animation: badgeBlink 2s ease-in-out infinite;
+}
+
+@keyframes badgeBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.hanging-badge__role-text {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.52rem;
+  font-weight: 800;
+  color: #047857;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Footer & Barcode */
+.hanging-badge__footer {
+  margin-top: auto;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(148, 163, 184, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hanging-badge__barcode {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5px;
+  height: 18px;
+}
+
+.hanging-badge__barcode span {
+  width: 1.5px;
+  height: 100%;
+  background: #0f172a;
+}
+.hanging-badge__barcode span:nth-child(2) { width: 3px; }
+.hanging-badge__barcode span:nth-child(4) { width: 2.5px; }
+.hanging-badge__barcode span:nth-child(6) { width: 3px; }
+.hanging-badge__barcode span:nth-child(8) { width: 1px; height: 80%; }
+.hanging-badge__barcode span:nth-child(10) { width: 2.5px; }
+.hanging-badge__barcode span:nth-child(12) { width: 3px; }
+.hanging-badge__barcode span:nth-child(14) { width: 2px; }
+
+.hanging-badge__code {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.48rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.1em;
+}
+
+.hanging-badge__holo-seal {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00ccff, #ff007f, #55ff00, #ffcc00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  animation: sealSpin 8s linear infinite;
+}
+
+@keyframes sealSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hint Callout */
+.hanging-badge__hint {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0, 10, 40, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 204, 255, 0.6);
+  border-radius: 999px;
+  padding: 6px 14px;
+  color: #a5f3fc;
+  box-shadow: 0 6px 20px rgba(0, 204, 255, 0.35);
+  pointer-events: none;
+  z-index: 15;
+  animation: hintBounce 2.5s ease-in-out infinite;
+}
+
+.hanging-badge__hint-icon {
+  font-size: 0.85rem;
+  animation: handWiggle 1.5s ease-in-out infinite;
+}
+
+.hanging-badge__hint-text {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes hintBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-6px); }
+}
+
+@keyframes handWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-15deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .hanging-badge-container {
+    height: 420px;
+  }
+}

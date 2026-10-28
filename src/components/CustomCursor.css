@@ -1,0 +1,95 @@
+/* Universal cursor reset - do NOT hide the system cursor so preview pointers are fully visible */
+html, body {
+  cursor: default;
+}
+
+/* Ensure hand pointer cursor is always visible on all preview elements */
+a,
+button,
+[role="button"],
+.project-card,
+.project-card__thumb-frame,
+.project-card__thumbnail,
+.project-card__preview-overlay,
+.project-card__quick-btn,
+.project-card__launch-btn,
+.project-card__btn,
+.proj-modal__media-frame,
+.proj-modal__img,
+.proj-modal__img-link,
+.proj-modal__img--clickable,
+.proj-modal__nav,
+.proj-modal__close-btn,
+.proj-modal__btn,
+.cert-card,
+.y2k-thumb-frame,
+.cert-card__thumbnail,
+.cert-card__preview-overlay,
+.cert-card__view-btn,
+.cert-card__verify-link,
+.cert-modal__frame,
+.cert-modal__img,
+.cert-modal__close-btn,
+.cert-modal__nav,
+.cert-modal__btn,
+.timeline-card {
+  cursor: pointer !important;
+}
+
+.cursor {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+  mix-blend-mode: normal;
+}
+
+/* Main dot - chrome metallic */
+.cursor--dot {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 40% 35%, #ffffff 0%, #7fbfff 35%, #0055ee 70%, #003399 100%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 8px rgba(0, 204, 255, 0.8),
+    0 0 16px rgba(0, 204, 255, 0.4),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+  transition: width 200ms ease, height 200ms ease, transform 100ms ease;
+}
+
+/* Trail ring */
+.cursor--ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(0, 204, 255, 0.6);
+  border-radius: 50%;
+  transition: width 250ms ease, height 250ms ease, border-color 200ms ease, opacity 200ms ease;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.3);
+}
+
+/* Click states */
+.cursor--click {
+  transform: scale(0.75) !important;
+  background: radial-gradient(circle at 40% 35%, #ffffff 0%, #ff88cc 35%, #ff0099 70%, #990055 100%) !important;
+  box-shadow:
+    0 0 10px rgba(255, 0, 153, 0.9),
+    0 0 20px rgba(255, 0, 153, 0.5) !important;
+}
+
+/* Hover states */
+.cursor--hover {
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle at 40% 35%, #ffffff 0%, #ffaaee 35%, #ff0099 70%, #990055 100%) !important;
+  box-shadow:
+    0 0 12px rgba(255, 0, 153, 0.8),
+    0 0 24px rgba(255, 0, 153, 0.4) !important;
+}
+
+.cursor--ring-hover {
+  width: 48px;
+  height: 48px;
+  border-color: rgba(255, 0, 153, 0.55);
+  box-shadow: 0 0 12px rgba(255, 0, 153, 0.3);
+}

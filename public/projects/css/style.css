@@ -1,0 +1,167 @@
+/* FreshGuard Smart Packaging App Stylesheet */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.splash-page {
+  background: #d4edda;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Smartphone Shell */
+.phone {
+  width: 360px;
+  max-width: 100%;
+  height: 680px;
+  background: #1e293b;
+  border-radius: 44px;
+  padding: 12px;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.25),
+    0 8px 20px rgba(45, 106, 79, 0.2),
+    inset 0 0 0 2px #475569;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Status Bar */
+.status-bar {
+  height: 38px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1b4332;
+  position: relative;
+  z-index: 10;
+}
+
+.notch {
+  width: 110px;
+  height: 22px;
+  background: #1e293b;
+  border-radius: 0 0 14px 14px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+}
+
+.right-icons {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Screen */
+.screen {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 34px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Splash Container */
+.splash {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 24px 36px;
+  text-align: center;
+}
+
+/* Logo */
+.splash-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash-icon-wrap {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+  margin-bottom: 14px;
+}
+
+.splash-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #065f46;
+}
+
+.splash-sub {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #047857;
+  margin-top: 4px;
+}
+
+/* Product Card */
+.splash-product {
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 24px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.fruit-emoji {
+  font-size: 4.5rem;
+  display: block;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+}
+
+.product-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #065f46;
+  letter-spacing: 0.02em;
+}
+
+/* Sensor Dots */
+.sensor-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 10px 24px;
+}
+
+.sensor-dot {
+  font-size: 1.1rem;
+  color: #065f46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

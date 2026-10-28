@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>FreshGuard — Riwayat</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #E5E7EB;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    /* Phone mockup */
+    .phone {
+      max-width: 380px;
+      width: 100%;
+      background-color: #FFFFFF;
+      border-radius: 44px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      position: relative;
+      height: 700px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Status bar */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px 6px 24px;
+      font-size: 15px;
+      font-weight: 590;
+      background: white;
+      color: #1F2937;
+    }
+
+    .notch {
+      width: 110px;
+      height: 28px;
+      background: #1F2937;
+      border-radius: 20px;
+      margin-top: -2px;
+    }
+
+    .right-icons {
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* Scrollable screen */
+    .screen {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 16px 12px 16px;
+      scroll-behavior: smooth;
+    }
+
+    /* Hide scrollbar for cleaner look (optional) */
+    .screen::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .screen::-webkit-scrollbar-track {
+      background: #F3F4F6;
+      border-radius: 8px;
+    }
+
+    .screen::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 8px;
+    }
+
+    /* top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+      margin-top: 4px;
+    }
+
+    /* Filter pills - HORIZONTAL SCROLL seperti awal */
+    .history-filter-wrapper {
+      margin-bottom: 24px;
+      border-bottom: 1px solid #F1F5F9;
+      padding-bottom: 12px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .history-filter-wrapper::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    .history-filter-wrapper::-webkit-scrollbar-track {
+      background: #F1F5F9;
+      border-radius: 10px;
+    }
+
+    .history-filter-wrapper::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 10px;
+    }
+
+    .history-filter {
+      display: inline-flex;
+      gap: 10px;
+      padding-right: 8px;
+    }
+
+    .filter-pill {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 40px;
+      border: none;
+      background: #F1F5F9;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .filter-pill.active {
+      background: #2E7D32;
+      color: white;
+      box-shadow: 0 2px 8px rgba(46, 125, 50, 0.2);
+    }
+
+    .filter-pill.inactive {
+      background: #F1F5F9;
+      color: #1E293B;
+    }
+
+    .filter-pill.inactive:hover {
+      background: #E2E8F0;
+    }
+
+    /* History item card */
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: white;
+      padding: 16px;
+      border-radius: 28px;
+      margin-bottom: 14px;
+      text-decoration: none;
+      transition: all 0.15s;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid #F0F2F5;
+    }
+
+    .history-item:active {
+      transform: scale(0.98);
+      background: #F9FAFB;
+    }
+
+    .hist-info {
+      flex: 1;
+    }
+
+    .hist-info h4 {
+      font-size: 17px;
+      font-weight: 640;
+      color: #0F172A;
+      margin-bottom: 6px;
+    }
+
+    .hist-meta {
+      font-size: 11px;
+      color: #64748B;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hist-right {
+      text-align: right;
+      min-width: 90px;
+    }
+
+    .hist-status {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 30px;
+      background: #F1F5F9;
+      display: inline-block;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .hist-pct {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .hist-fresh {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .hist-warn {
+      background: #FFF8E1;
+      color: #F57F17;
+    }
+
+    .hist-bad {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    /* bottom navigation */
+    .bottom-nav {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px 14px;
+      border-top: 1px solid #EDF2F7;
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      font-size: 11px;
+      color: #94A3B8;
+      font-weight: 500;
+      gap: 4px;
+      transition: color 0.1s;
+    }
+
+    .nav-item.active {
+      color: #2E7D32;
+    }
+
+    .nav-icon {
+      font-size: 22px;
+    }
+
+    .nav-scan {
+      background: #2E7D32;
+      color: white;
+      text-decoration: none;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 32px;
+      font-size: 28px;
+      margin-top: -12px;
+      box-shadow: 0 6px 12px rgba(46, 125, 50, 0.3);
+      transition: 0.1s;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      background: #F8FAFE;
+      border-radius: 36px;
+      color: #64748B;
+      margin-top: 20px;
+    }
+
+    .empty-icon {
+      font-size: 58px;
+      margin-bottom: 12px;
+      opacity: 0.7;
+    }
+
+    /* small helper */
+    .no-click-style {
+      cursor: default;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone">
+    <div class="status-bar">
+      <span>9:41</span>
+      <div class="notch"></div>
+      <div class="right-icons">▲▼ WiFi 🔋</div>
+    </div>
+    <div class="screen">
+      <div class="top-bar">
+        <div>
+          <h2 style="font-size:20px;">Riwayat</h2>
+          <div style="font-size:12px;color:#64748B;font-weight:400;margin-top:2px;">Lihat riwayat pemantauan kemasan
+            Anda</div>
+        </div>
+        <span style="font-size:20px;cursor:pointer;">⬛</span>
+      </div>
+
+      <!-- Filter dengan horizontal scroll seperti awal -->
+      <div class="history-filter-wrapper">
+        <div class="history-filter" id="filterContainer">
+          <button data-filter="all" class="filter-pill active" id="filterAll">Semua</button>
+          <button data-filter="fresh" class="filter-pill inactive" id="filterFresh">🟢 Segar</button>
+          <button data-filter="warning" class="filter-pill inactive" id="filterWarn">🟡 Hampir Busuk</button>
+          <button data-filter="bad" class="filter-pill inactive" id="filterBad">🔴 Terbuang</button>
+        </div>
+      </div>
+
+      <!-- Daftar riwayat akan di-render oleh javascript agar filter bekerja sempurna -->
+      <div id="historyListContainer"></div>
+      <div style="height:8px;"></div>
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item"><span class="nav-icon">🏠</span>Beranda</a>
+      <a href="#" class="nav-item active"><span class="nav-icon">🕐</span>Riwayat</a>
+      <a href="#" class="nav-scan">📷</a>
+      <a href="#" class="nav-item"><span class="nav-icon">💡</span>Saran</a>
+      <a href="#" class="nav-item"><span class="nav-icon">👤</span>Profil</a>
+    </nav>
+  </div>
+
+  <script>
+    // Data riwayat lengkap dengan kategori status akhir yang sesuai
+    const historyData = [
+      {
+        id: 1,
+        name: "Apel Fuji",
+        emoji: "🍎",
+        date: "20 Mei 2025, 08:30",
+        scanId: "FG-2025-05-20-001",
+        period: "5 hari",
+        finalStatus: "Segar ✅",
+        finalPct: "92%",
+        category: "fresh",        // segar
+        detailLink: "#",          // Karena hanya demo, arahkan ke # biar tidak error, namun tetap tampil
+        bgClass: "",
+        statusClass: "hist-fresh"
+      },
+      {
+        id: 2,
+        name: "Anggur Hijau",
+        emoji: "🍇",
+        date: "18 Mei 2025, 09:15",
+        scanId: "FG-2025-05-18-002",
+        period: "4 hari",
+        finalStatus: "Hampir Busuk ⚠️",
+        finalPct: "58%",
+        category: "warning",
+        detailLink: "#",
+        bgClass: "background:#FFFBEB;",
+        statusClass: "hist-warn"
+      },
+      {
+        id: 3,
+        name: "Stroberi",
+        emoji: "🍓",
+        date: "15 Mei 2025, 10:20",
+        scanId: "FG-2025-05-15-003",
+        period: "3 hari",
+        finalStatus: "Terbuang 🗑️",
+        finalPct: "22%",
+        category: "bad",
+        detailLink: "#",
+        bgClass: "background:#FEF2F2;",
+        statusClass: "hist-bad"
+      },
+      {
+        id: 4,
+        name: "Blueberry",
+        emoji: "🫐",
+        date: "10 Mei 2025, 14:10",
+        scanId: "FG-2025-05-10-004",
+        period: "6 hari",
+        finalStatus: "Segar ✅",
+        finalPct: "88%",
+        category: "fresh",
+        detailLink: "#",
+        bgClass: "",
+        statusClass: "hist-fresh"
+      },
+      {
+        id: 5,
+        name: "Pisang Cavendish",
+        emoji: "🍌",
+        date: "5 Mei 2025, 11:05",
+        scanId: "FG-2025-05-05-005",
+        period: "2 hari",
+        finalStatus: "Terbuang 🗑️",
+        finalPct: "18%",
+        category: "bad",
+        detailLink: "#",
+        bgClass: "background:#FEF2F2;",
+        statusClass: "hist-bad"
+      },
+      {
+        id: 6,
+        name: "Mangga Harum Manis",
+        emoji: "🥭",
+        date: "22 Mei 2025, 07:45",
+        scanId: "FG-2025-05-22-006",
+        period: "4 hari",
+        finalStatus: "Hampir Busuk ⚠️",
+        finalPct: "61%",
+        category: "warning",
+        detailLink: "#",
+        bgClass: "background:#FFFBEB;",
+        statusClass: "hist-warn"
+      },
+      {
+        id: 7,
+        name: "Brokoli Organik",
+        emoji: "🥦",
+        date: "19 Mei 2025, 16:20",
+        scanId: "FG-2025-05-19-007",
+        period: "3 hari",
+        finalStatus: "Segar ✅",
+        finalPct: "95%",
+        category: "fresh",
+        detailLink: "#",
+        bgClass: "",
+        statusClass: "hist-fresh"
+      },
+      {
+        id: 8,
+        name: "Wortel Import",
+        emoji: "🥕",
+        date: "21 Mei 2025, 13:15",
+        scanId: "FG-2025-05-21-008",
+        period: "7 hari",
+        finalStatus: "Segar ✅",
+        finalPct: "90%",
+        category: "fresh",
+        detailLink: "#",
+        bgClass: "",
+        statusClass: "hist-fresh"
+      },
+      {
+        id: 9,
+        name: "Tomat Cherry",
+        emoji: "🍅",
+        date: "17 Mei 2025, 11:30",
+        scanId: "FG-2025-05-17-009",
+        period: "3 hari",
+        finalStatus: "Hampir Busuk ⚠️",
+        finalPct: "55%",
+        category: "warning",
+        detailLink: "#",
+        bgClass: "background:#FFFBEB;",
+        statusClass: "hist-warn"
+      }
+    ];
+
+    // fungsi render berdasarkan filter aktif
+    let currentFilter = "all"; // all, fresh, warning, bad
+
+    function renderHistory() {
+      const container = document.getElementById("historyListContainer");
+      if (!container) return;
+
+      // filter data
+      let filtered = [];
+      if (currentFilter === "all") {
+        filtered = [...historyData];
+      } else if (currentFilter === "fresh") {
+        filtered = historyData.filter(item => item.category === "fresh");
+      } else if (currentFilter === "warning") {
+        filtered = historyData.filter(item => item.category === "warning");
+      } else if (currentFilter === "bad") {
+        filtered = historyData.filter(item => item.category === "bad");
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">📭</div>
+          <div style="font-weight:500; margin-bottom:6px;">Tidak ada riwayat</div>
+          <div style="font-size:13px;">Tidak ditemukan data dengan filter ini.</div>
+        </div>
+      `;
+        return;
+      }
+
+      // generate HTML untuk setiap item
+      let html = '';
+      filtered.forEach(item => {
+        // background inline jika ada
+        let bgStyle = item.bgClass ? item.bgClass : '';
+        let additionalStyle = bgStyle ? `style="${bgStyle}"` : '';
+        // membuat link dinamis (dalam contoh ini semua link menuju #, tapi bisa diatur ke detail.html?ID)
+        // Agar konsisten dengan interaksi: kita beri kelas history-item dan atribut href
+        html += `
+        <a href="${item.detailLink}" class="history-item" ${additionalStyle}>
+          <span style="font-size:44px;">${item.emoji}</span>
+          <div class="hist-info">
+            <h4>${item.name}</h4>
+            <div class="hist-meta">📅 ${item.date}</div>
+            <div class="hist-meta">Scan ID: ${item.scanId}</div>
+            <div class="hist-meta">Periode pemantauan: ${item.period}</div>
+          </div>
+          <div class="hist-right">
+            <div class="hist-status ${item.statusClass}">Status Akhir<br>${item.finalStatus}</div>
+            <div style="font-size:10px;color:#64748B;margin:3px 0;">Kesegaran akhir</div>
+            <div class="hist-pct ${item.statusClass}">${item.finalPct}</div>
+          </div>
+        </a>
+      `;
+      });
+      container.innerHTML = html;
+    }
+
+    // update tampilan filter pill (aktif/inaktif)
+    function updateActiveFilterUI() {
+      // hapus class active dari semua filter-pill, lalu beri active sesuai currentFilter
+      const allPills = document.querySelectorAll('.filter-pill');
+      allPills.forEach(pill => {
+        pill.classList.remove('active');
+        pill.classList.add('inactive');
+      });
+
+      if (currentFilter === 'all') {
+        const allBtn = document.getElementById('filterAll');
+        if (allBtn) {
+          allBtn.classList.add('active');
+          allBtn.classList.remove('inactive');
+        }
+      } else if (currentFilter === 'fresh') {
+        const freshBtn = document.getElementById('filterFresh');
+        if (freshBtn) {
+          freshBtn.classList.add('active');
+          freshBtn.classList.remove('inactive');
+        }
+      } else if (currentFilter === 'warning') {
+        const warnBtn = document.getElementById('filterWarn');
+        if (warnBtn) {
+          warnBtn.classList.add('active');
+          warnBtn.classList.remove('inactive');
+        }
+      } else if (currentFilter === 'bad') {
+        const badBtn = document.getElementById('filterBad');
+        if (badBtn) {
+          badBtn.classList.add('active');
+          badBtn.classList.remove('inactive');
+        }
+      }
+    }
+
+    // setup event listeners untuk filter
+    function bindFilterEvents() {
+      const allBtn = document.getElementById('filterAll');
+      const freshBtn = document.getElementById('filterFresh');
+      const warnBtn = document.getElementById('filterWarn');
+      const badBtn = document.getElementById('filterBad');
+
+      if (allBtn) {
+        allBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentFilter = 'all';
+          updateActiveFilterUI();
+          renderHistory();
+        });
+      }
+      if (freshBtn) {
+        freshBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentFilter = 'fresh';
+          updateActiveFilterUI();
+          renderHistory();
+        });
+      }
+      if (warnBtn) {
+        warnBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentFilter = 'warning';
+          updateActiveFilterUI();
+          renderHistory();
+        });
+      }
+      if (badBtn) {
+        badBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentFilter = 'bad';
+          updateActiveFilterUI();
+          renderHistory();
+        });
+      }
+    }
+
+    // inisialisasi
+    function init() {
+      renderHistory();
+      bindFilterEvents();
+      updateActiveFilterUI();
+    }
+
+    init();
+  </script>
+</body>
+
+</html>
