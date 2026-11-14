@@ -437,18 +437,23 @@
     0 0 35px rgba(0, 204, 255, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 1);
   overflow: hidden;
-  animation: modalPopIn 280ms cubic-bezier(0.2, 0.9, 0.3, 1.15) forwards;
+  animation: modalPopIn 320ms cubic-bezier(0.34, 1.45, 0.64, 1) forwards, modalFloating 5s ease-in-out infinite 320ms;
 }
 
 @keyframes modalPopIn {
   from {
     opacity: 0;
-    transform: scale(0.92) translateY(16px);
+    transform: scale(0.88) translateY(24px);
   }
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
+
+@keyframes modalFloating {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1) translateY(-6px); }
 }
 
 /* Modal Top Window Bar - Clean Icy White */
@@ -541,7 +546,7 @@
 .y2k-holo-frame {
   position: relative;
   max-width: 100%;
-  max-height: 62vh;
+  max-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -585,7 +590,7 @@
 .cert-modal__img {
   width: 100%;
   height: auto;
-  max-height: 58vh;
+  max-height: 78vh;
   object-fit: contain;
   border-radius: 8px;
   display: block;
@@ -914,3 +919,471 @@
   color: #1e293b;
 }
 
+
+/* ============================================================
+   3D FLIPPING CASSETTE TAPE CERTIFICATE CARDS
+   Initial state: Belakang Kaset (Tape Back)
+   On Click: 3D Flip/Spin Animation to Reveal Certificate
+   ============================================================ */
+
+.cert-cassette-card {
+  perspective: 1400px;
+  position: relative;
+  min-height: 380px;
+  border-radius: 16px;
+}
+
+.cert-cassette__flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.cert-cassette-card.is-flipped .cert-cassette__flipper {
+  transform: rotateY(180deg);
+}
+
+.cert-cassette__face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ─── SIDE 1: BELAKANG KASET (INITIAL VIEW) ─── */
+.cert-cassette__face--cassette {
+  z-index: 2;
+  transform: rotateY(0deg);
+  cursor: pointer;
+}
+
+/* ─── SIDE 2: SERTIFIKAT (REVEALED AFTER FLIP) ─── */
+.cert-cassette__face--cert {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+/* ─── TAPE BACK DETAILS ─── */
+.tape-back {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #181924 0%,
+    #12131c 50%,
+    #0c0d14 100%
+  );
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  padding: 16px;
+  position: relative;
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.55),
+    0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cert-cassette__face--cassette:hover .tape-back {
+  border-color: rgba(191, 255, 0, 0.4);
+  box-shadow:
+    0 20px 44px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(191, 255, 0, 0.2);
+}
+
+/* Corner Screws */
+.tape-screw {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #8899aa, #334455, #112233);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+.screw--tl { top: 8px; left: 8px; }
+.screw--tr { top: 8px; right: 8px; }
+.screw--bl { bottom: 8px; left: 8px; }
+.screw--br { bottom: 8px; right: 8px; }
+
+/* Top Header */
+.tape-back__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+.tape-back__side {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ff0077;
+  letter-spacing: 0.1em;
+  background: rgba(255, 0, 119, 0.12);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 0, 119, 0.3);
+}
+
+.tape-back__code {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #a5f3fc;
+  letter-spacing: 0.08em;
+}
+
+.tape-back__tech {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.06em;
+}
+
+/* Track Label (Analog Sticker) */
+.tape-back__label {
+  background: linear-gradient(180deg, #faf7f0 0%, #ede6d8 100%);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 8px 0;
+  border: 1px solid rgba(180, 170, 150, 0.6);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tape-back__stripes {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tape-back__stripes .stripe {
+  height: 2px;
+  border-radius: 1px;
+}
+.stripe--red { background: #ff2244; }
+.stripe--cyan, .stripe--blue { background: #0088ff; }
+
+.tape-back__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.tape-back__track-num {
+  color: #ff0077;
+  font-weight: 800;
+}
+
+.tape-back__category {
+  background: rgba(0, 136, 255, 0.12);
+  color: #0055ff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 136, 255, 0.25);
+  font-size: 0.52rem;
+}
+
+.tape-back__title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.tape-back__issuer {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.04em;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(180, 170, 150, 0.5);
+}
+
+/* Tape Window with Reels */
+.tape-back__window {
+  background: linear-gradient(180deg, #100b16 0%, #08060c 50%, #100b16 100%);
+  border-radius: 8px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
+  margin-bottom: 6px;
+}
+
+.tape-back__reel {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: radial-gradient(circle, #2a2030 0%, #16121c 60%, #2a2030 100%);
+  position: relative;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+.tape-back__reel .reel-teeth {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.3);
+}
+
+.tape-back__reel .reel-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #475569;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.tape-back__spool-gauge {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin: 0 12px;
+}
+
+.gauge-tape-strip {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8b4513, #cd853f, #8b4513, transparent);
+}
+
+.gauge-marks {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.48rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.1em;
+}
+
+/* Interactive Flip Prompt */
+.tape-back__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tape-back__prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(191, 255, 0, 0.12);
+  border: 1px solid rgba(191, 255, 0, 0.45);
+  border-radius: 999px;
+  color: #bfff00;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px rgba(191, 255, 0, 0.25);
+  transition: all 0.25s ease;
+}
+
+.cert-cassette__face--cassette:hover .tape-back__prompt {
+  background: rgba(191, 255, 0, 0.28);
+  box-shadow: 0 0 20px rgba(191, 255, 0, 0.5);
+  transform: scale(1.04);
+}
+
+.prompt-spin-icon {
+  font-size: 0.75rem;
+  animation: promptSpin 4s linear infinite;
+}
+
+@keyframes promptSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─── REVEALED CERTIFICATE SIDE ─── */
+.cert-front {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.96);
+  border: 2px solid rgba(0, 136, 255, 0.35);
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  box-shadow:
+    0 16px 36px rgba(0, 68, 238, 0.16),
+    0 0 20px rgba(0, 204, 255, 0.15);
+}
+
+.cert-front__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cert-front__badge {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #0066ff;
+  letter-spacing: 0.06em;
+}
+
+.cert-front__flip-btn {
+  background: rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.2);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cert-front__flip-btn:hover {
+  background: #ff0077;
+  color: #ffffff;
+  border-color: #ff0077;
+  box-shadow: 0 2px 10px rgba(255, 0, 119, 0.35);
+}
+
+.cert-front__preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  border: 1.5px solid rgba(0, 136, 255, 0.3);
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.cert-front__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cert-front__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 20, 60, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.cert-front__preview:hover .cert-front__overlay {
+  opacity: 1;
+}
+
+.cert-front__body {
+  cursor: pointer;
+}
+
+.cert-front__title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.cert-front__body:hover .cert-front__title {
+  color: #0066ff;
+}
+
+/* Interactive Cassette Card Hover & Click */
+.cert-cassette-card {
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.25s ease;
+}
+
+.cert-cassette-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.cert-cassette-card:active {
+  transform: translateY(-2px) scale(0.99);
+}
+
+.tape-back__footer { display: flex; align-items: center; justify-content: center; margin-top: 6px; }
+
+
+/* Minimal Certificate Modal Footer */
+.cert-modal__footer--minimal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  background: #ffffff;
+  border-top: 1.5px solid rgba(0, 204, 255, 0.2);
+}
+
+.cert-modal__cert-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cert-modal__count {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0044ee;
+  background: rgba(0, 68, 238, 0.08);
+  border: 1px solid rgba(0, 68, 238, 0.2);
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+}

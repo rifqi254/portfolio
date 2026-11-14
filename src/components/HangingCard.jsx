@@ -3,10 +3,10 @@ import './HangingCard.css'
 
 export default function HangingCard({
   photoSrc = '/profile.jpg',
-  name = 'FADTABEIT',
+  name = 'RIFQI M.',
   fullName = 'Muhammad Rifqi Maulana',
   role = 'Full-Stack Developer',
-  idCode = 'RM-2025-DEV',
+  idCode = 'RM-2026-ARCHIVE',
   className = '',
 }) {
   const containerRef = useRef(null)
@@ -17,16 +17,16 @@ export default function HangingCard({
   // Physics state stored in refs to run smoothly at 60fps without React re-render lag
   const physicsRef = useRef({
     // Anchor at top center of container
-    anchorX: 140,
+    anchorX: 160,
     anchorY: 10,
 
     // Resting card position
-    restX: 140,
-    restY: 205,
+    restX: 160,
+    restY: 245,
 
     // Current card center position
-    posX: 140,
-    posY: 205,
+    posX: 160,
+    posY: 245,
 
     // Velocity
     vx: 0,
@@ -47,12 +47,12 @@ export default function HangingCard({
     pointerVx: 0,
     pointerVy: 0,
 
-    // Physical constants
-    cardWidth: 254,
-    cardHeight: 374,
-    strapLength: 50,
-    stiffness: 0.088,      // Spring constant k (snappy return)
-    damping: 0.85,         // Friction / oscillation decay
+    // Physical constants for Floppy Disk Keychain
+    cardWidth: 310,
+    cardHeight: 430,
+    strapLength: 42,
+    stiffness: 0.088,
+    damping: 0.85,
     angularStiffness: 0.07,
     angularDamping: 0.86,
   })
@@ -64,6 +64,7 @@ export default function HangingCard({
   const anchorGroupRef = useRef(null)
   const shineRef = useRef(null)
   const clipRef = useRef(null)
+  const charmRef = useRef(null)
   const isDraggingRef = useRef(false)
   const animFrameIdRef = useRef(null)
 
@@ -76,7 +77,7 @@ export default function HangingCard({
       const anchorX = width / 2
       const anchorY = 10
       const restX = anchorX
-      const restY = anchorY + physicsRef.current.strapLength + physicsRef.current.cardHeight / 2 - 10
+      const restY = anchorY + physicsRef.current.strapLength + physicsRef.current.cardHeight / 2 - 14
 
       physicsRef.current.anchorX = anchorX
       physicsRef.current.anchorY = anchorY
@@ -104,113 +105,95 @@ export default function HangingCard({
     let lastTime = performance.now()
 
     const tick = (now) => {
-      const dt = Math.min((now - lastTime) / 1000, 0.033) // clamp dt
+      const dt = Math.min((now - lastTime) / 1000, 0.033)
       lastTime = now
       const p = physicsRef.current
 
       if (!isDraggingRef.current) {
-        // --- SPRING REBOUND SIMULATION ("TERPENTAL") ---
+        // Spring Rebound Simulation
         const dispX = p.posX - p.restX
         const dispY = p.posY - p.restY
 
-        // Hooke's Law Spring Force: F = -k * x
         const fx = -p.stiffness * dispX * 60
         const fy = -p.stiffness * dispY * 60
 
-        // Acceleration (assuming mass = 1)
         p.vx = (p.vx + fx * dt) * Math.pow(p.damping, dt * 60)
         p.vy = (p.vy + fy * dt) * Math.pow(p.damping, dt * 60)
 
-        p.posX += p.vx * dt * 60
-        p.posY += p.vy * dt * 60
+        p.posX += p.vx
+        p.posY += p.vy
 
-        // Rotational spring simulation (card swings like a pendulum)
-        // Horizontal displacement and horizontal velocity create torque
-        const naturalSwing = (dispX / 140) * 25 + (p.vx * 0.45)
-        const angleDisp = p.angle - naturalSwing
+        // Target angular tilt from horizontal displacement & velocity
+        const targetAngle = Math.max(-28, Math.min(28, (p.posX - p.anchorX) * 0.16 + p.vx * 0.45))
+        const angleDisp = p.angle - targetAngle
         const torque = -p.angularStiffness * angleDisp * 60
-
         p.rotVel = (p.rotVel + torque * dt) * Math.pow(p.angularDamping, dt * 60)
-        p.angle += p.rotVel * dt * 60
+        p.angle += p.rotVel
 
-        // When motion settles, stay COMPLETELY STILL ("diem aja")
-        const kineticEnergy = Math.abs(p.vx) + Math.abs(p.vy) + Math.abs(p.rotVel)
-        if (kineticEnergy < 0.05 && Math.abs(dispX) < 0.6 && Math.abs(dispY) < 0.6) {
+        // Stop tiny micro-jitters
+        if (
+          Math.abs(dispX) < 0.08 &&
+          Math.abs(dispY) < 0.08 &&
+          Math.abs(p.vx) < 0.08 &&
+          Math.abs(p.vy) < 0.08 &&
+          Math.abs(angleDisp) < 0.08
+        ) {
           p.posX = p.restX
           p.posY = p.restY
-          p.angle = 0
           p.vx = 0
           p.vy = 0
+          p.angle = 0
           p.rotVel = 0
         }
-      } else {
-        // While dragging: smooth angle tracking based on pull direction
-        const pullDx = p.posX - p.anchorX
-        const pullDy = Math.max(p.posY - p.anchorY, 15)
-        const targetAngle = Math.atan2(pullDx, pullDy) * (180 / Math.PI) * 0.52
-        p.angle += (targetAngle - p.angle) * 0.2
       }
 
-      // --- RENDER UPDATES DIRECTLY TO DOM FOR 60FPS PERFORMANCE ---
+      // Render transforms directly to DOM
+      const cardEl = cardElementRef.current
+      if (cardEl) {
+        const left = p.posX - p.cardWidth / 2
+        const top = p.posY - p.cardHeight / 2
+        cardEl.style.transform = `translate3d(${left}px, ${top}px, 0px) rotate(${p.angle}deg)`
+      }
+
+      // Calculate attachment slot on top of the card
       const rad = (p.angle * Math.PI) / 180
-      // Attachment hole on card: top-center of the card (offset from card center by cardHeight / 2 - 12)
-      const holeDist = p.cardHeight / 2 - 10
-      const holeX = p.posX - Math.sin(rad) * holeDist
-      const holeY = p.posY - Math.cos(rad) * holeDist
+      const slotDistY = -p.cardHeight / 2 + 10
+      const slotX = p.posX + Math.sin(rad) * -slotDistY
+      const slotY = p.posY + Math.cos(rad) * slotDistY
 
-      // Update Card transform & 3D tilt
-      if (cardElementRef.current) {
-        const tiltX = Math.max(-20, Math.min(20, -(p.posY - p.restY) * 0.08))
-        const tiltY = Math.max(-20, Math.min(20, (p.posX - p.restX) * 0.12))
-        cardElementRef.current.style.transform = `translate3d(${p.posX - p.cardWidth / 2}px, ${p.posY - p.cardHeight / 2}px, 0) rotate(${p.angle}deg) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`
-
-        // Dynamic 3D depth shadow
-        const shadowX = -p.angle * 0.6
-        const shadowY = 16 + Math.abs(p.posY - p.restY) * 0.15
-        const shadowBlur = 28 + Math.abs(p.posY - p.restY) * 0.2
-        cardElementRef.current.style.filter = `drop-shadow(${shadowX}px ${shadowY}px ${shadowBlur}px rgba(0, 18, 60, 0.45))`
+      // Position clip / swivel hook at attachment slot
+      const clipEl = clipRef.current
+      if (clipEl) {
+        clipEl.style.transform = `translate3d(${slotX}px, ${slotY}px, 0px) rotate(${p.angle}deg)`
       }
 
-      // Update Holographic Shine reflection angle
-      if (shineRef.current) {
-        const shineAngle = 125 + p.angle * 1.8
-        const shinePos = 50 + (p.posX - p.restX) * 0.3
-        shineRef.current.style.background = `linear-gradient(${shineAngle}deg, transparent ${shinePos - 35}%, rgba(255,255,255,0.45) ${shinePos}%, rgba(0,204,255,0.3) ${shinePos + 15}%, rgba(255,0,153,0.3) ${shinePos + 30}%, transparent ${shinePos + 50}%)`
+      // Update elastic chain curve (Quadratic Bezier curve)
+      const strapEl = strapPathRef.current
+      const strapStitchEl = strapStitchRef.current
+      if (strapEl) {
+        const midX = (p.anchorX + slotX) / 2 + (p.posX - p.restX) * 0.18
+        const midY = (p.anchorY + slotY) / 2 + Math.abs(p.posX - p.anchorX) * 0.08
+        const pathData = `M ${p.anchorX} ${p.anchorY} Q ${midX} ${midY} ${slotX} ${slotY}`
+        strapEl.setAttribute('d', pathData)
+        if (strapStitchEl) {
+          strapStitchEl.setAttribute('d', pathData)
+        }
       }
 
-      // Calculate Elastic Strap curve
-      const strapDist = Math.hypot(holeX - p.anchorX, holeY - p.anchorY)
-      let cpX = (p.anchorX + holeX) / 2
-      let cpY = (p.anchorY + holeY) / 2
-
-      if (strapDist < p.strapLength) {
-        // Slack: rope sags naturally with gravity
-        const sag = (p.strapLength - strapDist) * 0.65
-        cpY += sag
-      } else {
-        // Taut / Stretched: slight elastic lateral oscillation when vibrating
-        const stretchRatio = strapDist / p.strapLength
-        const wave = Math.sin(now * 0.02) * Math.min(8, (stretchRatio - 1) * 12)
-        const perpX = -(holeY - p.anchorY) / strapDist
-        const perpY = (holeX - p.anchorX) / strapDist
-        cpX += perpX * wave
-        cpY += perpY * wave
+      // Update neon charm position along chain
+      const charmEl = charmRef.current
+      if (charmEl) {
+        const charmX = (p.anchorX * 0.4 + slotX * 0.6) + 14
+        const charmY = (p.anchorY * 0.4 + slotY * 0.6)
+        charmEl.style.transform = `translate3d(${charmX}px, ${charmY}px, 0px) rotate(${p.angle * 1.4}deg)`
       }
 
-      const pathData = `M ${p.anchorX} ${p.anchorY} Q ${cpX} ${cpY} ${holeX} ${holeY}`
-      if (strapPathRef.current) {
-        strapPathRef.current.setAttribute('d', pathData)
-        // When stretched elastically, strap gets slightly thinner (elastic tension effect)
-        const width = Math.max(8, 12 - Math.max(0, (strapDist - p.strapLength) * 0.04))
-        strapPathRef.current.setAttribute('stroke-width', width)
-      }
-      if (strapStitchRef.current) {
-        strapStitchRef.current.setAttribute('d', pathData)
-      }
-
-      // Update metal clip position to match hole
-      if (clipRef.current) {
-        clipRef.current.style.transform = `translate3d(${holeX}px, ${holeY}px, 0) rotate(${p.angle}deg)`
+      // Dynamic light reflection shift across translucent acrylic
+      const shineEl = shineRef.current
+      if (shineEl) {
+        const normAngle = Math.max(-1, Math.min(1, p.angle / 20))
+        const gradX = 50 + normAngle * 35
+        shineEl.style.background = `linear-gradient(${125 + p.angle * 0.8}deg, rgba(255,255,255,0.4) ${gradX - 25}%, rgba(255,100,200,0.2) ${gradX}%, transparent ${gradX + 28}%)`
       }
 
       animFrameIdRef.current = requestAnimationFrame(tick)
@@ -222,17 +205,17 @@ export default function HangingCard({
     }
   }, [])
 
-  // Pointer Down (Mouse or Touch)
+  // Pointer event handlers for drag physics
   const handlePointerDown = (e) => {
-    // Only primary button
+    // Only primary mouse button or touch
     if (e.button !== undefined && e.button !== 0) return
+
     e.preventDefault()
+    setHasInteracted(true)
+    setIsDragging(true)
+    isDraggingRef.current = true
 
     const p = physicsRef.current
-    isDraggingRef.current = true
-    setIsDragging(true)
-    setHasInteracted(true)
-
     p.dragStartX = e.clientX
     p.dragStartY = e.clientY
     p.cardStartX = p.posX
@@ -243,104 +226,85 @@ export default function HangingCard({
     p.pointerVx = 0
     p.pointerVy = 0
 
-    // Capture global pointer movements
+    const handlePointerMove = (moveEvt) => {
+      if (!isDraggingRef.current) return
+      const now = performance.now()
+      const dtMove = Math.max(0.001, (now - p.lastPointerTime) / 1000)
+
+      const rawDx = moveEvt.clientX - p.dragStartX
+      const rawDy = moveEvt.clientY - p.dragStartY
+
+      // Elastic resistance when dragged too far
+      const maxDist = 200
+      const dist = Math.hypot(rawDx, rawDy)
+      const scale = dist > maxDist ? 1 - Math.exp(-dist / maxDist) * 0.4 : 1
+
+      p.posX = p.cardStartX + rawDx * scale
+      p.posY = p.cardStartY + rawDy * scale
+
+      // Track drag release velocity for realistic fling
+      p.pointerVx = (moveEvt.clientX - p.lastPointerX) / dtMove * 0.015
+      p.pointerVy = (moveEvt.clientY - p.lastPointerY) / dtMove * 0.015
+
+      p.lastPointerX = moveEvt.clientX
+      p.lastPointerY = moveEvt.clientY
+      p.lastPointerTime = now
+
+      // Dynamic tilt during dragging
+      const dragTilt = Math.max(-28, Math.min(28, (p.posX - p.anchorX) * 0.22))
+      p.angle = dragTilt
+    }
+
+    const handlePointerUp = () => {
+      if (!isDraggingRef.current) return
+      isDraggingRef.current = false
+      setIsDragging(false)
+
+      // Impart throw velocity into spring
+      p.vx = Math.max(-22, Math.min(22, p.pointerVx))
+      p.vy = Math.max(-22, Math.min(22, p.pointerVy))
+      p.rotVel = p.vx * 0.4
+
+      window.removeEventListener('pointermove', handlePointerMove)
+      window.removeEventListener('pointerup', handlePointerUp)
+      window.removeEventListener('pointercancel', handlePointerUp)
+    }
+
     window.addEventListener('pointermove', handlePointerMove)
     window.addEventListener('pointerup', handlePointerUp)
     window.addEventListener('pointercancel', handlePointerUp)
   }
 
-  // Pointer Move (Mouse drag or Touch drag)
-  const handlePointerMove = (e) => {
-    if (!isDraggingRef.current) return
-    const p = physicsRef.current
-    const now = performance.now()
-    const dt = Math.max((now - p.lastPointerTime) / 1000, 0.008)
-
-    // Calculate drag offset
-    const deltaX = e.clientX - p.dragStartX
-    const deltaY = e.clientY - p.dragStartY
-
-    let targetX = p.cardStartX + deltaX
-    let targetY = p.cardStartY + deltaY
-
-    // Elastic limit resistance (rubber-band feeling if pulled extremely far)
-    const pullDist = Math.hypot(targetX - p.anchorX, targetY - p.anchorY)
-    const maxPull = 320
-    if (pullDist > maxPull) {
-      const excess = pullDist - maxPull
-      const dampedExcess = Math.log(1 + excess * 0.02) * 45
-      const angle = Math.atan2(targetY - p.anchorY, targetX - p.anchorX)
-      targetX = p.anchorX + Math.cos(angle) * (maxPull + dampedExcess)
-      targetY = p.anchorY + Math.sin(angle) * (maxPull + dampedExcess)
-    }
-
-    p.posX = targetX
-    p.posY = targetY
-
-    // Compute pointer release velocity
-    p.pointerVx = (e.clientX - p.lastPointerX) / dt
-    p.pointerVy = (e.clientY - p.lastPointerY) / dt
-    p.lastPointerX = e.clientX
-    p.lastPointerY = e.clientY
-    p.lastPointerTime = now
-  }
-
-  // Pointer Up (Release -> FLING / BOUNCE "TERPENTAL")
-  const handlePointerUp = () => {
-    if (!isDraggingRef.current) return
-    const p = physicsRef.current
-    isDraggingRef.current = false
-    setIsDragging(false)
-
-    window.removeEventListener('pointermove', handlePointerMove)
-    window.removeEventListener('pointerup', handlePointerUp)
-    window.removeEventListener('pointercancel', handlePointerUp)
-
-    // Inject release momentum into the spring physics
-    // Clamping to avoid extreme runaway speeds
-    const maxVel = 950
-    p.vx = Math.max(-maxVel, Math.min(maxVel, p.pointerVx * 0.88))
-    p.vy = Math.max(-maxVel, Math.min(maxVel, p.pointerVy * 0.88))
-
-    // Give an extra playful recoil boost if pulled down and let go!
-    const pullDown = p.posY - p.restY
-    if (pullDown > 25) {
-      p.vy -= pullDown * 1.85
-    }
-
-    // Angular kick from lateral velocity
-    p.rotVel = (p.vx * 0.14)
-  }
-
-  // Playful tap/click bounce if clicked without dragging
+  // Click bounce animation if clicked without dragging
   const handleCardClick = () => {
+    if (!hasInteracted) setHasInteracted(true)
     const p = physicsRef.current
-    if (Math.abs(p.vx) < 10 && Math.abs(p.vy) < 10) {
-      p.vy += (Math.random() > 0.5 ? 1 : -1) * 140
-      p.vx += (Math.random() - 0.5) * 220
-      p.rotVel += (Math.random() - 0.5) * 24
-      setHasInteracted(true)
+    if (Math.abs(p.vx) < 1 && Math.abs(p.vy) < 1) {
+      p.vy += 9
+      p.vx += (Math.random() - 0.5) * 8
+      p.rotVel += (Math.random() - 0.5) * 6
     }
   }
 
   return (
     <div
-      className={`hanging-badge-container ${className} ${isDragging ? 'is-dragging' : ''}`}
+      className={`hanging-badge-container ${isDragging ? 'is-dragging' : ''} ${className}`}
       ref={containerRef}
-      aria-label="Interactive Lanyard ID Badge"
+      aria-label="Floppy Disk Acrylic Keychain — Interactive profile photo frame"
     >
-      {/* SVG Canvas for Elastic Strap and Metallic Top Clasp */}
+      {/* SVG Canvas for Ball Chain */}
       <svg className="hanging-badge__svg" aria-hidden="true">
         <defs>
-          {/* Lanyard Strap Gradient with Cybernetic Accent */}
-          <linearGradient id="lanyardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#001899" />
-            <stop offset="35%" stopColor="#0077ff" />
-            <stop offset="70%" stopColor="#00ccff" />
-            <stop offset="100%" stopColor="#ff007f" />
+          {/* Chrome Metal Chain Gradient */}
+          <linearGradient id="chromeBallChain" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#8899aa" />
+            <stop offset="30%" stopColor="#ffffff" />
+            <stop offset="60%" stopColor="#99aacc" />
+            <stop offset="85%" stopColor="#ffffff" />
+            <stop offset="100%" stopColor="#667788" />
           </linearGradient>
 
-          {/* Chrome Metallic Anchor Gradient */}
+          {/* Chrome Anchor Gradient */}
           <linearGradient id="chromeMetal" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#667788" />
             <stop offset="25%" stopColor="#ffffff" />
@@ -350,159 +314,165 @@ export default function HangingCard({
           </linearGradient>
         </defs>
 
-        {/* Top Fixed Anchor Pin / Carabiner Clip (Dynamically positioned via ref) */}
+        {/* Top Fixed Anchor Pin / Keychain Loop */}
         <g ref={anchorGroupRef} className="hanging-badge__anchor-group">
-          {/* Base plate */}
-          <rect
-            x={-18}
-            y={-6}
-            width={36}
-            height={8}
-            rx={4}
-            fill="url(#chromeMetal)"
-            filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"
-          />
-          {/* Carabiner ring */}
           <circle
             cx={0}
             cy={5}
-            r={7}
+            r={8}
             fill="none"
             stroke="url(#chromeMetal)"
             strokeWidth={3}
+            filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"
+          />
+          <circle
+            cx={0}
+            cy={5}
+            r={3}
+            fill="#cbd5e1"
           />
         </g>
 
-        {/* Elastic Lanyard Ribbon (Main Body) */}
+        {/* Metal Ball Chain (Beaded necklace effect) */}
         <path
           ref={strapPathRef}
           d=""
           fill="none"
-          stroke="url(#lanyardGrad)"
-          strokeWidth="12"
+          stroke="url(#chromeBallChain)"
+          strokeWidth="6"
           strokeLinecap="round"
-          className="hanging-badge__strap-ribbon"
+          strokeDasharray="2 7"
+          className="hanging-badge__ball-chain"
         />
 
-        {/* Center Cyber Stitch / Monospace Trace on Strap */}
+        {/* Center Metallic Shimmer Line */}
         <path
           ref={strapStitchRef}
           d=""
           fill="none"
-          stroke="#a5f3fc"
+          stroke="#ffffff"
           strokeWidth="1.5"
-          strokeDasharray="4 3"
-          strokeOpacity="0.85"
-          className="hanging-badge__strap-stitch"
+          strokeDasharray="1 7"
+          strokeOpacity="0.9"
+          className="hanging-badge__ball-chain-core"
         />
       </svg>
 
-      {/* Chrome Swivel Hook (Connector between strap and card slot) */}
+      {/* Keychain Connector Swivel Ring */}
       <div className="hanging-badge__clip" ref={clipRef} aria-hidden="true">
-        <div className="hanging-badge__clip-ring" />
-        <div className="hanging-badge__clip-body" />
+        <div className="floppy-keychain__ring" />
       </div>
 
-      {/* The Physical ID Card (Draggable / Springs back) */}
+      {/* Dangling Neon Lime Acrylic Charm */}
+      <div className="floppy-keychain__charm" ref={charmRef} aria-hidden="true">
+        <div className="floppy-keychain__charm-inner">
+          <span className="floppy-keychain__charm-icon">✦</span>
+          <span className="floppy-keychain__charm-text">RM</span>
+        </div>
+      </div>
+
+      {/* The Physical Floppy Disk Acrylic Keychain Card */}
       <div
-        className="hanging-badge__card glass-card"
+        className="hanging-badge__card floppy-disk"
         ref={cardElementRef}
         onPointerDown={handlePointerDown}
         onClick={handleCardClick}
         role="button"
         tabIndex={0}
-        aria-label="Kartu ID profil gantung, tarik untuk memantulkan"
+        aria-label="Floppy disk acrylic keychain, tarik untuk memantulkan"
       >
-        {/* Holographic Sheen Reflection Overlay */}
-        <div className="hanging-badge__shine" ref={shineRef} aria-hidden="true" />
+        {/* Translucent Pink Acrylic Sheen & Highlights */}
+        <div className="floppy__shine" ref={shineRef} aria-hidden="true" />
+        <div className="floppy__bevel-edge" aria-hidden="true" />
 
-        {/* Top Punch Hole Slot (Where the lanyard attaches) */}
-        <div className="hanging-badge__slot-wrap">
-          <div className="hanging-badge__slot-hole" />
+        {/* Top Keychain Attachment Grommet */}
+        <div className="floppy__grommet">
+          <div className="floppy__grommet-hole" />
         </div>
 
-        {/* Card Header Strip */}
-        <div className="hanging-badge__header">
-          <div className="hanging-badge__pass-tag">
-            <span className="hanging-badge__tag-dot">✦</span>
-            <span>CYBER PASS // 2025</span>
-          </div>
-          <div className="hanging-badge__chip" title="Security Smart Chip">
-            <span className="hanging-badge__chip-line" />
-            <span className="hanging-badge__chip-line" />
-            <span className="hanging-badge__chip-line" />
-          </div>
-        </div>
-
-        {/* Main Photo Area */}
-        <div className="hanging-badge__photo-frame">
-          <div className="hanging-badge__photo-corners">
-            <span className="corner corner--tl" />
-            <span className="corner corner--tr" />
-            <span className="corner corner--bl" />
-            <span className="corner corner--br" />
-          </div>
-
-          <img
-            src={photoSrc}
-            alt={fullName}
-            className={`hanging-badge__photo-img ${imgError ? 'is-hidden' : ''}`}
-            onError={() => setImgError(true)}
-            draggable={false}
-          />
-
-          {imgError && (
-            <div className="hanging-badge__photo-fallback">
-              <span>RM</span>
+        {/* Top Sliding Metal Shutter */}
+        <div className="floppy__shutter">
+          <div className="floppy__shutter-metal">
+            <div className="floppy__shutter-notch">
+              <span className="floppy__shutter-arrow">▲</span>
             </div>
-          )}
-
-          {/* Micro scanline / lens sheen */}
-          <div className="hanging-badge__photo-overlay" aria-hidden="true" />
-          <div className="hanging-badge__photo-badge">ARCHIVE // ID</div>
-        </div>
-
-        {/* Identity & Role Text */}
-        <div className="hanging-badge__info">
-          <div className="hanging-badge__name-main">{name}</div>
-          <div className="hanging-badge__name-sub">{fullName}</div>
-          <div className="hanging-badge__role-badge">
-            <span className="hanging-badge__status-dot" />
-            <span className="hanging-badge__role-text">{role}</span>
+            <div className="floppy__shutter-window" />
+            <div className="floppy__shutter-text">
+              <span>RIFQI M // 2HD</span>
+              <span className="floppy__shutter-cap">1.44 MB</span>
+            </div>
           </div>
         </div>
 
-        {/* Card Footer Barcode & Clearance */}
-        <div className="hanging-badge__footer">
-          <div className="hanging-badge__barcode" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
+        {/* Floppy Disk Label Sticker (Houses the Profile Photo) */}
+        <div className="floppy__label">
+          {/* Retro Label Header Stripes */}
+          <div className="floppy__label-stripes">
+            <span className="stripe stripe--pink" />
+            <span className="stripe stripe--cyan" />
           </div>
-          <div className="hanging-badge__code">{idCode}</div>
-          <div className="hanging-badge__holo-seal" title="Authentic Hologram Seal">
-            ★
+
+          <div className="floppy__label-header">
+            <span className="floppy__label-brand">ARCHIVE 2025</span>
+            <span className="floppy__label-density">FORMATTED · 2HD</span>
+          </div>
+
+          {/* Profile Photo Frame */}
+          <div className="floppy__photo-frame">
+            <img
+              src={photoSrc}
+              alt={fullName}
+              className={`floppy__photo-img ${imgError ? 'is-hidden' : ''}`}
+              onError={() => setImgError(true)}
+              draggable={false}
+            />
+
+            {imgError && (
+              <div className="floppy__photo-fallback">
+                <span>RM</span>
+              </div>
+            )}
+
+            {/* Subtle vintage photo grain & scanline */}
+            <div className="floppy__photo-sheen" />
+            <div className="floppy__photo-corner corner--tl" />
+            <div className="floppy__photo-corner corner--tr" />
+            <div className="floppy__photo-corner corner--bl" />
+            <div className="floppy__photo-corner corner--br" />
+          </div>
+
+          {/* Identity & Role Text inside Label */}
+          <div className="floppy__label-info">
+            <div className="floppy__label-name">{fullName}</div>
+            <div className="floppy__label-role">
+              <span className="floppy__label-dot" />
+              <span>{role}</span>
+            </div>
+            <div className="floppy__label-meta">
+              <span className="floppy__label-code">{idCode}</span>
+              <span className="floppy__label-stamp">INDONESIA // VERIFIED</span>
+            </div>
           </div>
         </div>
+
+        {/* Circular Disk Hub visible through translucent acrylic */}
+        <div className="floppy__hub" aria-hidden="true">
+          <div className="floppy__hub-ring" />
+          <div className="floppy__hub-center" />
+          <div className="floppy__hub-notch" />
+        </div>
+
+        {/* Corner Cutout & Write-Protect Notches */}
+        <div className="floppy__corner-notch" aria-hidden="true" />
+        <div className="floppy__wp-notch" aria-hidden="true" />
+        <div className="floppy__hd-notch" aria-hidden="true" />
       </div>
 
-      {/* Floating Prompt Hint (Disappears once user pulls or interacts) */}
+      {/* Floating Prompt Hint */}
       {!hasInteracted && (
         <div className="hanging-badge__hint" aria-hidden="true">
           <span className="hanging-badge__hint-icon">👇</span>
-          <span className="hanging-badge__hint-text">TARIK KARTUNYA! · PULL ME</span>
+          <span className="hanging-badge__hint-text">TARIK KEYCHAIN NYA! · PULL ME</span>
         </div>
       )}
     </div>

@@ -1,11 +1,12 @@
 /* ============================================================
-   HANGING ID BADGE - INTERACTIVE ELASTIC LANYARD CARD
+   FLOPPY DISK ACRYLIC KEYCHAIN — PROFILE PHOTO FRAME
+   Inspired by 870114054_*.heic / Dongker Aesthetic
    ============================================================ */
 
 .hanging-badge-container {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 560px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -14,7 +15,7 @@
   overflow: visible;
 }
 
-/* SVG Elastic Strap Canvas */
+/* SVG Canvas for Metal Ball Chain */
 .hanging-badge__svg {
   position: absolute;
   top: 0;
@@ -26,61 +27,113 @@
   overflow: visible;
 }
 
-.hanging-badge__strap-ribbon {
-  filter: drop-shadow(0 3px 6px rgba(0, 15, 60, 0.45));
-  transition: stroke 200ms ease;
+.hanging-badge__ball-chain {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
 }
 
-.hanging-badge__strap-stitch {
+.hanging-badge__ball-chain-core {
   pointer-events: none;
 }
 
-/* Chrome Swivel Hook (Connector) */
+/* Swivel Ring Clip at attachment slot */
 .hanging-badge__clip {
   position: absolute;
   top: 0;
   left: 0;
-  width: 20px;
-  height: 26px;
-  margin-left: -10px;
-  margin-top: -12px;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  margin-top: -8px;
   pointer-events: none;
   z-index: 6;
   will-change: transform;
 }
 
-.hanging-badge__clip-ring {
-  width: 14px;
-  height: 14px;
+.floppy-keychain__ring {
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: 3px solid #e2e8f0;
-  margin: 0 auto;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
-  background: radial-gradient(circle, #cbd5e1 0%, #64748b 100%);
+  border: 3px solid #cbd5e1;
+  background: radial-gradient(circle, #e2e8f0 0%, #64748b 100%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.9);
 }
 
-.hanging-badge__clip-body {
-  width: 8px;
-  height: 14px;
-  background: linear-gradient(180deg, #f8fafc 0%, #94a3b8 50%, #475569 100%);
-  margin: -3px auto 0;
-  border-radius: 2px 2px 4px 4px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-/* --- THE CARD --- */
-.hanging-badge__card {
+/* ─── Dangling Neon Lime Acrylic Charm ─── */
+.floppy-keychain__charm {
   position: absolute;
   top: 0;
   left: 0;
-  width: 254px;
-  height: 374px;
-  padding: 14px 14px 12px;
+  width: 38px;
+  height: 38px;
+  pointer-events: none;
+  z-index: 7;
+  will-change: transform;
+}
+
+.floppy-keychain__charm-inner {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(191, 255, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid #ffffff;
+  box-shadow:
+    0 0 14px rgba(191, 255, 0, 0.7),
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1.8px solid rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  color: #0a1b02;
+  font-family: 'Syne', sans-serif;
+  transform: rotate(12deg);
+  animation: charmGlow 3s ease-in-out infinite;
+}
+
+@keyframes charmGlow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(191, 255, 0, 0.6)); }
+  50% { filter: drop-shadow(0 0 10px rgba(191, 255, 0, 0.9)); }
+}
+
+.floppy-keychain__charm-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+  color: #0f2e03;
+}
+
+.floppy-keychain__charm-text {
+  font-size: 0.48rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+/* ─── THE FLOPPY DISK ACRYLIC KEYCHAIN CARD ─── */
+.hanging-badge__card.floppy-disk {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 310px;
+  height: 430px;
+  padding: 10px 12px 14px;
+  display: flex;
+  flex-direction: column;
+
+  /* Translucent Pink Acrylic Body */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 128, 0.58) 0%,
+    rgba(220, 0, 110, 0.48) 45%,
+    rgba(255, 50, 160, 0.62) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  /* Glass Beveled Acrylic Border */
+  border: 2.5px solid rgba(255, 170, 225, 0.82);
+  border-radius: 18px 18px 14px 14px;
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -89,355 +142,445 @@
   overflow: hidden;
   box-sizing: border-box;
   transform-origin: center center;
+
+  /* Glossy Acrylic Depth Shadows */
   box-shadow:
-    0 18px 44px rgba(0, 50, 160, 0.22),
-    0 0 24px rgba(0, 204, 255, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
+    0 22px 50px rgba(255, 0, 128, 0.28),
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 0, 128, 0.2),
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -1.5px 3px rgba(180, 0, 80, 0.4);
 }
 
 .hanging-badge-container.is-dragging .hanging-badge__card {
   cursor: grabbing !important;
 }
 
-/* Acrylic Lanyard Holder Slot */
-.hanging-badge__slot-wrap {
-  position: absolute;
-  top: 7px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 38px;
-  height: 9px;
-  background: rgba(15, 23, 42, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.35);
-  z-index: 3;
-}
-
-.hanging-badge__slot-hole {
-  width: 24px;
-  height: 4px;
-  background: rgba(0, 10, 30, 0.5);
-  border-radius: 999px;
-}
-
-/* Holographic dynamic sheen */
-.hanging-badge__shine {
+/* Acrylic Glass Shine & Bevel Edge */
+.floppy__shine {
   position: absolute;
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
   z-index: 10;
   mix-blend-mode: overlay;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
-/* Header Strip */
-.hanging-badge__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  padding: 0 2px;
-}
-
-.hanging-badge__pass-tag {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--font-tech, monospace);
-  font-size: 0.52rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: #0044cc;
-  background: rgba(0, 102, 255, 0.08);
-  padding: 2px 7px;
-  border-radius: 999px;
-  border: 1px solid rgba(0, 102, 255, 0.2);
-}
-
-.hanging-badge__tag-dot {
-  color: #00ccff;
-  font-size: 0.65rem;
-}
-
-/* Security Smart Chip */
-.hanging-badge__chip {
-  width: 22px;
-  height: 16px;
-  background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
-  border: 1px solid #a16207;
-  border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 2px 3px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.7);
-}
-
-.hanging-badge__chip-line {
-  height: 1px;
-  background: #854d0e;
-  border-radius: 1px;
-}
-
-/* --- PHOTO FRAME --- */
-.hanging-badge__photo-frame {
-  position: relative;
-  width: 100%;
-  height: 204px;
-  background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+.floppy__bevel-edge {
+  position: absolute;
+  inset: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 14px;
-  overflow: hidden;
-  border: 2px solid #ffffff;
-  box-shadow:
-    0 4px 16px rgba(0, 40, 120, 0.25),
-    inset 0 0 12px rgba(0, 204, 255, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hanging-badge__photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 25%;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: none;
-}
-
-.hanging-badge__photo-fallback {
-  font-family: var(--font-tech, monospace);
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #38bdf8;
-  letter-spacing: 0.05em;
-  text-shadow: 0 0 16px rgba(56, 189, 248, 0.8);
-}
-
-.hanging-badge__photo-overlay {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.04) 0px,
-    rgba(255, 255, 255, 0.04) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  pointer-events: none;
-}
-
-.hanging-badge__photo-badge {
-  position: absolute;
-  bottom: 6px;
-  right: 6px;
-  font-family: var(--font-tech, monospace);
-  font-size: 0.44rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  color: #a5f3fc;
-  background: rgba(2, 6, 23, 0.75);
-  backdrop-filter: blur(4px);
-  padding: 2px 5px;
-  border-radius: 3px;
-  border: 0.8px solid rgba(56, 189, 248, 0.4);
-}
-
-/* Corner Reticle Accents */
-.hanging-badge__photo-corners .corner {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-color: #38bdf8;
-  border-style: solid;
   pointer-events: none;
   z-index: 2;
 }
 
-.corner--tl { top: 5px; left: 5px; border-width: 1.5px 0 0 1.5px; }
-.corner--tr { top: 5px; right: 5px; border-width: 1.5px 1.5px 0 0; }
-.corner--bl { bottom: 5px; left: 5px; border-width: 0 0 1.5px 1.5px; }
-.corner--br { bottom: 5px; right: 5px; border-width: 0 1.5px 1.5px 0; }
-
-/* Info Area */
-.hanging-badge__info {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 2px;
-}
-
-.hanging-badge__name-main {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  background: linear-gradient(135deg, #001899 0%, #0066ee 50%, #00ccff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hanging-badge__name-sub {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: #475569;
-  letter-spacing: 0.02em;
-}
-
-.hanging-badge__role-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 4px;
-  background: rgba(0, 204, 102, 0.1);
-  border: 1px solid rgba(0, 204, 102, 0.4);
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-
-.hanging-badge__status-dot {
-  width: 6px;
-  height: 6px;
+/* Top Keychain Attachment Hole with Metal Grommet */
+.floppy__grommet {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: #00cc66;
-  box-shadow: 0 0 6px #00cc66;
-  animation: badgeBlink 2s ease-in-out infinite;
-}
-
-@keyframes badgeBlink {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-.hanging-badge__role-text {
-  font-family: var(--font-tech, monospace);
-  font-size: 0.52rem;
-  font-weight: 800;
-  color: #047857;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* Footer & Barcode */
-.hanging-badge__footer {
-  margin-top: auto;
-  padding-top: 6px;
-  border-top: 1px dashed rgba(148, 163, 184, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.hanging-badge__barcode {
-  display: flex;
-  align-items: flex-end;
-  gap: 1.5px;
-  height: 18px;
-}
-
-.hanging-badge__barcode span {
-  width: 1.5px;
-  height: 100%;
-  background: #0f172a;
-}
-.hanging-badge__barcode span:nth-child(2) { width: 3px; }
-.hanging-badge__barcode span:nth-child(4) { width: 2.5px; }
-.hanging-badge__barcode span:nth-child(6) { width: 3px; }
-.hanging-badge__barcode span:nth-child(8) { width: 1px; height: 80%; }
-.hanging-badge__barcode span:nth-child(10) { width: 2.5px; }
-.hanging-badge__barcode span:nth-child(12) { width: 3px; }
-.hanging-badge__barcode span:nth-child(14) { width: 2px; }
-
-.hanging-badge__code {
-  font-family: var(--font-tech, monospace);
-  font-size: 0.48rem;
-  font-weight: 700;
-  color: #64748b;
-  letter-spacing: 0.1em;
-}
-
-.hanging-badge__holo-seal {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #00ccff, #ff007f, #55ff00, #ffcc00);
+  background: radial-gradient(circle, #64748b 0%, #cbd5e1 50%, #475569 100%);
+  border: 2px solid rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.55rem;
-  color: white;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-  animation: sealSpin 8s linear infinite;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  z-index: 6;
 }
 
-@keyframes sealSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.floppy__grommet-hole {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0f172a;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Hint Callout */
-.hanging-badge__hint {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
+/* ─── Top Sliding Metal Shutter ─── */
+.floppy__shutter {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  z-index: 4;
+}
+
+.floppy__shutter-metal {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e2e8f0 20%,
+    #cbd5e1 45%,
+    #94a3b8 70%,
+    #64748b 95%,
+    #475569 100%
+  );
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
-  gap: 7px;
-  background: rgba(0, 10, 40, 0.78);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 204, 255, 0.6);
-  border-radius: 999px;
-  padding: 6px 14px;
-  color: #a5f3fc;
-  box-shadow: 0 6px 20px rgba(0, 204, 255, 0.35);
-  pointer-events: none;
-  z-index: 15;
-  animation: hintBounce 2.5s ease-in-out infinite;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 
-.hanging-badge__hint-icon {
-  font-size: 0.85rem;
-  animation: handWiggle 1.5s ease-in-out infinite;
+.floppy__shutter-notch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.hanging-badge__hint-text {
-  font-family: var(--font-tech, monospace);
-  font-size: 0.6rem;
+.floppy__shutter-arrow {
+  color: #94a3b8;
+  font-size: 0.55rem;
+  line-height: 1;
+}
+
+.floppy__shutter-window {
+  width: 44px;
+  height: 20px;
+  border-radius: 3px;
+  background: #09090b;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+
+.floppy__shutter-window::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  right: 6px;
+  bottom: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #18181b 0px,
+    #18181b 2px,
+    #27272a 2px,
+    #27272a 4px
+  );
+}
+
+.floppy__shutter-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.55rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  color: #1e293b;
+  letter-spacing: 0.06em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.floppy__shutter-cap {
+  font-size: 0.5rem;
+  color: #ff0077;
+  font-weight: 900;
+}
+
+/* ─── Floppy Disk Label Sticker (Profile Photo) ─── */
+.floppy__label {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid rgba(210, 200, 195, 0.9);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  padding: 8px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Retro stripes on label */
+.floppy__label-stripes {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.floppy__label-stripes .stripe {
+  height: 2px;
+  border-radius: 1px;
+}
+
+.stripe--pink {
+  background: #ff0077;
+}
+
+.stripe--cyan {
+  background: #00ccff;
+}
+
+.floppy__label-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  white-space: nowrap;
+  color: #64748b;
+}
+
+.floppy__label-brand {
+  color: #ff0077;
+}
+
+/* Profile Photo Frame */
+.floppy__photo-frame {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0d1117;
+  border: 1.5px solid rgba(15, 23, 42, 0.18);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.floppy__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 32%;
+  display: block;
+}
+
+.floppy__photo-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff0077, #0088ff);
+}
+
+.floppy__photo-sheen {
+  display: none;
+}
+
+/* Corner marks */
+.floppy__photo-corner {
+  display: none;
+}
+.corner--tl { top: 3px; left: 3px; border-width: 1.5px 0 0 1.5px; }
+.corner--tr { top: 3px; right: 3px; border-width: 1.5px 1.5px 0 0; }
+.corner--bl { bottom: 3px; left: 3px; border-width: 0 0 1.5px 1.5px; }
+.corner--br { bottom: 3px; right: 3px; border-width: 0 1.5px 1.5px 0; }
+
+/* Identity & Role Text */
+.floppy__label-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.floppy__label-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.floppy__label-role {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #ff0077;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.floppy__label-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #00cc66;
+  box-shadow: 0 0 6px #00cc66;
+}
+
+.floppy__label-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 1px;
+  padding-top: 3px;
+  border-top: 1px dashed rgba(148, 163, 184, 0.4);
+}
+
+.floppy__label-stamp {
+  color: #0088ff;
+  font-weight: 800;
+}
+
+/* ─── Disk Hub (visible through translucent pink acrylic) ─── */
+.floppy__hub {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  background: radial-gradient(circle, rgba(60, 10, 35, 0.5) 0%, rgba(30, 5, 20, 0.75) 100%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floppy__hub-ring {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.2);
+}
+
+.floppy__hub-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(200, 210, 230, 0.5), rgba(100, 110, 130, 0.3));
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.floppy__hub-notch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 1px;
+}
+
+/* ─── Cutout Notches ─── */
+.floppy__corner-notch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.floppy__wp-notch {
+  position: absolute;
+  bottom: 8px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  background: rgba(10, 10, 15, 0.7);
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.floppy__hd-notch {
+  position: absolute;
+  bottom: 8px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: rgba(10, 10, 15, 0.7);
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* ─── Floating Pull Hint ─── */
+.hanging-badge__hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background: rgba(10, 11, 16, 0.85);
+  border: 1.5px solid rgba(191, 255, 0, 0.5);
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(191, 255, 0, 0.3);
+  pointer-events: none;
+  animation: hintBounce 2s ease-in-out infinite;
+  z-index: 10;
 }
 
 @keyframes hintBounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-6px); }
+  50% { transform: translateX(-50%) translateY(-5px); }
 }
 
-@keyframes handWiggle {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-15deg); }
+.hanging-badge__hint-icon {
+  font-size: 0.85rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 900px) {
+.hanging-badge__hint-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #bfff00;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
   .hanging-badge-container {
     height: 420px;
+  }
+  .hanging-badge__card.floppy-disk {
+    width: 230px;
+    height: 260px;
+  }
+  .floppy__photo-frame {
+    height: 105px;
   }
 }

@@ -41,8 +41,8 @@
 /* --- ABOUT GRID --- */
 .about__grid {
   display: grid;
-  grid-template-columns: 1fr 1.45fr;
-  gap: 56px;
+  grid-template-columns: 1.05fr 1.35fr;
+  gap: 64px;
   align-items: center;
 }
 
@@ -52,15 +52,15 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  min-height: 480px;
-  overflow: visible;
+  min-height: 560px;
+    overflow: visible;
   width: 100%;
 }
 
 .about__profile-card {
   position: relative;
   width: 100%;
-  max-width: 340px;
+  max-width: 360px;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);

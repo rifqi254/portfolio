@@ -1,3 +1,4 @@
+import { InstagramIcon, GitHubIcon, LinkedInIcon, MailIcon } from './SocialIcons'
 import './Footer.css'
 
 export default function Footer() {
@@ -22,19 +23,31 @@ export default function Footer() {
             <span className="footer__logo-text">Rifqi<span className="footer__logo-accent">M</span></span>
           </div>
           <p className="footer__tagline">
-            Digital Creator. Developer.<br />Experimental Thinker.
+            Informatics Student · Web Developer · Creative Technology Enthusiast.<br />
+            Membangun karya digital di antara logam &amp; padang rumput.
           </p>
           <div className="footer__socials">
             {[
-              { icon: '🐙', label: 'GitHub', href: 'https://github.com' },
-              { icon: '💼', label: 'LinkedIn', href: 'https://linkedin.com' },
-              { icon: '📸', label: 'Instagram', href: 'https://instagram.com' },
-              { icon: '📧', label: 'Email', href: 'mailto:rifqimaulana@email.com' },
-            ].map(s => (
-              <a key={s.label} href={s.href} className="footer__social" aria-label={s.label} target="_blank" rel="noopener noreferrer">
-                {s.icon}
-              </a>
-            ))}
+              { icon: InstagramIcon, label: 'Instagram @alla.an_', href: 'https://www.instagram.com/alla.an_/' },
+              { icon: GitHubIcon, label: 'GitHub Rifqi254', href: 'https://github.com/Rifqi254' },
+              { icon: LinkedInIcon, label: 'LinkedIn Maulana Rifqi', href: 'https://www.linkedin.com/in/maulana-rifqi-1550962b7/' },
+              { icon: MailIcon, label: 'Email maulanarifqi741@gmail.com', href: 'mailto:maulanarifqi741@gmail.com' },
+            ].map(s => {
+              const IconComp = s.icon
+              return (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  className="footer__social"
+                  aria-label={s.label}
+                  title={s.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <IconComp size={18} />
+                </a>
+              )
+            })}
           </div>
         </div>
 
@@ -65,15 +78,15 @@ export default function Footer() {
           <div className="footer__badge chrome-surface">
             <span className="footer__badge-icon">⚡</span>
             <div>
-              <div className="footer__badge-title">Built with React + Vite</div>
-              <div className="footer__badge-sub">Y2K Edition — {year}</div>
+              <div className="footer__badge-title">Built with React 19 + Three.js</div>
+              <div className="footer__badge-sub">Surrealist Y2K Edition — {year}</div>
             </div>
           </div>
           <div className="footer__badge glass-card" style={{ marginTop: 12 }}>
             <span className="footer__badge-icon">🎨</span>
             <div>
-              <div className="footer__badge-title">Y2K Design System</div>
-              <div className="footer__badge-sub">Cybercore • Chrome • Holographic</div>
+              <div className="footer__badge-title">Surrealist Design System</div>
+              <div className="footer__badge-sub">Chrome • Scaffolding • Digital Dreamscape</div>
             </div>
           </div>
         </div>
@@ -83,7 +96,7 @@ export default function Footer() {
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
           <span className="footer__copy">© {year} Rifqi Maulana. All rights reserved.</span>
-          <span className="footer__made">Made with ❤️ & Y2K aesthetics</span>
+          <span className="footer__made">Made with 💙 &amp; Y2K Surrealist Aesthetics</span>
         </div>
       </div>
     </footer>

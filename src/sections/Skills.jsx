@@ -1,123 +1,165 @@
+import { useState } from 'react'
 import './Skills.css'
 
-const skillGroups = [
+const skillCategories = [
   {
-    category: 'Frontend',
-    icon: '🎨',
-    color: 'var(--col-pink)',
-    bgColor: 'var(--col-pink-light)',
+    id: 'dev',
+    category: 'Development',
+    code: '01 // DEV_CORE',
+    icon: '⚡',
+    color: '#0055ff',
+    accent: '#ff0077',
+    description: 'Modern front-end, reactive systems, and solid back-end architecture.',
     skills: [
-      { name: 'React', level: 85 },
-      { name: 'HTML / CSS', level: 95 },
-      { name: 'JavaScript', level: 88 },
-      { name: 'Vite', level: 80 },
-      { name: 'Bootstrap', level: 90 },
-      { name: 'Tailwind CSS', level: 75 },
-    ]
+      { name: 'HTML', tag: 'Semantic 5', desc: 'Modern semantic structure & accessibility' },
+      { name: 'CSS', tag: 'Styling & FX', desc: 'Custom layouts, 3D transforms, animation engines' },
+      { name: 'JavaScript', tag: 'ES6+ / Async', desc: 'Modern ECMAScript, DOM manipulation & state' },
+      { name: 'PHP', tag: 'Server-side', desc: 'Object-oriented programming, MVC frameworks' },
+      { name: 'Laravel', tag: 'Full Framework', desc: 'Eloquent ORM, Blade, migrations, auth systems' },
+      { name: 'React', tag: 'UI Library', desc: 'Component architectures, hooks & performance' },
+    ],
   },
   {
-    category: 'Backend',
-    icon: '⚙️',
-    color: 'var(--col-electric)',
-    bgColor: 'var(--col-cyan-light)',
+    id: 'db',
+    category: 'Database & API',
+    code: '02 // DATA_SYNC',
+    icon: '📡',
+    color: '#00cc88',
+    accent: '#00ccff',
+    description: 'Relational data design, optimized queries, and RESTful web protocols.',
     skills: [
-      { name: 'PHP', level: 88 },
-      { name: 'Laravel', level: 85 },
-      { name: 'Node.js', level: 70 },
-      { name: 'Python', level: 72 },
-      { name: 'FastAPI', level: 65 },
-      { name: 'REST API', level: 85 },
-    ]
+      { name: 'MySQL', tag: 'RDBMS', desc: 'Relational modeling, indexing, ACID transactions' },
+      { name: 'REST API', tag: 'Architecture', desc: 'RESTful endpoints, JSON schemas, auth tokens' },
+      { name: 'Postman', tag: 'Testing / Docs', desc: 'API debugging, mock servers, automated testing' },
+    ],
   },
   {
-    category: 'Database',
-    icon: '🗄️',
-    color: 'var(--col-turquoise)',
-    bgColor: 'var(--col-mint-light)',
+    id: 'design',
+    category: 'Design & Productivity',
+    code: '03 // CREATIVE_LAB',
+    icon: '✦',
+    color: '#ff0077',
+    accent: '#ffdd00',
+    description: 'Vector UI/UX prototyping, visual systems, and documentation tooling.',
     skills: [
-      { name: 'MySQL', level: 90 },
-      { name: 'PostgreSQL', level: 70 },
-      { name: 'MongoDB', level: 65 },
-      { name: 'SQLite', level: 80 },
-      { name: 'Redis', level: 55 },
-      { name: 'Firebase', level: 68 },
-    ]
-  },
-  {
-    category: 'Tools & Design',
-    icon: '🛠️',
-    color: 'var(--col-lavender)',
-    bgColor: 'var(--col-lavender-lt)',
-    skills: [
-      { name: 'Git / GitHub', level: 88 },
-      { name: 'Figma', level: 78 },
-      { name: 'Docker', level: 60 },
-      { name: 'VS Code', level: 95 },
-      { name: 'Postman', level: 85 },
-      { name: 'Linux', level: 72 },
-    ]
+      { name: 'Figma', tag: 'UI/UX Design', desc: 'Design systems, auto-layout, interactive prototypes' },
+      { name: 'Microsoft Office', tag: 'Productivity', desc: 'Technical documentation, analysis, sheets' },
+    ],
   },
 ]
 
-const techBadges = [
-  'React', 'Laravel', 'PHP', 'JavaScript', 'Python', 'MySQL',
-  'HTML5', 'CSS3', 'Node.js', 'Git', 'Figma', 'Docker',
-  'REST API', 'Bootstrap', 'Tailwind', 'Vite', 'MongoDB', 'Firebase',
-  'Linux', 'Postman', 'Vue.js', 'FastAPI', 'PostgreSQL', 'TypeScript',
+const marqueeItems = [
+  'HTML5', 'CSS3', 'JAVASCRIPT (ES6+)', 'PHP', 'LARAVEL', 'REACT 19',
+  'MYSQL', 'REST API', 'POSTMAN', 'FIGMA', 'THREE.JS', 'VITE',
+  'MICROSOFT OFFICE', 'GIT & GITHUB', 'RESPONSIVE WEB', 'CREATIVE TECH',
 ]
 
 export default function Skills() {
+  const [activeTab, setActiveTab] = useState('all')
+
+  const filteredCategories = activeTab === 'all'
+    ? skillCategories
+    : skillCategories.filter((c) => c.id === activeTab)
+
   return (
-    <section className="skills section" id="skills" aria-label="Skills">
+    <section className="skills section" id="skills" aria-label="Skills & Digital Capabilities">
+      {/* Background Ambience */}
+      <div className="skills__ambient-glow" aria-hidden="true" />
+
       <div className="container">
-        <div className="section-header">
-          <span className="label label-mint">✦ Capabilities</span>
-          <h2 className="section-title">Skills & Tech Stack</h2>
-          <p className="section-subtitle">Technologies and tools I use to bring ideas to life.</p>
+        {/* Section Header */}
+        <div className="section-header skills__header">
+          <div className="skills__header-badge">
+            <span className="skills__header-dot" />
+            <span className="skills__header-code">SKILL MATRIX // Y2K DIGITAL LAB</span>
+          </div>
+          <h2 className="section-title skills__title">
+            <span>DIGITAL</span> <span className="skills__title-accent">EXPERIMENTS</span>
+          </h2>
+          <p className="section-subtitle">
+            Fondasi teknis dan instrumen kreatif yang saya gunakan untuk mengeksekusi ide menjadi produk web fungsional &amp; berkarakter.
+          </p>
+
+          {/* Filter Pills */}
+          <div className="skills__filter-bar">
+            <button
+              className={`skills__filter-btn ${activeTab === 'all' ? 'is-active' : ''}`}
+              onClick={() => setActiveTab('all')}
+            >
+              ALL MATRIX
+            </button>
+            <button
+              className={`skills__filter-btn ${activeTab === 'dev' ? 'is-active' : ''}`}
+              onClick={() => setActiveTab('dev')}
+            >
+              DEVELOPMENT
+            </button>
+            <button
+              className={`skills__filter-btn ${activeTab === 'db' ? 'is-active' : ''}`}
+              onClick={() => setActiveTab('db')}
+            >
+              DATABASE &amp; API
+            </button>
+            <button
+              className={`skills__filter-btn ${activeTab === 'design' ? 'is-active' : ''}`}
+              onClick={() => setActiveTab('design')}
+            >
+              DESIGN &amp; TOOLS
+            </button>
+          </div>
         </div>
 
-        {/* Skill Groups Grid */}
-        <div className="skills__groups">
-          {skillGroups.map((group) => (
-            <div key={group.category} className="skills__group glass-card card-hover">
-              <div className="skills__group-header" style={{ '--group-color': group.color, '--group-bg': group.bgColor }}>
-                <span className="skills__group-icon">{group.icon}</span>
-                <h3 className="skills__group-title">{group.category}</h3>
+        {/* Categories Grid */}
+        <div className="skills__grid">
+          {filteredCategories.map((group) => (
+            <div
+              key={group.id}
+              className="skills__card"
+              style={{
+                '--cat-color': group.color,
+                '--cat-accent': group.accent,
+              }}
+            >
+              {/* Card Header */}
+              <div className="skills__card-header">
+                <div className="skills__card-badge">
+                  <span className="skills__card-icon">{group.icon}</span>
+                  <span className="skills__card-code">{group.code}</span>
+                </div>
+                <h3 className="skills__card-title">{group.category}</h3>
+                <p className="skills__card-desc">{group.description}</p>
               </div>
-              <div className="skills__list">
+
+              {/* Badges Matrix */}
+              <div className="skills__pills">
                 {group.skills.map((skill) => (
-                  <div key={skill.name} className="skills__item">
-                    <div className="skills__item-header">
-                      <span className="skills__item-name">{skill.name}</span>
-                      <span className="skills__item-pct">{skill.level}%</span>
+                  <div key={skill.name} className="skills__pill">
+                    <div className="skills__pill-top">
+                      <span className="skills__pill-name">{skill.name}</span>
+                      <span className="skills__pill-tag">{skill.tag}</span>
                     </div>
-                    <div className="skills__bar-bg">
-                      <div
-                        className="skills__bar-fill"
-                        style={{
-                          '--bar-width': `${skill.level}%`,
-                          '--bar-color': group.color,
-                        }}
-                      />
-                    </div>
+                    <span className="skills__pill-detail">{skill.desc}</span>
+                    <span className="skills__pill-sheen" aria-hidden="true" />
                   </div>
                 ))}
               </div>
+
+              {/* Decorative Corner Screws */}
+              <div className="skills__screw skills__screw--tl" aria-hidden="true" />
+              <div className="skills__screw skills__screw--tr" aria-hidden="true" />
+              <div className="skills__screw skills__screw--bl" aria-hidden="true" />
+              <div className="skills__screw skills__screw--br" aria-hidden="true" />
             </div>
           ))}
         </div>
 
-        {/* Tech Badge Cloud */}
-        <div className="skills__badges-section">
-          <h3 className="skills__badges-title">All Technologies</h3>
-          <div className="skills__badges">
-            {techBadges.map((badge, i) => (
-              <span
-                key={badge}
-                className="skills__badge chrome-surface"
-                style={{ animationDelay: `${i * 50}ms` }}
-              >
-                {badge}
+        {/* Horizontal Marquee Ticker */}
+        <div className="skills__ticker" aria-hidden="true">
+          <div className="skills__ticker-track">
+            {[...marqueeItems, ...marqueeItems].map((item, index) => (
+              <span key={index} className="skills__ticker-item">
+                <span className="skills__ticker-star">★</span>
+                <span className="skills__ticker-text">{item}</span>
               </span>
             ))}
           </div>

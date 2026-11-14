@@ -215,9 +215,6 @@ export default function Certificates() {
         <div className="section-header">
           <span className="label label-pink">✦ Verified Credentials</span>
           <h2 className="section-title">Certificates &amp; Awards</h2>
-          <p className="section-subtitle">
-            Authentic industry certifications and academic credentials awarded to Muhammad Rifqi Maulana.
-          </p>
         </div>
 
         {/* Certificates Grid */}
@@ -314,30 +311,12 @@ export default function Certificates() {
             </div>
 
             {/* Modal Footer Controls */}
-            <div className="cert-modal__footer">
-              <div className="cert-modal__details">
-                <div className="cert-modal__badge-line">
-                  <span className="cert-modal__recipient-pill">
-                    🎓 {activeCert.recipient}
-                  </span>
-                  <span className="cert-modal__verified-pill">
-                    ● VALIDATED CREDENTIAL
-                  </span>
-                </div>
+            <div className="cert-modal__footer cert-modal__footer--minimal">
+              <div className="cert-modal__cert-info">
                 <h4 className="cert-modal__cert-title">{activeCert.title}</h4>
-                <div className="cert-modal__meta-row">
-                  <span>🏛️ {activeCert.issuer}</span>
-                  <span className="cert-modal__meta-divider">•</span>
-                  <span>📅 {activeCert.date}</span>
-                  <span className="cert-modal__meta-divider">•</span>
-                  <span className="cert-modal__id-code">ID: {activeCert.id_number}</span>
-                </div>
-
-                {/* Penjelasan Kegiatan & Kredensial */}
-                <div className="cert-modal__activity-box">
-                  <h5 className="cert-modal__activity-label">📌 Penjelasan Kegiatan &amp; Pencapaian:</h5>
-                  <p className="cert-modal__activity-desc">{activeCert.description}</p>
-                </div>
+                <span className="cert-modal__count">
+                  {activeCertIndex + 1} / {certificates.length}
+                </span>
               </div>
 
               <div className="cert-modal__actions">
@@ -362,7 +341,7 @@ export default function Certificates() {
                   onClick={closeModal}
                   className="cert-modal__btn cert-modal__btn--close"
                 >
-                  Done
+                  Tutup
                 </button>
               </div>
             </div>
@@ -376,111 +355,77 @@ export default function Certificates() {
 function CertCard({ cert, delay, onView }) {
   return (
     <div
-      className="cert-card glass-card card-hover y2k-cert-card"
+      className="cert-cassette-card"
       style={{
         '--cert-color': cert.color,
         '--cert-accent': cert.accent,
         animationDelay: `${delay}ms`,
       }}
+      onClick={onView}
+      role="button"
+      tabIndex={0}
+      aria-label={`Buka sertifikat ${cert.title}`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onView()
+        }
+      }}
     >
-      {/* Top Cyber Bar */}
-      <div className="cert-card__top">
-        <div className="cert-card__badge-wrap">
-          <span className="cert-card__badge">{cert.badge}</span>
-          <div className="cert-card__issuer-info">
-            <span className="cert-card__issuer-name">{cert.issuer}</span>
-            <span className="cert-card__tag-code">{cert.y2kTag}</span>
+      <div className="tape-back">
+        {/* Corner Screws */}
+        <span className="tape-screw screw--tl" />
+        <span className="tape-screw screw--tr" />
+        <span className="tape-screw screw--bl" />
+        <span className="tape-screw screw--br" />
+
+        {/* Top Tape Info */}
+        <div className="tape-back__header">
+          <span className="tape-back__side">SIDE B</span>
+          <span className="tape-back__code">[{cert.y2kTag}]</span>
+          <span className="tape-back__tech">CrO₂ · TYPE II</span>
+        </div>
+
+        {/* Retro Track Label Sticker */}
+        <div className="tape-back__label">
+          <div className="tape-back__stripes">
+            <span className="stripe stripe--red" />
+            <span className="stripe stripe--blue" />
+          </div>
+
+          <div className="tape-back__label-body">
+            <div className="tape-back__meta">
+              <span className="tape-back__track-num">TRACK #{cert.code}</span>
+              <span className="tape-back__category">{cert.category}</span>
+            </div>
+            <h3 className="tape-back__title">{cert.title}</h3>
+            
           </div>
         </div>
-        <span
-          className="cert-card__category-pill"
-          style={{
-            color: cert.color,
-            borderColor: `${cert.color}45`,
-            background: `${cert.color}14`,
-          }}
-        >
-          {cert.category}
-        </span>
-      </div>
 
-      {/* Y2K Holographic Preview Thumbnail */}
-      <div
-        className="cert-card__preview y2k-thumb-frame"
-        onClick={onView}
-        role="button"
-        tabIndex={0}
-        aria-label={`View certificate for ${cert.title}`}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
-            onView()
-          }
-        }}
-      >
-        {/* Holographic rainbow reflection sheen */}
-        <div className="cert-card__holo-sheen" />
-
-        {/* Scanline pattern */}
-        <div className="cert-card__scanlines" />
-
-        <img
-          src={cert.image}
-          alt={`Thumbnail sertifikat ${cert.title}`}
-          className="cert-card__thumbnail"
-          loading="lazy"
-        />
-
-        {/* Floating Y2K Corner Badge */}
-        <div className="cert-card__corner-badge">
-          <span>★ VERIFIED</span>
-        </div>
-
-        {/* Hover Action Overlay */}
-        <div className="cert-card__preview-overlay">
-          <div className="cert-card__preview-button">
-            <span>👁️</span>
-            <span>INSPECT // PREVIEW ↗</span>
+        {/* Cassette Window with Magnetic Reels */}
+        <div className="tape-back__window">
+          <div className="tape-back__reel reel--left">
+            <div className="reel-teeth" />
+            <div className="reel-hub" />
+          </div>
+          <div className="tape-back__spool-gauge">
+            <div className="gauge-tape-strip" />
+            <span className="gauge-marks">100 • 50 • 0</span>
+          </div>
+          <div className="tape-back__reel reel--right">
+            <div className="reel-teeth" />
+            <div className="reel-hub" />
           </div>
         </div>
-      </div>
 
-      {/* Card Body */}
-      <div className="cert-card__body">
-        <h3 className="cert-card__title">{cert.title}</h3>
-        <p className="cert-card__recipient">
-          <span>Awarded to:</span> <strong>{cert.recipient}</strong>
-        </p>
-
-        {/* Tech Skills Pills */}
-        <div className="cert-card__skills">
-          {cert.skills.map((skill) => (
-            <span key={skill} className="cert-card__skill-pill">
-              {skill}
-            </span>
-          ))}
+        {/* Interactive Prompt: Directly Launches Floating Pop-up */}
+        <div className="tape-back__footer">
+          <div className="tape-back__prompt">
+            <span className="prompt-spin-icon">👁️</span>
+            <span className="prompt-spin-text">KLIK UNTUK LIHAT SERTIFIKAT ↗</span>
+          </div>
         </div>
-
-        <div className="cert-card__meta">
-          <span className="cert-card__date">📅 {cert.date}</span>
-          <span className="cert-card__id">#{cert.id_number.split('/')[0]}</span>
-        </div>
-      </div>
-
-      {/* Card Footer */}
-      <div className="cert-card__footer">
-        <div className="cert-card__verified">
-          <span className="cert-card__check">✓</span>
-          <span>Verified Authentic</span>
-        </div>
-        <button
-          className="cert-card__view-btn"
-          onClick={onView}
-          aria-label={`View certificate ${cert.title}`}
-        >
-          <span>View</span>
-          <span className="cert-card__view-arrow">↗</span>
-        </button>
       </div>
     </div>
   )

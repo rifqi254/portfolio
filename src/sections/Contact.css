@@ -1,321 +1,624 @@
-﻿/* ============================================================
-   CONTACT SECTION - Y2K CYBERCORE
+/* ============================================================
+   CONTACT & SOSMED SECTION — SURREALIST Y2K DIGITAL HUB
    ============================================================ */
 
 .contact {
   position: relative;
+  padding: 100px 0 120px;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #e8f3ff 0%,
+    #d7ecff 25%,
+    #bfe2ff 55%,
+    #0044ee 85%,
+    #00248a 100%
+  );
 }
 
+/* Background Backdrop & Ambient Flares */
+.contact__sky-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact__flare--1 {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 960px;
+  height: 420px;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 210, 100, 0.3) 35%,
+    rgba(0, 140, 255, 0.22) 65%,
+    transparent 80%
+  );
+  filter: blur(40px);
+}
+
+.contact__flare--2 {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(255, 0, 119, 0.16) 0%, transparent 70%);
+  filter: blur(55px);
+}
+
+.contact__container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Header ─── */
+.contact__header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contact__header-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid #0055ff;
+  box-shadow: 0 4px 16px rgba(0, 85, 255, 0.18);
+  margin-bottom: 14px;
+}
+
+.contact__header-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff0077;
+  box-shadow: 0 0 10px #ff0077;
+  animation: dotBlink 1.6s ease-in-out infinite;
+}
+
+.contact__header-code {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #003da5;
+  text-transform: uppercase;
+}
+
+.contact__headline {
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #0b1a3d;
+  margin: 0 0 14px;
+  line-height: 1.05;
+}
+
+.contact__headline-chrome {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f0f4fa 25%,
+    #0055ff 68%,
+    #ff0077 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0, 30, 90, 0.25));
+}
+
+.contact__subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  color: #274169;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ─── Grid ─── */
 .contact__grid {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
+  grid-template-columns: 1.15fr 0.95fr;
   gap: 32px;
-  align-items: start;
+  align-items: stretch;
 }
 
-/* --- Info Panel --- */
-.contact__info {
+/* ═══════════════════════════════════════════
+   LEFT COLUMN — DEDICATED SOSMED PANEL
+   ═══════════════════════════════════════════ */
+
+.contact__sosmed-panel {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid #ffffff;
+  border-radius: 22px;
+  padding: 30px 26px;
+  box-shadow:
+    0 16px 45px rgba(0, 40, 130, 0.14),
+    inset 0 1px 0 #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
-.contact__cta-card {
-  padding: 32px 28px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Holographic corner accent */
-.contact__cta-card::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(225deg, rgba(0,204,255,0.15) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.contact__cta-badge {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, #0044ee, #00aaff);
-  border-radius: 50%;
+.contact__sosmed-heading-bar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  color: white;
-  box-shadow: 0 4px 20px rgba(0, 68, 238, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
-  margin-bottom: 16px;
-}
-
-.contact__cta-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--col-text);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 12px;
-}
-
-.contact__cta-text {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  color: var(--col-text-muted);
-  line-height: 1.75;
-  margin-bottom: 20px;
-}
-
-.contact__status {
-  display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
-  font-family: var(--font-tech);
-  font-size: 0.64rem;
-  font-weight: 700;
-  color: #006644;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  margin-bottom: 8px;
 }
 
-.contact__status-dot {
-  width: 10px;
-  height: 10px;
+.contact__sosmed-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact__sosmed-spark {
+  color: #ff0077;
+  font-size: 1.1rem;
+}
+
+.contact__sosmed-title {
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #0b1a3d;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.contact__sosmed-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(0, 204, 102, 0.12);
+  border: 1px solid rgba(0, 204, 102, 0.35);
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #008f47;
+}
+
+.sosmed-live-dot {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #00cc66;
-  box-shadow: 0 0 10px #00cc66;
-  flex-shrink: 0;
-  animation: blink 2s ease-in-out infinite;
+  box-shadow: 0 0 8px #00cc66;
+  animation: dotBlink 1.5s infinite;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; box-shadow: 0 0 10px #00cc66; }
-  50% { opacity: 0.3; box-shadow: 0 0 4px #00cc66; }
-}
-
-/* --- Contact Links --- */
-.contact__links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.contact__link-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 18px;
-  text-decoration: none;
-  border-radius: var(--radius-md);
-  transition: transform 300ms ease, box-shadow 300ms ease, border-color 200ms ease;
-  border: 1.5px solid rgba(255, 255, 255, 0.85);
-}
-
-.contact__link-item:hover {
-  transform: translateY(-4px) translateX(4px);
-  box-shadow: 0 12px 32px rgba(0, 68, 238, 0.16);
-  border-color: rgba(var(--link-color), 0.35);
-}
-
-.contact__link-icon {
-  font-size: 1.4rem;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.7);
-  border-radius: 10px;
-  border: 1px solid rgba(0, 204, 255, 0.2);
-  flex-shrink: 0;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
-}
-
-.contact__link-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.contact__link-label {
-  font-family: var(--font-tech);
-  font-size: 0.58rem;
-  font-weight: 700;
-  color: var(--col-text-light);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.contact__link-value {
+.contact__sosmed-intro {
   font-family: 'Inter', sans-serif;
   font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--col-text);
+  color: #5c7191;
+  line-height: 1.55;
+  margin: 0 0 20px;
 }
 
-.contact__link-arrow {
-  font-size: 1rem;
-  color: var(--col-text-light);
-  transition: transform 200ms ease, color 200ms ease;
+/* ─── Social Cards List ─── */
+.contact__sosmed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.contact__link-item:hover .contact__link-arrow {
-  transform: translate(3px, -3px);
-  color: var(--col-electric);
-}
-
-/* --- Form --- */
-.contact__form-wrap {
-  padding: 32px;
+.sosmed-card {
   position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 70, 180, 0.12);
+  border-radius: 16px;
+  box-shadow:
+    0 4px 16px rgba(0, 40, 120, 0.06),
+    inset 0 1px 0 #ffffff;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   overflow: hidden;
 }
 
-/* Chrome shimmer accent line */
-.contact__form-wrap::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #0044ee, #00ccff, #ff0099, #55ff00, #0044ee);
-  background-size: 200% 100%;
-  animation: shine 3s linear infinite;
+.sosmed-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent, #0055ff);
+  box-shadow:
+    0 12px 30px rgba(0, 40, 120, 0.15),
+    0 0 20px rgba(var(--accent-rgb, 0, 85, 255), 0.15);
 }
 
-@keyframes shine {
-  0% { background-position: 200% center; }
-  100% { background-position: -200% center; }
+/* Icon Box */
+.sosmed-card__icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease;
+}
+
+.sosmed-card:hover .sosmed-card__icon-box {
+  transform: scale(1.08) rotate(3deg);
+}
+
+/* Specific Brand Colors for Icon Boxes */
+.social-item--ig .sosmed-card__icon-box {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #ffffff;
+}
+
+.social-item--gh .sosmed-card__icon-box {
+  background: linear-gradient(135deg, #24292e 0%, #0d1117 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-item--li .sosmed-card__icon-box {
+  background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
+  color: #ffffff;
+}
+
+.social-item--mail .sosmed-card__icon-box {
+  background: linear-gradient(135deg, #0055ff 0%, #00a2ff 100%);
+  color: #ffffff;
+}
+
+/* Info Details */
+.sosmed-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sosmed-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sosmed-card__name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sosmed-card__badge {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(0, 85, 255, 0.08);
+  color: var(--accent, #0055ff);
+}
+
+.sosmed-card__handle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #0b1a3d;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sosmed-card__desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.73rem;
+  color: #607594;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Actions: Copy & Visit Buttons */
+.sosmed-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sosmed-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sosmed-btn--copy {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.sosmed-btn--copy:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.sosmed-btn--copy.is-copied {
+  background: #dcfce7;
+  border-color: #22c55e;
+  color: #15803d;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+}
+
+.sosmed-btn--visit {
+  background: linear-gradient(135deg, var(--accent, #0055ff) 0%, #003da5 100%);
+  border: 1px solid var(--accent, #0055ff);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 60, 160, 0.2);
+}
+
+.social-item--ig .sosmed-btn--visit {
+  background: linear-gradient(135deg, #e1306c 0%, #c13584 100%);
+  border-color: #e1306c;
+}
+
+.social-item--gh .sosmed-btn--visit {
+  background: linear-gradient(135deg, #24292e 0%, #111417 100%);
+  border-color: #333d47;
+}
+
+.social-item--li .sosmed-btn--visit {
+  background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
+  border-color: #0a66c2;
+}
+
+.sosmed-btn--visit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 60, 160, 0.35);
+  filter: brightness(1.1);
+}
+
+/* Holographic sheen */
+.sosmed-card__sheen {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.7) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  transition: left 0.6s ease;
+}
+
+.sosmed-card:hover .sosmed-card__sheen {
+  left: 140%;
+}
+
+/* ═══════════════════════════════════════════
+   RIGHT COLUMN — DIRECT MESSAGE FORM
+   ═══════════════════════════════════════════ */
+
+.contact__form-wrap {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid #ffffff;
+  border-radius: 22px;
+  padding: 30px 26px;
+  box-shadow:
+    0 16px 45px rgba(0, 40, 130, 0.14),
+    inset 0 1px 0 #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__form-header {
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid rgba(0, 60, 160, 0.1);
+}
+
+.contact__form-badge {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #0055ff;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
 }
 
 .contact__form-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--col-text);
-  margin-bottom: 24px;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #0b1a3d;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
 }
 
-.contact__form-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(0,204,255,0.4), transparent);
+.contact__form-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: #607594;
+  margin: 0;
 }
 
 .contact__form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 15px;
 }
 
 .contact__form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 14px;
 }
 
 .contact__field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 
 .contact__label {
-  font-family: var(--font-tech);
-  font-size: 0.58rem;
-  font-weight: 700;
-  color: var(--col-text-light);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #4b607d;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
 }
 
 .contact__input {
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  color: var(--col-text);
-  background: rgba(255, 255, 255, 0.75);
-  border: 1.5px solid rgba(0, 204, 255, 0.28);
-  border-radius: var(--radius-md);
-  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: #0b1a3d;
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 60, 160, 0.18);
+  border-radius: 12px;
+  padding: 11px 14px;
   outline: none;
-  transition: border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
-  resize: none;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
-}
-
-.contact__input::placeholder {
-  color: rgba(0, 30, 80, 0.35);
+  transition: all 0.25s ease;
 }
 
 .contact__input:focus {
-  border-color: #0066ff;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+  border-color: #0055ff;
+  box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.15);
 }
 
 .contact__textarea {
-  min-height: 120px;
+  min-height: 105px;
   resize: vertical;
 }
 
 .contact__submit {
-  width: 100%;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  padding: 14px;
-  font-size: 0.9rem;
+  gap: 10px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0055ff 0%, #0077ff 50%, #ff0077 100%);
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 85, 255, 0.35);
+  transition: all 0.25s ease;
+  margin-top: 4px;
 }
 
-.contact__submit.sending {
-  opacity: 0.75;
-  cursor: not-allowed;
+.contact__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 85, 255, 0.45);
+}
+
+.contact__btn-arrow {
+  font-size: 1.1rem;
 }
 
 .contact__spinner {
-  display: inline-block;
   width: 14px;
   height: 14px;
-  border: 2px solid rgba(255,255,255,0.4);
-  border-top-color: white;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
 .contact__success {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  color: #006644;
-  background: rgba(0, 255, 150, 0.12);
-  border: 1.5px solid rgba(0, 200, 100, 0.35);
-  border-radius: var(--radius-md);
-  padding: 12px 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #00874a;
+  background: rgba(0, 230, 118, 0.15);
+  border: 1.5px solid #00e676;
+  border-radius: 12px;
+  padding: 12px 14px;
   text-align: center;
-  font-weight: 600;
+  line-height: 1.5;
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 900px) {
+/* ═══════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 960px) {
   .contact__grid {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
 }
 
 @media (max-width: 640px) {
+  .contact {
+    padding: 70px 0;
+  }
+
+  .contact__sosmed-panel,
+  .contact__form-wrap {
+    padding: 22px 16px;
+  }
+
+  .sosmed-card {
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+  }
+
+  .sosmed-card__actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  }
+
   .contact__form-row {
     grid-template-columns: 1fr;
-  }
-  .contact__form-wrap {
-    padding: 24px;
   }
 }
