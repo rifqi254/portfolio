@@ -136,9 +136,9 @@ export default function Hero() {
             <span className="hero__role-badge role--tech">CREATIVE TECHNOLOGY ENTHUSIAST</span>
           </div>
 
-          {/* Poetic Motto & Short Bio */}
+          {/* Short Bio */}
           <p className="hero__tagline">
-            "Akankah kita bertemu matahari?" Membangun karya web eksperimental, arsitektur backend berkinerja tinggi, dan pengalaman digital surrealis di antara logam reflektif &amp; padang rumput digital.
+            Passionate about crafting digital experiences that merge technical precision with creative vision. Specializing in full-stack web development, backend architecture, and UI/UX design.
           </p>
 
           {/* Acrylic Action Buttons */}
@@ -175,14 +175,14 @@ export default function Hero() {
               <span>@alla.an_</span>
             </a>
             <a
-              href="https://github.com/Rifqi254"
+              href="https://github.com/auliasiti844-ui"
               target="_blank"
               rel="noopener noreferrer"
               className="hero__social-chip hero__social-chip--gh"
-              title="GitHub: Rifqi254"
+              title="GitHub: auliasiti844-ui"
             >
               <GitHubIcon size={14} />
-              <span>Rifqi254</span>
+              <span>auliasiti844-ui</span>
             </a>
             <a
               href="https://www.linkedin.com/in/maulana-rifqi-1550962b7/"

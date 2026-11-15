@@ -4,8 +4,10 @@ import "./Projects.css"
 const marqueeItems = [
   "FRESHGUARD Smart Packaging", "★", "SMLTI Diskominfo Tangsel", "✦", "EnglAI AI Classroom", "★",
   "EcoCampus Biodiversity Lab", "✦", "Portal Seleksi HMPS", "★", "SUMMITIX Tiket Gunung 3D", "✦",
+  "RAMENATSU Food App", "★",
   "FRESHGUARD Smart Packaging", "★", "SMLTI Diskominfo Tangsel", "✦", "EnglAI AI Classroom", "★",
   "EcoCampus Biodiversity Lab", "✦", "Portal Seleksi HMPS", "★", "SUMMITIX Tiket Gunung 3D", "✦",
+  "RAMENATSU Food App", "★",
 ]
 
 const projects = [
@@ -107,6 +109,23 @@ const projects = [
     emoji: "🏔️",
     image: "/projects/summitix.png",
     isHosted: false,
+  },
+  {
+    id: "ramenatsu",
+    title: "RAMENATSU · Food App Design",
+    subtitle: "UI/UX Design Concept — Mobile Food Ordering App",
+    category: "UI/UX Mobile Design",
+    tagCode: "UI-FOODAPP",
+    label: "label-pink",
+    description: "Konsep desain aplikasi mobile pemesanan makanan Jepang (ramen) dengan branding visual khas RAMENATSU. Dirancang dengan antarmuka pengguna yang intuitif dan estetika modern untuk pengalaman pemesanan makanan yang seamless, mulai dari menu browsing, customisasi pesanan, hingga checkout dan tracking delivery.",
+    tech: ["Figma", "UI/UX Design", "Mobile App", "Prototyping"],
+    year: "2025",
+    color: "#fef3c7",
+    accent: "#d97706",
+    emoji: "🍜",
+    image: "/projects/ramenatsu.png",
+    hostedUrl: "https://www.figma.com/proto/r9SaRyByniw6bduPPfsLNs/Food-app-design?node-id=569-132&p=f&t=P6gTbIeV4o0PSf7J-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=569%3A132",
+    isHosted: true,
   },
 ]
 

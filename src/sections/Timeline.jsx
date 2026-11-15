@@ -38,24 +38,6 @@ const timelineItems = [
   },
   {
     year: '2025',
-    period: '8 November 2025',
-    title: 'Ketua Pelaksana – Seminar IT x Bootcamp',
-    org: 'HMPS Informatika',
-    type: 'Leadership',
-    color: '#0055ff',
-    glowColor: 'rgba(0, 85, 255, 0.35)',
-    description: 'Memimpin dan mengkoordinasikan seluruh panitia dalam penyelenggaraan acara Seminar IT x Bootcamp HMPS Informatika.',
-    bullets: [
-      'Mengkoordinasikan seluruh panitia dan rangkaian kegiatan acara',
-      'Bertanggung jawab atas perencanaan, pelaksanaan, dan evaluasi acara',
-      'Menjadi penghubung utama dengan pemateri dan pihak terkait'
-    ],
-    tags: ['Ketua Pelaksana', 'Seminar IT', 'Bootcamp', 'Event Management', 'Public Relations'],
-    icon: '⚡',
-    status: 'Lead'
-  },
-  {
-    year: '2025',
     period: 'Dicoding Academy (2025)',
     title: 'Sertifikasi Pemrograman & Cloud',
     org: 'Dicoding Academy & AWS',
@@ -75,19 +57,37 @@ const timelineItems = [
   {
     year: '2024 – 2025',
     period: '4 Feb 2024 – 28 Des 2025',
-    title: 'Ketua Kominfo & Anggota Eksternal',
+    title: 'Ketua Divisi Komunikasi & Informasi',
     org: 'HMPS Informatika',
     type: 'Organization',
     color: '#00ccff',
     glowColor: 'rgba(0, 204, 255, 0.35)',
-    description: 'Mengemban amanah kepengurusan organisasi dalam pengelolaan informasi publik dan hubungan kemitraan eksternal:',
+    description: 'Memimpin divisi Komunikasi dan Informasi dalam pengelolaan media informasi dan komunikasi organisasi HMPS Informatika.',
     bullets: [
       'Mengkoordinasikan pengelolaan media informasi dan komunikasi organisasi',
       'Bertanggung jawab atas publikasi dan dokumentasi kegiatan HMPS',
-      'Menjalin komunikasi dengan pihak eksternal dan organisasi lain'
+      'Mengelola konten sosial media dan platform digital organisasi'
     ],
-    tags: ['Ketua Kominfo', 'HMPS Informatika', 'Hubungan Eksternal', 'Media & Publikasi', 'Dokumentasi'],
-    icon: '🌐',
+    tags: ['Ketua Kominfo', 'HMPS Informatika', 'Media & Publikasi', 'Dokumentasi'],
+    icon: '📡',
+    status: 'Active'
+  },
+  {
+    year: '2024 – 2025',
+    period: '4 Feb 2024 – 28 Des 2025',
+    title: 'Anggota Divisi Hubungan Eksternal',
+    org: 'HMPS Informatika',
+    type: 'Organization',
+    color: '#8b5cf6',
+    glowColor: 'rgba(139, 92, 246, 0.35)',
+    description: 'Berkontribusi dalam membangun dan menjaga relasi kemitraan dengan pihak eksternal organisasi HMPS Informatika.',
+    bullets: [
+      'Menjalin komunikasi dengan pihak eksternal dan organisasi lain',
+      'Mendukung koordinasi kerjasama dan kolaborasi antar organisasi',
+      'Mewakili HMPS dalam kegiatan dan forum eksternal kampus'
+    ],
+    tags: ['Hubungan Eksternal', 'HMPS Informatika', 'Partnership', 'Networking'],
+    icon: '🤝',
     status: 'Active'
   }
 ]

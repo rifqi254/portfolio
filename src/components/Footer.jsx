@@ -29,7 +29,7 @@ export default function Footer() {
           <div className="footer__socials">
             {[
               { icon: InstagramIcon, label: 'Instagram @alla.an_', href: 'https://www.instagram.com/alla.an_/' },
-              { icon: GitHubIcon, label: 'GitHub Rifqi254', href: 'https://github.com/Rifqi254' },
+              { icon: GitHubIcon, label: 'GitHub auliasiti844-ui', href: 'https://github.com/auliasiti844-ui' },
               { icon: LinkedInIcon, label: 'LinkedIn Maulana Rifqi', href: 'https://www.linkedin.com/in/maulana-rifqi-1550962b7/' },
               { icon: MailIcon, label: 'Email maulanarifqi741@gmail.com', href: 'mailto:maulanarifqi741@gmail.com' },
             ].map(s => {
@@ -68,7 +68,7 @@ export default function Footer() {
         <div className="footer__links-group">
           <h4 className="footer__links-title">Projects</h4>
           <ul className="footer__links">
-            {['SMLTI Tangsel', 'EnglAI', 'EcoCampus Lab', 'Portal Seleksi HMPS', 'SUMMITIX 3D'].map(p => (
+            {['SMLTI Tangsel', 'EnglAI', 'EcoCampus Lab', 'Portal Seleksi HMPS', 'SUMMITIX 3D', 'RAMENATSU'].map(p => (
               <li key={p}><a href="#projects" className="footer__link" onClick={(e) => { e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }) }}>{p}</a></li>
             ))}
           </ul>
