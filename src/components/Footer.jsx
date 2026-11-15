@@ -54,7 +54,7 @@ export default function Footer() {
         <div className="footer__links-group">
           <h4 className="footer__links-title">Navigate</h4>
           <ul className="footer__links">
-            {['About', 'Projects', 'Skills', 'Timeline', 'Certificates', 'Contact'].map(item => (
+            {['About', 'Archive', 'Skills', 'Timeline', 'Contact'].map(item => (
               <li key={item}>
                 <a href={`#${item.toLowerCase()}`} className="footer__link"
                   onClick={(e) => { e.preventDefault(); document.querySelector(`#${item.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' }) }}>
