@@ -647,105 +647,146 @@ export default function ArchiveVault() {
         )}
       </div>
 
-      {/* ─── MODAL 1: REDESIGNED CLEAN MODERN PROJECT SHOWCASE MODAL ─── */}
+      {/* ─── MODAL 1: RESPONSIVE SPLIT 2-COLUMN PROJECT SHOWCASE MODAL ─── */}
+      {/* DESKTOP: PENJELASAN DI KIRI, GAMBAR BESAR DI KANAN | MOBILE: GAMBAR DI ATAS, PENJELASAN DI BAWAH KETIKA SCROLL */}
       {activeProject && (
-        <div className="modern-project-modal" role="dialog" aria-modal="true" aria-label={`Preview: ${activeProject.title}`}>
-          <div className="modern-project-modal__backdrop" onClick={() => setActiveProject(null)} />
+        <div
+          className="project-showcase-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Preview: ${activeProject.title}`}
+        >
+          <div className="project-showcase-modal__backdrop" onClick={() => setActiveProject(null)} />
 
-          <div className="modern-project-modal__dialog">
+          <div className="project-showcase-modal__dialog">
             {/* Top Close Button */}
             <button
-              className="modern-project-modal__close-btn"
+              className="project-showcase-modal__close-btn"
               onClick={() => setActiveProject(null)}
               aria-label="Tutup preview proyek"
             >
               ✕
             </button>
 
-            {/* Top Media Showcase Hero */}
-            <div className="modern-project-modal__hero">
-              <img
-                src={activeProject.image}
-                alt={activeProject.title}
-                className="modern-project-modal__hero-img"
-              />
+            <div className="project-showcase-modal__layout">
+              {/* LEFT COLUMN: PENJELASAN & ACTION BUTTONS */}
+              <div className="project-showcase-modal__info-col">
+                <div className="showcase-header">
+                  <div className="showcase-badges">
+                    <span className="showcase-badge showcase-badge--category">{activeProject.category}</span>
+                    <span className="showcase-badge showcase-badge--year">{activeProject.year}</span>
+                    {activeProject.isHosted && (
+                      <span className="showcase-badge showcase-badge--live">● Live Online</span>
+                    )}
+                  </div>
 
-              {activeProject.isHosted ? (
-                <a
-                  href={activeProject.hostedUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="modern-project-modal__live-float-btn"
-                >
-                  <span>● Live Website ↗</span>
-                </a>
-              ) : activeProject.htmlUrl ? (
-                <a
-                  href={activeProject.htmlUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="modern-project-modal__live-float-btn"
-                >
-                  <span>● Demo Web App ↗</span>
-                </a>
-              ) : null}
-            </div>
+                  <h3 className="showcase-title">{activeProject.title}</h3>
+                  <p className="showcase-subtitle">{activeProject.subtitle}</p>
+                </div>
 
-            {/* Bottom Content & Details */}
-            <div className="modern-project-modal__content">
-              <div className="modern-project-modal__meta-row">
-                <span className="modern-badge modern-badge--category">{activeProject.category}</span>
-                <span className="modern-badge modern-badge--year">{activeProject.year}</span>
-                {activeProject.isHosted && (
-                  <span className="modern-badge modern-badge--live">Live Online</span>
-                )}
-              </div>
+                <div className="showcase-divider" />
 
-              <h3 className="modern-project-modal__title">{activeProject.title}</h3>
-              <p className="modern-project-modal__sub">{activeProject.subtitle}</p>
+                <div className="showcase-section">
+                  <h4 className="showcase-section-heading">
+                    <span className="heading-icon">📋</span> Tentang Proyek
+                  </h4>
+                  <p className="showcase-desc-text">{activeProject.description}</p>
+                </div>
 
-              <p className="modern-project-modal__desc">{activeProject.description}</p>
+                <div className="showcase-section">
+                  <h4 className="showcase-section-heading">
+                    <span className="heading-icon">⚡</span> Teknologi & Fitur
+                  </h4>
+                  <div className="showcase-tech-tags">
+                    {activeProject.tech.map((t) => (
+                      <span key={t} className="showcase-tech-tag">{t}</span>
+                    ))}
+                  </div>
+                </div>
 
-              {/* Tech Stack */}
-              <div className="modern-project-modal__tech-wrap">
-                <span className="modern-tech-label">Teknologi:</span>
-                <div className="modern-tech-pills">
-                  {activeProject.tech.map((t) => (
-                    <span key={t} className="modern-tech-pill">{t}</span>
-                  ))}
+                <div className="showcase-actions">
+                  {activeProject.isHosted ? (
+                    <a
+                      href={activeProject.hostedUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="showcase-btn showcase-btn--primary"
+                    >
+                      <span>🚀 {activeProject.actionText || 'Kunjungi Website'}</span>
+                      <span className="btn-arrow">↗</span>
+                    </a>
+                  ) : activeProject.htmlUrl ? (
+                    <a
+                      href={activeProject.htmlUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="showcase-btn showcase-btn--primary"
+                    >
+                      <span>🚀 {activeProject.actionText || 'Buka Demo Web App'}</span>
+                      <span className="btn-arrow">↗</span>
+                    </a>
+                  ) : null}
+
+                  <button
+                    className="showcase-btn showcase-btn--secondary"
+                    onClick={() => setActiveProject(null)}
+                  >
+                    Tutup Preview
+                  </button>
                 </div>
               </div>
 
-              {/* Actions Bar */}
-              <div className="modern-project-modal__actions">
-                {activeProject.isHosted ? (
-                  <a
-                    href={activeProject.hostedUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="modern-btn modern-btn--primary"
-                  >
-                    <span>🚀 {activeProject.actionText || 'Kunjungi Website'}</span>
-                    <span className="btn-arrow">↗</span>
-                  </a>
-                ) : activeProject.htmlUrl ? (
-                  <a
-                    href={activeProject.htmlUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="modern-btn modern-btn--primary"
-                  >
-                    <span>🚀 {activeProject.actionText || 'Buka Demo Web App'}</span>
-                    <span className="btn-arrow">↗</span>
-                  </a>
-                ) : null}
-
-                <button
-                  className="modern-btn modern-btn--close"
-                  onClick={() => setActiveProject(null)}
-                >
-                  ✕ Tutup
-                </button>
+              {/* RIGHT COLUMN: GAMBAR PROYEK BESAR & JERNIH (STUDIO STAGE) */}
+              <div className="project-showcase-modal__media-col">
+                <div className="showcase-media-stage">
+                  {activeProject.isHosted ? (
+                    <a
+                      href={activeProject.hostedUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="showcase-media-link"
+                      title="Klik untuk membuka hasil proyek"
+                    >
+                      <img
+                        src={activeProject.image}
+                        alt={activeProject.title}
+                        className="showcase-media-img"
+                      />
+                      <div className="showcase-media-hover-overlay">
+                        <span className="showcase-media-hover-pill">
+                          Buka Hasil Proyek ↗
+                        </span>
+                      </div>
+                    </a>
+                  ) : activeProject.htmlUrl ? (
+                    <a
+                      href={activeProject.htmlUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="showcase-media-link"
+                      title="Klik untuk membuka demo web app"
+                    >
+                      <img
+                        src={activeProject.image}
+                        alt={activeProject.title}
+                        className="showcase-media-img"
+                      />
+                      <div className="showcase-media-hover-overlay">
+                        <span className="showcase-media-hover-pill">
+                          Buka Demo Web ↗
+                        </span>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="showcase-media-link showcase-media-link--static">
+                      <img
+                        src={activeProject.image}
+                        alt={activeProject.title}
+                        className="showcase-media-img"
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
