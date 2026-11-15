@@ -233,8 +233,8 @@ const awardsData = [
 ]
 
 export default function ArchiveVault() {
-  // activeFolder defaults to 'projects' so content is instantly visible & interactive
-  const [activeFolder, setActiveFolder] = useState('projects')
+  // activeFolder: null (shows only the 3 folders) or 'projects' | 'certificates' | 'awards' (shows ONLY that folder)
+  const [activeFolder, setActiveFolder] = useState(null)
   
   // Modals
   const [activeProject, setActiveProject] = useState(null)
@@ -243,16 +243,18 @@ export default function ArchiveVault() {
 
   const reelRef = useRef(null)
 
-  // Listen to warp-to-section events for smooth anchor linking
+  // Listen to warp-to-section events
   useEffect(() => {
     const handleWarp = (e) => {
       const { id } = e.detail || {}
-      if (id === 'projects' || id === 'archive') {
+      if (id === 'projects') {
         setActiveFolder('projects')
       } else if (id === 'certificates') {
         setActiveFolder('certificates')
       } else if (id === 'awards') {
         setActiveFolder('awards')
+      } else if (id === 'archive') {
+        setActiveFolder(null) // shows 3 folders
       }
     }
     window.addEventListener('warp-to-section', handleWarp)
@@ -296,7 +298,7 @@ export default function ArchiveVault() {
 
   return (
     <section className="archive-vault section" id="archive" aria-label="Archive Directory">
-      {/* Anchor targets for backward compatibility */}
+      {/* Anchor targets */}
       <div id="projects" style={{ position: 'relative', top: '-90px' }} />
       <div id="certificates" style={{ position: 'relative', top: '-90px' }} />
       <div id="awards" style={{ position: 'relative', top: '-90px' }} />
@@ -306,395 +308,410 @@ export default function ArchiveVault() {
         <div className="section-header vault-header">
           <div className="vault-header-badge">
             <span className="vault-header-dot" />
-            <span className="vault-header-code">UNIFIED REPOSITORY // WORKS &amp; CREDENTIALS</span>
+            <span className="vault-header-code">UNIFIED ARCHIVE // WORKS &amp; CREDENTIALS</span>
           </div>
           <h2 className="section-title vault-title">
             PORTFOLIO &amp; <span className="vault-title-accent">ARCHIVE</span>
           </h2>
           <p className="section-subtitle vault-subtitle">
-            Koleksi proyek web, sertifikasi resmi, dan penghargaan tersimpan rapi dalam satu ruang terpadu. Klik folder di bawah untuk membuka isinya.
+            {activeFolder ? (
+              <span>Sedang membuka isi folder <strong>{activeFolder.toUpperCase()}</strong>. Klik tombol kembali untuk melihat semua folder.</span>
+            ) : (
+              <span>Koleksi proyek web, sertifikasi resmi, dan penghargaan terkurasi dalam 3 folder. Sentuh atau klik folder untuk masuk ke dalamnya.</span>
+            )}
           </p>
         </div>
 
-        {/* ─── 3 INTERACTIVE OBSIDIAN FOLDERS (MATCHING USER SCREENSHOT) ─── */}
-        <div className="vault-folders__deck" role="tablist" aria-label="Pilih Folder Arsip">
-          {/* 📁 FOLDER 1: PROJECTS */}
-          <div
-            className={`vault-folder-card ${activeFolder === 'projects' ? 'is-active' : ''}`}
-            onClick={() => setActiveFolder('projects')}
-            role="tab"
-            aria-selected={activeFolder === 'projects'}
-            tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('projects')}
-          >
-            {/* Back piece */}
-            <div className="folder-back-piece">
-              <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
-                <path
-                  d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
-                  fill="url(#folderBackGrad)"
-                  stroke="rgba(255,255,255,0.14)"
-                  strokeWidth="1.5"
-                />
-                <defs>
-                  <linearGradient id="folderBackGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#222838" />
-                    <stop offset="100%" stopColor="#101420" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-
-            {/* Peeking preview files */}
-            <div className="folder-peek-stack">
-              <div className="peek-thumb peek-thumb--1">
-                <img src="/projects/englai.png" alt="EnglAI" />
-              </div>
-              <div className="peek-thumb peek-thumb--2">
-                <img src="/projects/smlti-tangsel.png" alt="SMLTI" />
-              </div>
-              <div className="peek-thumb peek-thumb--3">
-                <img src="/projects/freshguard.png" alt="Freshguard" />
-              </div>
-              <div className="peek-thumb peek-thumb--4">
-                <img src="/projects/ramenatsu.png" alt="Ramenatsu" />
-              </div>
-            </div>
-
-            {/* Front frosted glass flap */}
-            <div className="folder-front-piece">
-              <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
-                <path
-                  d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
-                  fill="url(#folderFrontGlassGrad)"
-                  stroke="rgba(255,255,255,0.2)"
-                  strokeWidth="1.5"
-                />
-                <defs>
-                  <linearGradient id="folderFrontGlassGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="rgba(34, 42, 60, 0.88)" />
-                    <stop offset="100%" stopColor="rgba(16, 20, 32, 0.94)" />
-                  </linearGradient>
-                </defs>
-              </svg>
-
-              <div className="folder-front-content">
-                <div className="folder-info-meta">
-                  <span className="folder-count-num">7</span>
-                  <span className="folder-count-label">Projects</span>
-                </div>
-
-                <div className="folder-dots-pill" title="Folder Projects Aktif">
-                  <span className="dot-circle" />
-                  <span className="dot-circle" />
-                  <span className="dot-circle" />
-                </div>
-              </div>
-            </div>
-
-            {activeFolder === 'projects' && (
-              <span className="folder-active-indicator">● DIBUKA</span>
-            )}
-          </div>
-
-          {/* 📁 FOLDER 2: CERTIFICATES */}
-          <div
-            className={`vault-folder-card ${activeFolder === 'certificates' ? 'is-active' : ''}`}
-            onClick={() => setActiveFolder('certificates')}
-            role="tab"
-            aria-selected={activeFolder === 'certificates'}
-            tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('certificates')}
-          >
-            <div className="folder-back-piece">
-              <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
-                <path
-                  d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
-                  fill="url(#folderBackGrad)"
-                  stroke="rgba(255,255,255,0.14)"
-                  strokeWidth="1.5"
-                />
-              </svg>
-            </div>
-
-            <div className="folder-peek-stack">
-              <div className="peek-thumb peek-thumb--1">
-                <img src="/certificates/cert-linux.png" alt="Linux IDN" />
-              </div>
-              <div className="peek-thumb peek-thumb--2">
-                <img src="/certificates/cert-coursera-excel.png" alt="Coursera" />
-              </div>
-              <div className="peek-thumb peek-thumb--3">
-                <img src="/certificates/cert-magang-kominfo.png" alt="Diskominfo" />
-              </div>
-              <div className="peek-thumb peek-thumb--4">
-                <img src="/certificates/cert-dicoding-aws-genai.png" alt="AWS GenAI" />
-              </div>
-            </div>
-
-            <div className="folder-front-piece">
-              <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
-                <path
-                  d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
-                  fill="url(#folderFrontGlassGrad)"
-                  stroke="rgba(255,255,255,0.2)"
-                  strokeWidth="1.5"
-                />
-              </svg>
-
-              <div className="folder-front-content">
-                <div className="folder-info-meta">
-                  <span className="folder-count-num">7</span>
-                  <span className="folder-count-label">Certificates</span>
-                </div>
-
-                <div className="folder-dots-pill" title="Folder Certificates Aktif">
-                  <span className="dot-circle" />
-                  <span className="dot-circle" />
-                  <span className="dot-circle" />
-                </div>
-              </div>
-            </div>
-
-            {activeFolder === 'certificates' && (
-              <span className="folder-active-indicator">● DIBUKA</span>
-            )}
-          </div>
-
-          {/* 📁 FOLDER 3: AWARDS */}
-          <div
-            className={`vault-folder-card ${activeFolder === 'awards' ? 'is-active' : ''}`}
-            onClick={() => setActiveFolder('awards')}
-            role="tab"
-            aria-selected={activeFolder === 'awards'}
-            tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('awards')}
-          >
-            <div className="folder-back-piece">
-              <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
-                <path
-                  d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
-                  fill="url(#folderBackGrad)"
-                  stroke="rgba(255,255,255,0.14)"
-                  strokeWidth="1.5"
-                />
-              </svg>
-            </div>
-
-            <div className="folder-peek-stack">
-              <div className="peek-thumb peek-thumb--1">
-                <img src="/certificates/cert-hmps-cloud.png" alt="HMPS Leadership" />
-              </div>
-              <div className="peek-thumb peek-thumb--2">
-                <img src="/certificates/cert-dicoding-aws-genai.png" alt="AWS Excellence" />
-              </div>
-              <div className="peek-thumb peek-thumb--3">
-                <img src="/certificates/cert-magang-kominfo.png" alt="Diskominfo Sangat Baik" />
-              </div>
-            </div>
-
-            <div className="folder-front-piece">
-              <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
-                <path
-                  d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
-                  fill="url(#folderFrontGlassGrad)"
-                  stroke="rgba(255,255,255,0.2)"
-                  strokeWidth="1.5"
-                />
-              </svg>
-
-              <div className="folder-front-content">
-                <div className="folder-info-meta">
-                  <span className="folder-count-num">3</span>
-                  <span className="folder-count-label">Awards</span>
-                </div>
-
-                <div className="folder-dots-pill" title="Folder Awards Aktif">
-                  <span className="dot-circle" />
-                  <span className="dot-circle" />
-                  <span className="dot-circle" />
-                </div>
-              </div>
-            </div>
-
-            {activeFolder === 'awards' && (
-              <span className="folder-active-indicator">● DIBUKA</span>
-            )}
-          </div>
-        </div>
-
-        {/* ─── INTEGRATED HORIZONTAL FILE DRAWER (BELOW FOLDERS) ─── */}
-        <div className="vault-drawer" role="tabpanel">
-          {/* Drawer Bar */}
-          <div className="vault-drawer__bar">
-            <div className="vault-drawer__heading">
-              <span className="vault-drawer__icon">📂</span>
-              <span className="vault-drawer__title">
-                {activeFolder === 'projects' && 'ISI FOLDER: PROJECTS (7 KARYA APLIKASI WEB & UI/UX)'}
-                {activeFolder === 'certificates' && 'ISI FOLDER: CERTIFICATES (7 SERTIFIKASI RESMI TERVERIFIKASI)'}
-                {activeFolder === 'awards' && 'ISI FOLDER: AWARDS & HONORS (3 PIAGAM PENGHARGAAN & PRESTASI)'}
-              </span>
-            </div>
-
-            {/* Quick Switch Pills */}
-            <div className="vault-drawer__switchers">
-              <button
-                className={`drawer-switch-pill ${activeFolder === 'projects' ? 'is-active' : ''}`}
-                onClick={() => setActiveFolder('projects')}
-              >
-                Projects (7)
-              </button>
-              <button
-                className={`drawer-switch-pill ${activeFolder === 'certificates' ? 'is-active' : ''}`}
-                onClick={() => setActiveFolder('certificates')}
-              >
-                Certificates (7)
-              </button>
-              <button
-                className={`drawer-switch-pill ${activeFolder === 'awards' ? 'is-active' : ''}`}
-                onClick={() => setActiveFolder('awards')}
-              >
-                Awards (3)
-              </button>
-            </div>
-          </div>
-
-          {/* Horizontal Reel Navigation Controls & Track */}
-          <div className="vault-reel-wrapper">
-            <button
-              className="reel-arrow reel-arrow--prev"
-              onClick={() => scrollReel('left')}
-              aria-label="Geser ke kiri"
+        {/* ─── TAMPILAN 1: HANYA MENAMPILKAN 3 FOLDER (SEBELUM DIKLIK) ─── */}
+        {!activeFolder && (
+          <div className="vault-folders__deck" aria-label="Pilih Folder Arsip">
+            {/* 📁 FOLDER 1: PROJECTS */}
+            <div
+              className="vault-folder-card"
+              onClick={() => setActiveFolder('projects')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('projects')}
+              title="Klik untuk masuk ke folder Projects (7 File)"
             >
-              ‹
-            </button>
-            <button
-              className="reel-arrow reel-arrow--next"
-              onClick={() => scrollReel('right')}
-              aria-label="Geser ke kanan"
+              <div className="folder-back-piece">
+                <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
+                  <path
+                    d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
+                    fill="url(#folderBackGrad)"
+                    stroke="rgba(255,255,255,0.14)"
+                    strokeWidth="1.5"
+                  />
+                  <defs>
+                    <linearGradient id="folderBackGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#222838" />
+                      <stop offset="100%" stopColor="#101420" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              {/* Peeking preview files */}
+              <div className="folder-peek-stack">
+                <div className="peek-thumb peek-thumb--1">
+                  <img src="/projects/englai.png" alt="EnglAI" />
+                </div>
+                <div className="peek-thumb peek-thumb--2">
+                  <img src="/projects/smlti-tangsel.png" alt="SMLTI" />
+                </div>
+                <div className="peek-thumb peek-thumb--3">
+                  <img src="/projects/freshguard.png" alt="Freshguard" />
+                </div>
+                <div className="peek-thumb peek-thumb--4">
+                  <img src="/projects/ramenatsu.png" alt="Ramenatsu" />
+                </div>
+              </div>
+
+              {/* Front frosted glass flap */}
+              <div className="folder-front-piece">
+                <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
+                  <path
+                    d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
+                    fill="url(#folderFrontGlassGrad)"
+                    stroke="rgba(255,255,255,0.2)"
+                    strokeWidth="1.5"
+                  />
+                  <defs>
+                    <linearGradient id="folderFrontGlassGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(34, 42, 60, 0.88)" />
+                      <stop offset="100%" stopColor="rgba(16, 20, 32, 0.94)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+                <div className="folder-front-content">
+                  <div className="folder-info-meta">
+                    <span className="folder-count-num">7</span>
+                    <span className="folder-count-label">Projects</span>
+                  </div>
+
+                  <div className="folder-dots-pill">
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="folder-open-hover-hint">
+                <span>Masuk ke Folder ↗</span>
+              </div>
+            </div>
+
+            {/* 📁 FOLDER 2: CERTIFICATES */}
+            <div
+              className="vault-folder-card"
+              onClick={() => setActiveFolder('certificates')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('certificates')}
+              title="Klik untuk masuk ke folder Certificates (7 Sertifikat)"
             >
-              ›
-            </button>
+              <div className="folder-back-piece">
+                <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
+                  <path
+                    d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
+                    fill="url(#folderBackGrad)"
+                    stroke="rgba(255,255,255,0.14)"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+              </div>
 
-            <div className="vault-reel" ref={reelRef}>
-              {/* ── PROJECTS HORIZONTAL REEL ── */}
-              {activeFolder === 'projects' &&
-                projectsData.map((project) => (
-                  <div
-                    key={project.id}
-                    className="reel-card reel-card--project"
-                    onClick={() => setActiveProject(project)}
-                  >
-                    <div className="reel-card__thumb-frame">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="reel-card__thumbnail"
-                        loading="lazy"
-                      />
-                      <span className="reel-card__tag-pill">[{project.tagCode}]</span>
-                      <span className="reel-card__year-badge">{project.year}</span>
-                    </div>
+              <div className="folder-peek-stack">
+                <div className="peek-thumb peek-thumb--1">
+                  <img src="/certificates/cert-linux.png" alt="Linux IDN" />
+                </div>
+                <div className="peek-thumb peek-thumb--2">
+                  <img src="/certificates/cert-coursera-excel.png" alt="Coursera" />
+                </div>
+                <div className="peek-thumb peek-thumb--3">
+                  <img src="/certificates/cert-magang-kominfo.png" alt="Diskominfo" />
+                </div>
+                <div className="peek-thumb peek-thumb--4">
+                  <img src="/certificates/cert-dicoding-aws-genai.png" alt="AWS GenAI" />
+                </div>
+              </div>
 
-                    <div className="reel-card__body">
-                      <div className="reel-card__category-row">
-                        <span className={`label ${project.label}`}>{project.category}</span>
-                        <span className="reel-card__emoji">{project.emoji}</span>
-                      </div>
-                      <h4 className="reel-card__title">{project.title}</h4>
-                      <p className="reel-card__sub">{project.subtitle}</p>
+              <div className="folder-front-piece">
+                <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
+                  <path
+                    d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
+                    fill="url(#folderFrontGlassGrad)"
+                    stroke="rgba(255,255,255,0.2)"
+                    strokeWidth="1.5"
+                  />
+                </svg>
 
-                      <div className="reel-card__tech-tags">
-                        {project.tech.slice(0, 3).map((t) => (
-                          <span key={t} className="reel-card__tech-pill">
-                            {t}
-                          </span>
-                        ))}
-                        {project.tech.length > 3 && (
-                          <span className="reel-card__tech-pill">+{project.tech.length - 3}</span>
-                        )}
-                      </div>
-
-                      <div className="reel-card__cta">
-                        <span>Buka Detail Proyek</span>
-                        <span className="reel-card__cta-spark">✦</span>
-                      </div>
-                    </div>
+                <div className="folder-front-content">
+                  <div className="folder-info-meta">
+                    <span className="folder-count-num">7</span>
+                    <span className="folder-count-label">Certificates</span>
                   </div>
-                ))}
 
-              {/* ── CERTIFICATES HORIZONTAL REEL ── */}
-              {activeFolder === 'certificates' &&
-                certificatesData.map((cert) => (
-                  <div
-                    key={cert.id}
-                    className="reel-card reel-card--cert"
-                    onClick={() => setActiveCert(cert)}
-                  >
-                    <div className="reel-card__thumb-frame reel-card__thumb-frame--cert">
-                      <img
-                        src={cert.image}
-                        alt={cert.title}
-                        className="reel-card__thumbnail"
-                        loading="lazy"
-                      />
-                      <span className="reel-card__tag-pill">[{cert.tag}]</span>
-                      <span className="reel-card__year-badge">{cert.year}</span>
-                    </div>
-
-                    <div className="reel-card__body">
-                      <span className="label label-pink">{cert.tag}</span>
-                      <h4 className="reel-card__title">{cert.title}</h4>
-                      <p className="reel-card__sub">{cert.issuer}</p>
-
-                      <div className="reel-card__cta">
-                        <span>Lihat Gambar Sertifikat</span>
-                        <span className="reel-card__cta-spark">🔍</span>
-                      </div>
-                    </div>
+                  <div className="folder-dots-pill">
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
                   </div>
-                ))}
+                </div>
+              </div>
 
-              {/* ── AWARDS HORIZONTAL REEL ── */}
-              {activeFolder === 'awards' &&
-                awardsData.map((award) => (
-                  <div
-                    key={award.id}
-                    className="reel-card reel-card--award"
-                    onClick={() => setActiveAward(award)}
-                  >
-                    <div className="reel-card__thumb-frame reel-card__thumb-frame--cert">
-                      <img
-                        src={award.image}
-                        alt={award.title}
-                        className="reel-card__thumbnail"
-                        loading="lazy"
-                      />
-                      <span className="reel-card__tag-pill">[{award.tag}]</span>
-                      <span className="reel-card__year-badge">{award.year}</span>
-                    </div>
+              <div className="folder-open-hover-hint">
+                <span>Masuk ke Folder ↗</span>
+              </div>
+            </div>
 
-                    <div className="reel-card__body">
-                      <div className="reel-card__category-row">
-                        <span className="label label-lime">{award.badge} {award.tag}</span>
-                      </div>
-                      <h4 className="reel-card__title">{award.title}</h4>
-                      <p className="reel-card__sub">{award.issuer}</p>
+            {/* 📁 FOLDER 3: AWARDS */}
+            <div
+              className="vault-folder-card"
+              onClick={() => setActiveFolder('awards')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('awards')}
+              title="Klik untuk masuk ke folder Awards (3 Awards)"
+            >
+              <div className="folder-back-piece">
+                <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
+                  <path
+                    d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
+                    fill="url(#folderBackGrad)"
+                    stroke="rgba(255,255,255,0.14)"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+              </div>
 
-                      <div className="reel-card__cta">
-                        <span>Lihat Piagam Penghargaan</span>
-                        <span className="reel-card__cta-spark">🏆</span>
-                      </div>
-                    </div>
+              <div className="folder-peek-stack">
+                <div className="peek-thumb peek-thumb--1">
+                  <img src="/certificates/cert-hmps-cloud.png" alt="HMPS Leadership" />
+                </div>
+                <div className="peek-thumb peek-thumb--2">
+                  <img src="/certificates/cert-dicoding-aws-genai.png" alt="AWS Excellence" />
+                </div>
+                <div className="peek-thumb peek-thumb--3">
+                  <img src="/certificates/cert-magang-kominfo.png" alt="Diskominfo Sangat Baik" />
+                </div>
+              </div>
+
+              <div className="folder-front-piece">
+                <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
+                  <path
+                    d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
+                    fill="url(#folderFrontGlassGrad)"
+                    stroke="rgba(255,255,255,0.2)"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+
+                <div className="folder-front-content">
+                  <div className="folder-info-meta">
+                    <span className="folder-count-num">3</span>
+                    <span className="folder-count-label">Awards</span>
                   </div>
-                ))}
+
+                  <div className="folder-dots-pill">
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="folder-open-hover-hint">
+                <span>Masuk ke Folder ↗</span>
+              </div>
             </div>
           </div>
+        )}
 
-          <div className="vault-drawer__hint">
-            <span>✦ Geser horizontal untuk melihat seluruh file di dalam folder {activeFolder.toUpperCase()}</span>
+        {/* ─── TAMPILAN 2: MASUK KE DALAM FOLDER (HANYA MENAMPILKAN ISI ARCHIVE) ─── */}
+        {activeFolder && (
+          <div className="vault-inside-view">
+            {/* Top Bar with Back Button & Breadcrumbs */}
+            <div className="vault-inside__bar">
+              <button
+                className="vault-inside__back-btn"
+                onClick={() => setActiveFolder(null)}
+                title="Keluar dari folder dan kembali ke pilihan 3 folder utama"
+              >
+                <span>← Kembali ke Semua Folder</span>
+              </button>
+
+              <div className="vault-inside__breadcrumb">
+                <span className="bc-root">ARCHIVE //</span>
+                <span className="bc-folder">
+                  {activeFolder === 'projects' && '📂 PROJECTS (7 FILES)'}
+                  {activeFolder === 'certificates' && '📂 CERTIFICATES (7 CERTS)'}
+                  {activeFolder === 'awards' && '📂 AWARDS (3 AWARDS)'}
+                </span>
+              </div>
+
+              {/* Quick Switch Pills */}
+              <div className="vault-inside__switchers">
+                <button
+                  className={`drawer-switch-pill ${activeFolder === 'projects' ? 'is-active' : ''}`}
+                  onClick={() => setActiveFolder('projects')}
+                >
+                  Projects (7)
+                </button>
+                <button
+                  className={`drawer-switch-pill ${activeFolder === 'certificates' ? 'is-active' : ''}`}
+                  onClick={() => setActiveFolder('certificates')}
+                >
+                  Certificates (7)
+                </button>
+                <button
+                  className={`drawer-switch-pill ${activeFolder === 'awards' ? 'is-active' : ''}`}
+                  onClick={() => setActiveFolder('awards')}
+                >
+                  Awards (3)
+                </button>
+              </div>
+            </div>
+
+            {/* Horizontal Reel Navigation Controls & Track */}
+            <div className="vault-reel-wrapper">
+              <button
+                className="reel-arrow reel-arrow--prev"
+                onClick={() => scrollReel('left')}
+                aria-label="Geser ke kiri"
+              >
+                ‹
+              </button>
+              <button
+                className="reel-arrow reel-arrow--next"
+                onClick={() => scrollReel('right')}
+                aria-label="Geser ke kanan"
+              >
+                ›
+              </button>
+
+              <div className="vault-reel" ref={reelRef}>
+                {/* ── PROJECTS HORIZONTAL REEL ── */}
+                {activeFolder === 'projects' &&
+                  projectsData.map((project) => (
+                    <div
+                      key={project.id}
+                      className="reel-card reel-card--project"
+                      onClick={() => setActiveProject(project)}
+                    >
+                      <div className="reel-card__thumb-frame">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="reel-card__thumbnail"
+                          loading="lazy"
+                        />
+                        <span className="reel-card__tag-pill">[{project.tagCode}]</span>
+                        <span className="reel-card__year-badge">{project.year}</span>
+                      </div>
+
+                      <div className="reel-card__body">
+                        <div className="reel-card__category-row">
+                          <span className={`label ${project.label}`}>{project.category}</span>
+                          <span className="reel-card__emoji">{project.emoji}</span>
+                        </div>
+                        <h4 className="reel-card__title">{project.title}</h4>
+                        <p className="reel-card__sub">{project.subtitle}</p>
+
+                        <div className="reel-card__tech-tags">
+                          {project.tech.slice(0, 3).map((t) => (
+                            <span key={t} className="reel-card__tech-pill">
+                              {t}
+                            </span>
+                          ))}
+                          {project.tech.length > 3 && (
+                            <span className="reel-card__tech-pill">+{project.tech.length - 3}</span>
+                          )}
+                        </div>
+
+                        <div className="reel-card__cta">
+                          <span>Buka Detail Proyek</span>
+                          <span className="reel-card__cta-spark">✦</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                {/* ── CERTIFICATES HORIZONTAL REEL ── */}
+                {activeFolder === 'certificates' &&
+                  certificatesData.map((cert) => (
+                    <div
+                      key={cert.id}
+                      className="reel-card reel-card--cert"
+                      onClick={() => setActiveCert(cert)}
+                    >
+                      <div className="reel-card__thumb-frame reel-card__thumb-frame--cert">
+                        <img
+                          src={cert.image}
+                          alt={cert.title}
+                          className="reel-card__thumbnail"
+                          loading="lazy"
+                        />
+                        <span className="reel-card__tag-pill">[{cert.tag}]</span>
+                        <span className="reel-card__year-badge">{cert.year}</span>
+                      </div>
+
+                      <div className="reel-card__body">
+                        <span className="label label-pink">{cert.tag}</span>
+                        <h4 className="reel-card__title">{cert.title}</h4>
+                        <p className="reel-card__sub">{cert.issuer}</p>
+
+                        <div className="reel-card__cta">
+                          <span>Lihat Gambar Sertifikat</span>
+                          <span className="reel-card__cta-spark">🔍</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                {/* ── AWARDS HORIZONTAL REEL ── */}
+                {activeFolder === 'awards' &&
+                  awardsData.map((award) => (
+                    <div
+                      key={award.id}
+                      className="reel-card reel-card--award"
+                      onClick={() => setActiveAward(award)}
+                    >
+                      <div className="reel-card__thumb-frame reel-card__thumb-frame--cert">
+                        <img
+                          src={award.image}
+                          alt={award.title}
+                          className="reel-card__thumbnail"
+                          loading="lazy"
+                        />
+                        <span className="reel-card__tag-pill">[{award.tag}]</span>
+                        <span className="reel-card__year-badge">{award.year}</span>
+                      </div>
+
+                      <div className="reel-card__body">
+                        <div className="reel-card__category-row">
+                          <span className="label label-lime">{award.badge} {award.tag}</span>
+                        </div>
+                        <h4 className="reel-card__title">{award.title}</h4>
+                        <p className="reel-card__sub">{award.issuer}</p>
+
+                        <div className="reel-card__cta">
+                          <span>Lihat Piagam Penghargaan</span>
+                          <span className="reel-card__cta-spark">🏆</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            <div className="vault-inside__hint">
+              <span>✦ Geser horizontal untuk melihat seluruh file di dalam folder {activeFolder.toUpperCase()}</span>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* ─── MODAL 1: PROJECT SPECIFICATION MODAL (Hologram Spec) ─── */}

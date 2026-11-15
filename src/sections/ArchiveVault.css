@@ -1,7 +1,6 @@
 /* ============================================================
    ARCHIVE VAULT - CLEAN UNIFIED WORKS & CREDENTIALS
-   Seamlessly integrated with the surrealist Y2K aesthetic
-   3 Smoked Obsidian Folders + Integrated Horizontal File Drawer
+   3 Smoked Obsidian Folders -> Enters INSIDE Folder View
    ============================================================ */
 
 .archive-vault {
@@ -83,21 +82,27 @@
   margin-top: 8px;
 }
 
-/* ─── 3 OBSIDIAN FOLDERS DECK ─── */
+/* ─── TAMPILAN 1: 3 OBSIDIAN FOLDERS DECK (SEBELUM MASUK) ─── */
 .vault-folders__deck {
   position: relative;
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-bottom: 36px;
+  gap: 30px;
+  margin: 20px 0 10px;
+  animation: fadeInDeck 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes fadeInDeck {
+  from { opacity: 0; transform: scale(0.98) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 @media (max-width: 992px) {
   .vault-folders__deck {
     grid-template-columns: 1fr;
     max-width: 440px;
-    margin: 0 auto 36px;
+    margin: 20px auto 10px;
     gap: 36px;
   }
 }
@@ -109,7 +114,7 @@
   cursor: pointer;
   user-select: none;
   outline: none;
-  filter: drop-shadow(0 14px 26px rgba(0, 20, 60, 0.16));
+  filter: drop-shadow(0 14px 26px rgba(0, 20, 60, 0.18));
   transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 320ms ease;
   border-radius: 20px;
 }
@@ -117,26 +122,11 @@
 .vault-folder-card:hover,
 .vault-folder-card:focus-visible {
   transform: translateY(-8px);
-  filter: drop-shadow(0 22px 36px rgba(0, 102, 255, 0.25)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 22px 36px rgba(0, 102, 255, 0.28)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
 }
 
-/* Active Highlight */
-.vault-folder-card.is-active {
-  transform: translateY(-6px);
-  filter: drop-shadow(0 20px 40px rgba(0, 102, 255, 0.32));
-}
-
-.vault-folder-card.is-active .folder-back-svg path {
-  stroke: rgba(0, 204, 255, 0.5);
-  stroke-width: 2px;
-}
-
-.vault-folder-card.is-active .folder-front-svg path {
-  stroke: rgba(0, 204, 255, 0.6);
-  stroke-width: 2px;
-}
-
-.folder-active-indicator {
+/* Hover Hint Badge */
+.folder-open-hover-hint {
   position: absolute;
   top: -12px;
   right: 18px;
@@ -145,18 +135,21 @@
   font-weight: 800;
   color: #ffffff;
   background: #0066ff;
-  padding: 3px 10px;
+  padding: 3px 12px;
   border-radius: 9999px;
   box-shadow: 0 0 12px rgba(0, 102, 255, 0.6);
   z-index: 10;
   letter-spacing: 0.08em;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  animation: pulsePill 2s infinite ease-in-out;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 220ms ease;
+  pointer-events: none;
 }
 
-@keyframes pulsePill {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); box-shadow: 0 0 18px rgba(0, 204, 255, 0.8); }
+.vault-folder-card:hover .folder-open-hover-hint {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* 1. Back Folder Piece */
@@ -228,30 +221,26 @@
   z-index: 4;
 }
 
-/* ─── HOVER & TOUCH EFFECT: CARDS FAN OUT ─── */
-.vault-folder-card:hover .peek-thumb--1,
-.vault-folder-card.is-active .peek-thumb--1 {
+/* ─── HOVER EFFECT: CARDS FAN OUT ─── */
+.vault-folder-card:hover .peek-thumb--1 {
   transform: translateX(-66px) translateY(-44px) rotate(-12deg) scale(1.04);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
   opacity: 1;
 }
 
-.vault-folder-card:hover .peek-thumb--2,
-.vault-folder-card.is-active .peek-thumb--2 {
+.vault-folder-card:hover .peek-thumb--2 {
   transform: translateX(-22px) translateY(-54px) rotate(-4deg) scale(1.06);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55);
   opacity: 1;
 }
 
-.vault-folder-card:hover .peek-thumb--3,
-.vault-folder-card.is-active .peek-thumb--3 {
+.vault-folder-card:hover .peek-thumb--3 {
   transform: translateX(22px) translateY(-60px) rotate(4deg) scale(1.08);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.6);
   z-index: 5;
 }
 
-.vault-folder-card:hover .peek-thumb--4,
-.vault-folder-card.is-active .peek-thumb--4 {
+.vault-folder-card:hover .peek-thumb--4 {
   transform: translateX(66px) translateY(-46px) rotate(12deg) scale(1.04);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5);
 }
@@ -327,8 +316,7 @@
   transition: all 220ms ease;
 }
 
-.vault-folder-card:hover .folder-dots-pill,
-.vault-folder-card.is-active .folder-dots-pill {
+.vault-folder-card:hover .folder-dots-pill {
   background: rgba(0, 102, 255, 0.5);
   border-color: rgba(0, 204, 255, 0.7);
   box-shadow: 0 0 14px rgba(0, 102, 255, 0.4);
@@ -341,66 +329,92 @@
   border: 1.5px solid rgba(255, 255, 255, 0.75);
 }
 
-.vault-folder-card:hover .dot-circle,
-.vault-folder-card.is-active .dot-circle {
+.vault-folder-card:hover .dot-circle {
   border-color: #ffffff;
   background: #38bdf8;
   box-shadow: 0 0 6px #38bdf8;
 }
 
-/* ─── INTEGRATED HORIZONTAL FILE DRAWER (BELOW FOLDERS) ─── */
-.vault-drawer {
+/* ─── TAMPILAN 2: MASUK KE DALAM FOLDER (HANYA MENAMPILKAN ISI ARCHIVE) ─── */
+.vault-inside-view {
   position: relative;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1.5px solid rgba(0, 102, 255, 0.18);
+  border: 1.5px solid rgba(0, 102, 255, 0.2);
   border-radius: 24px;
   box-shadow:
-    0 12px 40px rgba(0, 68, 238, 0.08),
+    0 16px 48px rgba(0, 68, 238, 0.1),
     0 2px 10px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  padding: 24px 26px 20px;
-  animation: drawerSlide 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  padding: 24px 28px 22px;
+  animation: enterVaultFolder 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@keyframes drawerSlide {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes enterVaultFolder {
+  from { opacity: 0; transform: scale(0.97) translateY(14px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Drawer Bar */
-.vault-drawer__bar {
+/* Top Bar inside folder */
+.vault-inside__bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 14px;
-  padding-bottom: 18px;
+  gap: 16px;
+  padding-bottom: 20px;
   border-bottom: 1.5px solid rgba(0, 68, 238, 0.12);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
-.vault-drawer__heading {
+.vault-inside__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 9px 20px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 200ms ease;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+}
+
+.vault-inside__back-btn:hover {
+  background: #0055ff;
+  transform: translateX(-4px);
+  box-shadow: 0 6px 20px rgba(0, 85, 255, 0.45);
+}
+
+.vault-inside__breadcrumb {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-.vault-drawer__icon {
-  font-size: 1.25rem;
+.bc-root {
+  color: #64748b;
 }
 
-.vault-drawer__title {
-  font-family: var(--font-tech, monospace);
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: #0033aa;
-  letter-spacing: 0.06em;
+.bc-folder {
+  color: #0044ee;
+  background: rgba(0, 68, 238, 0.08);
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 68, 238, 0.2);
 }
 
-.vault-drawer__switchers {
+.vault-inside__switchers {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -643,7 +657,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.vault-drawer__hint {
+.vault-inside__hint {
   text-align: center;
   font-family: var(--font-tech, monospace);
   font-size: 0.68rem;
