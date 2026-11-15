@@ -4,6 +4,23 @@ import './ArchiveVault.css'
 // ─── 01. PROJECTS DATA (7 Items) ───
 const projectsData = [
   {
+    id: 'ramenatsu',
+    title: 'RAMENATSU · Food App Design',
+    subtitle: 'UI/UX Design Concept — Mobile Food Ordering App',
+    category: 'UI/UX Mobile Design',
+    tagCode: 'UI-FOODAPP',
+    label: 'label-pink',
+    description: 'Konsep desain aplikasi mobile pemesanan makanan Jepang (ramen) dengan branding visual khas RAMENATSU. Dirancang dengan antarmuka pengguna yang intuitif dan estetika modern untuk pengalaman pemesanan makanan yang seamless, mulai dari menu browsing, customisasi pesanan, hingga checkout dan tracking delivery.',
+    tech: ['Figma', 'UI/UX Design', 'Mobile App', 'Prototyping'],
+    year: '2025',
+    color: '#fef3c7',
+    accent: '#d97706',
+    emoji: '🍜',
+    image: '/projects/ramenatsu.png',
+    hostedUrl: 'https://www.figma.com/proto/r9SaRyByniw6bduPPfsLNs/Food-app-design?node-id=569-132&p=f&t=P6gTbIeV4o0PSf7J-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=569%3A132',
+    isHosted: true,
+  },
+  {
     id: 'freshguard',
     title: 'FRESHGUARD · Smart Fruit Freshness',
     subtitle: 'IoT & Smart Packaging Monitoring App',
@@ -101,23 +118,6 @@ const projectsData = [
     emoji: '🏔️',
     image: '/projects/summitix.png',
     isHosted: false,
-  },
-  {
-    id: 'ramenatsu',
-    title: 'RAMENATSU · Food App Design',
-    subtitle: 'UI/UX Design Concept — Mobile Food Ordering App',
-    category: 'UI/UX Mobile Design',
-    tagCode: 'UI-FOODAPP',
-    label: 'label-pink',
-    description: 'Konsep desain aplikasi mobile pemesanan makanan Jepang (ramen) dengan branding visual khas RAMENATSU. Dirancang dengan antarmuka pengguna yang intuitif dan estetika modern untuk pengalaman pemesanan makanan yang seamless, mulai dari menu browsing, customisasi pesanan, hingga checkout dan tracking delivery.',
-    tech: ['Figma', 'UI/UX Design', 'Mobile App', 'Prototyping'],
-    year: '2025',
-    color: '#fef3c7',
-    accent: '#d97706',
-    emoji: '🍜',
-    image: '/projects/ramenatsu.png',
-    hostedUrl: 'https://www.figma.com/proto/r9SaRyByniw6bduPPfsLNs/Food-app-design?node-id=569-132&p=f&t=P6gTbIeV4o0PSf7J-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=569%3A132',
-    isHosted: true,
   },
 ]
 
@@ -233,7 +233,6 @@ const awardsData = [
 ]
 
 export default function ArchiveVault() {
-  // activeFolder: null (showing 3 folders) or 'projects' | 'certificates' | 'awards'
   const [activeFolder, setActiveFolder] = useState(null)
   
   // Modals
@@ -241,10 +240,8 @@ export default function ArchiveVault() {
   const [activeCert, setActiveCert] = useState(null)
   const [activeAward, setActiveAward] = useState(null)
 
-  // Carousel ref for horizontal scrolling
   const reelRef = useRef(null)
 
-  // Listen to custom warp events or anchor triggers
   useEffect(() => {
     const handleWarp = (e) => {
       const { id } = e.detail || {}
@@ -260,7 +257,6 @@ export default function ArchiveVault() {
     return () => window.removeEventListener('warp-to-section', handleWarp)
   }, [])
 
-  // Close modals on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -279,7 +275,6 @@ export default function ArchiveVault() {
     reelRef.current.scrollBy({ left: offset, behavior: 'smooth' })
   }
 
-  // Prev / Next inside Certificate image viewer
   const handleCertNav = (dir) => {
     if (!activeCert) return
     const currentIdx = certificatesData.findIndex((c) => c.id === activeCert.id)
@@ -288,7 +283,6 @@ export default function ArchiveVault() {
     setActiveCert(certificatesData[nextIdx])
   }
 
-  // Prev / Next inside Awards image viewer
   const handleAwardNav = (dir) => {
     if (!activeAward) return
     const currentIdx = awardsData.findIndex((a) => a.id === activeAward.id)
@@ -299,198 +293,242 @@ export default function ArchiveVault() {
 
   return (
     <section className="archive-vault section" id="projects" aria-label="Archive Directory">
-      {/* Invisible anchor target for navbar certificates */}
+      {/* Topographic Background Overlay */}
+      <div className="vault-topo-bg" aria-hidden="true">
+        <svg viewBox="0 0 1440 800" fill="none" preserveAspectRatio="none">
+          <path d="M-100,100 C300,50 600,220 1000,120 C1300,40 1500,180 1600,150" stroke="rgba(255,255,255,0.04)" strokeWidth="1.5" />
+          <path d="M-100,220 C250,160 550,340 950,230 C1250,150 1450,290 1600,260" stroke="rgba(255,255,255,0.045)" strokeWidth="1.5" />
+          <path d="M-100,340 C200,280 500,450 900,350 C1200,270 1400,400 1600,380" stroke="rgba(255,255,255,0.05)" strokeWidth="1.5" />
+          <path d="M-100,470 C150,400 450,580 850,480 C1150,390 1350,520 1600,500" stroke="rgba(255,255,255,0.04)" strokeWidth="1.5" />
+          <path d="M-100,600 C100,530 400,700 800,600 C1100,510 1300,640 1600,620" stroke="rgba(255,255,255,0.035)" strokeWidth="1.5" />
+        </svg>
+      </div>
+
+      {/* Target anchor for certificates */}
       <div id="certificates" style={{ position: 'relative', top: '-80px' }} />
 
       <div className="container">
         {/* Section Header */}
-        <div className="section-header">
+        <div className="section-header vault-header">
           <div className="vault-header-badge">
             <span className="vault-header-dot" />
-            <span className="vault-header-code">Y2K ARCHIVE DIRECTORY // VAULT 2026</span>
+            <span className="vault-header-code">DIGITAL DIRECTORY // ARCHIVE 2026</span>
           </div>
-          <h2 className="section-title">
-            <span>DIGITAL</span> <span className="vault-title-accent">ARCHIVE VAULT</span>
+          <h2 className="section-title vault-title">
+            <span>SELECTED</span> <span className="vault-title-accent">ARCHIVES</span>
           </h2>
-          <p className="section-subtitle">
-            Koleksi karya aplikasi web, dokumen sertifikasi resmi, dan piagam penghargaan yang tersimpan rapi dalam folder digital.
+          <p className="section-subtitle vault-subtitle">
+            Koleksi karya aplikasi web, dokumen sertifikasi resmi, dan penghargaan tersimpan rapi dalam folder interaktif.
           </p>
         </div>
 
-        {/* ─── STAGE 1: 3 FOLDERS OVERVIEW (DEFAULT VIEW) ─── */}
+        {/* ─── STAGE 1: 3 SLEEK FOLDERS (MATCHING USER'S SCREENSHOT) ─── */}
         {!activeFolder && (
           <div className="vault-folders__grid">
-            {/* 01. PROJECTS FOLDER */}
+            {/* 📁 FOLDER 1: PROJECTS */}
             <div
-              className="vault-folder folder--projects"
+              className="vault-folder-card"
               onClick={() => setActiveFolder('projects')}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('projects')}
-              aria-label="Buka Folder Proyek (7 File)"
+              aria-label="Buka Folder Projects (7 Files)"
             >
-              {/* Top Folder Tab */}
-              <div className="folder__tab">
-                <span className="folder__tab-icon">📁</span>
-                <span className="folder__tab-label">01 // PROJECTS</span>
-                <span className="folder__tab-count">[07 FILES]</span>
+              {/* Back Tab Piece */}
+              <div className="folder-back-piece">
+                <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
+                  <path
+                    d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
+                    fill="url(#folderBackGrad)"
+                    stroke="rgba(255,255,255,0.12)"
+                    strokeWidth="1.5"
+                  />
+                  <defs>
+                    <linearGradient id="folderBackGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#2c3040" />
+                      <stop offset="100%" stopColor="#141824" />
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
 
-              {/* Folder Backing */}
-              <div className="folder__back">
-                {/* 3 Peek-Out Preview Cards (Pop up on hover / touch) */}
-                <div className="folder__peek-stack">
-                  <div className="peek-card peek-card--1">
-                    <img src="/projects/ramenatsu.png" alt="Ramenatsu Preview" />
-                    <span className="peek-tag">RAMENATSU</span>
-                  </div>
-                  <div className="peek-card peek-card--2">
-                    <img src="/projects/freshguard.png" alt="Freshguard Preview" />
-                    <span className="peek-tag">FRESHGUARD</span>
-                  </div>
-                  <div className="peek-card peek-card--3">
-                    <img src="/projects/smlti-tangsel.png" alt="SMLTI Preview" />
-                    <span className="peek-tag">SMLTI</span>
-                  </div>
+              {/* Peeking preview files inside */}
+              <div className="folder-peek-stack">
+                <div className="peek-thumb peek-thumb--1">
+                  <img src="/projects/englai.png" alt="EnglAI" />
+                </div>
+                <div className="peek-thumb peek-thumb--2">
+                  <img src="/projects/smlti-tangsel.png" alt="SMLTI" />
+                </div>
+                <div className="peek-thumb peek-thumb--3">
+                  <img src="/projects/freshguard.png" alt="Freshguard" />
+                </div>
+                <div className="peek-thumb peek-thumb--4">
+                  <img src="/projects/ramenatsu.png" alt="Ramenatsu" />
                 </div>
               </div>
 
-              {/* Front Pocket Sleeve */}
-              <div className="folder__front">
-                <div className="folder__front-sheen" />
-                <div className="folder__front-label-strip">
-                  <div className="folder__code-line">SEC_ARC // VOL.01</div>
-                  <h3 className="folder__title">PROJECTS ARCHIVE</h3>
-                  <p className="folder__desc">
-                    7 platform web inovatif, aplikasi IoT pintar, sistem pemerintahan &amp; desain UI/UX.
-                  </p>
-                </div>
+              {/* Front Frosted Glass Flap */}
+              <div className="folder-front-piece">
+                <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
+                  <path
+                    d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
+                    fill="url(#folderFrontGlassGrad)"
+                    stroke="rgba(255,255,255,0.18)"
+                    strokeWidth="1.5"
+                  />
+                  <defs>
+                    <linearGradient id="folderFrontGlassGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(42, 48, 66, 0.88)" />
+                      <stop offset="100%" stopColor="rgba(18, 22, 34, 0.94)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
 
-                <div className="folder__action-bar">
-                  <span className="folder__action-btn">
-                    <span>Buka Folder Proyek</span>
-                    <span className="folder__arrow">↗</span>
-                  </span>
-                  <span className="folder__stamp">7 RECS</span>
+                {/* Content Overlay */}
+                <div className="folder-front-content">
+                  <div className="folder-info-meta">
+                    <span className="folder-count-num">7</span>
+                    <span className="folder-count-label">Projects</span>
+                  </div>
+
+                  <div className="folder-dots-pill" title="Klik untuk membuka folder Projects">
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* 02. CERTIFICATES FOLDER */}
+            {/* 📁 FOLDER 2: CERTIFICATES */}
             <div
-              className="vault-folder folder--certs"
+              className="vault-folder-card"
               onClick={() => setActiveFolder('certificates')}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('certificates')}
-              aria-label="Buka Folder Sertifikat (7 Sertifikat)"
+              aria-label="Buka Folder Certificates (7 Certificates)"
             >
-              <div className="folder__tab">
-                <span className="folder__tab-icon">📁</span>
-                <span className="folder__tab-label">02 // CERTIFICATES</span>
-                <span className="folder__tab-count">[07 CERTS]</span>
+              <div className="folder-back-piece">
+                <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
+                  <path
+                    d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
+                    fill="url(#folderBackGrad)"
+                    stroke="rgba(255,255,255,0.12)"
+                    strokeWidth="1.5"
+                  />
+                </svg>
               </div>
 
-              <div className="folder__back">
-                <div className="folder__peek-stack">
-                  <div className="peek-card peek-card--1">
-                    <img src="/certificates/cert-coursera-excel.png" alt="Coursera Preview" />
-                    <span className="peek-tag">COURSERA</span>
-                  </div>
-                  <div className="peek-card peek-card--2">
-                    <img src="/certificates/cert-magang-kominfo.png" alt="Kominfo Preview" />
-                    <span className="peek-tag">DISKOMINFO</span>
-                  </div>
-                  <div className="peek-card peek-card--3">
-                    <img src="/certificates/cert-dicoding-aws-genai.png" alt="AWS Preview" />
-                    <span className="peek-tag">AWS GEN-AI</span>
-                  </div>
+              <div className="folder-peek-stack">
+                <div className="peek-thumb peek-thumb--1">
+                  <img src="/certificates/cert-linux.png" alt="Linux IDN" />
+                </div>
+                <div className="peek-thumb peek-thumb--2">
+                  <img src="/certificates/cert-coursera-excel.png" alt="Coursera" />
+                </div>
+                <div className="peek-thumb peek-thumb--3">
+                  <img src="/certificates/cert-magang-kominfo.png" alt="Diskominfo" />
+                </div>
+                <div className="peek-thumb peek-thumb--4">
+                  <img src="/certificates/cert-dicoding-aws-genai.png" alt="AWS GenAI" />
                 </div>
               </div>
 
-              <div className="folder__front">
-                <div className="folder__front-sheen" />
-                <div className="folder__front-label-strip">
-                  <div className="folder__code-line">VERIFIED // CREDENTIALS</div>
-                  <h3 className="folder__title">CERTIFICATES ARCHIVE</h3>
-                  <p className="folder__desc">
-                    7 sertifikat resmi kompetensi industri dari Diskominfo Tangsel, AWS, Coursera &amp; Dicoding.
-                  </p>
-                </div>
+              <div className="folder-front-piece">
+                <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
+                  <path
+                    d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
+                    fill="url(#folderFrontGlassGrad)"
+                    stroke="rgba(255,255,255,0.18)"
+                    strokeWidth="1.5"
+                  />
+                </svg>
 
-                <div className="folder__action-bar">
-                  <span className="folder__action-btn">
-                    <span>Buka Folder Sertifikat</span>
-                    <span className="folder__arrow">↗</span>
-                  </span>
-                  <span className="folder__stamp">7 CERTS</span>
+                <div className="folder-front-content">
+                  <div className="folder-info-meta">
+                    <span className="folder-count-num">7</span>
+                    <span className="folder-count-label">Certificates</span>
+                  </div>
+
+                  <div className="folder-dots-pill" title="Klik untuk membuka folder Certificates">
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* 03. AWARDS FOLDER */}
+            {/* 📁 FOLDER 3: AWARDS */}
             <div
-              className="vault-folder folder--awards"
+              className="vault-folder-card"
               onClick={() => setActiveFolder('awards')}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('awards')}
-              aria-label="Buka Folder Penghargaan (3 Awards)"
+              aria-label="Buka Folder Awards (3 Awards)"
             >
-              <div className="folder__tab">
-                <span className="folder__tab-icon">📁</span>
-                <span className="folder__tab-label">03 // AWARDS &amp; HONORS</span>
-                <span className="folder__tab-count">[03 AWARDS]</span>
+              <div className="folder-back-piece">
+                <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
+                  <path
+                    d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
+                    fill="url(#folderBackGrad)"
+                    stroke="rgba(255,255,255,0.12)"
+                    strokeWidth="1.5"
+                  />
+                </svg>
               </div>
 
-              <div className="folder__back">
-                <div className="folder__peek-stack">
-                  <div className="peek-card peek-card--1">
-                    <img src="/certificates/cert-dicoding-aws-genai.png" alt="Award 1" />
-                    <span className="peek-tag">AWS EXCELLENCE</span>
-                  </div>
-                  <div className="peek-card peek-card--2">
-                    <img src="/certificates/cert-magang-kominfo.png" alt="Award 2" />
-                    <span className="peek-tag">SANGAT BAIK</span>
-                  </div>
-                  <div className="peek-card peek-card--3">
-                    <img src="/certificates/cert-hmps-cloud.png" alt="Award 3" />
-                    <span className="peek-tag">LEADERSHIP</span>
-                  </div>
+              <div className="folder-peek-stack">
+                <div className="peek-thumb peek-thumb--1">
+                  <img src="/certificates/cert-hmps-cloud.png" alt="HMPS Leadership" />
+                </div>
+                <div className="peek-thumb peek-thumb--2">
+                  <img src="/certificates/cert-dicoding-aws-genai.png" alt="AWS Excellence" />
+                </div>
+                <div className="peek-thumb peek-thumb--3">
+                  <img src="/certificates/cert-magang-kominfo.png" alt="Diskominfo Sangat Baik" />
                 </div>
               </div>
 
-              <div className="folder__front">
-                <div className="folder__front-sheen" />
-                <div className="folder__front-label-strip">
-                  <div className="folder__code-line">HONORS // RECOGNITION</div>
-                  <h3 className="folder__title">AWARDS &amp; HONORS</h3>
-                  <p className="folder__desc">
-                    3 pencapaian prestasi dan apresiasi predikat evaluasi kerja terbaik.
-                  </p>
-                </div>
+              <div className="folder-front-piece">
+                <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
+                  <path
+                    d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
+                    fill="url(#folderFrontGlassGrad)"
+                    stroke="rgba(255,255,255,0.18)"
+                    strokeWidth="1.5"
+                  />
+                </svg>
 
-                <div className="folder__action-bar">
-                  <span className="folder__action-btn">
-                    <span>Buka Folder Awards</span>
-                    <span className="folder__arrow">↗</span>
-                  </span>
-                  <span className="folder__stamp">3 HONORS</span>
+                <div className="folder-front-content">
+                  <div className="folder-info-meta">
+                    <span className="folder-count-num">3</span>
+                    <span className="folder-count-label">Awards</span>
+                  </div>
+
+                  <div className="folder-dots-pill" title="Klik untuk membuka folder Awards">
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* ─── STAGE 2: INSIDE OPENED FOLDER (HORIZONTAL REEL DISPLAY) ─── */}
+        {/* ─── STAGE 2: INSIDE OPENED FOLDER (HORIZONTAL DISPLAY REEL) ─── */}
         {activeFolder && (
           <div className="vault-opened">
-            {/* Top Folder Navigation Bar & Breadcrumb */}
+            {/* Top Bar with Breadcrumb and Switchers */}
             <div className="vault-opened__bar">
               <button
                 className="vault-opened__back-btn"
                 onClick={() => setActiveFolder(null)}
-                title="Kembali ke tampilan 3 folder utama"
+                title="Kembali ke 3 Folder Utama"
               >
                 <span>← Kembali ke Semua Folder</span>
               </button>
@@ -500,11 +538,10 @@ export default function ArchiveVault() {
                 <span className="bc-folder">
                   {activeFolder === 'projects' && '📂 PROJECTS (7 FILES)'}
                   {activeFolder === 'certificates' && '📂 CERTIFICATES (7 CERTS)'}
-                  {activeFolder === 'awards' && '📂 AWARDS & HONORS (3 AWARDS)'}
+                  {activeFolder === 'awards' && '📂 AWARDS (3 AWARDS)'}
                 </span>
               </div>
 
-              {/* Quick Folder Switcher Tabs */}
               <div className="vault-opened__tabs">
                 <button
                   className={`vault-tab-pill ${activeFolder === 'projects' ? 'is-active' : ''}`}
@@ -529,32 +566,29 @@ export default function ArchiveVault() {
 
             {/* Horizontal Reel Navigation Controls & Track */}
             <div className="vault-reel-wrapper">
-              {/* Prev / Next Track Arrows */}
               <button
                 className="reel-arrow reel-arrow--prev"
                 onClick={() => scrollReel('left')}
-                aria-label="Scroll ke kiri"
+                aria-label="Geser ke kiri"
               >
                 ‹
               </button>
               <button
                 className="reel-arrow reel-arrow--next"
                 onClick={() => scrollReel('right')}
-                aria-label="Scroll ke kanan"
+                aria-label="Geser ke kanan"
               >
                 ›
               </button>
 
-              {/* Horizontal Scroll Track */}
               <div className="vault-reel" ref={reelRef}>
-                {/* ── PROJECTS REEL ── */}
+                {/* ── PROJECTS HORIZONTAL REEL ── */}
                 {activeFolder === 'projects' &&
-                  projectsData.map((project, idx) => (
+                  projectsData.map((project) => (
                     <div
                       key={project.id}
-                      className="reel-card reel-card--project glass-card"
+                      className="reel-card reel-card--project"
                       onClick={() => setActiveProject(project)}
-                      style={{ '--card-accent': project.accent }}
                     >
                       <div className="reel-card__thumb-frame">
                         <img
@@ -594,14 +628,13 @@ export default function ArchiveVault() {
                     </div>
                   ))}
 
-                {/* ── CERTIFICATES REEL ── */}
+                {/* ── CERTIFICATES HORIZONTAL REEL ── */}
                 {activeFolder === 'certificates' &&
-                  certificatesData.map((cert, idx) => (
+                  certificatesData.map((cert) => (
                     <div
                       key={cert.id}
-                      className="reel-card reel-card--cert glass-card"
+                      className="reel-card reel-card--cert"
                       onClick={() => setActiveCert(cert)}
-                      style={{ '--card-accent': cert.color }}
                     >
                       <div className="reel-card__thumb-frame reel-card__thumb-frame--cert">
                         <img
@@ -627,14 +660,13 @@ export default function ArchiveVault() {
                     </div>
                   ))}
 
-                {/* ── AWARDS REEL ── */}
+                {/* ── AWARDS HORIZONTAL REEL ── */}
                 {activeFolder === 'awards' &&
-                  awardsData.map((award, idx) => (
+                  awardsData.map((award) => (
                     <div
                       key={award.id}
-                      className="reel-card reel-card--award glass-card"
+                      className="reel-card reel-card--award"
                       onClick={() => setActiveAward(award)}
-                      style={{ '--card-accent': award.color }}
                     >
                       <div className="reel-card__thumb-frame reel-card__thumb-frame--cert">
                         <img
@@ -664,9 +696,8 @@ export default function ArchiveVault() {
               </div>
             </div>
 
-            {/* Horizontal Hint Footer */}
             <div className="vault-reel__hint">
-              <span>✦ Geser horizontal untuk melihat semua isi folder ({activeFolder.toUpperCase()})</span>
+              <span>✦ Geser horizontal untuk melihat seluruh isi folder ({activeFolder.toUpperCase()})</span>
             </div>
           </div>
         )}
@@ -697,7 +728,6 @@ export default function ArchiveVault() {
 
             <div className="proj-modal__content">
               <div className="proj-modal__main-layout">
-                {/* Left: Project Image with Link */}
                 <div className="proj-modal__media-frame y2k-holo-frame">
                   <div className="proj-modal__holo-sheen" />
 
@@ -740,7 +770,6 @@ export default function ArchiveVault() {
                   </div>
                 </div>
 
-                {/* Right: Info & Description */}
                 <div className="proj-modal__info-panel">
                   <div className="proj-modal__meta-row">
                     <span className={`label ${activeProject.label}`}>{activeProject.category}</span>
@@ -801,7 +830,7 @@ export default function ArchiveVault() {
         </div>
       )}
 
-      {/* ─── MODAL 2: CERTIFICATE IMAGE-ONLY LIGHTBOX MODAL ─── */}
+      {/* ─── MODAL 2: CERTIFICATE IMAGE-ONLY LIGHTBOX ─── */}
       {activeCert && (
         <div className="clean-lightbox" role="dialog" aria-modal="true" aria-label={`Sertifikat: ${activeCert.title}`}>
           <div className="clean-lightbox__backdrop" onClick={() => setActiveCert(null)} />
@@ -844,7 +873,7 @@ export default function ArchiveVault() {
         </div>
       )}
 
-      {/* ─── MODAL 3: AWARD IMAGE-ONLY LIGHTBOX MODAL ─── */}
+      {/* ─── MODAL 3: AWARD IMAGE-ONLY LIGHTBOX ─── */}
       {activeAward && (
         <div className="clean-lightbox" role="dialog" aria-modal="true" aria-label={`Penghargaan: ${activeAward.title}`}>
           <div className="clean-lightbox__backdrop" onClick={() => setActiveAward(null)} />
@@ -868,7 +897,7 @@ export default function ArchiveVault() {
                 ‹
               </button>
 
-              <img src={awardImageFallback(activeAward.image)} alt={activeAward.title} className="clean-lightbox__image" />
+              <img src={activeAward.image} alt={activeAward.title} className="clean-lightbox__image" />
 
               <button
                 className="clean-lightbox__nav-btn clean-lightbox__nav-btn--next"
@@ -891,8 +920,3 @@ export default function ArchiveVault() {
     </section>
   )
 }
-
-function awardImageFallback(img) {
-  return img || '/certificates/cert-magang-kominfo.png'
-}
-
