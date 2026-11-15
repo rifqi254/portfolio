@@ -4,9 +4,9 @@ import './Navbar.css'
 const navLinks = [
   { label: 'About', href: '#about', code: '01', name: 'Profile & Philosophy' },
   { label: 'Projects', href: '#projects', code: '02', name: 'Featured Works' },
-  { label: 'Skills', href: '#skills', code: '03', name: 'Tech Stack & Arsenal' },
-  { label: 'Timeline', href: '#timeline', code: '04', name: 'Career & Growth' },
-  { label: 'Certificates', href: '#certificates', code: '05', name: 'Verified Credentials' },
+  { label: 'Certificates', href: '#certificates', code: '03', name: 'Verified Credentials' },
+  { label: 'Skills', href: '#skills', code: '04', name: 'Tech Stack & Arsenal' },
+  { label: 'Timeline', href: '#timeline', code: '05', name: 'Career & Growth' },
   { label: 'Contact', href: '#contact', code: '06', name: 'Let’s Collaborate' },
 ]
 
@@ -47,6 +47,7 @@ export default function Navbar() {
     e.preventDefault()
     const id = href.startsWith('#') ? href.slice(1) : href
     const matched = navLinks.find((l) => l.href === href)
+    setActiveSection(id)
 
     window.dispatchEvent(
       new CustomEvent('warp-to-section', {

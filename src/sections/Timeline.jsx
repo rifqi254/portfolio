@@ -55,8 +55,8 @@ const timelineItems = [
     status: 'Certified'
   },
   {
-    year: '2024 – 2025',
-    period: '4 Feb 2024 – 28 Des 2025',
+    year: '2025 – 2026',
+    period: '23 Feb 2025 – 28 Jan 2026',
     title: 'Ketua Divisi Komunikasi & Informasi',
     org: 'HMPS Informatika',
     type: 'Organization',

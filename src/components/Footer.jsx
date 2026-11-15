@@ -29,7 +29,7 @@ export default function Footer() {
           <div className="footer__socials">
             {[
               { icon: InstagramIcon, label: 'Instagram @alla.an_', href: 'https://www.instagram.com/alla.an_/' },
-              { icon: GitHubIcon, label: 'GitHub auliasiti844-ui', href: 'https://github.com/auliasiti844-ui' },
+              { icon: GitHubIcon, label: 'GitHub Rifqi254', href: 'https://github.com/Rifqi254' },
               { icon: LinkedInIcon, label: 'LinkedIn Maulana Rifqi', href: 'https://www.linkedin.com/in/maulana-rifqi-1550962b7/' },
               { icon: MailIcon, label: 'Email maulanarifqi741@gmail.com', href: 'mailto:maulanarifqi741@gmail.com' },
             ].map(s => {

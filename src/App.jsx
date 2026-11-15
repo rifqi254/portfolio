@@ -9,10 +9,9 @@ import ScrollEffects from './components/ScrollEffects'
 
 import Hero from './sections/Hero'
 import About from './sections/About'
-import Projects from './sections/Projects'
+import ArchiveVault from './sections/ArchiveVault'
 import Skills from './sections/Skills'
 import Timeline from './sections/Timeline'
-import Certificates from './sections/Certificates'
 import Contact from './sections/Contact'
 
 export default function App() {
@@ -33,10 +32,9 @@ export default function App() {
       <main id="main-content">
         <Hero />
         <About />
-        <Projects />
+        <ArchiveVault />
         <Skills />
         <Timeline />
-        <Certificates />
         <Contact />
       </main>
 

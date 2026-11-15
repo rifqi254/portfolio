@@ -175,14 +175,14 @@ export default function Hero() {
               <span>@alla.an_</span>
             </a>
             <a
-              href="https://github.com/auliasiti844-ui"
+              href="https://github.com/Rifqi254"
               target="_blank"
               rel="noopener noreferrer"
               className="hero__social-chip hero__social-chip--gh"
-              title="GitHub: auliasiti844-ui"
+              title="GitHub: Rifqi254"
             >
               <GitHubIcon size={14} />
-              <span>auliasiti844-ui</span>
+              <span>Rifqi254</span>
             </a>
             <a
               href="https://www.linkedin.com/in/maulana-rifqi-1550962b7/"
