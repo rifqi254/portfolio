@@ -10,7 +10,7 @@ const projectsData = [
     category: 'UI/UX Mobile Design',
     tagCode: 'UI-FOODAPP',
     label: 'label-pink',
-    description: 'Konsep desain aplikasi mobile pemesanan makanan Jepang (ramen) dengan branding visual khas RAMENATSU. Dirancang dengan antarmuka pengguna yang intuitif dan estetika modern untuk pengalaman pemesanan makanan yang seamless, mulai dari menu browsing, customisasi pesanan, hingga checkout dan tracking delivery.',
+    description: 'Konsep desain aplikasi mobile pemesanan makanan Jepang (ramen) dengan branding visual khas RAMENATSU. Dirancang dengan antarmuka pengguna yang intuitif dan estetika modern untuk pengalaman pemesanan makanan yang seamless, mulai dari menu browsing, kustomisasi pesanan, hingga checkout dan tracking delivery.',
     tech: ['Figma', 'UI/UX Design', 'Mobile App', 'Prototyping'],
     year: '2025',
     color: '#fef3c7',
@@ -19,6 +19,7 @@ const projectsData = [
     image: '/projects/ramenatsu.png',
     hostedUrl: 'https://www.figma.com/proto/r9SaRyByniw6bduPPfsLNs/Food-app-design?node-id=569-132&p=f&t=P6gTbIeV4o0PSf7J-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=569%3A132',
     isHosted: true,
+    actionText: 'Buka Prototype Figma',
   },
   {
     id: 'freshguard',
@@ -36,6 +37,7 @@ const projectsData = [
     image: '/projects/freshguard.png',
     htmlUrl: '/projects/freshguard.html',
     isHosted: false,
+    actionText: 'Buka Demo Web App',
   },
   {
     id: 'smlti',
@@ -53,6 +55,7 @@ const projectsData = [
     image: '/projects/smlti-tangsel.png',
     hostedUrl: 'https://dev4-60209.aplikasimu.my.id/login',
     isHosted: true,
+    actionText: 'Kunjungi Website Portal',
   },
   {
     id: 'englai',
@@ -70,6 +73,7 @@ const projectsData = [
     image: '/projects/englai.png',
     hostedUrl: 'https://englai.my.id/',
     isHosted: true,
+    actionText: 'Kunjungi Platform EnglAI',
   },
   {
     id: 'ecocampus',
@@ -86,6 +90,7 @@ const projectsData = [
     emoji: '🌿',
     image: '/projects/ecocampus.png',
     isHosted: false,
+    actionText: 'Lihat Dokumentasi Proyek',
   },
   {
     id: 'pengumuman-hmps',
@@ -102,6 +107,7 @@ const projectsData = [
     emoji: '🎓',
     image: '/projects/pengumuman-hmps.jpg',
     isHosted: false,
+    actionText: 'Lihat Dokumentasi Proyek',
   },
   {
     id: 'summitix',
@@ -118,6 +124,7 @@ const projectsData = [
     emoji: '🏔️',
     image: '/projects/summitix.png',
     isHosted: false,
+    actionText: 'Lihat Dokumentasi Proyek',
   },
 ]
 
@@ -126,71 +133,43 @@ const certificatesData = [
   {
     id: 'cert-kominfo',
     title: 'Sertifikat Program Magang Diskominfo Tangsel',
-    issuer: 'Dinas Komunikasi dan Informatika Tangerang Selatan',
     year: '2026',
-    date: '9 Feb – 31 Jul 2026',
-    tag: 'GOV // INTERN',
-    color: '#0088ff',
     image: '/certificates/cert-magang-kominfo.png',
   },
   {
     id: 'cert-coursera-excel',
     title: 'Getting Started with Microsoft Excel',
-    issuer: 'Coursera & Freedom Learning Group',
     year: '2026',
-    date: '14 Januari 2026',
-    tag: 'COURSERA // DATA',
-    color: '#10b981',
     image: '/certificates/cert-coursera-excel.png',
   },
   {
     id: 'cert-linux',
     title: 'Belajar Linux dari Nol+',
-    issuer: 'ID-Networkers (IDN.ID)',
     year: '2024',
-    date: '12 Juni 2024',
-    tag: 'SYS // LINUX',
-    color: '#e11d48',
     image: '/certificates/cert-linux.png',
   },
   {
     id: 'cert-hmps-cloud',
     title: 'Seminar IT & Bootcamp: First Step to Cloud',
-    issuer: 'HMPS Informatika UIN SMH Banten',
     year: '2025',
-    date: '1 November 2025',
-    tag: 'CAMP // CLOUD',
-    color: '#9333ea',
     image: '/certificates/cert-hmps-cloud.png',
   },
   {
     id: 'cert-dicoding-aws-genai',
     title: 'Belajar Dasar Cloud dan Gen AI di AWS',
-    issuer: 'Dicoding Indonesia & AWS',
     year: '2025',
-    date: '22 November 2025',
-    tag: 'AWS // GEN-AI',
-    color: '#ff9900',
     image: '/certificates/cert-dicoding-aws-genai.png',
   },
   {
     id: 'cert-dicoding-backend-js',
     title: 'Belajar Back-End Pemula dengan JavaScript',
-    issuer: 'Dicoding Indonesia & AWS',
     year: '2025',
-    date: '30 Oktober 2025',
-    tag: 'NODE // REST-API',
-    color: '#0284c7',
     image: '/certificates/cert-dicoding-backend-js.png',
   },
   {
     id: 'cert-dicoding-dasar-js',
     title: 'Belajar Dasar Pemrograman JavaScript',
-    issuer: 'Dicoding Indonesia & AWS',
     year: '2025',
-    date: '03 Desember 2025',
-    tag: 'ES6+ // JS-CORE',
-    color: '#eab308',
     image: '/certificates/cert-dicoding-dasar-js.png',
   },
 ]
@@ -200,40 +179,27 @@ const awardsData = [
   {
     id: 'award-magang-sangat-baik',
     title: 'Predikat Hasil Evaluasi Akhir SANGAT BAIK',
-    issuer: 'Dinas Komunikasi dan Informatika Tangerang Selatan',
     year: '2026',
-    date: 'Juli 2026',
     badge: '🏆',
-    tag: 'HONOR // SANGAT BAIK',
-    color: '#eab308',
     image: '/certificates/cert-magang-kominfo.png',
   },
   {
     id: 'award-aws-genai',
     title: 'Sertifikasi Kompetensi Global AWS Cloud & Gen AI',
-    issuer: 'Amazon Web Services & Dicoding Indonesia',
     year: '2025',
-    date: 'November 2025',
     badge: '🌟',
-    tag: 'EXCELLENCE // AWS',
-    color: '#f97316',
     image: '/certificates/cert-dicoding-aws-genai.png',
   },
   {
     id: 'award-hmps-leadership',
     title: 'Piagam Apresiasi Kepengurusan & Dedikasi HMPS',
-    issuer: 'HMPS Informatika UIN Sultan Maulana Hasanuddin',
     year: '2025',
-    date: 'November 2025',
     badge: '🎖️',
-    tag: 'LEADERSHIP // HMPS',
-    color: '#8b5cf6',
     image: '/certificates/cert-hmps-cloud.png',
   },
 ]
 
 export default function ArchiveVault() {
-  // activeFolder: null (shows only the 3 folders) or 'projects' | 'certificates' | 'awards' (shows ONLY that folder)
   const [activeFolder, setActiveFolder] = useState(null)
   
   // Modals
@@ -243,7 +209,6 @@ export default function ArchiveVault() {
 
   const reelRef = useRef(null)
 
-  // Listen to warp-to-section events
   useEffect(() => {
     const handleWarp = (e) => {
       const { id } = e.detail || {}
@@ -254,14 +219,13 @@ export default function ArchiveVault() {
       } else if (id === 'awards') {
         setActiveFolder('awards')
       } else if (id === 'archive') {
-        setActiveFolder(null) // shows 3 folders
+        setActiveFolder(null)
       }
     }
     window.addEventListener('warp-to-section', handleWarp)
     return () => window.removeEventListener('warp-to-section', handleWarp)
   }, [])
 
-  // Close modals on Escape
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -276,7 +240,7 @@ export default function ArchiveVault() {
 
   const scrollReel = (direction) => {
     if (!reelRef.current) return
-    const offset = direction === 'left' ? -360 : 360
+    const offset = direction === 'left' ? -380 : 380
     reelRef.current.scrollBy({ left: offset, behavior: 'smooth' })
   }
 
@@ -315,7 +279,7 @@ export default function ArchiveVault() {
           </h2>
           <p className="section-subtitle vault-subtitle">
             {activeFolder ? (
-              <span>Sedang membuka isi folder <strong>{activeFolder.toUpperCase()}</strong>. Klik tombol kembali untuk melihat semua folder.</span>
+              <span>Sedang membuka folder <strong>{activeFolder.toUpperCase()}</strong>. Klik tombol kembali untuk melihat semua folder.</span>
             ) : (
               <span>Koleksi proyek web, sertifikasi resmi, dan penghargaan terkurasi dalam 3 folder. Sentuh atau klik folder untuk masuk ke dalamnya.</span>
             )}
@@ -351,7 +315,6 @@ export default function ArchiveVault() {
                 </svg>
               </div>
 
-              {/* Peeking preview files */}
               <div className="folder-peek-stack">
                 <div className="peek-thumb peek-thumb--1">
                   <img src="/projects/englai.png" alt="EnglAI" />
@@ -367,7 +330,6 @@ export default function ArchiveVault() {
                 </div>
               </div>
 
-              {/* Front frosted glass flap */}
               <div className="folder-front-piece">
                 <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
                   <path
@@ -530,7 +492,7 @@ export default function ArchiveVault() {
           </div>
         )}
 
-        {/* ─── TAMPILAN 2: MASUK KE DALAM FOLDER (HANYA MENAMPILKAN ISI ARCHIVE) ─── */}
+        {/* ─── TAMPILAN 2: MASUK KE DALAM FOLDER ─── */}
         {activeFolder && (
           <div className="vault-inside-view">
             {/* Top Bar with Back Button & Breadcrumbs */}
@@ -593,113 +555,84 @@ export default function ArchiveVault() {
               </button>
 
               <div className="vault-reel" ref={reelRef}>
-                {/* ── PROJECTS HORIZONTAL REEL ── */}
+                {/* ── 1. PROJECTS HORIZONTAL REEL ── */}
                 {activeFolder === 'projects' &&
                   projectsData.map((project) => (
                     <div
                       key={project.id}
-                      className="reel-card reel-card--project"
+                      className="clean-project-card"
                       onClick={() => setActiveProject(project)}
                     >
-                      <div className="reel-card__thumb-frame">
+                      <div className="clean-project-card__thumb-wrap">
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="reel-card__thumbnail"
+                          className="clean-project-card__img"
                           loading="lazy"
                         />
-                        <span className="reel-card__tag-pill">[{project.tagCode}]</span>
-                        <span className="reel-card__year-badge">{project.year}</span>
+                        <div className="clean-project-card__overlay-pill">
+                          <span>Preview ↗</span>
+                        </div>
                       </div>
 
-                      <div className="reel-card__body">
-                        <div className="reel-card__category-row">
-                          <span className={`label ${project.label}`}>{project.category}</span>
-                          <span className="reel-card__emoji">{project.emoji}</span>
+                      <div className="clean-project-card__body">
+                        <div className="clean-project-card__meta">
+                          <span className="clean-project-card__category">{project.category}</span>
+                          <span className="clean-project-card__year">{project.year}</span>
                         </div>
-                        <h4 className="reel-card__title">{project.title}</h4>
-                        <p className="reel-card__sub">{project.subtitle}</p>
+                        <h4 className="clean-project-card__title">{project.title}</h4>
+                        <p className="clean-project-card__sub">{project.subtitle}</p>
 
-                        <div className="reel-card__tech-tags">
+                        <div className="clean-project-card__tech">
                           {project.tech.slice(0, 3).map((t) => (
-                            <span key={t} className="reel-card__tech-pill">
-                              {t}
-                            </span>
+                            <span key={t} className="clean-tech-tag">{t}</span>
                           ))}
-                          {project.tech.length > 3 && (
-                            <span className="reel-card__tech-pill">+{project.tech.length - 3}</span>
-                          )}
-                        </div>
-
-                        <div className="reel-card__cta">
-                          <span>Buka Detail Proyek</span>
-                          <span className="reel-card__cta-spark">✦</span>
                         </div>
                       </div>
                     </div>
                   ))}
 
-                {/* ── CERTIFICATES HORIZONTAL REEL ── */}
+                {/* ── 2. CERTIFICATES HORIZONTAL REEL (CLEAN IMAGE CARDS) ── */}
                 {activeFolder === 'certificates' &&
                   certificatesData.map((cert) => (
                     <div
                       key={cert.id}
-                      className="reel-card reel-card--cert"
+                      className="clean-cert-card"
                       onClick={() => setActiveCert(cert)}
+                      title="Klik untuk melihat gambar sertifikat full"
                     >
-                      <div className="reel-card__thumb-frame reel-card__thumb-frame--cert">
+                      <div className="clean-cert-card__img-wrap">
                         <img
                           src={cert.image}
-                          alt={cert.title}
-                          className="reel-card__thumbnail"
+                          alt="Sertifikat"
+                          className="clean-cert-card__img"
                           loading="lazy"
                         />
-                        <span className="reel-card__tag-pill">[{cert.tag}]</span>
-                        <span className="reel-card__year-badge">{cert.year}</span>
-                      </div>
-
-                      <div className="reel-card__body">
-                        <span className="label label-pink">{cert.tag}</span>
-                        <h4 className="reel-card__title">{cert.title}</h4>
-                        <p className="reel-card__sub">{cert.issuer}</p>
-
-                        <div className="reel-card__cta">
-                          <span>Lihat Gambar Sertifikat</span>
-                          <span className="reel-card__cta-spark">🔍</span>
+                        <div className="clean-cert-card__zoom-badge">
+                          <span>Lihat Gambar 🔍</span>
                         </div>
                       </div>
                     </div>
                   ))}
 
-                {/* ── AWARDS HORIZONTAL REEL ── */}
+                {/* ── 3. AWARDS HORIZONTAL REEL (CLEAN IMAGE CARDS) ── */}
                 {activeFolder === 'awards' &&
                   awardsData.map((award) => (
                     <div
                       key={award.id}
-                      className="reel-card reel-card--award"
+                      className="clean-cert-card clean-cert-card--award"
                       onClick={() => setActiveAward(award)}
+                      title="Klik untuk melihat piagam penghargaan full"
                     >
-                      <div className="reel-card__thumb-frame reel-card__thumb-frame--cert">
+                      <div className="clean-cert-card__img-wrap">
                         <img
                           src={award.image}
-                          alt={award.title}
-                          className="reel-card__thumbnail"
+                          alt="Penghargaan"
+                          className="clean-cert-card__img"
                           loading="lazy"
                         />
-                        <span className="reel-card__tag-pill">[{award.tag}]</span>
-                        <span className="reel-card__year-badge">{award.year}</span>
-                      </div>
-
-                      <div className="reel-card__body">
-                        <div className="reel-card__category-row">
-                          <span className="label label-lime">{award.badge} {award.tag}</span>
-                        </div>
-                        <h4 className="reel-card__title">{award.title}</h4>
-                        <p className="reel-card__sub">{award.issuer}</p>
-
-                        <div className="reel-card__cta">
-                          <span>Lihat Piagam Penghargaan</span>
-                          <span className="reel-card__cta-spark">🏆</span>
+                        <div className="clean-cert-card__zoom-badge clean-cert-card__zoom-badge--award">
+                          <span>{award.badge} Lihat Piagam 🔍</span>
                         </div>
                       </div>
                     </div>
@@ -714,218 +647,188 @@ export default function ArchiveVault() {
         )}
       </div>
 
-      {/* ─── MODAL 1: PROJECT SPECIFICATION MODAL (Hologram Spec) ─── */}
+      {/* ─── MODAL 1: REDESIGNED CLEAN MODERN PROJECT SHOWCASE MODAL ─── */}
       {activeProject && (
-        <div className="proj-modal" role="dialog" aria-modal="true" aria-label={`Project: ${activeProject.title}`}>
-          <div className="proj-modal__backdrop" onClick={() => setActiveProject(null)}>
-            <div className="proj-modal__backdrop-scanlines" />
-          </div>
+        <div className="modern-project-modal" role="dialog" aria-modal="true" aria-label={`Preview: ${activeProject.title}`}>
+          <div className="modern-project-modal__backdrop" onClick={() => setActiveProject(null)} />
 
-          <div className="proj-modal__dialog">
-            <div className="proj-modal__bar">
-              <div className="proj-modal__bar-left">
-                <div className="proj-modal__window-dots">
-                  <span className="dot dot--red" onClick={() => setActiveProject(null)} title="Close (ESC)" />
-                  <span className="dot dot--yellow" />
-                  <span className="dot dot--green" />
-                </div>
-                <span className="proj-modal__bar-code">[{activeProject.tagCode}]</span>
-                <span className="proj-modal__bar-title">PROJECT SPECIFICATION // {activeProject.title}</span>
-              </div>
-              <button className="proj-modal__close-btn" onClick={() => setActiveProject(null)}>
-                <span>✕ ESC</span>
-              </button>
+          <div className="modern-project-modal__dialog">
+            {/* Top Close Button */}
+            <button
+              className="modern-project-modal__close-btn"
+              onClick={() => setActiveProject(null)}
+              aria-label="Tutup preview proyek"
+            >
+              ✕
+            </button>
+
+            {/* Top Media Showcase Hero */}
+            <div className="modern-project-modal__hero">
+              <img
+                src={activeProject.image}
+                alt={activeProject.title}
+                className="modern-project-modal__hero-img"
+              />
+
+              {activeProject.isHosted ? (
+                <a
+                  href={activeProject.hostedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="modern-project-modal__live-float-btn"
+                >
+                  <span>● Live Website ↗</span>
+                </a>
+              ) : activeProject.htmlUrl ? (
+                <a
+                  href={activeProject.htmlUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="modern-project-modal__live-float-btn"
+                >
+                  <span>● Demo Web App ↗</span>
+                </a>
+              ) : null}
             </div>
 
-            <div className="proj-modal__content">
-              <div className="proj-modal__main-layout">
-                <div className="proj-modal__media-frame y2k-holo-frame">
-                  <div className="proj-modal__holo-sheen" />
+            {/* Bottom Content & Details */}
+            <div className="modern-project-modal__content">
+              <div className="modern-project-modal__meta-row">
+                <span className="modern-badge modern-badge--category">{activeProject.category}</span>
+                <span className="modern-badge modern-badge--year">{activeProject.year}</span>
+                {activeProject.isHosted && (
+                  <span className="modern-badge modern-badge--live">Live Online</span>
+                )}
+              </div>
 
-                  {activeProject.isHosted ? (
-                    <a
-                      href={activeProject.hostedUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="proj-modal__img-link"
-                      title="Klik untuk membuka website yang sudah dihosting"
-                    >
-                      <img src={activeProject.image} alt={activeProject.title} className="proj-modal__img proj-modal__img--clickable" />
-                      <div className="proj-modal__hosted-overlay-hint">
-                        <span className="hint-pulse">● LIVE HOSTED</span>
-                        <span className="hint-text">👆 Klik Gambar untuk Buka Website ↗</span>
-                      </div>
-                    </a>
-                  ) : activeProject.htmlUrl ? (
-                    <a
-                      href={activeProject.htmlUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="proj-modal__img-link"
-                      title="Klik untuk membuka demo aplikasi web interaktif"
-                    >
-                      <img src={activeProject.image} alt={activeProject.title} className="proj-modal__img proj-modal__img--clickable" />
-                      <div className="proj-modal__hosted-overlay-hint">
-                        <span className="hint-pulse">● DEMO WEB</span>
-                        <span className="hint-text">👆 Klik Gambar untuk Buka Demo Web ↗</span>
-                      </div>
-                    </a>
-                  ) : (
-                    <div className="proj-modal__img-wrapper">
-                      <img src={activeProject.image} alt={activeProject.title} className="proj-modal__img" />
-                    </div>
-                  )}
+              <h3 className="modern-project-modal__title">{activeProject.title}</h3>
+              <p className="modern-project-modal__sub">{activeProject.subtitle}</p>
 
-                  <div className="proj-modal__corner-stamp">
-                    <span>★ AUTHENTIC PROJECT RECORD · {activeProject.year}</span>
-                  </div>
+              <p className="modern-project-modal__desc">{activeProject.description}</p>
+
+              {/* Tech Stack */}
+              <div className="modern-project-modal__tech-wrap">
+                <span className="modern-tech-label">Teknologi:</span>
+                <div className="modern-tech-pills">
+                  {activeProject.tech.map((t) => (
+                    <span key={t} className="modern-tech-pill">{t}</span>
+                  ))}
                 </div>
+              </div>
 
-                <div className="proj-modal__info-panel">
-                  <div className="proj-modal__meta-row">
-                    <span className={`label ${activeProject.label}`}>{activeProject.category}</span>
-                    <span className="proj-modal__year-pill">TAHUN {activeProject.year}</span>
-                    {activeProject.isHosted && <span className="proj-modal__live-badge">● TER-HOSTING</span>}
-                  </div>
+              {/* Actions Bar */}
+              <div className="modern-project-modal__actions">
+                {activeProject.isHosted ? (
+                  <a
+                    href={activeProject.hostedUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modern-btn modern-btn--primary"
+                  >
+                    <span>🚀 {activeProject.actionText || 'Kunjungi Website'}</span>
+                    <span className="btn-arrow">↗</span>
+                  </a>
+                ) : activeProject.htmlUrl ? (
+                  <a
+                    href={activeProject.htmlUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modern-btn modern-btn--primary"
+                  >
+                    <span>🚀 {activeProject.actionText || 'Buka Demo Web App'}</span>
+                    <span className="btn-arrow">↗</span>
+                  </a>
+                ) : null}
 
-                  <h3 className="proj-modal__title">{activeProject.title}</h3>
-                  <p className="proj-modal__subtitle">{activeProject.subtitle}</p>
-
-                  <div className="proj-modal__desc-box">
-                    <h5 className="proj-modal__section-heading">Penjelasan Proyek:</h5>
-                    <p className="proj-modal__desc">{activeProject.description}</p>
-                  </div>
-
-                  <div className="proj-modal__tech-box">
-                    <h5 className="proj-modal__section-heading">Teknologi yang Digunakan:</h5>
-                    <div className="proj-modal__tech-tags">
-                      {activeProject.tech.map((t) => (
-                        <span key={t} className="proj-modal__tag">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="proj-modal__actions">
-                    {activeProject.isHosted ? (
-                      <a
-                        href={activeProject.hostedUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="proj-modal__btn proj-modal__btn--launch"
-                      >
-                        <span>🚀 Kunjungi Website Hosting</span>
-                        <span className="proj-modal__btn-arrow">↗</span>
-                      </a>
-                    ) : activeProject.htmlUrl ? (
-                      <a
-                        href={activeProject.htmlUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="proj-modal__btn proj-modal__btn--launch"
-                      >
-                        <span>🚀 Buka Demo Aplikasi Web</span>
-                        <span className="proj-modal__btn-arrow">↗</span>
-                      </a>
-                    ) : null}
-
-                    <button className="proj-modal__btn proj-modal__btn--close" onClick={() => setActiveProject(null)}>
-                      ✕ Tutup
-                    </button>
-                  </div>
-                </div>
+                <button
+                  className="modern-btn modern-btn--close"
+                  onClick={() => setActiveProject(null)}
+                >
+                  ✕ Tutup
+                </button>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* ─── MODAL 2: CERTIFICATE IMAGE-ONLY LIGHTBOX ─── */}
+      {/* ─── MODAL 2: CERTIFICATE PURE IMAGE LIGHTBOX (NO TEXT, NO TITLES) ─── */}
       {activeCert && (
-        <div className="clean-lightbox" role="dialog" aria-modal="true" aria-label={`Sertifikat: ${activeCert.title}`}>
-          <div className="clean-lightbox__backdrop" onClick={() => setActiveCert(null)} />
-          <div className="clean-lightbox__window">
-            <div className="clean-lightbox__header">
-              <span className="clean-lightbox__badge">CERTIFICATE IMAGE // {activeCert.tag}</span>
-              <h3 className="clean-lightbox__title">{activeCert.title}</h3>
-              <button className="clean-lightbox__close" onClick={() => setActiveCert(null)} aria-label="Tutup lightbox">
-                ✕ ESC
-              </button>
-            </div>
+        <div className="pure-image-lightbox" role="dialog" aria-modal="true" aria-label="Sertifikat">
+          <div className="pure-image-lightbox__backdrop" onClick={() => setActiveCert(null)} />
 
-            <div className="clean-lightbox__image-wrap">
-              <button
-                className="clean-lightbox__nav-btn clean-lightbox__nav-btn--prev"
-                onClick={() => handleCertNav('prev')}
-                aria-label="Sertifikat sebelumnya"
-              >
-                ‹
-              </button>
+          <button
+            className="pure-image-lightbox__close"
+            onClick={() => setActiveCert(null)}
+            aria-label="Tutup sertifikat"
+          >
+            ✕
+          </button>
 
-              <img src={activeCert.image} alt={activeCert.title} className="clean-lightbox__image" />
+          <button
+            className="pure-image-lightbox__nav pure-image-lightbox__nav--prev"
+            onClick={() => handleCertNav('prev')}
+            aria-label="Sertifikat sebelumnya"
+          >
+            ‹
+          </button>
 
-              <button
-                className="clean-lightbox__nav-btn clean-lightbox__nav-btn--next"
-                onClick={() => handleCertNav('next')}
-                aria-label="Sertifikat selanjutnya"
-              >
-                ›
-              </button>
-            </div>
-
-            <div className="clean-lightbox__footer">
-              <span className="clean-lightbox__meta">Penerbit: {activeCert.issuer} • Tahun {activeCert.year}</span>
-              <button className="clean-lightbox__done-btn" onClick={() => setActiveCert(null)}>
-                Tutup Gambar
-              </button>
-            </div>
+          <div className="pure-image-lightbox__container" onClick={() => setActiveCert(null)}>
+            <img
+              src={activeCert.image}
+              alt="Sertifikat"
+              className="pure-image-lightbox__img"
+              onClick={(e) => e.stopPropagation()}
+            />
           </div>
+
+          <button
+            className="pure-image-lightbox__nav pure-image-lightbox__nav--next"
+            onClick={() => handleCertNav('next')}
+            aria-label="Sertifikat selanjutnya"
+          >
+            ›
+          </button>
         </div>
       )}
 
-      {/* ─── MODAL 3: AWARD IMAGE-ONLY LIGHTBOX ─── */}
+      {/* ─── MODAL 3: AWARD PURE IMAGE LIGHTBOX (NO TEXT, NO TITLES) ─── */}
       {activeAward && (
-        <div className="clean-lightbox" role="dialog" aria-modal="true" aria-label={`Penghargaan: ${activeAward.title}`}>
-          <div className="clean-lightbox__backdrop" onClick={() => setActiveAward(null)} />
-          <div className="clean-lightbox__window clean-lightbox__window--award">
-            <div className="clean-lightbox__header">
-              <span className="clean-lightbox__badge clean-lightbox__badge--award">
-                AWARD RECOGNITION // {activeAward.tag}
-              </span>
-              <h3 className="clean-lightbox__title">{activeAward.title}</h3>
-              <button className="clean-lightbox__close" onClick={() => setActiveAward(null)} aria-label="Tutup lightbox">
-                ✕ ESC
-              </button>
-            </div>
+        <div className="pure-image-lightbox" role="dialog" aria-modal="true" aria-label="Penghargaan">
+          <div className="pure-image-lightbox__backdrop" onClick={() => setActiveAward(null)} />
 
-            <div className="clean-lightbox__image-wrap">
-              <button
-                className="clean-lightbox__nav-btn clean-lightbox__nav-btn--prev"
-                onClick={() => handleAwardNav('prev')}
-                aria-label="Penghargaan sebelumnya"
-              >
-                ‹
-              </button>
+          <button
+            className="pure-image-lightbox__close"
+            onClick={() => setActiveAward(null)}
+            aria-label="Tutup penghargaan"
+          >
+            ✕
+          </button>
 
-              <img src={activeAward.image} alt={activeAward.title} className="clean-lightbox__image" />
+          <button
+            className="pure-image-lightbox__nav pure-image-lightbox__nav--prev"
+            onClick={() => handleAwardNav('prev')}
+            aria-label="Penghargaan sebelumnya"
+          >
+            ‹
+          </button>
 
-              <button
-                className="clean-lightbox__nav-btn clean-lightbox__nav-btn--next"
-                onClick={() => handleAwardNav('next')}
-                aria-label="Penghargaan selanjutnya"
-              >
-                ›
-              </button>
-            </div>
-
-            <div className="clean-lightbox__footer">
-              <span className="clean-lightbox__meta">{activeAward.badge} Diberikan oleh: {activeAward.issuer} • {activeAward.year}</span>
-              <button className="clean-lightbox__done-btn" onClick={() => setActiveAward(null)}>
-                Tutup Gambar
-              </button>
-            </div>
+          <div className="pure-image-lightbox__container" onClick={() => setActiveAward(null)}>
+            <img
+              src={activeAward.image}
+              alt="Penghargaan"
+              className="pure-image-lightbox__img"
+              onClick={(e) => e.stopPropagation()}
+            />
           </div>
+
+          <button
+            className="pure-image-lightbox__nav pure-image-lightbox__nav--next"
+            onClick={() => handleAwardNav('next')}
+            aria-label="Penghargaan selanjutnya"
+          >
+            ›
+          </button>
         </div>
       )}
     </section>
