@@ -16,29 +16,31 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
+    const sectionIds = ['about', 'projects', 'skills', 'timeline', 'certificates', 'contact']
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
+
+      // If user reaches near the bottom of page, highlight contact
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) {
+        setActiveSection('contact')
+        return
+      }
+
+      const scrollPos = window.scrollY + 160
+      let current = ''
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (el && scrollPos >= el.offsetTop) {
+          current = id
+        }
+      }
+      setActiveSection(current)
     }
+
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
-          }
-        })
-      },
-      { threshold: 0.25, rootMargin: '-70px 0px -40% 0px' }
-    )
-    navLinks.forEach(({ href }) => {
-      const el = document.querySelector(href)
-      if (el) observer.observe(el)
-    })
-    return () => observer.disconnect()
   }, [])
 
   const handleNavClick = (e, href) => {
