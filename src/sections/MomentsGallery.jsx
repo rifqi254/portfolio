@@ -1,128 +1,273 @@
 import { useState, useEffect, useRef } from 'react'
 import './MomentsGallery.css'
 
-const momentsData = [
+const momentsPairs = [
   {
-    id: 'merbabu',
-    title: 'Ekspedisi Puncak Merbabu',
-    category: 'Outdoor & Summit Adventure',
-    location: 'Jalur Selo, Taman Nasional Gn. Merbabu',
-    year: '2024',
-    badge: '🏔️ SUMMIT',
-    image: '/gallery/gallery-01-merbabu-selo.jpg',
-    caption: 'Menembus kabut dan jalur terjal Selo menuju puncak Gunung Merbabu bersama sahabat pejuang.',
+    top: {
+      id: 'merbabu',
+      title: 'Ekspedisi Puncak Merbabu',
+      category: 'Outdoor & Summit Adventure',
+      location: 'Jalur Selo, Taman Nasional Gn. Merbabu',
+      year: '2024',
+      badge: '🏔️ SUMMIT',
+      type: 'portrait',
+      image: '/gallery/gallery-01-merbabu-selo.jpg',
+      caption: 'Menembus kabut dan jalur terjal Selo menuju puncak Gunung Merbabu bersama sahabat pejuang.',
+      initRotate: -4.5,
+      floatDuration: 4.8,
+      floatDelay: 0,
+    },
+    bottom: {
+      id: 'uin-event',
+      title: 'Kontingen & Delegasi Kampus',
+      category: 'Campus Official Delegation',
+      location: 'UIN Sultan Maulana Hasanuddin Banten',
+      year: '2024',
+      badge: '🎓 KONTINGEN',
+      type: 'landscape',
+      image: '/gallery/gallery-02-uin-event.jpg',
+      caption: 'Delegasi mahasiswa Informatika dalam agenda resmi universitas dan pekan kreativitas kampus.',
+      initRotate: 4,
+      floatDuration: 5.2,
+      floatDelay: -1.5,
+    },
   },
   {
-    id: 'uin-event',
-    title: 'Kontingen & Delegasi Kampus',
-    category: 'Campus Official Delegation',
-    location: 'UIN Sultan Maulana Hasanuddin Banten',
-    year: '2024',
-    badge: '🎓 KONTINGEN',
-    image: '/gallery/gallery-02-uin-event.jpg',
-    caption: 'Delegasi mahasiswa Informatika dalam agenda resmi universitas dan pekan kreativitas kampus.',
+    top: {
+      id: 'saintek',
+      title: 'Fakultas Sains & Teknologi',
+      category: 'Academic Community',
+      location: 'Gedung FST UIN SMH Banten',
+      year: '2024',
+      badge: '🏛️ SAINTEK',
+      type: 'landscape',
+      image: '/gallery/gallery-03-saintek-uin.jpg',
+      caption: 'Keluarga besar mahasiswa dan civitas akademika Fakultas Sains dan Teknologi UIN Banten.',
+      initRotate: -3.5,
+      floatDuration: 4.3,
+      floatDelay: -0.8,
+    },
+    bottom: {
+      id: 'hmps-hallway',
+      title: 'Pengurus HMPS Informatika',
+      category: 'Student Association',
+      location: 'Hall Kampus Informatika',
+      year: '2025',
+      badge: '⚡ HMPS TI',
+      type: 'portrait',
+      image: '/gallery/gallery-04-hmps-hallway.jpg',
+      caption: 'Kekompakan pengurus Himpunan Mahasiswa Program Studi Informatika periode kepengurusan aktif.',
+      initRotate: 5.5,
+      floatDuration: 5.6,
+      floatDelay: -2.1,
+    },
   },
   {
-    id: 'saintek',
-    title: 'Fakultas Sains & Teknologi',
-    category: 'Academic Community',
-    location: 'Gedung FST UIN SMH Banten',
-    year: '2024',
-    badge: '🏛️ SAINTEK',
-    image: '/gallery/gallery-03-saintek-uin.jpg',
-    caption: 'Keluarga besar mahasiswa dan civitas akademika Fakultas Sains dan Teknologi UIN Banten.',
+    top: {
+      id: 'himti-hall',
+      title: 'Musyawarah & Sidang Himpunan',
+      category: 'Organizational Assembly',
+      location: 'Ruang Pertemuan Informatika',
+      year: '2024',
+      badge: '📋 HIMTI',
+      type: 'landscape',
+      image: '/gallery/gallery-05-himti-hall.jpg',
+      caption: 'Forum sidang dan rapat kerja tahunan merumuskan arah gerak organisasi teknologi informasi.',
+      initRotate: -4,
+      floatDuration: 4.6,
+      floatDelay: -1.2,
+    },
+    bottom: {
+      id: 'it-camp',
+      title: 'IT Camp Kabinet Sinergi',
+      category: 'Leadership & Team Building',
+      location: 'Camp Ground Sinergi',
+      year: '2025',
+      badge: '🏕️ IT CAMP',
+      type: 'landscape',
+      image: '/gallery/gallery-06-it-camp.jpg',
+      caption: 'Pelatihan kepemimpinan, bonding, dan eksplorasi teknologi luar ruangan Kabinet Sinergi HMPS.',
+      initRotate: 3.5,
+      floatDuration: 5.0,
+      floatDelay: -0.4,
+    },
   },
   {
-    id: 'hmps-hallway',
-    title: 'Pengurus HMPS Informatika',
-    category: 'Student Association',
-    location: 'Hall Kampus Informatika',
-    year: '2025',
-    badge: '⚡ HMPS TI',
-    image: '/gallery/gallery-04-hmps-hallway.jpg',
-    caption: 'Kekompakan pengurus Himpunan Mahasiswa Program Studi Informatika periode kepengurusan aktif.',
+    top: {
+      id: 'outdoor-group',
+      title: 'Makrab & Kebersamaan Angkatan',
+      category: 'Community Bonding',
+      location: 'Outdoor Nature Retreat',
+      year: '2024',
+      badge: '🤝 MAKRAB',
+      type: 'landscape',
+      image: '/gallery/gallery-07-outdoor-group.jpg',
+      caption: 'Malam keakraban mahasiswa Informatika mempererat solidaritas, cerita, dan kolaborasi bersama.',
+      initRotate: -5,
+      floatDuration: 4.4,
+      floatDelay: -1.8,
+    },
+    bottom: {
+      id: 'bkd-street',
+      title: 'Studi Lapangan & Kunjungan Instansi',
+      category: 'Government Field Work',
+      location: 'Kawasan Perkantoran BKD',
+      year: '2024',
+      badge: '🏢 INSTANSI',
+      type: 'landscape',
+      image: '/gallery/gallery-08-bkd-street.jpg',
+      caption: 'Kunjungan kerja dan implementasi sistem informasi pada badan instansi pemerintahan daerah.',
+      initRotate: 4.2,
+      floatDuration: 5.3,
+      floatDelay: -0.9,
+    },
   },
   {
-    id: 'himti-hall',
-    title: 'Musyawarah & Sidang Himpunan',
-    category: 'Organizational Assembly',
-    location: 'Ruang Pertemuan Informatika',
-    year: '2024',
-    badge: '📋 HIMTI',
-    image: '/gallery/gallery-05-himti-hall.jpg',
-    caption: 'Forum sidang dan rapat kerja tahunan merumuskan arah gerak organisasi teknologi informasi.',
+    top: {
+      id: 'auditorium-sinergi',
+      title: 'Pelantikan Kabinet Sinergi',
+      category: 'Inauguration Ceremony',
+      location: 'Auditorium Kampus UIN SMH Banten',
+      year: '2025',
+      badge: '🎖️ SINERGI',
+      type: 'landscape',
+      image: '/gallery/gallery-09-auditorium-sinergi.jpg',
+      caption: 'Momen khidmat pelantikan resmi jajaran pengurus HMPS Informatika Kabinet Sinergi 2025.',
+      initRotate: -3,
+      floatDuration: 4.7,
+      floatDelay: -2.3,
+    },
+    bottom: {
+      id: 'ibad-rahman',
+      title: 'Education & Mentorship Program',
+      category: 'Community Social Outreach',
+      location: 'Ibad Ar Rahman Islamic School',
+      year: '2024',
+      badge: '📚 MENTOR',
+      type: 'portrait',
+      image: '/gallery/gallery-10-ibad-rahman.jpg',
+      caption: 'Program edukasi digital, motivasi beasiswa, dan pendampingan santri muda di bidang teknologi.',
+      initRotate: 6,
+      floatDuration: 5.1,
+      floatDelay: -1.1,
+    },
   },
   {
-    id: 'it-camp',
-    title: 'IT Camp Kabinet Sinergi',
-    category: 'Leadership & Team Building',
-    location: 'Camp Ground Sinergi',
-    year: '2025',
-    badge: '🏕️ IT CAMP',
-    image: '/gallery/gallery-06-it-camp.jpg',
-    caption: 'Pelatihan kepemimpinan, bonding, dan eksplorasi teknologi luar ruangan Kabinet Sinergi HMPS.',
-  },
-  {
-    id: 'outdoor-group',
-    title: 'Makrab & Kebersamaan Angkatan',
-    category: 'Community Bonding',
-    location: 'Outdoor Nature Retreat',
-    year: '2024',
-    badge: '🤝 MAKRAB',
-    image: '/gallery/gallery-07-outdoor-group.jpg',
-    caption: 'Malam keakraban mahasiswa Informatika mempererat solidaritas, cerita, dan kolaborasi bersama.',
-  },
-  {
-    id: 'bkd-street',
-    title: 'Studi Lapangan & Kunjungan Instansi',
-    category: 'Government Field Work',
-    location: 'Kawasan Perkantoran BKD',
-    year: '2024',
-    badge: '🏢 INSTANSI',
-    image: '/gallery/gallery-08-bkd-street.jpg',
-    caption: 'Kunjungan kerja dan implementasi sistem informasi pada badan instansi pemerintahan daerah.',
-  },
-  {
-    id: 'auditorium-sinergi',
-    title: 'Pelantikan Kabinet Sinergi',
-    category: 'Inauguration Ceremony',
-    location: 'Auditorium Kampus UIN SMH Banten',
-    year: '2025',
-    badge: '🎖️ SINERGI',
-    image: '/gallery/gallery-09-auditorium-sinergi.jpg',
-    caption: 'Momen khidmat pelantikan resmi jajaran pengurus HMPS Informatika Kabinet Sinergi 2025.',
-  },
-  {
-    id: 'ibad-rahman',
-    title: 'Education & Mentorship Program',
-    category: 'Community Social Outreach',
-    location: 'Ibad Ar Rahman Islamic School',
-    year: '2024',
-    badge: '📚 MENTOR',
-    image: '/gallery/gallery-10-ibad-rahman.jpg',
-    caption: 'Program edukasi digital, motivasi beasiswa, dan pendampingan santri muda di bidang teknologi.',
-  },
-  {
-    id: 'almamater',
-    title: 'Mahasiswa Berjas Almamater',
-    category: 'Campus Pride & Identity',
-    location: 'Plaza Gedung Rektorat UIN',
-    year: '2024',
-    badge: '✨ INFORMATIKA',
-    image: '/gallery/gallery-11-almamater-campus.jpg',
-    caption: 'Bangga mengenakan almamater kehormatan bersama rekan seperjuangan teknik informatika.',
-  },
-  {
-    id: 'ramadan-iftar',
-    title: 'Buka Puasa Bersama Informatika',
-    category: 'Annual Gathering & Iftar',
-    location: 'Pokel Garden Resto & Venue',
-    year: '2025',
-    badge: '🌙 IFTAR',
-    image: '/gallery/gallery-12-ramadan-iftar.jpg',
-    caption: 'Hangatnya silaturahmi buka puasa bersama Ramadan lintas angkatan dan dosen pembimbing.',
+    top: {
+      id: 'almamater',
+      title: 'Mahasiswa Berjas Almamater',
+      category: 'Campus Pride & Identity',
+      location: 'Plaza Gedung Rektorat UIN',
+      year: '2024',
+      badge: '✨ INFORMATIKA',
+      type: 'portrait',
+      image: '/gallery/gallery-11-almamater-campus.jpg',
+      caption: 'Bangga mengenakan almamater kehormatan bersama rekan seperjuangan teknik informatika.',
+      initRotate: -4.2,
+      floatDuration: 4.5,
+      floatDelay: -0.6,
+    },
+    bottom: {
+      id: 'ramadan-iftar',
+      title: 'Buka Puasa Bersama Informatika',
+      category: 'Annual Gathering & Iftar',
+      location: 'Pokel Garden Resto & Venue',
+      year: '2025',
+      badge: '🌙 IFTAR',
+      type: 'landscape',
+      image: '/gallery/gallery-12-ramadan-iftar.jpg',
+      caption: 'Hangatnya silaturahmi buka puasa bersama Ramadan lintas angkatan dan dosen pembimbing.',
+      initRotate: 4.8,
+      floatDuration: 5.4,
+      floatDelay: -1.7,
+    },
   },
 ]
+
+// Interactive Draggable Floating Photo Component
+function FloatingPhoto({ item, onPhotoClick, zIndexBase = 1 }) {
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = useState(false)
+  const [zIndex, setZIndex] = useState(zIndexBase)
+  const dragStartRef = useRef({ x: 0, y: 0, startX: 0, startY: 0, hasMoved: false })
+
+  const handlePointerDown = (e) => {
+    // Left click or touch only
+    if (e.button !== 0 && e.pointerType === 'mouse') return
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId)
+    } catch (_) {}
+
+    setIsDragging(true)
+    setZIndex(99)
+    dragStartRef.current = {
+      x: e.clientX,
+      y: e.clientY,
+      startX: dragOffset.x,
+      startY: dragOffset.y,
+      hasMoved: false,
+    }
+  }
+
+  const handlePointerMove = (e) => {
+    if (!isDragging) return
+    const dx = e.clientX - dragStartRef.current.x
+    const dy = e.clientY - dragStartRef.current.y
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+      dragStartRef.current.hasMoved = true
+    }
+    setDragOffset({
+      x: dragStartRef.current.startX + dx,
+      y: dragStartRef.current.startY + dy,
+    })
+  }
+
+  const handlePointerUp = (e) => {
+    if (!isDragging) return
+    setIsDragging(false)
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId)
+    } catch (_) {}
+
+    // Quick tap/click triggers lightbox modal
+    if (!dragStartRef.current.hasMoved) {
+      onPhotoClick(item)
+    }
+  }
+
+  return (
+    <div
+      className={`floating-photo-outer floating-photo-outer--${item.type} ${isDragging ? 'is-dragging' : ''}`}
+      style={{
+        transform: `translate3d(${dragOffset.x}px, ${dragOffset.y}px, 0)`,
+        zIndex: isDragging ? 120 : zIndex,
+      }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      title={`${item.title} — Klik perbesar / Geser bebas`}
+    >
+      <div
+        className="floating-photo-inner"
+        style={{
+          transform: `rotate(${item.initRotate + (isDragging ? 2.5 : 0)}deg)`,
+          animationDuration: `${item.floatDuration}s`,
+          animationDelay: `${item.floatDelay}s`,
+        }}
+      >
+        <img
+          src={item.image}
+          alt={item.title}
+          className="floating-photo-img"
+          draggable={false}
+          loading="lazy"
+        />
+        <div className="floating-photo-sheen" />
+      </div>
+    </div>
+  )
+}
 
 export default function MomentsGallery() {
   const containerRef = useRef(null)
@@ -147,8 +292,7 @@ export default function MomentsGallery() {
       const track = trackRef.current
       const trackWidth = track.scrollWidth
       const windowWidth = window.innerWidth
-      // Leave nice trailing padding so last card is fully visible
-      const maxScroll = Math.max(trackWidth - windowWidth + 140, 0)
+      const maxScroll = Math.max(trackWidth - windowWidth + 120, 0)
 
       setScrollProgress(progress)
       setTranslateX(progress * maxScroll)
@@ -164,7 +308,7 @@ export default function MomentsGallery() {
     }
   }, [])
 
-  // Keyboard navigation for full screen lightbox
+  // Keyboard navigation for lightbox
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Escape' && activePhoto) {
@@ -179,7 +323,27 @@ export default function MomentsGallery() {
     <section className="moments-section" id="moments" ref={containerRef}>
       {/* Sticky Viewport Frame */}
       <div className="moments-sticky-frame">
-        {/* Subtle Cyber Dreamscape Grid Background */}
+        {/* Subtle Topographic Lines in Background */}
+        <div className="moments-topo-bg">
+          <svg viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none">
+            <path
+              d="M-100,200 C300,100 600,350 1000,220 C1300,120 1500,280 1600,250"
+              stroke="rgba(0, 102, 255, 0.08)"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M-100,450 C250,380 700,550 1100,420 C1350,350 1500,480 1600,440"
+              stroke="rgba(0, 204, 255, 0.08)"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M-100,700 C400,600 750,780 1150,680 C1400,620 1500,720 1600,700"
+              stroke="rgba(0, 102, 255, 0.06)"
+              strokeWidth="1.5"
+            />
+          </svg>
+        </div>
+
         <div className="moments-cyber-grid" />
         <div className="moments-glow-orb moments-glow-orb--1" />
         <div className="moments-glow-orb moments-glow-orb--2" />
@@ -201,9 +365,9 @@ export default function MomentsGallery() {
 
           <div className="moments-header-right">
             <div className="moments-scroll-indicator">
-              <span className="moments-scroll-label">
-                ⇄ SCROLL KE BAWAH UNTUK GESER FOTO
-              </span>
+              <div className="moments-drag-hint-pill">
+                <span>🖱️ BISA DIGESER / DRAG BEBAS</span>
+              </div>
               <div className="moments-progress-bar-track">
                 <div
                   className="moments-progress-bar-fill"
@@ -211,42 +375,44 @@ export default function MomentsGallery() {
                 />
               </div>
               <span className="moments-count-tag">
-                {Math.min(Math.floor(scrollProgress * momentsData.length) + 1, momentsData.length)} / {momentsData.length} DOKUMENTASI
+                ⇄ SCROLL HALAMAN UNTUK JELAJAHI FOTO
               </span>
             </div>
           </div>
         </div>
 
-        {/* Horizontal Moving Track (FULL GAMBAR - NO CARD WRAPPER / NO CARD HOVER) */}
+        {/* Scattered Floating Photos Canvas Track */}
         <div className="moments-track-viewport">
           <div
             className="moments-track"
             ref={trackRef}
             style={{ transform: `translate3d(-${translateX}px, 0, 0)` }}
           >
-            {momentsData.map((item) => (
+            {momentsPairs.map((pair, pIdx) => (
               <div
-                key={item.id}
-                className="moments-photo-frame"
-                onClick={() => setActivePhoto(item)}
-                title={`${item.title} — Klik untuk perbesar`}
+                key={pIdx}
+                className={`floating-pair-col floating-pair-col--${(pIdx % 3) + 1}`}
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="moments-photo-img"
-                  loading="lazy"
+                <FloatingPhoto
+                  item={pair.top}
+                  onPhotoClick={setActivePhoto}
+                  zIndexBase={pIdx * 2 + 1}
+                />
+                <FloatingPhoto
+                  item={pair.bottom}
+                  onPhotoClick={setActivePhoto}
+                  zIndexBase={pIdx * 2 + 2}
                 />
               </div>
             ))}
 
             {/* Ending Milestone Frame */}
-            <div className="moments-outro-frame">
-              <div className="outro-card-content">
+            <div className="moments-outro-col">
+              <div className="moments-outro-card">
                 <span className="outro-emoji">✨</span>
                 <h3 className="outro-title">Perjalanan Terus Berlanjut</h3>
                 <p className="outro-desc">
-                  Setiap langkah adalah bagian dari dedikasi dan pertumbuhan yang tak pernah usai.
+                  Setiap momen adalah bagian dari dedikasi dan pertumbuhan yang tak pernah usai.
                 </p>
                 <div className="outro-pill">
                   <span>Scroll ke Bawah untuk Skills ➔</span>
@@ -327,4 +493,3 @@ export default function MomentsGallery() {
     </section>
   )
 }
-

@@ -1,10 +1,11 @@
 /* ============================================================
-   MOMENTS & DOCUMENTATION GALLERY — Y2K STICKY HORIZONTAL SCROLL
+   MOMENTS & DOCUMENTATION GALLERY — FLOATING SCATTERED PHOTOS
+   Inspired by Organic Draggable Photo Canvas (Eka Wahyu Style)
    ============================================================ */
 
 .moments-section {
   position: relative;
-  height: 380vh; /* Provides plenty of scroll depth for horizontal movement */
+  height: 380vh;
   background: var(--grad-bg);
 }
 
@@ -18,16 +19,31 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 86px 0 24px;
+  padding: 82px 0 20px;
 }
 
-/* Background Cyber Grid & Glow Orbs */
+/* Subtle Topographic Lines in Background */
+.moments-topo-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.moments-topo-bg svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cyber Grid & Glow Orbs */
 .moments-cyber-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0, 204, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 204, 255, 0.07) 1px, transparent 1px);
+    linear-gradient(rgba(0, 204, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 204, 255, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
@@ -36,25 +52,25 @@
 .moments-glow-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(85px);
   pointer-events: none;
   z-index: 0;
 }
 
 .moments-glow-orb--1 {
-  width: 350px;
-  height: 350px;
+  width: 380px;
+  height: 380px;
   top: 15%;
   left: 5%;
-  background: radial-gradient(circle, rgba(0, 204, 255, 0.22) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 204, 255, 0.18) 0%, transparent 70%);
 }
 
 .moments-glow-orb--2 {
-  width: 400px;
-  height: 400px;
-  bottom: 10%;
-  right: 5%;
-  background: radial-gradient(circle, rgba(255, 0, 153, 0.18) 0%, transparent 70%);
+  width: 420px;
+  height: 420px;
+  bottom: 8%;
+  right: 6%;
+  background: radial-gradient(circle, rgba(255, 0, 153, 0.14) 0%, transparent 70%);
 }
 
 /* Top Header Bar */
@@ -98,10 +114,10 @@
   border-radius: 50%;
   background: #ff0099;
   box-shadow: 0 0 8px #ff0099;
-  animation: pulseDot 2s infinite ease-in-out;
+  animation: pulseMomentsDot 2s infinite ease-in-out;
 }
 
-@keyframes pulseDot {
+@keyframes pulseMomentsDot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(0.85); }
 }
@@ -155,14 +171,14 @@
   border-radius: 16px;
   padding: 10px 18px;
   box-shadow: 0 6px 20px rgba(0, 68, 238, 0.1);
-  min-width: 240px;
+  min-width: 250px;
 }
 
-.moments-scroll-label {
+.moments-drag-hint-pill {
   font-family: var(--font-tech, monospace);
   font-size: 0.64rem;
   font-weight: 800;
-  color: #0044ee;
+  color: #0055ff;
   letter-spacing: 0.08em;
 }
 
@@ -199,124 +215,201 @@
   display: flex;
   align-items: center;
   overflow: visible;
-  padding: 18px 0;
+  padding: 10px 0 16px;
 }
 
 .moments-track {
   display: flex;
   gap: 36px;
   padding-left: clamp(28px, 6vw, 100px);
-  padding-right: 120px;
+  padding-right: 140px;
   will-change: transform;
-  transition: transform 60ms linear;
+  transition: transform 50ms linear;
+  align-items: center;
 }
 
-/* ─── FULL GAMBAR STREAM (NO CARD WRAPPER / NO CARD HOVER) ─── */
-.moments-photo-frame {
+/* 2-Row Staggered Floating Column */
+.floating-pair-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.floating-pair-col--1 {
+  margin-top: -24px;
+}
+
+.floating-pair-col--2 {
+  margin-top: 24px;
+}
+
+.floating-pair-col--3 {
+  margin-top: -8px;
+}
+
+/* ─── DRAGGABLE & FLOATING PHOTO CARDS ─── */
+.floating-photo-outer {
   position: relative;
-  flex: 0 0 auto;
-  height: 520px;
-  max-height: 64vh;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow:
-    0 20px 48px rgba(0, 40, 100, 0.12),
-    0 0 0 2px rgba(0, 204, 255, 0.35);
-  cursor: pointer;
-  background: #080d1a;
-  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 260ms ease;
+  touch-action: pan-y;
+  cursor: grab;
   user-select: none;
-  display: block;
+  -webkit-user-select: none;
+  will-change: transform;
+  transition: box-shadow 200ms ease;
+}
+
+.floating-photo-outer.is-dragging {
+  cursor: grabbing !important;
+}
+
+/* Compact Natural Sizes */
+.floating-photo-outer--portrait {
+  width: 215px;
+  height: 285px;
+}
+
+.floating-photo-outer--landscape {
+  width: 320px;
+  height: 215px;
 }
 
 @media (max-width: 768px) {
-  .moments-photo-frame {
-    height: 380px;
-    max-height: 55vh;
-    border-radius: 16px;
+  .floating-photo-outer--portrait {
+    width: 165px;
+    height: 220px;
+  }
+  .floating-photo-outer--landscape {
+    width: 245px;
+    height: 165px;
   }
 }
 
-.moments-photo-frame:hover {
-  transform: translateY(-6px);
+/* Inner Frame: Crisp White Border, Shadow & Idle Floating Bobbing */
+.floating-photo-inner {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 16px;
   box-shadow:
-    0 24px 60px rgba(0, 68, 238, 0.22),
-    0 0 25px rgba(0, 204, 255, 0.35);
+    0 14px 34px rgba(0, 24, 70, 0.16),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+  animation: photoDrift 4.5s ease-in-out infinite alternate;
+  transition: box-shadow 240ms ease, transform 240ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.moments-photo-img {
+.floating-photo-outer:hover .floating-photo-inner {
+  box-shadow:
+    0 22px 52px rgba(0, 68, 238, 0.22),
+    0 0 25px rgba(0, 204, 255, 0.35);
+  transform: scale(1.025);
+}
+
+.floating-photo-outer.is-dragging .floating-photo-inner {
+  box-shadow:
+    0 28px 70px rgba(0, 30, 90, 0.35),
+    0 0 35px rgba(0, 204, 255, 0.5);
+  transform: scale(1.06);
+}
+
+/* Continuous Idle Floating Animation (Zero-Gravity Float) */
+@keyframes photoDrift {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.8deg);
+  }
+  100% {
+    transform: translateY(6px) rotate(-0.8deg);
+  }
+}
+
+.floating-photo-img {
+  width: 100%;
   height: 100%;
-  width: auto;
-  max-width: none;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 10px;
   display: block;
   pointer-events: none;
 }
 
-/* Outro Milestone Frame at end of track */
-.moments-outro-frame {
-  position: relative;
-  flex: 0 0 340px;
-  width: 340px;
-  height: 520px;
-  max-height: 64vh;
+.floating-photo-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 40%,
+    rgba(0, 204, 255, 0.1) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Outro Milestone Column */
+.moments-outro-col {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moments-outro-card {
+  width: 290px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(220, 240, 255, 0.95) 100%);
   border-radius: 20px;
   border: 2px dashed rgba(0, 204, 255, 0.5);
   box-shadow: 0 16px 40px rgba(0, 68, 238, 0.1);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-}
-
-@media (max-width: 768px) {
-  .moments-outro-frame {
-    flex: 0 0 280px;
-    width: 280px;
-    height: 380px;
-    max-height: 55vh;
-  }
-}
-
-.outro-card-content {
-  display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 24px;
+  padding: 26px 22px;
   gap: 12px;
+  user-select: none;
 }
 
 .outro-emoji {
-  font-size: 2.8rem;
+  font-size: 2rem;
+  line-height: 1;
 }
 
 .outro-title {
   font-family: 'Syne', sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: #0a0d1a;
   margin: 0;
 }
 
 .outro-desc {
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   color: #475569;
   line-height: 1.5;
   margin: 0;
 }
 
 .outro-pill {
-  margin-top: 10px;
   background: linear-gradient(135deg, #0044ee, #00ccff);
   color: #ffffff;
   font-family: var(--font-tech, monospace);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  padding: 8px 18px;
+  padding: 7px 16px;
   border-radius: 9999px;
-  box-shadow: 0 4px 18px rgba(0, 68, 238, 0.3);
+  box-shadow: 0 4px 18px rgba(0, 68, 238, 0.25);
+  margin-top: 4px;
 }
 
 /* ============================================================
@@ -332,6 +425,11 @@
   justify-content: center;
   padding: 20px;
   animation: modalFadeIn 220ms ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .moments-modal__backdrop {
@@ -502,48 +600,21 @@
 
 .info-year {
   font-family: var(--font-tech, monospace);
-  font-size: 0.68rem;
-  font-weight: 800;
+  font-size: 0.72rem;
+  font-weight: 700;
   color: #ff0099;
 }
 
 .moments-modal__caption {
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   color: #1e293b;
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
 }
 
 .moments-modal__loc {
-  font-size: 0.82rem;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.74rem;
   color: #64748b;
   margin: 0;
 }
-
-/* Responsive Media Queries */
-@media (max-width: 900px) {
-  .moments-section {
-    height: 320vh;
-  }
-
-  .moments-header-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
-
-  .moments-card {
-    flex: 0 0 290px;
-    width: 290px;
-    padding: 12px;
-  }
-
-  .moments-card__media {
-    height: 280px;
-  }
-
-  .moments-modal__bar-center {
-    display: none;
-  }
-}
-
