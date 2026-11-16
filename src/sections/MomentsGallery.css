@@ -1,11 +1,11 @@
 /* ============================================================
-   MOMENTS & DOCUMENTATION GALLERY — FLOATING SCATTERED PHOTOS
-   Inspired by Organic Draggable Photo Canvas (Eka Wahyu Style)
+   MOMENTS & DOCUMENTATION GALLERY — ORGANIC SCATTERED WAVE
+   Clean Floating Photos (Eka Wahyu Style) — 100% Uncropped
    ============================================================ */
 
 .moments-section {
   position: relative;
-  height: 380vh;
+  height: 360vh;
   background: var(--grad-bg);
 }
 
@@ -19,7 +19,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 82px 0 20px;
+  padding: 96px 0 24px; /* Generous top padding so header never touches floating navbar */
+  box-sizing: border-box;
 }
 
 /* Subtle Topographic Lines in Background */
@@ -58,16 +59,16 @@
 }
 
 .moments-glow-orb--1 {
-  width: 380px;
-  height: 380px;
-  top: 15%;
+  width: 360px;
+  height: 360px;
+  top: 18%;
   left: 5%;
   background: radial-gradient(circle, rgba(0, 204, 255, 0.18) 0%, transparent 70%);
 }
 
 .moments-glow-orb--2 {
-  width: 420px;
-  height: 420px;
+  width: 400px;
+  height: 400px;
   bottom: 8%;
   right: 6%;
   background: radial-gradient(circle, rgba(255, 0, 153, 0.14) 0%, transparent 70%);
@@ -79,7 +80,7 @@
   z-index: 3;
   width: 100%;
   max-width: 1320px;
-  margin: 0 auto;
+  margin: 0 auto 8px;
   padding: 0 28px;
   display: flex;
   align-items: flex-end;
@@ -91,7 +92,7 @@
 .moments-header-left {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   max-width: 640px;
 }
 
@@ -102,7 +103,7 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   border: 1.5px solid rgba(0, 204, 255, 0.45);
-  padding: 4px 14px;
+  padding: 3px 14px;
   border-radius: 9999px;
   box-shadow: 0 4px 16px rgba(0, 68, 238, 0.08);
   width: fit-content;
@@ -132,7 +133,7 @@
 
 .moments-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-size: clamp(1.7rem, 2.8vw, 2.5rem);
   font-weight: 900;
   color: #0a0d1a;
   line-height: 1.15;
@@ -149,9 +150,9 @@
 
 .moments-subtitle {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: #334155;
-  line-height: 1.5;
+  line-height: 1.4;
   margin: 0;
 }
 
@@ -164,14 +165,14 @@
 .moments-scroll-indicator {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(14px);
   border: 1.5px solid rgba(0, 204, 255, 0.35);
-  border-radius: 16px;
-  padding: 10px 18px;
+  border-radius: 14px;
+  padding: 8px 16px;
   box-shadow: 0 6px 20px rgba(0, 68, 238, 0.1);
-  min-width: 250px;
+  min-width: 240px;
 }
 
 .moments-drag-hint-pill {
@@ -184,7 +185,7 @@
 
 .moments-progress-bar-track {
   width: 100%;
-  height: 6px;
+  height: 5px;
   background: rgba(0, 102, 255, 0.12);
   border-radius: 9999px;
   overflow: hidden;
@@ -206,7 +207,7 @@
   letter-spacing: 0.06em;
 }
 
-/* Horizontal Moving Track Viewport */
+/* Horizontal Moving Track Viewport (Full Height Breathing Room) */
 .moments-track-viewport {
   position: relative;
   z-index: 2;
@@ -215,12 +216,12 @@
   display: flex;
   align-items: center;
   overflow: visible;
-  padding: 10px 0 16px;
+  padding: 10px 0 20px;
 }
 
 .moments-track {
   display: flex;
-  gap: 36px;
+  gap: 34px;
   padding-left: clamp(28px, 6vw, 100px);
   padding-right: 140px;
   will-change: transform;
@@ -228,127 +229,101 @@
   align-items: center;
 }
 
-/* 2-Row Staggered Floating Column */
-.floating-pair-col {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.floating-pair-col--1 {
-  margin-top: -24px;
-}
-
-.floating-pair-col--2 {
-  margin-top: 24px;
-}
-
-.floating-pair-col--3 {
-  margin-top: -8px;
-}
-
-/* ─── DRAGGABLE & FLOATING PHOTO CARDS ─── */
+/* ─── DRAGGABLE & FLOATING NATURAL PHOTO CARDS ─── */
 .floating-photo-outer {
   position: relative;
+  flex: 0 0 auto;
   touch-action: pan-y;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
   will-change: transform;
-  transition: box-shadow 200ms ease;
+  display: inline-flex;
 }
 
 .floating-photo-outer.is-dragging {
   cursor: grabbing !important;
 }
 
-/* Compact Natural Sizes */
-.floating-photo-outer--portrait {
-  width: 215px;
-  height: 285px;
-}
-
-.floating-photo-outer--landscape {
-  width: 320px;
-  height: 215px;
-}
-
-@media (max-width: 768px) {
-  .floating-photo-outer--portrait {
-    width: 165px;
-    height: 220px;
-  }
-  .floating-photo-outer--landscape {
-    width: 245px;
-    height: 165px;
-  }
-}
-
-/* Inner Frame: Crisp White Border, Shadow & Idle Floating Bobbing */
+/* Inner Frame: Crisp White Border with Natural Photo Aspect */
 .floating-photo-inner {
-  width: 100%;
-  height: 100%;
+  display: inline-flex;
   background: #ffffff;
-  padding: 6px;
-  border-radius: 16px;
+  padding: 7px;
+  border-radius: 18px;
   box-shadow:
-    0 14px 34px rgba(0, 24, 70, 0.16),
+    0 16px 36px rgba(0, 24, 70, 0.16),
     0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   position: relative;
   animation: photoDrift 4.5s ease-in-out infinite alternate;
   transition: box-shadow 240ms ease, transform 240ms ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .floating-photo-outer:hover .floating-photo-inner {
   box-shadow:
-    0 22px 52px rgba(0, 68, 238, 0.22),
+    0 22px 50px rgba(0, 68, 238, 0.22),
     0 0 25px rgba(0, 204, 255, 0.35);
-  transform: scale(1.025);
+  transform: scale(1.03);
 }
 
 .floating-photo-outer.is-dragging .floating-photo-inner {
   box-shadow:
-    0 28px 70px rgba(0, 30, 90, 0.35),
+    0 30px 75px rgba(0, 30, 90, 0.35),
     0 0 35px rgba(0, 204, 255, 0.5);
   transform: scale(1.06);
 }
 
-/* Continuous Idle Floating Animation (Zero-Gravity Float) */
+/* Zero-Gravity Idle Floating Bobbing */
 @keyframes photoDrift {
   0% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-8px) rotate(0.8deg);
+    transform: translateY(-9px) rotate(0.8deg);
   }
   100% {
     transform: translateY(6px) rotate(-0.8deg);
   }
 }
 
+/* The Photo Image: 100% Preserved Natural Aspect Ratio, ZERO CROPPING! */
 .floating-photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
+  height: 300px;
+  width: auto;
+  max-width: 520px;
+  object-fit: contain;
+  border-radius: 12px;
   display: block;
   pointer-events: none;
+}
+
+/* Portrait photo slightly taller */
+.floating-photo-outer--portrait .floating-photo-img {
+  height: 315px;
+  max-width: 250px;
+}
+
+/* Landscape photo slightly wider */
+.floating-photo-outer--landscape .floating-photo-img {
+  height: 285px;
+  max-width: 520px;
+}
+
+@media (max-width: 768px) {
+  .floating-photo-img {
+    height: 220px !important;
+    max-width: 320px !important;
+  }
 }
 
 .floating-photo-sheen {
   position: absolute;
   inset: 0;
-  border-radius: 16px;
+  border-radius: 18px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.45) 0%,
     transparent 40%,
     rgba(0, 204, 255, 0.1) 70%,
     transparent 100%
@@ -366,7 +341,7 @@
 }
 
 .moments-outro-card {
-  width: 290px;
+  width: 280px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(220, 240, 255, 0.95) 100%);
   border-radius: 20px;
   border: 2px dashed rgba(0, 204, 255, 0.5);
@@ -375,7 +350,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 26px 22px;
+  padding: 24px 20px;
   gap: 12px;
   user-select: none;
 }
