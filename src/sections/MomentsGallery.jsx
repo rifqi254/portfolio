@@ -217,64 +217,31 @@ export default function MomentsGallery() {
           </div>
         </div>
 
-        {/* Horizontal Moving Track */}
+        {/* Horizontal Moving Track (FULL GAMBAR - NO CARD WRAPPER / NO CARD HOVER) */}
         <div className="moments-track-viewport">
           <div
             className="moments-track"
             ref={trackRef}
             style={{ transform: `translate3d(-${translateX}px, 0, 0)` }}
           >
-            {momentsData.map((item, idx) => (
+            {momentsData.map((item) => (
               <div
                 key={item.id}
-                className={`moments-card moments-card--tilt-${(idx % 4) + 1}`}
+                className="moments-photo-frame"
                 onClick={() => setActivePhoto(item)}
+                title={`${item.title} — Klik untuk perbesar`}
               >
-                {/* Holographic Top Tape */}
-                <div className="moments-card__tape">
-                  <span className="tape-label">{item.badge}</span>
-                </div>
-
-                {/* Corner Reticles */}
-                <div className="moments-reticle moments-reticle--tl">⌜</div>
-                <div className="moments-reticle moments-reticle--tr">⌝</div>
-                <div className="moments-reticle moments-reticle--bl">⌞</div>
-                <div className="moments-reticle moments-reticle--br">⌟</div>
-
-                {/* Photo Media Viewport (FULL IMAGE - NO CROPPING) */}
-                <div className="moments-card__media">
-                  <img
-                    src={item.image}
-                    alt=""
-                    aria-hidden="true"
-                    className="moments-card__bg-blur"
-                  />
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="moments-card__img"
-                    loading="lazy"
-                  />
-                  <div className="moments-card__holo-shine" />
-                  <div className="moments-card__zoom-pill">
-                    <span>🔍 Lihat Full ↗</span>
-                  </div>
-                </div>
-
-                {/* Photo Footer Details */}
-                <div className="moments-card__content">
-                  <div className="moments-card__meta-row">
-                    <span className="moments-card__category">{item.category}</span>
-                    <span className="moments-card__year">{item.year}</span>
-                  </div>
-                  <h3 className="moments-card__title">{item.title}</h3>
-                  <p className="moments-card__location">📍 {item.location}</p>
-                </div>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="moments-photo-img"
+                  loading="lazy"
+                />
               </div>
             ))}
 
-            {/* Ending Milestone Card */}
-            <div className="moments-card moments-card--outro">
+            {/* Ending Milestone Frame */}
+            <div className="moments-outro-frame">
               <div className="outro-card-content">
                 <span className="outro-emoji">✨</span>
                 <h3 className="outro-title">Perjalanan Terus Berlanjut</h3>
