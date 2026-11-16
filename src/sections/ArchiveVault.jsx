@@ -201,6 +201,7 @@ const awardsData = [
 
 export default function ArchiveVault() {
   const [activeFolder, setActiveFolder] = useState(null)
+  const [viewMode, setViewMode] = useState('grid') // 'grid' | 'reel'
   
   // Modals
   const [activeProject, setActiveProject] = useState(null)
@@ -495,144 +496,205 @@ export default function ArchiveVault() {
         {/* ─── TAMPILAN 2: MASUK KE DALAM FOLDER ─── */}
         {activeFolder && (
           <div className="vault-inside-view">
-            {/* Top Bar with Back Button & Breadcrumbs */}
+            {/* Top Bar with Back Button, Breadcrumb & View Toggle */}
             <div className="vault-inside__bar">
-              <button
-                className="vault-inside__back-btn"
-                onClick={() => setActiveFolder(null)}
-                title="Keluar dari folder dan kembali ke pilihan 3 folder utama"
-              >
-                <span>← Kembali ke Semua Folder</span>
-              </button>
+              <div className="vault-inside__bar-left">
+                <button
+                  className="vault-inside__back-btn"
+                  onClick={() => setActiveFolder(null)}
+                  title="Kembali ke semua folder"
+                >
+                  <span>‹ KEMBALI KE FOLDER</span>
+                </button>
 
-              <div className="vault-inside__breadcrumb">
-                <span className="bc-root">ARCHIVE //</span>
-                <span className="bc-folder">
-                  {activeFolder === 'projects' && '📂 PROJECTS (7 FILES)'}
-                  {activeFolder === 'certificates' && '📂 CERTIFICATES (7 CERTS)'}
-                  {activeFolder === 'awards' && '📂 AWARDS (3 AWARDS)'}
-                </span>
+                <div className="vault-inside__breadcrumb">
+                  <span className="bc-root">SYS.ARCHIVE //</span>
+                  <span className="bc-folder">
+                    {activeFolder === 'projects' && '📁 PROJECTS [7 FILES]'}
+                    {activeFolder === 'certificates' && '📜 CERTIFICATES [7 CERTS]'}
+                    {activeFolder === 'awards' && '🏆 AWARDS [3 AWARDS]'}
+                  </span>
+                </div>
               </div>
 
-              {/* Quick Switch Pills */}
-              <div className="vault-inside__switchers">
-                <button
-                  className={`drawer-switch-pill ${activeFolder === 'projects' ? 'is-active' : ''}`}
-                  onClick={() => setActiveFolder('projects')}
-                >
-                  Projects (7)
-                </button>
-                <button
-                  className={`drawer-switch-pill ${activeFolder === 'certificates' ? 'is-active' : ''}`}
-                  onClick={() => setActiveFolder('certificates')}
-                >
-                  Certificates (7)
-                </button>
-                <button
-                  className={`drawer-switch-pill ${activeFolder === 'awards' ? 'is-active' : ''}`}
-                  onClick={() => setActiveFolder('awards')}
-                >
-                  Awards (3)
-                </button>
+              <div className="vault-inside__bar-right">
+                {/* View Mode Toggle: Grid vs Carousel Reel */}
+                <div className="vault-view-toggle">
+                  <button
+                    className={`vault-view-btn ${viewMode === 'grid' ? 'is-active' : ''}`}
+                    onClick={() => setViewMode('grid')}
+                    title="Tampilan Grid Katalog Luas"
+                  >
+                    <span>⊞ Grid</span>
+                  </button>
+                  <button
+                    className={`vault-view-btn ${viewMode === 'reel' ? 'is-active' : ''}`}
+                    onClick={() => setViewMode('reel')}
+                    title="Tampilan Carousel Horizontal"
+                  >
+                    <span>⇄ Carousel</span>
+                  </button>
+                </div>
+
+                {/* Quick Folder Switch Pills */}
+                <div className="vault-inside__switchers">
+                  <button
+                    className={`drawer-switch-pill ${activeFolder === 'projects' ? 'is-active' : ''}`}
+                    onClick={() => setActiveFolder('projects')}
+                  >
+                    Projects (7)
+                  </button>
+                  <button
+                    className={`drawer-switch-pill ${activeFolder === 'certificates' ? 'is-active' : ''}`}
+                    onClick={() => setActiveFolder('certificates')}
+                  >
+                    Certs (7)
+                  </button>
+                  <button
+                    className={`drawer-switch-pill ${activeFolder === 'awards' ? 'is-active' : ''}`}
+                    onClick={() => setActiveFolder('awards')}
+                  >
+                    Awards (3)
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Horizontal Reel Navigation Controls & Track */}
-            <div className="vault-reel-wrapper">
-              <button
-                className="reel-arrow reel-arrow--prev"
-                onClick={() => scrollReel('left')}
-                aria-label="Geser ke kiri"
-              >
-                ‹
-              </button>
-              <button
-                className="reel-arrow reel-arrow--next"
-                onClick={() => scrollReel('right')}
-                aria-label="Geser ke kanan"
-              >
-                ›
-              </button>
+            {/* Content Container (Reel or Grid) */}
+            <div className={`vault-content-container vault-content-container--${viewMode}`}>
+              {viewMode === 'reel' && (
+                <>
+                  <button
+                    className="reel-arrow reel-arrow--prev"
+                    onClick={() => scrollReel('left')}
+                    aria-label="Geser ke kiri"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    className="reel-arrow reel-arrow--next"
+                    onClick={() => scrollReel('right')}
+                    aria-label="Geser ke kanan"
+                  >
+                    ›
+                  </button>
+                </>
+              )}
 
-              <div className="vault-reel" ref={reelRef}>
-                {/* ── 1. PROJECTS HORIZONTAL REEL ── */}
+              <div
+                className={`vault-files-track ${viewMode === 'reel' ? 'vault-files-track--reel' : 'vault-files-track--grid'}`}
+                ref={reelRef}
+              >
+                {/* 1. PROJECTS CARDS (LARGE Y2K SHOWCASE) */}
                 {activeFolder === 'projects' &&
-                  projectsData.map((project) => (
+                  projectsData.map((project, idx) => (
                     <div
                       key={project.id}
-                      className="clean-project-card"
+                      className="y2k-folder-project-card"
                       onClick={() => setActiveProject(project)}
                     >
-                      <div className="clean-project-card__thumb-wrap">
+                      <div className="y2k-card-reticle y2k-card-reticle--tl">⌜</div>
+                      <div className="y2k-card-reticle y2k-card-reticle--tr">⌝</div>
+                      <div className="y2k-card-reticle y2k-card-reticle--bl">⌞</div>
+                      <div className="y2k-card-reticle y2k-card-reticle--br">⌟</div>
+
+                      <div className="y2k-folder-project-card__thumb">
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="clean-project-card__img"
+                          className="y2k-folder-project-card__img"
                           loading="lazy"
                         />
-                        <div className="clean-project-card__overlay-pill">
-                          <span>Preview ↗</span>
+                        <div className="y2k-folder-project-card__holo-overlay" />
+                        <div className="y2k-folder-project-card__tag-bar">
+                          <span className="y2k-card-code">FILE_{String(idx + 1).padStart(2, '0')} // #{project.tagCode}</span>
+                          {project.isHosted && <span className="y2k-card-live-dot">● LIVE</span>}
+                        </div>
+                        <div className="y2k-folder-project-card__hover-pill">
+                          <span>⚡ INSPECT &amp; PREVIEW ↗</span>
                         </div>
                       </div>
 
-                      <div className="clean-project-card__body">
-                        <div className="clean-project-card__meta">
-                          <span className="clean-project-card__category">{project.category}</span>
-                          <span className="clean-project-card__year">{project.year}</span>
+                      <div className="y2k-folder-project-card__body">
+                        <div className="y2k-folder-project-card__meta">
+                          <span className="y2k-folder-project-card__category">{project.category}</span>
+                          <span className="y2k-folder-project-card__year">YR_{project.year}</span>
                         </div>
-                        <h4 className="clean-project-card__title">{project.title}</h4>
-                        <p className="clean-project-card__sub">{project.subtitle}</p>
+                        <h4 className="y2k-folder-project-card__title">{project.title}</h4>
+                        <p className="y2k-folder-project-card__sub">{project.subtitle}</p>
 
-                        <div className="clean-project-card__tech">
-                          {project.tech.slice(0, 3).map((t) => (
-                            <span key={t} className="clean-tech-tag">{t}</span>
+                        <div className="y2k-folder-project-card__tech">
+                          {project.tech.map((t) => (
+                            <span key={t} className="y2k-tech-tag">{t}</span>
                           ))}
+                        </div>
+
+                        <div className="y2k-folder-project-card__footer">
+                          <span className="y2k-card-click-label">Klik untuk membuka preview Y2K ↗</span>
                         </div>
                       </div>
                     </div>
                   ))}
 
-                {/* ── 2. CERTIFICATES HORIZONTAL REEL (CLEAN IMAGE CARDS) ── */}
+                {/* 2. CERTIFICATES CARDS (LARGE Y2K SHOWCASE) */}
                 {activeFolder === 'certificates' &&
-                  certificatesData.map((cert) => (
+                  certificatesData.map((cert, idx) => (
                     <div
                       key={cert.id}
-                      className="clean-cert-card"
+                      className="y2k-folder-cert-card"
                       onClick={() => setActiveCert(cert)}
-                      title="Klik untuk melihat gambar sertifikat full"
+                      title="Klik untuk preview sertifikat full resolution"
                     >
-                      <div className="clean-cert-card__img-wrap">
+                      <div className="y2k-card-reticle y2k-card-reticle--tl">⌜</div>
+                      <div className="y2k-card-reticle y2k-card-reticle--tr">⌝</div>
+                      <div className="y2k-card-reticle y2k-card-reticle--bl">⌞</div>
+                      <div className="y2k-card-reticle y2k-card-reticle--br">⌟</div>
+
+                      <div className="y2k-folder-cert-card__img-wrap">
                         <img
                           src={cert.image}
                           alt="Sertifikat"
-                          className="clean-cert-card__img"
+                          className="y2k-folder-cert-card__img"
                           loading="lazy"
                         />
-                        <div className="clean-cert-card__zoom-badge">
-                          <span>Lihat Gambar 🔍</span>
+                        <div className="y2k-folder-cert-card__holo-overlay" />
+                        <div className="y2k-folder-cert-card__tag-bar">
+                          <span className="y2k-card-code">CERT_{String(idx + 1).padStart(2, '0')} // OFFICIAL</span>
+                        </div>
+                        <div className="y2k-folder-cert-card__zoom-badge">
+                          <span>🔍 LIHAT SERTIFIKAT FULL</span>
                         </div>
                       </div>
                     </div>
                   ))}
 
-                {/* ── 3. AWARDS HORIZONTAL REEL (CLEAN IMAGE CARDS) ── */}
+                {/* 3. AWARDS CARDS (LARGE Y2K SHOWCASE) */}
                 {activeFolder === 'awards' &&
-                  awardsData.map((award) => (
+                  awardsData.map((award, idx) => (
                     <div
                       key={award.id}
-                      className="clean-cert-card clean-cert-card--award"
+                      className="y2k-folder-cert-card y2k-folder-cert-card--award"
                       onClick={() => setActiveAward(award)}
-                      title="Klik untuk melihat piagam penghargaan full"
+                      title="Klik untuk preview piagam penghargaan full resolution"
                     >
-                      <div className="clean-cert-card__img-wrap">
+                      <div className="y2k-card-reticle y2k-card-reticle--tl">⌜</div>
+                      <div className="y2k-card-reticle y2k-card-reticle--tr">⌝</div>
+                      <div className="y2k-card-reticle y2k-card-reticle--bl">⌞</div>
+                      <div className="y2k-card-reticle y2k-card-reticle--br">⌟</div>
+
+                      <div className="y2k-folder-cert-card__img-wrap">
                         <img
                           src={award.image}
-                          alt="Penghargaan"
-                          className="clean-cert-card__img"
+                          alt="Piagam Penghargaan"
+                          className="y2k-folder-cert-card__img"
                           loading="lazy"
                         />
-                        <div className="clean-cert-card__zoom-badge clean-cert-card__zoom-badge--award">
-                          <span>{award.badge} Lihat Piagam 🔍</span>
+                        <div className="y2k-folder-cert-card__holo-overlay" />
+                        <div className="y2k-folder-cert-card__tag-bar y2k-folder-cert-card__tag-bar--award">
+                          <span className="y2k-card-code">{award.badge} // PIAGAM</span>
+                        </div>
+                        <div className="y2k-folder-cert-card__zoom-badge y2k-folder-cert-card__zoom-badge--award">
+                          <span>🏆 LIHAT PIAGAM FULL</span>
                         </div>
                       </div>
                     </div>
@@ -641,76 +703,99 @@ export default function ArchiveVault() {
             </div>
 
             <div className="vault-inside__hint">
-              <span>✦ Geser horizontal untuk melihat seluruh file di dalam folder {activeFolder.toUpperCase()}</span>
+              <span>✦ {viewMode === 'grid' ? 'Klik kartu file untuk membuka preview interaktif Y2K & link hasil proyek' : 'Geser horizontal atau klik panah untuk melihat seluruh file folder'}</span>
             </div>
           </div>
         )}
       </div>
 
-      {/* ─── MODAL 1: RESPONSIVE SPLIT 2-COLUMN PROJECT SHOWCASE MODAL ─── */}
+      {/* ─── MODAL 1: Y2K CYBERCORE PROJECT SHOWCASE MODAL ─── */}
       {/* DESKTOP: PENJELASAN DI KIRI, GAMBAR BESAR DI KANAN | MOBILE: GAMBAR DI ATAS, PENJELASAN DI BAWAH KETIKA SCROLL */}
       {activeProject && (
         <div
-          className="project-showcase-modal"
+          className="y2k-modal"
           role="dialog"
           aria-modal="true"
-          aria-label={`Preview: ${activeProject.title}`}
+          aria-label={`Y2K Preview: ${activeProject.title}`}
         >
-          <div className="project-showcase-modal__backdrop" onClick={() => setActiveProject(null)} />
+          <div className="y2k-modal__backdrop" onClick={() => setActiveProject(null)} />
+          <div className="y2k-modal__scanlines" />
 
-          <div className="project-showcase-modal__dialog">
-            {/* Top Close Button */}
-            <button
-              className="project-showcase-modal__close-btn"
-              onClick={() => setActiveProject(null)}
-              aria-label="Tutup preview proyek"
-            >
-              ✕
-            </button>
+          <div className="y2k-modal__dialog">
+            {/* Y2K Top Window Header Bar */}
+            <div className="y2k-window-bar">
+              <div className="y2k-window-bar__left">
+                <div className="y2k-window-dots">
+                  <span className="y2k-dot y2k-dot--pink" onClick={() => setActiveProject(null)} title="Close window" />
+                  <span className="y2k-dot y2k-dot--yellow" title="Minimize" />
+                  <span className="y2k-dot y2k-dot--cyan" title="Expand" />
+                </div>
+                <div className="y2k-window-bar__code">
+                  [SYS.VAULT // PROJECT_VIEWER.EXE]
+                </div>
+                <div className="y2k-window-bar__id">
+                  #{activeProject.tagCode}
+                </div>
+              </div>
 
-            <div className="project-showcase-modal__layout">
-              {/* LEFT COLUMN: PENJELASAN & ACTION BUTTONS */}
-              <div className="project-showcase-modal__info-col">
-                <div className="showcase-header">
-                  <div className="showcase-badges">
-                    <span className="showcase-badge showcase-badge--category">{activeProject.category}</span>
-                    <span className="showcase-badge showcase-badge--year">{activeProject.year}</span>
+              <div className="y2k-window-bar__center">
+                <span className="y2k-live-ticker">● SYS.STATUS: ONLINE // 200_OK</span>
+              </div>
+
+              <div className="y2k-window-bar__right">
+                <button
+                  className="y2k-window-close-btn"
+                  onClick={() => setActiveProject(null)}
+                  aria-label="Tutup preview proyek"
+                >
+                  <span>✕ ESC // CLOSE</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="y2k-modal__layout">
+              {/* LEFT COLUMN: CYBER DETAILS & ACTIONS */}
+              <div className="y2k-modal__info-col">
+                <div className="y2k-info-header">
+                  <div className="y2k-badges-row">
+                    <span className="y2k-badge y2k-badge--category">✦ {activeProject.category}</span>
+                    <span className="y2k-badge y2k-badge--year">YR // {activeProject.year}</span>
                     {activeProject.isHosted && (
-                      <span className="showcase-badge showcase-badge--live">● Live Online</span>
+                      <span className="y2k-badge y2k-badge--live">● LIVE ONLINE</span>
                     )}
                   </div>
 
-                  <h3 className="showcase-title">{activeProject.title}</h3>
-                  <p className="showcase-subtitle">{activeProject.subtitle}</p>
+                  <h3 className="y2k-info-title">{activeProject.title}</h3>
+                  <p className="y2k-info-subtitle">▸ {activeProject.subtitle}</p>
                 </div>
 
-                <div className="showcase-divider" />
+                <div className="y2k-holographic-divider" />
 
-                <div className="showcase-section">
-                  <h4 className="showcase-section-heading">
-                    <span className="heading-icon">📋</span> Tentang Proyek
+                <div className="y2k-info-section">
+                  <h4 className="y2k-section-heading">
+                    <span className="heading-glyph">// 01</span> SPESIFIKASI &amp; DESKRIPSI
                   </h4>
-                  <p className="showcase-desc-text">{activeProject.description}</p>
+                  <p className="y2k-desc-text">{activeProject.description}</p>
                 </div>
 
-                <div className="showcase-section">
-                  <h4 className="showcase-section-heading">
-                    <span className="heading-icon">⚡</span> Teknologi & Fitur
+                <div className="y2k-info-section">
+                  <h4 className="y2k-section-heading">
+                    <span className="heading-glyph">// 02</span> CORE TECH MATRIX
                   </h4>
-                  <div className="showcase-tech-tags">
+                  <div className="y2k-tech-tags">
                     {activeProject.tech.map((t) => (
-                      <span key={t} className="showcase-tech-tag">{t}</span>
+                      <span key={t} className="y2k-tech-pill">{t}</span>
                     ))}
                   </div>
                 </div>
 
-                <div className="showcase-actions">
+                <div className="y2k-modal-actions">
                   {activeProject.isHosted ? (
                     <a
                       href={activeProject.hostedUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="showcase-btn showcase-btn--primary"
+                      className="y2k-action-btn y2k-action-btn--primary"
                     >
                       <span>🚀 {activeProject.actionText || 'Kunjungi Website'}</span>
                       <span className="btn-arrow">↗</span>
@@ -720,7 +805,7 @@ export default function ArchiveVault() {
                       href={activeProject.htmlUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="showcase-btn showcase-btn--primary"
+                      className="y2k-action-btn y2k-action-btn--primary"
                     >
                       <span>🚀 {activeProject.actionText || 'Buka Demo Web App'}</span>
                       <span className="btn-arrow">↗</span>
@@ -728,33 +813,43 @@ export default function ArchiveVault() {
                   ) : null}
 
                   <button
-                    className="showcase-btn showcase-btn--secondary"
+                    className="y2k-action-btn y2k-action-btn--secondary"
                     onClick={() => setActiveProject(null)}
                   >
-                    Tutup Preview
+                    ✕ Tutup Window
                   </button>
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: GAMBAR PROYEK BESAR & JERNIH (STUDIO STAGE) */}
-              <div className="project-showcase-modal__media-col">
-                <div className="showcase-media-stage">
+              {/* RIGHT COLUMN: CYBER VIEWPORT / HUD STUDIO */}
+              <div className="y2k-modal__media-col">
+                <div className="y2k-viewport-hud-bar">
+                  <span className="hud-label">CAM_01 // HIGH-RES MOCKUP</span>
+                  <span className="hud-res">DISPLAY: 100% NATIVE</span>
+                </div>
+
+                <div className="y2k-viewport-stage">
+                  <div className="y2k-stage-reticle y2k-stage-reticle--tl">⌜</div>
+                  <div className="y2k-stage-reticle y2k-stage-reticle--tr">⌝</div>
+                  <div className="y2k-stage-reticle y2k-stage-reticle--bl">⌞</div>
+                  <div className="y2k-stage-reticle y2k-stage-reticle--br">⌟</div>
+
                   {activeProject.isHosted ? (
                     <a
                       href={activeProject.hostedUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="showcase-media-link"
-                      title="Klik untuk membuka hasil proyek"
+                      className="y2k-media-link"
+                      title="Klik untuk membuka prototype / website"
                     >
                       <img
                         src={activeProject.image}
                         alt={activeProject.title}
-                        className="showcase-media-img"
+                        className="y2k-big-mockup-img"
                       />
-                      <div className="showcase-media-hover-overlay">
-                        <span className="showcase-media-hover-pill">
-                          Buka Hasil Proyek ↗
+                      <div className="y2k-media-hover-overlay">
+                        <span className="y2k-media-hover-pill">
+                          ⚡ BUKA HASIL PROYEK ↗
                         </span>
                       </div>
                     </a>
@@ -763,26 +858,26 @@ export default function ArchiveVault() {
                       href={activeProject.htmlUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="showcase-media-link"
+                      className="y2k-media-link"
                       title="Klik untuk membuka demo web app"
                     >
                       <img
                         src={activeProject.image}
                         alt={activeProject.title}
-                        className="showcase-media-img"
+                        className="y2k-big-mockup-img"
                       />
-                      <div className="showcase-media-hover-overlay">
-                        <span className="showcase-media-hover-pill">
-                          Buka Demo Web ↗
+                      <div className="y2k-media-hover-overlay">
+                        <span className="y2k-media-hover-pill">
+                          ⚡ BUKA DEMO WEB ↗
                         </span>
                       </div>
                     </a>
                   ) : (
-                    <div className="showcase-media-link showcase-media-link--static">
+                    <div className="y2k-media-link y2k-media-link--static">
                       <img
                         src={activeProject.image}
                         alt={activeProject.title}
-                        className="showcase-media-img"
+                        className="y2k-big-mockup-img"
                       />
                     </div>
                   )}
@@ -793,83 +888,123 @@ export default function ArchiveVault() {
         </div>
       )}
 
-      {/* ─── MODAL 2: CERTIFICATE PURE IMAGE LIGHTBOX (NO TEXT, NO TITLES) ─── */}
+      {/* ─── MODAL 2: Y2K CERTIFICATE LIGHTBOX (PURE IMAGE IN Y2K CYBER WINDOW) ─── */}
       {activeCert && (
-        <div className="pure-image-lightbox" role="dialog" aria-modal="true" aria-label="Sertifikat">
-          <div className="pure-image-lightbox__backdrop" onClick={() => setActiveCert(null)} />
+        <div className="y2k-cert-modal" role="dialog" aria-modal="true" aria-label="Sertifikat">
+          <div className="y2k-cert-modal__backdrop" onClick={() => setActiveCert(null)} />
+          <div className="y2k-cert-modal__scanlines" />
 
-          <button
-            className="pure-image-lightbox__close"
-            onClick={() => setActiveCert(null)}
-            aria-label="Tutup sertifikat"
-          >
-            ✕
-          </button>
+          <div className="y2k-cert-modal__window">
+            <div className="y2k-window-bar">
+              <div className="y2k-window-bar__left">
+                <div className="y2k-window-dots">
+                  <span className="y2k-dot y2k-dot--pink" onClick={() => setActiveCert(null)} />
+                  <span className="y2k-dot y2k-dot--yellow" />
+                  <span className="y2k-dot y2k-dot--cyan" />
+                </div>
+                <div className="y2k-window-bar__code">[SYS.ARCHIVE // CERT_VIEWER.EXE]</div>
+              </div>
+              <div className="y2k-window-bar__center">
+                <span className="y2k-live-ticker">● 100% LOSSLESS RESOLUTION</span>
+              </div>
+              <div className="y2k-window-bar__right">
+                <button className="y2k-window-close-btn" onClick={() => setActiveCert(null)}>
+                  <span>✕ ESC // CLOSE</span>
+                </button>
+              </div>
+            </div>
 
-          <button
-            className="pure-image-lightbox__nav pure-image-lightbox__nav--prev"
-            onClick={() => handleCertNav('prev')}
-            aria-label="Sertifikat sebelumnya"
-          >
-            ‹
-          </button>
+            <div className="y2k-cert-modal__body">
+              <button
+                className="y2k-cert-nav y2k-cert-nav--prev"
+                onClick={() => handleCertNav('prev')}
+                aria-label="Sertifikat sebelumnya"
+              >
+                ‹ PREV
+              </button>
 
-          <div className="pure-image-lightbox__container" onClick={() => setActiveCert(null)}>
-            <img
-              src={activeCert.image}
-              alt="Sertifikat"
-              className="pure-image-lightbox__img"
-              onClick={(e) => e.stopPropagation()}
-            />
+              <div className="y2k-cert-stage" onClick={() => setActiveCert(null)}>
+                <div className="y2k-stage-reticle y2k-stage-reticle--tl">⌜</div>
+                <div className="y2k-stage-reticle y2k-stage-reticle--tr">⌝</div>
+                <div className="y2k-stage-reticle y2k-stage-reticle--bl">⌞</div>
+                <div className="y2k-stage-reticle y2k-stage-reticle--br">⌟</div>
+                <img
+                  src={activeCert.image}
+                  alt="Sertifikat"
+                  className="y2k-cert-img"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+
+              <button
+                className="y2k-cert-nav y2k-cert-nav--next"
+                onClick={() => handleCertNav('next')}
+                aria-label="Sertifikat selanjutnya"
+              >
+                NEXT ›
+              </button>
+            </div>
           </div>
-
-          <button
-            className="pure-image-lightbox__nav pure-image-lightbox__nav--next"
-            onClick={() => handleCertNav('next')}
-            aria-label="Sertifikat selanjutnya"
-          >
-            ›
-          </button>
         </div>
       )}
 
-      {/* ─── MODAL 3: AWARD PURE IMAGE LIGHTBOX (NO TEXT, NO TITLES) ─── */}
+      {/* ─── MODAL 3: Y2K AWARD LIGHTBOX (PURE IMAGE IN Y2K CYBER WINDOW) ─── */}
       {activeAward && (
-        <div className="pure-image-lightbox" role="dialog" aria-modal="true" aria-label="Penghargaan">
-          <div className="pure-image-lightbox__backdrop" onClick={() => setActiveAward(null)} />
+        <div className="y2k-cert-modal y2k-cert-modal--award" role="dialog" aria-modal="true" aria-label="Penghargaan">
+          <div className="y2k-cert-modal__backdrop" onClick={() => setActiveAward(null)} />
+          <div className="y2k-cert-modal__scanlines" />
 
-          <button
-            className="pure-image-lightbox__close"
-            onClick={() => setActiveAward(null)}
-            aria-label="Tutup penghargaan"
-          >
-            ✕
-          </button>
+          <div className="y2k-cert-modal__window">
+            <div className="y2k-window-bar y2k-window-bar--award">
+              <div className="y2k-window-bar__left">
+                <div className="y2k-window-dots">
+                  <span className="y2k-dot y2k-dot--pink" onClick={() => setActiveAward(null)} />
+                  <span className="y2k-dot y2k-dot--yellow" />
+                  <span className="y2k-dot y2k-dot--cyan" />
+                </div>
+                <div className="y2k-window-bar__code">[SYS.ARCHIVE // AWARD_VIEWER.EXE]</div>
+              </div>
+              <div className="y2k-window-bar__center">
+                <span className="y2k-live-ticker">🏆 {activeAward.badge} // OFFICIAL PIAGAM</span>
+              </div>
+              <div className="y2k-window-bar__right">
+                <button className="y2k-window-close-btn" onClick={() => setActiveAward(null)}>
+                  <span>✕ ESC // CLOSE</span>
+                </button>
+              </div>
+            </div>
 
-          <button
-            className="pure-image-lightbox__nav pure-image-lightbox__nav--prev"
-            onClick={() => handleAwardNav('prev')}
-            aria-label="Penghargaan sebelumnya"
-          >
-            ‹
-          </button>
+            <div className="y2k-cert-modal__body">
+              <button
+                className="y2k-cert-nav y2k-cert-nav--prev"
+                onClick={() => handleAwardNav('prev')}
+                aria-label="Penghargaan sebelumnya"
+              >
+                ‹ PREV
+              </button>
 
-          <div className="pure-image-lightbox__container" onClick={() => setActiveAward(null)}>
-            <img
-              src={activeAward.image}
-              alt="Penghargaan"
-              className="pure-image-lightbox__img"
-              onClick={(e) => e.stopPropagation()}
-            />
+              <div className="y2k-cert-stage" onClick={() => setActiveAward(null)}>
+                <div className="y2k-stage-reticle y2k-stage-reticle--tl">⌜</div>
+                <div className="y2k-stage-reticle y2k-stage-reticle--tr">⌝</div>
+                <div className="y2k-stage-reticle y2k-stage-reticle--bl">⌞</div>
+                <div className="y2k-stage-reticle y2k-stage-reticle--br">⌟</div>
+                <img
+                  src={activeAward.image}
+                  alt="Penghargaan"
+                  className="y2k-cert-img"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+
+              <button
+                className="y2k-cert-nav y2k-cert-nav--next"
+                onClick={() => handleAwardNav('next')}
+                aria-label="Penghargaan selanjutnya"
+              >
+                NEXT ›
+              </button>
+            </div>
           </div>
-
-          <button
-            className="pure-image-lightbox__nav pure-image-lightbox__nav--next"
-            onClick={() => handleAwardNav('next')}
-            aria-label="Penghargaan selanjutnya"
-          >
-            ›
-          </button>
         </div>
       )}
     </section>
