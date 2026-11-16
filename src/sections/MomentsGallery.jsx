@@ -244,7 +244,6 @@ function FloatingPhoto({ item, onPhotoClick, zIndexBase = 1 }) {
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
-      title={`${item.title} — Klik perbesar / Drag bebas`}
     >
       <div
         className="floating-photo-inner"
@@ -261,7 +260,6 @@ function FloatingPhoto({ item, onPhotoClick, zIndexBase = 1 }) {
           draggable={false}
           loading="lazy"
         />
-        <div className="floating-photo-sheen" />
       </div>
     </div>
   )
