@@ -202,7 +202,7 @@ const awardsData = [
 export default function ArchiveVault() {
   const [activeFolder, setActiveFolder] = useState(null)
   const [viewMode, setViewMode] = useState('grid') // 'grid' | 'reel'
-  
+
   // Modals
   const [activeProject, setActiveProject] = useState(null)
   const [activeCert, setActiveCert] = useState(null)
@@ -585,20 +585,21 @@ export default function ArchiveVault() {
                 className={`vault-files-track ${viewMode === 'reel' ? 'vault-files-track--reel' : 'vault-files-track--grid'}`}
                 ref={reelRef}
               >
-                {/* 1. PROJECTS CARDS (LARGE Y2K SHOWCASE) */}
+                {/* 1. PROJECTS CARDS (BENER-BENER FULL GAMBAR - NO TITLES UPFRONT) */}
                 {activeFolder === 'projects' &&
                   projectsData.map((project, idx) => (
                     <div
                       key={project.id}
                       className="y2k-folder-project-card"
                       onClick={() => setActiveProject(project)}
+                      title="Klik untuk membuka detail lengkap, spesifikasi & hasil proyek"
                     >
                       <div className="y2k-card-reticle y2k-card-reticle--tl">⌜</div>
                       <div className="y2k-card-reticle y2k-card-reticle--tr">⌝</div>
                       <div className="y2k-card-reticle y2k-card-reticle--bl">⌞</div>
                       <div className="y2k-card-reticle y2k-card-reticle--br">⌟</div>
 
-                      <div className="y2k-folder-project-card__thumb">
+                      <div className="y2k-folder-project-card__img-wrap">
                         <img
                           src={project.image}
                           alt={project.title}
@@ -610,27 +611,8 @@ export default function ArchiveVault() {
                           <span className="y2k-card-code">FILE_{String(idx + 1).padStart(2, '0')} // #{project.tagCode}</span>
                           {project.isHosted && <span className="y2k-card-live-dot">● LIVE</span>}
                         </div>
-                        <div className="y2k-folder-project-card__hover-pill">
-                          <span>⚡ INSPECT &amp; PREVIEW ↗</span>
-                        </div>
-                      </div>
-
-                      <div className="y2k-folder-project-card__body">
-                        <div className="y2k-folder-project-card__meta">
-                          <span className="y2k-folder-project-card__category">{project.category}</span>
-                          <span className="y2k-folder-project-card__year">YR_{project.year}</span>
-                        </div>
-                        <h4 className="y2k-folder-project-card__title">{project.title}</h4>
-                        <p className="y2k-folder-project-card__sub">{project.subtitle}</p>
-
-                        <div className="y2k-folder-project-card__tech">
-                          {project.tech.map((t) => (
-                            <span key={t} className="y2k-tech-tag">{t}</span>
-                          ))}
-                        </div>
-
-                        <div className="y2k-folder-project-card__footer">
-                          <span className="y2k-card-click-label">Klik untuk membuka preview Y2K ↗</span>
+                        <div className="y2k-folder-project-card__zoom-badge">
+                          <span>⚡ BUKA DETAIL &amp; HASIL ↗</span>
                         </div>
                       </div>
                     </div>

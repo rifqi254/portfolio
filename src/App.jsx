@@ -10,6 +10,7 @@ import ScrollEffects from './components/ScrollEffects'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import ArchiveVault from './sections/ArchiveVault'
+import MomentsGallery from './sections/MomentsGallery'
 import Skills from './sections/Skills'
 import Timeline from './sections/Timeline'
 import Contact from './sections/Contact'
@@ -33,6 +34,7 @@ export default function App() {
         <Hero />
         <About />
         <ArchiveVault />
+        <MomentsGallery />
         <Skills />
         <Timeline />
         <Contact />
