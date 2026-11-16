@@ -290,9 +290,9 @@ export default function ArchiveVault() {
         {/* ─── TAMPILAN 1: HANYA MENAMPILKAN 3 FOLDER (SEBELUM DIKLIK) ─── */}
         {!activeFolder && (
           <div className="vault-folders__deck" aria-label="Pilih Folder Arsip">
-            {/* 📁 FOLDER 1: PROJECTS */}
+            {/* 📁 FOLDER 1: PROJECTS (CYBER ICE CYAN Y2K) */}
             <div
-              className="vault-folder-card"
+              className="vault-folder-card vault-folder-card--projects"
               onClick={() => setActiveFolder('projects')}
               role="button"
               tabIndex={0}
@@ -303,14 +303,14 @@ export default function ArchiveVault() {
                 <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
                   <path
                     d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
-                    fill="url(#folderBackGrad)"
-                    stroke="rgba(255,255,255,0.14)"
+                    fill="url(#folderBackProjects)"
+                    stroke="rgba(14, 165, 233, 0.55)"
                     strokeWidth="1.5"
                   />
                   <defs>
-                    <linearGradient id="folderBackGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#222838" />
-                      <stop offset="100%" stopColor="#101420" />
+                    <linearGradient id="folderBackProjects" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#bae6fd" />
+                      <stop offset="100%" stopColor="#7dd3fc" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -335,25 +335,25 @@ export default function ArchiveVault() {
                 <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
                   <path
                     d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
-                    fill="url(#folderFrontGlassGrad)"
-                    stroke="rgba(255,255,255,0.2)"
+                    fill="url(#folderFrontProjects)"
+                    stroke="rgba(14, 165, 233, 0.6)"
                     strokeWidth="1.5"
                   />
                   <defs>
-                    <linearGradient id="folderFrontGlassGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="rgba(34, 42, 60, 0.88)" />
-                      <stop offset="100%" stopColor="rgba(16, 20, 32, 0.94)" />
+                    <linearGradient id="folderFrontProjects" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(240, 249, 255, 0.95)" />
+                      <stop offset="100%" stopColor="rgba(186, 230, 253, 0.92)" />
                     </linearGradient>
                   </defs>
                 </svg>
 
                 <div className="folder-front-content">
                   <div className="folder-info-meta">
-                    <span className="folder-count-num">7</span>
+                    <span className="folder-count-num folder-count-num--projects">7</span>
                     <span className="folder-count-label">Projects</span>
                   </div>
 
-                  <div className="folder-dots-pill">
+                  <div className="folder-dots-pill folder-dots-pill--projects">
                     <span className="dot-circle" />
                     <span className="dot-circle" />
                     <span className="dot-circle" />
@@ -366,9 +366,9 @@ export default function ArchiveVault() {
               </div>
             </div>
 
-            {/* 📁 FOLDER 2: CERTIFICATES */}
+            {/* 📁 FOLDER 2: CERTIFICATES (CYBER LAVENDER VIOLET Y2K) */}
             <div
-              className="vault-folder-card"
+              className="vault-folder-card vault-folder-card--certs"
               onClick={() => setActiveFolder('certificates')}
               role="button"
               tabIndex={0}
@@ -379,10 +379,16 @@ export default function ArchiveVault() {
                 <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
                   <path
                     d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
-                    fill="url(#folderBackGrad)"
-                    stroke="rgba(255,255,255,0.14)"
+                    fill="url(#folderBackCerts)"
+                    stroke="rgba(168, 85, 247, 0.55)"
                     strokeWidth="1.5"
                   />
+                  <defs>
+                    <linearGradient id="folderBackCerts" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#e9d5ff" />
+                      <stop offset="100%" stopColor="#c084fc" />
+                    </linearGradient>
+                  </defs>
                 </svg>
               </div>
 
@@ -405,19 +411,25 @@ export default function ArchiveVault() {
                 <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
                   <path
                     d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
-                    fill="url(#folderFrontGlassGrad)"
-                    stroke="rgba(255,255,255,0.2)"
+                    fill="url(#folderFrontCerts)"
+                    stroke="rgba(168, 85, 247, 0.6)"
                     strokeWidth="1.5"
                   />
+                  <defs>
+                    <linearGradient id="folderFrontCerts" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(250, 245, 255, 0.95)" />
+                      <stop offset="100%" stopColor="rgba(233, 213, 255, 0.92)" />
+                    </linearGradient>
+                  </defs>
                 </svg>
 
                 <div className="folder-front-content">
                   <div className="folder-info-meta">
-                    <span className="folder-count-num">7</span>
+                    <span className="folder-count-num folder-count-num--certs">7</span>
                     <span className="folder-count-label">Certificates</span>
                   </div>
 
-                  <div className="folder-dots-pill">
+                  <div className="folder-dots-pill folder-dots-pill--certs">
                     <span className="dot-circle" />
                     <span className="dot-circle" />
                     <span className="dot-circle" />
@@ -430,9 +442,9 @@ export default function ArchiveVault() {
               </div>
             </div>
 
-            {/* 📁 FOLDER 3: AWARDS */}
+            {/* 📁 FOLDER 3: AWARDS (CYBER SUNBEAM AMBER Y2K) */}
             <div
-              className="vault-folder-card"
+              className="vault-folder-card vault-folder-card--awards"
               onClick={() => setActiveFolder('awards')}
               role="button"
               tabIndex={0}
@@ -443,10 +455,16 @@ export default function ArchiveVault() {
                 <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
                   <path
                     d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
-                    fill="url(#folderBackGrad)"
-                    stroke="rgba(255,255,255,0.14)"
+                    fill="url(#folderBackAwards)"
+                    stroke="rgba(245, 158, 11, 0.55)"
                     strokeWidth="1.5"
                   />
+                  <defs>
+                    <linearGradient id="folderBackAwards" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#fef08a" />
+                      <stop offset="100%" stopColor="#f59e0b" />
+                    </linearGradient>
+                  </defs>
                 </svg>
               </div>
 
@@ -466,19 +484,25 @@ export default function ArchiveVault() {
                 <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
                   <path
                     d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
-                    fill="url(#folderFrontGlassGrad)"
-                    stroke="rgba(255,255,255,0.2)"
+                    fill="url(#folderFrontAwards)"
+                    stroke="rgba(245, 158, 11, 0.6)"
                     strokeWidth="1.5"
                   />
+                  <defs>
+                    <linearGradient id="folderFrontAwards" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(254, 252, 232, 0.95)" />
+                      <stop offset="100%" stopColor="rgba(254, 240, 138, 0.92)" />
+                    </linearGradient>
+                  </defs>
                 </svg>
 
                 <div className="folder-front-content">
                   <div className="folder-info-meta">
-                    <span className="folder-count-num">3</span>
+                    <span className="folder-count-num folder-count-num--awards">3</span>
                     <span className="folder-count-label">Awards</span>
                   </div>
 
-                  <div className="folder-dots-pill">
+                  <div className="folder-dots-pill folder-dots-pill--awards">
                     <span className="dot-circle" />
                     <span className="dot-circle" />
                     <span className="dot-circle" />
@@ -585,100 +609,57 @@ export default function ArchiveVault() {
                 className={`vault-files-track ${viewMode === 'reel' ? 'vault-files-track--reel' : 'vault-files-track--grid'}`}
                 ref={reelRef}
               >
-                {/* 1. PROJECTS CARDS (BENER-BENER FULL GAMBAR - NO TITLES UPFRONT) */}
+                {/* 1. PROJECTS CARDS (BENER-BENER FULL GAMBAR — NO RETICLES, NO HOVER BADGES) */}
                 {activeFolder === 'projects' &&
-                  projectsData.map((project, idx) => (
+                  projectsData.map((project) => (
                     <div
                       key={project.id}
                       className="y2k-folder-project-card"
                       onClick={() => setActiveProject(project)}
-                      title="Klik untuk membuka detail lengkap, spesifikasi & hasil proyek"
+                      title={`Klik untuk membuka detail lengkap: ${project.title}`}
                     >
-                      <div className="y2k-card-reticle y2k-card-reticle--tl">⌜</div>
-                      <div className="y2k-card-reticle y2k-card-reticle--tr">⌝</div>
-                      <div className="y2k-card-reticle y2k-card-reticle--bl">⌞</div>
-                      <div className="y2k-card-reticle y2k-card-reticle--br">⌟</div>
-
-                      <div className="y2k-folder-project-card__img-wrap">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="y2k-folder-project-card__img"
-                          loading="lazy"
-                        />
-                        <div className="y2k-folder-project-card__holo-overlay" />
-                        <div className="y2k-folder-project-card__tag-bar">
-                          <span className="y2k-card-code">FILE_{String(idx + 1).padStart(2, '0')} // #{project.tagCode}</span>
-                          {project.isHosted && <span className="y2k-card-live-dot">● LIVE</span>}
-                        </div>
-                        <div className="y2k-folder-project-card__zoom-badge">
-                          <span>⚡ BUKA DETAIL &amp; HASIL ↗</span>
-                        </div>
-                      </div>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="y2k-folder-project-card__img"
+                        loading="lazy"
+                      />
                     </div>
                   ))}
 
-                {/* 2. CERTIFICATES CARDS (LARGE Y2K SHOWCASE) */}
+                {/* 2. CERTIFICATES CARDS (BENER-BENER FULL GAMBAR) */}
                 {activeFolder === 'certificates' &&
-                  certificatesData.map((cert, idx) => (
+                  certificatesData.map((cert) => (
                     <div
                       key={cert.id}
                       className="y2k-folder-cert-card"
                       onClick={() => setActiveCert(cert)}
-                      title="Klik untuk preview sertifikat full resolution"
+                      title={`Klik untuk preview sertifikat: ${cert.title}`}
                     >
-                      <div className="y2k-card-reticle y2k-card-reticle--tl">⌜</div>
-                      <div className="y2k-card-reticle y2k-card-reticle--tr">⌝</div>
-                      <div className="y2k-card-reticle y2k-card-reticle--bl">⌞</div>
-                      <div className="y2k-card-reticle y2k-card-reticle--br">⌟</div>
-
-                      <div className="y2k-folder-cert-card__img-wrap">
-                        <img
-                          src={cert.image}
-                          alt="Sertifikat"
-                          className="y2k-folder-cert-card__img"
-                          loading="lazy"
-                        />
-                        <div className="y2k-folder-cert-card__holo-overlay" />
-                        <div className="y2k-folder-cert-card__tag-bar">
-                          <span className="y2k-card-code">CERT_{String(idx + 1).padStart(2, '0')} // OFFICIAL</span>
-                        </div>
-                        <div className="y2k-folder-cert-card__zoom-badge">
-                          <span>🔍 LIHAT SERTIFIKAT FULL</span>
-                        </div>
-                      </div>
+                      <img
+                        src={cert.image}
+                        alt={cert.title}
+                        className="y2k-folder-cert-card__img"
+                        loading="lazy"
+                      />
                     </div>
                   ))}
 
-                {/* 3. AWARDS CARDS (LARGE Y2K SHOWCASE) */}
+                {/* 3. AWARDS CARDS (BENER-BENER FULL GAMBAR) */}
                 {activeFolder === 'awards' &&
-                  awardsData.map((award, idx) => (
+                  awardsData.map((award) => (
                     <div
                       key={award.id}
                       className="y2k-folder-cert-card y2k-folder-cert-card--award"
                       onClick={() => setActiveAward(award)}
-                      title="Klik untuk preview piagam penghargaan full resolution"
+                      title={`Klik untuk preview piagam penghargaan: ${award.title}`}
                     >
-                      <div className="y2k-card-reticle y2k-card-reticle--tl">⌜</div>
-                      <div className="y2k-card-reticle y2k-card-reticle--tr">⌝</div>
-                      <div className="y2k-card-reticle y2k-card-reticle--bl">⌞</div>
-                      <div className="y2k-card-reticle y2k-card-reticle--br">⌟</div>
-
-                      <div className="y2k-folder-cert-card__img-wrap">
-                        <img
-                          src={award.image}
-                          alt="Piagam Penghargaan"
-                          className="y2k-folder-cert-card__img"
-                          loading="lazy"
-                        />
-                        <div className="y2k-folder-cert-card__holo-overlay" />
-                        <div className="y2k-folder-cert-card__tag-bar y2k-folder-cert-card__tag-bar--award">
-                          <span className="y2k-card-code">{award.badge} // PIAGAM</span>
-                        </div>
-                        <div className="y2k-folder-cert-card__zoom-badge y2k-folder-cert-card__zoom-badge--award">
-                          <span>🏆 LIHAT PIAGAM FULL</span>
-                        </div>
-                      </div>
+                      <img
+                        src={award.image}
+                        alt={award.title}
+                        className="y2k-folder-cert-card__img"
+                        loading="lazy"
+                      />
                     </div>
                   ))}
               </div>

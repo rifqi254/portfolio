@@ -189,9 +189,9 @@
   height: 160px;
   border-radius: 12px;
   overflow: hidden;
-  background: #0b1220;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6), 0 0 2px rgba(255, 255, 255, 0.35);
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06);
+  border: 2px solid rgba(255, 255, 255, 0.95);
   transition: transform 420ms cubic-bezier(0.18, 0.89, 0.32, 1.28), box-shadow 420ms ease;
   transform-origin: bottom center;
 }
@@ -286,55 +286,75 @@
 
 .folder-count-num {
   font-family: 'Syne', sans-serif;
-  font-size: 2.1rem;
-  font-weight: 800;
-  color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #0f172a;
   line-height: 1;
   letter-spacing: -0.03em;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.folder-count-num--projects {
+  color: #0284c7;
+}
+
+.folder-count-num--certs {
+  color: #7e22ce;
+}
+
+.folder-count-num--awards {
+  color: #b45309;
 }
 
 .folder-count-label {
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #cbd5e1;
-  margin-top: 3px;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #334155;
+  margin-top: 4px;
 }
 
 .folder-dots-pill {
   width: 48px;
   height: 30px;
   border-radius: 9999px;
-  background: rgba(30, 38, 56, 0.9);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1.5px solid rgba(14, 165, 233, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
   transition: all 220ms ease;
 }
 
+.folder-dots-pill--certs {
+  border-color: rgba(168, 85, 247, 0.35);
+}
+
+.folder-dots-pill--awards {
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
 .vault-folder-card:hover .folder-dots-pill {
-  background: rgba(0, 102, 255, 0.5);
-  border-color: rgba(0, 204, 255, 0.7);
-  box-shadow: 0 0 14px rgba(0, 102, 255, 0.4);
+  background: #ffffff;
+  border-color: #0055ff;
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.25);
 }
 
 .dot-circle {
   width: 5.5px;
   height: 5.5px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  border: 1.5px solid #64748b;
+  background: transparent;
+  transition: all 200ms ease;
 }
 
 .vault-folder-card:hover .dot-circle {
-  border-color: #ffffff;
-  background: #38bdf8;
-  box-shadow: 0 0 6px #38bdf8;
+  border-color: #0055ff;
+  background: #0055ff;
+  box-shadow: 0 0 6px #0055ff;
 }
 
 /* ─── TAMPILAN 2: MASUK KE DALAM FOLDER (BRIGHT Y2K CYBER GLASS) ─── */
@@ -587,19 +607,19 @@
   border-radius: 9999px;
 }
 
-/* ─── 1. LARGE Y2K FOLDER PROJECT CARDS (BENER-BENER FULL GAMBAR) ─── */
+/* ─── 1. LARGE Y2K FOLDER PROJECT CARDS (BENER-BENER FULL GAMBAR — ZERO RETICLES, ZERO HOVER BADGES) ─── */
 .y2k-folder-project-card {
   position: relative;
-  border-radius: 20px;
+  border-radius: 18px;
   background: #ffffff;
-  border: 2px solid rgba(0, 180, 255, 0.35);
+  border: 1.5px solid rgba(0, 180, 255, 0.28);
   box-shadow:
-    0 10px 30px rgba(0, 68, 238, 0.08),
+    0 10px 28px rgba(15, 23, 42, 0.08),
     0 1px 3px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   cursor: pointer;
-  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 300ms ease, border-color 250ms ease;
   height: 290px;
+  transition: box-shadow 260ms ease, border-color 260ms ease;
 }
 
 .vault-files-track--reel .y2k-folder-project-card {
@@ -610,51 +630,17 @@
 
 @media (max-width: 640px) {
   .vault-files-track--reel .y2k-folder-project-card {
-    flex: 0 0 320px;
-    max-width: 320px;
-    height: 240px;
+    flex: 0 0 310px;
+    max-width: 310px;
+    height: 230px;
   }
 }
 
 .y2k-folder-project-card:hover {
-  transform: translateY(-8px);
-  border-color: #00c8ff;
+  border-color: rgba(0, 180, 255, 0.7);
   box-shadow:
-    0 20px 48px rgba(0, 68, 238, 0.16),
-    0 0 25px rgba(0, 204, 255, 0.3);
-}
-
-/* Corner Reticles */
-.y2k-card-reticle {
-  position: absolute;
-  font-family: var(--font-tech, monospace);
-  font-size: 0.85rem;
-  line-height: 1;
-  color: rgba(0, 140, 255, 0.5);
-  pointer-events: none;
-  z-index: 5;
-  transition: color 200ms ease;
-}
-
-.y2k-folder-project-card:hover .y2k-card-reticle {
-  color: #ff007f;
-}
-
-.y2k-card-reticle--tl { top: 8px; left: 8px; }
-.y2k-card-reticle--tr { top: 8px; right: 8px; }
-.y2k-card-reticle--bl { bottom: 8px; left: 8px; }
-.y2k-card-reticle--br { bottom: 8px; right: 8px; }
-
-/* Large Image Container: 100% Full Card */
-.y2k-folder-project-card__img-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #f8fbff 0%, #eef5fe 100%);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    0 14px 36px rgba(0, 102, 255, 0.16),
+    0 0 20px rgba(0, 204, 255, 0.22);
 }
 
 .y2k-folder-project-card__img {
@@ -663,105 +649,24 @@
   object-fit: cover;
   object-position: top center;
   display: block;
-  transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 300ms ease;
 }
 
-.y2k-folder-project-card:hover .y2k-folder-project-card__img {
-  transform: scale(1.05);
-}
-
-.y2k-folder-project-card__holo-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    125deg,
-    transparent 30%,
-    rgba(0, 204, 255, 0.18) 50%,
-    rgba(255, 0, 127, 0.18) 70%,
-    transparent 90%
-  );
-  opacity: 0;
-  transition: opacity 300ms ease;
-  pointer-events: none;
-}
-
-.y2k-folder-project-card:hover .y2k-folder-project-card__holo-overlay {
-  opacity: 1;
-}
-
-.y2k-folder-project-card__tag-bar {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 3;
-}
-
-.y2k-card-code {
-  font-family: var(--font-tech, monospace);
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: #0044ee;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(8px);
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 150, 255, 0.35);
-  letter-spacing: 0.05em;
-  box-shadow: 0 2px 8px rgba(0, 68, 238, 0.1);
-}
-
-.y2k-card-live-dot {
-  font-family: var(--font-tech, monospace);
-  font-size: 0.62rem;
-  font-weight: 800;
-  color: #059669;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(8px);
-  padding: 4px 10px;
-  border-radius: 9999px;
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
-}
-
-.y2k-folder-project-card__zoom-badge {
-  position: absolute;
-  bottom: 14px;
-  right: 14px;
-  background: linear-gradient(135deg, #0044ee 0%, #00ccff 100%);
-  color: #ffffff;
-  font-family: var(--font-tech, monospace);
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 4px 16px rgba(0, 150, 255, 0.45);
-  transition: all 200ms ease;
-  z-index: 3;
-}
-
-.y2k-folder-project-card:hover .y2k-folder-project-card__zoom-badge {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 150, 255, 0.7);
-}
-
-/* ─── 2. LARGE Y2K CERTIFICATE & AWARD CARDS ─── */
+/* ─── 2. LARGE Y2K CERTIFICATE & AWARD CARDS (BENER-BENER FULL GAMBAR) ─── */
 .y2k-folder-cert-card {
   position: relative;
-  border-radius: 20px;
-  background: #ffffff;
-  border: 2px solid rgba(0, 180, 255, 0.35);
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1.5px solid rgba(168, 85, 247, 0.28);
   box-shadow:
-    0 10px 30px rgba(0, 68, 238, 0.08),
+    0 10px 28px rgba(15, 23, 42, 0.08),
     0 1px 3px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   cursor: pointer;
-  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 300ms ease, border-color 250ms ease;
   height: 290px;
+  transition: box-shadow 260ms ease, border-color 260ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .vault-files-track--reel .y2k-folder-cert-card {
@@ -772,41 +677,28 @@
 
 @media (max-width: 640px) {
   .vault-files-track--reel .y2k-folder-cert-card {
-    flex: 0 0 320px;
-    max-width: 320px;
-    height: 240px;
+    flex: 0 0 310px;
+    max-width: 310px;
+    height: 230px;
   }
 }
 
 .y2k-folder-cert-card:hover {
-  transform: translateY(-8px);
-  border-color: #00c8ff;
+  border-color: rgba(168, 85, 247, 0.7);
   box-shadow:
-    0 20px 48px rgba(0, 68, 238, 0.16),
-    0 0 25px rgba(0, 204, 255, 0.3);
+    0 14px 36px rgba(168, 85, 247, 0.16),
+    0 0 20px rgba(168, 85, 247, 0.22);
 }
 
 .y2k-folder-cert-card--award {
-  border-color: rgba(245, 158, 11, 0.4);
+  border-color: rgba(245, 158, 11, 0.3);
 }
 
 .y2k-folder-cert-card--award:hover {
-  border-color: rgba(245, 158, 11, 0.85);
+  border-color: rgba(245, 158, 11, 0.75);
   box-shadow:
-    0 20px 48px rgba(245, 158, 11, 0.2),
-    0 0 25px rgba(245, 158, 11, 0.35);
-}
-
-.y2k-folder-cert-card__img-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #f8fbff 0%, #eef5fe 100%);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
+    0 14px 36px rgba(245, 158, 11, 0.16),
+    0 0 20px rgba(245, 158, 11, 0.22);
 }
 
 .y2k-folder-cert-card__img {
@@ -814,60 +706,8 @@
   height: 100%;
   object-fit: contain;
   display: block;
-  transition: transform 380ms ease;
-  border-radius: 8px;
-}
-
-.y2k-folder-cert-card:hover .y2k-folder-cert-card__img {
-  transform: scale(1.04);
-}
-
-.y2k-folder-cert-card__holo-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    125deg,
-    transparent 30%,
-    rgba(0, 204, 255, 0.18) 50%,
-    rgba(255, 0, 127, 0.18) 70%,
-    transparent 90%
-  );
-  opacity: 0;
-  transition: opacity 300ms ease;
-  pointer-events: none;
-}
-
-.y2k-folder-cert-card:hover .y2k-folder-cert-card__holo-overlay {
-  opacity: 1;
-}
-
-.y2k-folder-cert-card__tag-bar {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 3;
-}
-
-.y2k-folder-cert-card__tag-bar--award .y2k-card-code {
-  color: #d97706;
-  border-color: rgba(245, 158, 11, 0.4);
-}
-
-.y2k-folder-cert-card__zoom-badge {
-  position: absolute;
-  bottom: 14px;
-  right: 14px;
-  background: linear-gradient(135deg, #0044ee 0%, #00ccff 100%);
-  color: #ffffff;
-  font-family: var(--font-tech, monospace);
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 4px 16px rgba(0, 150, 255, 0.4);
-  transition: all 200ms ease;
-  z-index: 3;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .y2k-folder-cert-card:hover .y2k-folder-cert-card__zoom-badge {

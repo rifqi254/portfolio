@@ -13,7 +13,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-01-merbabu-selo.jpg',
     caption: 'Menembus kabut dan jalur terjal Selo menuju puncak Gunung Merbabu bersama sahabat pejuang.',
     initRotate: -4.5,
-    offsetY: 20,
+    offsetY: 18,
     floatDuration: 4.8,
     floatDelay: 0,
   },
@@ -28,7 +28,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-02-uin-event.jpg',
     caption: 'Delegasi mahasiswa Informatika dalam agenda resmi universitas dan pekan kreativitas kampus.',
     initRotate: 3.5,
-    offsetY: -22,
+    offsetY: -20,
     floatDuration: 5.2,
     floatDelay: -1.5,
   },
@@ -43,7 +43,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-03-saintek-uin.jpg',
     caption: 'Keluarga besar mahasiswa dan civitas akademika Fakultas Sains dan Teknologi UIN Banten.',
     initRotate: -3,
-    offsetY: 16,
+    offsetY: 15,
     floatDuration: 4.3,
     floatDelay: -0.8,
   },
@@ -58,7 +58,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-04-hmps-hallway.jpg',
     caption: 'Kekompakan pengurus Himpunan Mahasiswa Program Studi Informatika periode kepengurusan aktif.',
     initRotate: 5,
-    offsetY: -20,
+    offsetY: -18,
     floatDuration: 5.6,
     floatDelay: -2.1,
   },
@@ -73,7 +73,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-05-himti-hall.jpg',
     caption: 'Forum sidang dan rapat kerja tahunan merumuskan arah gerak organisasi teknologi informasi.',
     initRotate: -4,
-    offsetY: 22,
+    offsetY: 20,
     floatDuration: 4.6,
     floatDelay: -1.2,
   },
@@ -88,7 +88,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-06-it-camp.jpg',
     caption: 'Pelatihan kepemimpinan, bonding, dan eksplorasi teknologi luar ruangan Kabinet Sinergi HMPS.',
     initRotate: 3.5,
-    offsetY: -18,
+    offsetY: -16,
     floatDuration: 5.0,
     floatDelay: -0.4,
   },
@@ -103,7 +103,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-07-outdoor-group.jpg',
     caption: 'Malam keakraban mahasiswa Informatika mempererat solidaritas, cerita, dan kolaborasi bersama.',
     initRotate: -5,
-    offsetY: 18,
+    offsetY: 16,
     floatDuration: 4.4,
     floatDelay: -1.8,
   },
@@ -118,7 +118,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-08-bkd-street.jpg',
     caption: 'Kunjungan kerja dan implementasi sistem informasi pada badan instansi pemerintahan daerah.',
     initRotate: 4,
-    offsetY: -22,
+    offsetY: -20,
     floatDuration: 5.3,
     floatDelay: -0.9,
   },
@@ -133,7 +133,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-09-auditorium-sinergi.jpg',
     caption: 'Momen khidmat pelantikan resmi jajaran pengurus HMPS Informatika Kabinet Sinergi 2025.',
     initRotate: -3.5,
-    offsetY: 16,
+    offsetY: 15,
     floatDuration: 4.7,
     floatDelay: -2.3,
   },
@@ -148,7 +148,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-10-ibad-rahman.jpg',
     caption: 'Program edukasi digital, motivasi beasiswa, dan pendampingan santri muda di bidang teknologi.',
     initRotate: 5.5,
-    offsetY: -18,
+    offsetY: -16,
     floatDuration: 5.1,
     floatDelay: -1.1,
   },
@@ -163,7 +163,7 @@ const momentsPhotos = [
     image: '/gallery/gallery-11-almamater-campus.jpg',
     caption: 'Bangga mengenakan almamater kehormatan bersama rekan seperjuangan teknik informatika.',
     initRotate: -4,
-    offsetY: 20,
+    offsetY: 18,
     floatDuration: 4.5,
     floatDelay: -0.6,
   },
@@ -178,13 +178,13 @@ const momentsPhotos = [
     image: '/gallery/gallery-12-ramadan-iftar.jpg',
     caption: 'Hangatnya silaturahmi buka puasa bersama Ramadan lintas angkatan dan dosen pembimbing.',
     initRotate: 4.5,
-    offsetY: -16,
+    offsetY: -15,
     floatDuration: 5.4,
     floatDelay: -1.7,
   },
 ]
 
-// Interactive Draggable Floating Photo Component
+// Interactive Draggable Floating Photo (FULL GAMBAR — TANPA CARD / TANPA HOVER EFFECT)
 function FloatingPhoto({ item, onPhotoClick, zIndexBase = 1 }) {
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
@@ -235,32 +235,26 @@ function FloatingPhoto({ item, onPhotoClick, zIndexBase = 1 }) {
 
   return (
     <div
-      className={`floating-photo-outer floating-photo-outer--${item.type} ${isDragging ? 'is-dragging' : ''}`}
+      className={`floating-photo-item ${isDragging ? 'is-dragging' : ''}`}
       style={{
         transform: `translate3d(${dragOffset.x}px, ${dragOffset.y + (item.offsetY || 0)}px, 0)`,
         zIndex: isDragging ? 150 : zIndex,
+        '--base-rot': `${item.initRotate}deg`,
+        '--float-dur': `${item.floatDuration}s`,
+        '--float-delay': `${item.floatDelay}s`,
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
     >
-      <div
-        className="floating-photo-inner"
-        style={{
-          transform: `rotate(${item.initRotate + (isDragging ? 2.5 : 0)}deg)`,
-          animationDuration: `${item.floatDuration}s`,
-          animationDelay: `${item.floatDelay}s`,
-        }}
-      >
-        <img
-          src={item.image}
-          alt={item.title}
-          className="floating-photo-img"
-          draggable={false}
-          loading="lazy"
-        />
-      </div>
+      <img
+        src={item.image}
+        alt={item.title}
+        className={`floating-photo-img floating-photo-img--${item.type}`}
+        draggable={false}
+        loading="lazy"
+      />
     </div>
   )
 }
@@ -281,7 +275,6 @@ export default function MomentsGallery() {
 
       if (totalScrollable <= 0) return
 
-      // Progress from 0 to 1
       const scrolled = -rect.top
       const progress = Math.min(Math.max(scrolled / totalScrollable, 0), 1)
 
@@ -319,24 +312,39 @@ export default function MomentsGallery() {
     <section className="moments-section" id="moments" ref={containerRef}>
       {/* Sticky Viewport Frame */}
       <div className="moments-sticky-frame">
-        {/* Subtle Topographic Lines in Background */}
+        {/* Subtle Topographic Lines in Background (Eka Wahyu Style Elevation Contours) */}
         <div className="moments-topo-bg">
           <svg viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none">
             <path
-              d="M-100,200 C300,100 600,350 1000,220 C1300,120 1500,280 1600,250"
+              d="M-100,120 C200,60 500,220 850,140 C1200,60 1400,200 1600,160"
               stroke="rgba(0, 102, 255, 0.08)"
               strokeWidth="1.5"
             />
             <path
-              d="M-100,450 C250,380 700,550 1100,420 C1350,350 1500,480 1600,440"
+              d="M-100,260 C250,180 600,380 980,270 C1300,160 1480,320 1600,280"
+              stroke="rgba(0, 150, 255, 0.07)"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M-100,420 C220,340 680,510 1080,390 C1340,310 1480,440 1600,410"
               stroke="rgba(0, 204, 255, 0.08)"
               strokeWidth="1.5"
             />
             <path
-              d="M-100,700 C400,600 750,780 1150,680 C1400,620 1500,720 1600,700"
-              stroke="rgba(0, 102, 255, 0.06)"
+              d="M-100,580 C320,490 740,680 1140,560 C1380,480 1500,600 1600,570"
+              stroke="rgba(0, 102, 255, 0.07)"
               strokeWidth="1.5"
             />
+            <path
+              d="M-100,740 C380,640 760,820 1180,710 C1420,640 1520,740 1600,720"
+              stroke="rgba(0, 150, 255, 0.06)"
+              strokeWidth="1.5"
+            />
+            {/* Topographic Elevation Rings */}
+            <ellipse cx="260" cy="520" rx="180" ry="110" stroke="rgba(0, 102, 255, 0.05)" strokeWidth="1.5" />
+            <ellipse cx="260" cy="520" rx="120" ry="70" stroke="rgba(0, 150, 255, 0.06)" strokeWidth="1.5" />
+            <ellipse cx="1180" cy="340" rx="220" ry="130" stroke="rgba(0, 204, 255, 0.05)" strokeWidth="1.5" />
+            <ellipse cx="1180" cy="340" rx="140" ry="80" stroke="rgba(0, 102, 255, 0.06)" strokeWidth="1.5" />
           </svg>
         </div>
 
@@ -377,7 +385,7 @@ export default function MomentsGallery() {
           </div>
         </div>
 
-        {/* Scattered Floating Photos Canvas Track (Single Wave - No Vertical Cutoff) */}
+        {/* Scattered Floating Photos Canvas Track (FULL GAMBAR — ZERO CARD / ZERO CARD HOVER) */}
         <div className="moments-track-viewport">
           <div
             className="moments-track"
@@ -392,20 +400,6 @@ export default function MomentsGallery() {
                 zIndexBase={idx + 1}
               />
             ))}
-
-            {/* Ending Milestone Frame */}
-            <div className="moments-outro-col">
-              <div className="moments-outro-card">
-                <span className="outro-emoji">✨</span>
-                <h3 className="outro-title">Perjalanan Terus Berlanjut</h3>
-                <p className="outro-desc">
-                  Setiap momen adalah bagian dari dedikasi dan pertumbuhan yang tak pernah usai.
-                </p>
-                <div className="outro-pill">
-                  <span>Scroll ke Bawah untuk Skills ➔</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

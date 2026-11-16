@@ -1,6 +1,7 @@
 /* ============================================================
    MOMENTS & DOCUMENTATION GALLERY — ORGANIC SCATTERED WAVE
-   Clean Floating Photos (Eka Wahyu Style) — 100% Uncropped
+   Clean Floating Photos (Eka Wahyu Style) — 100% Full Images
+   ZERO Card Borders, ZERO Card Hover, ZERO Cropping
    ============================================================ */
 
 .moments-section {
@@ -19,7 +20,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 96px 0 24px; /* Generous top padding so header never touches floating navbar */
+  padding: 96px 0 24px;
   box-sizing: border-box;
 }
 
@@ -207,7 +208,7 @@
   letter-spacing: 0.06em;
 }
 
-/* Horizontal Moving Track Viewport (Full Height Breathing Room) */
+/* Horizontal Moving Track Viewport */
 .moments-track-viewport {
   position: relative;
   z-index: 2;
@@ -221,16 +222,16 @@
 
 .moments-track {
   display: flex;
-  gap: 34px;
+  gap: 28px;
   padding-left: clamp(28px, 6vw, 100px);
-  padding-right: 140px;
+  padding-right: 180px;
   will-change: transform;
   transition: transform 50ms linear;
   align-items: center;
 }
 
-/* ─── DRAGGABLE & FLOATING NATURAL PHOTO CARDS ─── */
-.floating-photo-outer {
+/* ─── FULL GAMBAR MURNI (NO CARD CONTAINER, ZERO CARD HOVER) ─── */
+.floating-photo-item {
   position: relative;
   flex: 0 0 auto;
   touch-action: pan-y;
@@ -239,130 +240,80 @@
   -webkit-user-select: none;
   will-change: transform;
   display: inline-flex;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
 }
 
-.floating-photo-outer.is-dragging {
+.floating-photo-item.is-dragging {
   cursor: grabbing !important;
 }
 
-/* Inner Frame: Crisp White Border with Natural Photo Aspect */
-.floating-photo-inner {
-  display: inline-flex;
-  background: #ffffff;
-  padding: 7px;
-  border-radius: 18px;
-  box-shadow:
-    0 16px 36px rgba(0, 24, 70, 0.16),
-    0 2px 8px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  position: relative;
-  animation: photoDrift 4.5s ease-in-out infinite alternate;
-  transition: box-shadow 240ms ease, transform 240ms ease;
-}
+/* ZERO CARD HOVER: absolutely NO :hover rules on .floating-photo-item or .floating-photo-img */
 
-.floating-photo-outer.is-dragging .floating-photo-inner {
-  box-shadow:
-    0 30px 75px rgba(0, 30, 90, 0.35),
-    0 0 35px rgba(0, 204, 255, 0.5);
-  transform: scale(1.06);
-}
-
-/* Zero-Gravity Idle Floating Bobbing */
-@keyframes photoDrift {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-9px) rotate(0.8deg);
-  }
-  100% {
-    transform: translateY(6px) rotate(-0.8deg);
-  }
-}
-
-/* The Photo Image: 100% Preserved Natural Aspect Ratio, ZERO CROPPING! */
+/* The Photo Image: Pure Full Image with Natural Rounded Corners (Not too large, perfectly fitting) */
 .floating-photo-img {
-  height: 300px;
+  height: 235px;
   width: auto;
-  max-width: 520px;
-  object-fit: contain;
-  border-radius: 12px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.16),
+    0 2px 6px rgba(0, 0, 0, 0.08);
   display: block;
   pointer-events: none;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  transform: rotate(var(--base-rot, 0deg));
+  animation: photoBobbing var(--float-dur, 4.5s) ease-in-out var(--float-delay, 0s) infinite alternate;
+  will-change: transform;
+}
+
+.floating-photo-item.is-dragging .floating-photo-img {
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 
 /* Portrait photo slightly taller */
-.floating-photo-outer--portrait .floating-photo-img {
-  height: 315px;
-  max-width: 250px;
+.floating-photo-img--portrait {
+  height: 255px;
+  width: auto;
+  max-width: 220px;
 }
 
 /* Landscape photo slightly wider */
-.floating-photo-outer--landscape .floating-photo-img {
-  height: 285px;
-  max-width: 520px;
+.floating-photo-img--landscape {
+  height: 225px;
+  width: auto;
+  max-width: 440px;
 }
 
 @media (max-width: 768px) {
   .floating-photo-img {
-    height: 220px !important;
-    max-width: 320px !important;
+    height: 180px !important;
+  }
+  .floating-photo-img--portrait {
+    height: 195px !important;
+    max-width: 160px !important;
+  }
+  .floating-photo-img--landscape {
+    height: 175px !important;
+    max-width: 300px !important;
   }
 }
 
-/* Outro Milestone Column */
-.moments-outro-col {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.moments-outro-card {
-  width: 280px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(220, 240, 255, 0.95) 100%);
-  border-radius: 20px;
-  border: 2px dashed rgba(0, 204, 255, 0.5);
-  box-shadow: 0 16px 40px rgba(0, 68, 238, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 24px 20px;
-  gap: 12px;
-  user-select: none;
-}
-
-.outro-emoji {
-  font-size: 2rem;
-  line-height: 1;
-}
-
-.outro-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #0a0d1a;
-  margin: 0;
-}
-
-.outro-desc {
-  font-size: 0.8rem;
-  color: #475569;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.outro-pill {
-  background: linear-gradient(135deg, #0044ee, #00ccff);
-  color: #ffffff;
-  font-family: var(--font-tech, monospace);
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 7px 16px;
-  border-radius: 9999px;
-  box-shadow: 0 4px 18px rgba(0, 68, 238, 0.25);
-  margin-top: 4px;
+/* Zero-Gravity Idle Floating Bobbing (Preserves Base Rotation) */
+@keyframes photoBobbing {
+  0% {
+    transform: translateY(0px) rotate(var(--base-rot, 0deg));
+  }
+  50% {
+    transform: translateY(-8px) rotate(calc(var(--base-rot, 0deg) + 0.8deg));
+  }
+  100% {
+    transform: translateY(7px) rotate(calc(var(--base-rot, 0deg) - 0.8deg));
+  }
 }
 
 /* ============================================================
