@@ -200,25 +200,36 @@ const awardsData = [
 ]
 
 export default function ArchiveVault() {
+  const [activeFolder, setActiveFolder] = useState(null)
+  const [viewMode, setViewMode] = useState('reel') // 'reel' | 'grid'
+
   // Modals
   const [activeProject, setActiveProject] = useState(null)
   const [activeCert, setActiveCert] = useState(null)
   const [activeAward, setActiveAward] = useState(null)
 
-  // Carousel refs
-  const projectsTrackRef = useRef(null)
-  const certsTrackRef = useRef(null)
-  const awardsTrackRef = useRef(null)
+  // Track ref for carousel
+  const carouselTrackRef = useRef(null)
 
   useEffect(() => {
     const handleWarp = (e) => {
       const { id } = e.detail || {}
-      if (id === 'projects' || id === 'certificates' || id === 'awards' || id === 'archive') {
-        const targetId = id === 'projects' ? 'projects-section' : id === 'certificates' ? 'certificates-section' : id === 'awards' ? 'awards-section' : 'archive'
-        const el = document.getElementById(targetId)
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' })
-        }
+      if (id === 'projects') {
+        setActiveFolder('projects')
+        const el = document.getElementById('archive')
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      } else if (id === 'certificates') {
+        setActiveFolder('certificates')
+        const el = document.getElementById('archive')
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      } else if (id === 'awards') {
+        setActiveFolder('awards')
+        const el = document.getElementById('archive')
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      } else if (id === 'archive') {
+        setActiveFolder(null)
+        const el = document.getElementById('archive')
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
       }
     }
     window.addEventListener('warp-to-section', handleWarp)
@@ -237,11 +248,11 @@ export default function ArchiveVault() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [activeProject, activeCert, activeAward])
 
-  const scrollCarousel = (trackRef, direction) => {
-    if (!trackRef.current) return
-    const cardWidth = trackRef.current.clientWidth > 768 ? 400 : 310
+  const scrollCarousel = (direction) => {
+    if (!carouselTrackRef.current) return
+    const cardWidth = carouselTrackRef.current.clientWidth > 768 ? 400 : 310
     const offset = direction === 'left' ? -cardWidth : cardWidth
-    trackRef.current.scrollBy({ left: offset, behavior: 'smooth' })
+    carouselTrackRef.current.scrollBy({ left: offset, behavior: 'smooth' })
   }
 
   const handleCertNav = (dir) => {
@@ -283,287 +294,528 @@ export default function ArchiveVault() {
         <div className="section-header vault-header">
           <div className="vault-header-badge">
             <span className="vault-header-dot" />
-            <span className="vault-header-code">UNIFIED ARCHIVE // WORKS &amp; CREDENTIALS</span>
+            <span className="vault-header-code">DIGITAL EDEN 3000 // WORKS &amp; CREDENTIALS</span>
           </div>
           <h2 className="section-title vault-title">
             PORTFOLIO &amp; <span className="vault-title-accent">ARCHIVE</span>
           </h2>
           <p className="section-subtitle vault-subtitle">
-            Koleksi proyek terpilih, sertifikasi resmi, dan piagam penghargaan dalam carousel interaktif.
+            {activeFolder ? (
+              <span>Sedang membuka folder <strong>{activeFolder.toUpperCase()}</strong>. Klik tombol kembali untuk melihat semua folder.</span>
+            ) : (
+              <span>Koleksi proyek web, sertifikasi resmi, dan penghargaan terkurasi dalam 3 folder interaktif. Sentuh atau klik folder untuk masuk ke dalamnya.</span>
+            )}
           </p>
 
           {/* Quick Category Jump Pills */}
           <div className="vault-nav-pills">
-            <a href="#projects-section" className="vault-nav-pill">
+            <button
+              className={`vault-nav-pill ${activeFolder === 'projects' ? 'is-active' : ''}`}
+              onClick={() => setActiveFolder('projects')}
+            >
               <span className="pill-icon">💻</span>
               <span className="pill-text">Projects</span>
               <span className="pill-count">7</span>
-            </a>
-            <a href="#certificates-section" className="vault-nav-pill">
+            </button>
+            <button
+              className={`vault-nav-pill ${activeFolder === 'certificates' ? 'is-active' : ''}`}
+              onClick={() => setActiveFolder('certificates')}
+            >
               <span className="pill-icon">📜</span>
               <span className="pill-text">Certificates</span>
               <span className="pill-count">7</span>
-            </a>
-            <a href="#awards-section" className="vault-nav-pill">
+            </button>
+            <button
+              className={`vault-nav-pill ${activeFolder === 'awards' ? 'is-active' : ''}`}
+              onClick={() => setActiveFolder('awards')}
+            >
               <span className="pill-icon">🏆</span>
               <span className="pill-text">Awards</span>
               <span className="pill-count">3</span>
-            </a>
+            </button>
           </div>
         </div>
 
-        {/* ─── 01. PROJECTS CAROUSEL (7 ITEMS) ─── */}
-        <div className="vault-carousel-block" id="projects-section">
-          <div className="vault-carousel-header">
-            <div className="vault-carousel-header__left">
-              <div className="carousel-tag-row">
-                <span className="carousel-tag carousel-tag--cyan">SYS.PROJECTS // 01</span>
-                <span className="carousel-count-bubble">7 PROYEK</span>
-              </div>
-              <h3 className="vault-carousel-title">Featured Projects</h3>
-            </div>
-            <div className="vault-carousel-header__right">
-              <span className="carousel-drag-hint">⇄ Drag / Geser</span>
-              <div className="carousel-nav-arrows">
-                <button
-                  className="carousel-arrow carousel-arrow--prev"
-                  onClick={() => scrollCarousel(projectsTrackRef, 'left')}
-                  aria-label="Geser proyek ke kiri"
-                >
-                  ‹
-                </button>
-                <button
-                  className="carousel-arrow carousel-arrow--next"
-                  onClick={() => scrollCarousel(projectsTrackRef, 'right')}
-                  aria-label="Geser proyek ke kanan"
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="vault-carousel-track" ref={projectsTrackRef}>
-            {projectsData.map((project) => (
-              <div
-                key={project.id}
-                className={`carousel-card carousel-card--project carousel-card--stage-${project.id}`}
-                style={{
-                  '--proj-accent': project.accent,
-                  '--proj-bg': project.color,
-                }}
-                onClick={() => setActiveProject(project)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && setActiveProject(project)}
-                title={`Buka detail ${project.title}`}
-              >
-                <div className="carousel-card__thumb-wrap">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="carousel-card__img"
-                    loading="lazy"
+{/* ─── TAMPILAN 1: HANYA MENAMPILKAN 3 FOLDER (SEBELUM DIKLIK) ─── */}
+        {!activeFolder && (
+          <div className="vault-folders__deck" aria-label="Pilih Folder Arsip">
+            {/* 📁 FOLDER 1: PROJECTS (CYBER ICE CYAN Y2K) */}
+            <div
+              className="vault-folder-card vault-folder-card--projects"
+              onClick={() => setActiveFolder('projects')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('projects')}
+              title="Klik untuk masuk ke folder Projects (7 File)"
+            >
+              <div className="folder-back-piece">
+                <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
+                  <path
+                    d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
+                    fill="url(#folderBackProjects)"
+                    stroke="rgba(14, 165, 233, 0.55)"
+                    strokeWidth="1.5"
                   />
-                  {/* Distinct Project Stage Aura */}
-                  <div className="carousel-card__stage-aura" aria-hidden="true" />
-                  <div className="carousel-card__meta-bar">
-                    <span className="carousel-meta-cat">
-                      <span className="carousel-meta-emoji">{project.emoji}</span>
-                      {project.category}
-                    </span>
-                    <span className="carousel-meta-year">{project.year}</span>
-                  </div>
-                  {project.isHosted && (
-                    <span className="carousel-live-pill">● LIVE</span>
-                  )}
+                  <defs>
+                    <linearGradient id="folderBackProjects" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#bae6fd" />
+                      <stop offset="100%" stopColor="#7dd3fc" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <div className="folder-peek-stack">
+                <div className="peek-thumb peek-thumb--1">
+                  <img src="/projects/englai.png" alt="EnglAI" />
                 </div>
-
-                <div className="carousel-card__content">
-                  <h4 className="carousel-card__title">{project.title}</h4>
-                  <p className="carousel-card__subtitle">{project.subtitle}</p>
-
-                  <div className="carousel-card__tech">
-                    {project.tech.slice(0, 3).map((t) => (
-                      <span key={t} className="tech-badge-mini">{t}</span>
-                    ))}
-                    {project.tech.length > 3 && (
-                      <span className="tech-badge-mini tech-badge-mini--more">+{project.tech.length - 3}</span>
-                    )}
-                  </div>
-
-                  <div className="carousel-card__footer">
-                    <span className="card-action-text">{project.actionText || 'Preview Project'}</span>
-                    <span className="card-action-arrow">↗</span>
-                  </div>
+                <div className="peek-thumb peek-thumb--2">
+                  <img src="/projects/smlti-tangsel.png" alt="SMLTI" />
+                </div>
+                <div className="peek-thumb peek-thumb--3">
+                  <img src="/projects/freshguard.png" alt="Freshguard" />
+                </div>
+                <div className="peek-thumb peek-thumb--4">
+                  <img src="/projects/ramenatsu.png" alt="Ramenatsu" />
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* ─── 02. CERTIFICATES CAROUSEL (7 ITEMS - HOLOGRAPHIC 3D FLIP) ─── */}
-        <div className="vault-carousel-block" id="certificates-section">
-          <div className="vault-carousel-header">
-            <div className="vault-carousel-header__left">
-              <div className="carousel-tag-row">
-                <span className="carousel-tag carousel-tag--purple">SYS.CERTS // 02</span>
-                <span className="carousel-count-bubble">7 SERTIFIKAT</span>
-              </div>
-              <h3 className="vault-carousel-title">Licenses &amp; Certifications</h3>
-            </div>
-            <div className="vault-carousel-header__right">
-              <span className="carousel-drag-hint">⇄ Drag / Flip Card</span>
-              <div className="carousel-nav-arrows">
-                <button
-                  className="carousel-arrow carousel-arrow--prev"
-                  onClick={() => scrollCarousel(certsTrackRef, 'left')}
-                  aria-label="Geser sertifikat ke kiri"
-                >
-                  ‹
-                </button>
-                <button
-                  className="carousel-arrow carousel-arrow--next"
-                  onClick={() => scrollCarousel(certsTrackRef, 'right')}
-                  aria-label="Geser sertifikat ke kanan"
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="vault-carousel-track" ref={certsTrackRef}>
-            {certificatesData.map((cert) => (
-              <div
-                key={cert.id}
-                className="carousel-card carousel-card--cert cert-flip-container"
-                onClick={() => setActiveCert(cert)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && setActiveCert(cert)}
-                title={`Preview ${cert.title}`}
-              >
-                <div className="cert-flip-inner">
-                  {/* Front Face: Holographic Card & Image Preview */}
-                  <div className="cert-flip-front">
-                    <div className="carousel-card__cert-frame">
-                      <img
-                        src={cert.image}
-                        alt={cert.title}
-                        className="carousel-card__cert-img"
-                        loading="lazy"
-                      />
-                      {/* Holographic Iridescent Foil Sheen */}
-                      <div className="cert-holo-foil" aria-hidden="true" />
-                      <div className="carousel-card__zoom-overlay">
-                        <span className="zoom-pill">🔍 Lossless View</span>
-                      </div>
-                    </div>
-                    <div className="carousel-card__cert-info">
-                      <div className="cert-front-status">
-                        <span className="cert-holo-badge">✦ HOLOGRAPHIC</span>
-                        <span className="carousel-card__cert-yr">YR // {cert.year}</span>
-                      </div>
-                      <h4 className="carousel-card__cert-title" title={cert.title}>{cert.title}</h4>
-                    </div>
-                  </div>
-
-                  {/* Back Face: Holographic Security Credentials Pass */}
-                  <div className="cert-flip-back">
-                    <div className="cert-back-hologram" aria-hidden="true" />
-                    <div className="cert-back-seal">★ OFFICIAL CREDENTIAL ★</div>
-                    <h5 className="cert-back-title">{cert.title}</h5>
-                    <div className="cert-back-meta">
-                      <div className="cert-back-meta-row">
-                        <span className="cert-back-lbl">STATUS:</span>
-                        <span className="cert-back-val">VERIFIED AUTHENTIC</span>
-                      </div>
-                      <div className="cert-back-meta-row">
-                        <span className="cert-back-lbl">YEAR:</span>
-                        <span className="cert-back-val">{cert.year}</span>
-                      </div>
-                      <div className="cert-back-meta-row">
-                        <span className="cert-back-lbl">REGISTRY:</span>
-                        <span className="cert-back-val">DIGITAL EDEN 3000</span>
-                      </div>
-                    </div>
-                    <div className="cert-back-footer">
-                      <span className="cert-back-click-hint">Buka Lightbox Penuh ↗</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ─── 03. AWARDS & HONORS CAROUSEL (3 ITEMS) ─── */}
-        <div className="vault-carousel-block" id="awards-section">
-          <div className="vault-carousel-header">
-            <div className="vault-carousel-header__left">
-              <div className="carousel-tag-row">
-                <span className="carousel-tag carousel-tag--amber">SYS.AWARDS // 03</span>
-                <span className="carousel-count-bubble">3 PENGHARGAAN</span>
-              </div>
-              <h3 className="vault-carousel-title">Honors &amp; Awards</h3>
-            </div>
-            <div className="vault-carousel-header__right">
-              <span className="carousel-drag-hint">⇄ Drag / Geser</span>
-              <div className="carousel-nav-arrows">
-                <button
-                  className="carousel-arrow carousel-arrow--prev"
-                  onClick={() => scrollCarousel(awardsTrackRef, 'left')}
-                  aria-label="Geser penghargaan ke kiri"
-                >
-                  ‹
-                </button>
-                <button
-                  className="carousel-arrow carousel-arrow--next"
-                  onClick={() => scrollCarousel(awardsTrackRef, 'right')}
-                  aria-label="Geser penghargaan ke kanan"
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="vault-carousel-track" ref={awardsTrackRef}>
-            {awardsData.map((award) => (
-              <div
-                key={award.id}
-                className="carousel-card carousel-card--award"
-                onClick={() => setActiveAward(award)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && setActiveAward(award)}
-                title={`Preview ${award.title}`}
-              >
-                <div className="carousel-card__cert-frame carousel-card__cert-frame--award">
-                  <img
-                    src={award.image}
-                    alt={award.title}
-                    className="carousel-card__cert-img"
-                    loading="lazy"
+              <div className="folder-front-piece">
+                <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
+                  <path
+                    d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
+                    fill="url(#folderFrontProjects)"
+                    stroke="rgba(14, 165, 233, 0.6)"
+                    strokeWidth="1.5"
                   />
-                  <span className="carousel-award-badge-floating">{award.badge}</span>
-                  <div className="carousel-card__zoom-overlay">
-                    <span className="zoom-pill">🏆 Piagam Penghargaan</span>
+                  <defs>
+                    <linearGradient id="folderFrontProjects" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(240, 249, 255, 0.95)" />
+                      <stop offset="100%" stopColor="rgba(186, 230, 253, 0.92)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+                <div className="folder-front-content">
+                  <div className="folder-info-meta">
+                    <span className="folder-count-num folder-count-num--projects">7</span>
+                    <span className="folder-count-label">Projects</span>
+                  </div>
+
+                  <div className="folder-dots-pill folder-dots-pill--projects">
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
                   </div>
                 </div>
-                <div className="carousel-card__cert-info">
-                  <h4 className="carousel-card__cert-title" title={award.title}>{award.title}</h4>
-                  <span className="carousel-card__cert-yr">YR // {award.year}</span>
+              </div>
+
+              <div className="folder-open-hover-hint">
+                <span>Masuk ke Folder ↗</span>
+              </div>
+            </div>
+
+            {/* 📁 FOLDER 2: CERTIFICATES (CYBER LAVENDER VIOLET Y2K) */}
+            <div
+              className="vault-folder-card vault-folder-card--certs"
+              onClick={() => setActiveFolder('certificates')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('certificates')}
+              title="Klik untuk masuk ke folder Certificates (7 Sertifikat)"
+            >
+              <div className="folder-back-piece">
+                <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
+                  <path
+                    d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
+                    fill="url(#folderBackCerts)"
+                    stroke="rgba(168, 85, 247, 0.55)"
+                    strokeWidth="1.5"
+                  />
+                  <defs>
+                    <linearGradient id="folderBackCerts" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#e9d5ff" />
+                      <stop offset="100%" stopColor="#c084fc" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <div className="folder-peek-stack">
+                <div className="peek-thumb peek-thumb--1">
+                  <img src="/certificates/cert-linux.png" alt="Linux IDN" />
+                </div>
+                <div className="peek-thumb peek-thumb--2">
+                  <img src="/certificates/cert-coursera-excel.png" alt="Coursera" />
+                </div>
+                <div className="peek-thumb peek-thumb--3">
+                  <img src="/certificates/cert-magang-kominfo.png" alt="Diskominfo" />
+                </div>
+                <div className="peek-thumb peek-thumb--4">
+                  <img src="/certificates/cert-dicoding-aws-genai.png" alt="AWS GenAI" />
                 </div>
               </div>
-            ))}
+
+              <div className="folder-front-piece">
+                <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
+                  <path
+                    d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
+                    fill="url(#folderFrontCerts)"
+                    stroke="rgba(168, 85, 247, 0.6)"
+                    strokeWidth="1.5"
+                  />
+                  <defs>
+                    <linearGradient id="folderFrontCerts" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(250, 245, 255, 0.95)" />
+                      <stop offset="100%" stopColor="rgba(233, 213, 255, 0.92)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+                <div className="folder-front-content">
+                  <div className="folder-info-meta">
+                    <span className="folder-count-num folder-count-num--certs">7</span>
+                    <span className="folder-count-label">Certificates</span>
+                  </div>
+
+                  <div className="folder-dots-pill folder-dots-pill--certs">
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="folder-open-hover-hint">
+                <span>Masuk ke Folder ↗</span>
+              </div>
+            </div>
+
+            {/* 📁 FOLDER 3: AWARDS (CYBER SUNBEAM AMBER Y2K) */}
+            <div
+              className="vault-folder-card vault-folder-card--awards"
+              onClick={() => setActiveFolder('awards')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setActiveFolder('awards')}
+              title="Klik untuk masuk ke folder Awards (3 Awards)"
+            >
+              <div className="folder-back-piece">
+                <svg className="folder-back-svg" viewBox="0 0 360 260" preserveAspectRatio="none">
+                  <path
+                    d="M 0,38 Q 0,18 18,18 L 140,18 C 160,18 175,0 195,0 L 340,0 Q 360,0 360,20 L 360,240 Q 360,260 340,260 L 20,260 Q 0,260 0,240 Z"
+                    fill="url(#folderBackAwards)"
+                    stroke="rgba(245, 158, 11, 0.55)"
+                    strokeWidth="1.5"
+                  />
+                  <defs>
+                    <linearGradient id="folderBackAwards" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#fef08a" />
+                      <stop offset="100%" stopColor="#f59e0b" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <div className="folder-peek-stack">
+                <div className="peek-thumb peek-thumb--1">
+                  <img src="/certificates/cert-hmps-cloud.png" alt="HMPS Leadership" />
+                </div>
+                <div className="peek-thumb peek-thumb--2">
+                  <img src="/certificates/cert-dicoding-aws-genai.png" alt="AWS Excellence" />
+                </div>
+                <div className="peek-thumb peek-thumb--3">
+                  <img src="/certificates/cert-magang-kominfo.png" alt="Diskominfo Sangat Baik" />
+                </div>
+              </div>
+
+              <div className="folder-front-piece">
+                <svg className="folder-front-svg" viewBox="0 0 360 190" preserveAspectRatio="none">
+                  <path
+                    d="M 0,20 Q 0,0 20,0 L 125,0 C 145,0 155,24 178,24 L 340,24 Q 360,24 360,44 L 360,170 Q 360,190 340,190 L 20,190 Q 0,190 0,170 Z"
+                    fill="url(#folderFrontAwards)"
+                    stroke="rgba(245, 158, 11, 0.6)"
+                    strokeWidth="1.5"
+                  />
+                  <defs>
+                    <linearGradient id="folderFrontAwards" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(254, 252, 232, 0.95)" />
+                      <stop offset="100%" stopColor="rgba(254, 240, 138, 0.92)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+                <div className="folder-front-content">
+                  <div className="folder-info-meta">
+                    <span className="folder-count-num folder-count-num--awards">3</span>
+                    <span className="folder-count-label">Awards</span>
+                  </div>
+
+                  <div className="folder-dots-pill folder-dots-pill--awards">
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                    <span className="dot-circle" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="folder-open-hover-hint">
+                <span>Masuk ke Folder ↗</span>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* ─── TAMPILAN 2: MASUK KE DALAM FOLDER (CAROUSEL & GRID) ─── */}
+        {activeFolder && (
+          <div className="vault-inside-view">
+            {/* Top Bar with Back Button, Breadcrumb & View Toggle */}
+            <div className="vault-inside__bar">
+              <div className="vault-inside__bar-left">
+                <button
+                  className="vault-inside__back-btn"
+                  onClick={() => setActiveFolder(null)}
+                  title="Kembali ke semua folder"
+                >
+                  <span>‹ KEMBALI KE SEMUA FOLDER</span>
+                </button>
+
+                <div className="vault-inside__breadcrumb">
+                  <span className="bc-root">SYS.ARCHIVE //</span>
+                  <span className="bc-folder">
+                    {activeFolder === 'projects' && '📁 PROJECTS [7 FILES]'}
+                    {activeFolder === 'certificates' && '📜 CERTIFICATES [7 CERTS]'}
+                    {activeFolder === 'awards' && '🏆 AWARDS [3 AWARDS]'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="vault-inside__bar-right">
+                {/* View Mode Toggle: Carousel vs Grid */}
+                <div className="vault-view-toggle">
+                  <button
+                    className={`vault-view-btn ${viewMode === 'reel' ? 'is-active' : ''}`}
+                    onClick={() => setViewMode('reel')}
+                    title="Tampilan Carousel Horizontal"
+                  >
+                    <span>⇄ Carousel</span>
+                  </button>
+                  <button
+                    className={`vault-view-btn ${viewMode === 'grid' ? 'is-active' : ''}`}
+                    onClick={() => setViewMode('grid')}
+                    title="Tampilan Grid Katalog"
+                  >
+                    <span>⊞ Grid</span>
+                  </button>
+                </div>
+
+                {/* Quick Folder Switch Pills */}
+                <div className="vault-inside__switchers">
+                  <button
+                    className={`drawer-switch-pill ${activeFolder === 'projects' ? 'is-active' : ''}`}
+                    onClick={() => setActiveFolder('projects')}
+                  >
+                    Projects (7)
+                  </button>
+                  <button
+                    className={`drawer-switch-pill ${activeFolder === 'certificates' ? 'is-active' : ''}`}
+                    onClick={() => setActiveFolder('certificates')}
+                  >
+                    Certs (7)
+                  </button>
+                  <button
+                    className={`drawer-switch-pill ${activeFolder === 'awards' ? 'is-active' : ''}`}
+                    onClick={() => setActiveFolder('awards')}
+                  >
+                    Awards (3)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Container (Reel or Grid) */}
+            <div className={`vault-content-container vault-content-container--${viewMode}`}>
+              {viewMode === 'reel' && (
+                <>
+                  <button
+                    className="reel-arrow reel-arrow--prev"
+                    onClick={() => scrollCarousel('left')}
+                    aria-label="Geser ke kiri"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    className="reel-arrow reel-arrow--next"
+                    onClick={() => scrollCarousel('right')}
+                    aria-label="Geser ke kanan"
+                  >
+                    ›
+                  </button>
+                </>
+              )}
+
+              <div
+                className={`vault-files-track ${viewMode === 'reel' ? 'vault-files-track--reel' : 'vault-files-track--grid'}`}
+                ref={carouselTrackRef}
+              >
+                {/* 1. PROJECTS CARDS */}
+                {activeFolder === 'projects' &&
+                  projectsData.map((project) => (
+                    <div
+                      key={project.id}
+                      className={`carousel-card carousel-card--project carousel-card--stage-${project.id}`}
+                      style={{
+                        '--proj-accent': project.accent,
+                        '--proj-bg': project.color,
+                      }}
+                      onClick={() => setActiveProject(project)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => e.key === 'Enter' && setActiveProject(project)}
+                      title={`Buka detail ${project.title}`}
+                    >
+                      <div className="carousel-card__thumb-wrap">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="carousel-card__img"
+                          loading="lazy"
+                        />
+                        <div className="carousel-card__stage-aura" aria-hidden="true" />
+                        <div className="carousel-card__meta-bar">
+                          <span className="carousel-meta-cat">
+                            <span className="carousel-meta-emoji">{project.emoji}</span>
+                            {project.category}
+                          </span>
+                          <span className="carousel-meta-year">{project.year}</span>
+                        </div>
+                        {project.isHosted && (
+                          <span className="carousel-live-pill">● LIVE</span>
+                        )}
+                      </div>
+
+                      <div className="carousel-card__content">
+                        <h4 className="carousel-card__title">{project.title}</h4>
+                        <p className="carousel-card__subtitle">{project.subtitle}</p>
+
+                        <div className="carousel-card__tech">
+                          {project.tech.slice(0, 3).map((t) => (
+                            <span key={t} className="tech-badge-mini">{t}</span>
+                          ))}
+                          {project.tech.length > 3 && (
+                            <span className="tech-badge-mini tech-badge-mini--more">+{project.tech.length - 3}</span>
+                          )}
+                        </div>
+
+                        <div className="carousel-card__footer">
+                          <span className="card-action-text">{project.actionText || 'Preview Project'}</span>
+                          <span className="card-action-arrow">↗</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                {/* 2. CERTIFICATES CARDS (HOLOGRAPHIC 3D FLIP) */}
+                {activeFolder === 'certificates' &&
+                  certificatesData.map((cert) => (
+                    <div
+                      key={cert.id}
+                      className="carousel-card carousel-card--cert cert-flip-container"
+                      onClick={() => setActiveCert(cert)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => e.key === 'Enter' && setActiveCert(cert)}
+                      title={`Preview ${cert.title}`}
+                    >
+                      <div className="cert-flip-inner">
+                        <div className="cert-flip-front">
+                          <div className="carousel-card__cert-frame">
+                            <img
+                              src={cert.image}
+                              alt={cert.title}
+                              className="carousel-card__cert-img"
+                              loading="lazy"
+                            />
+                            <div className="cert-holo-foil" aria-hidden="true" />
+                            <div className="carousel-card__zoom-overlay">
+                              <span className="zoom-pill">🔍 Lossless View</span>
+                            </div>
+                          </div>
+                          <div className="carousel-card__cert-info">
+                            <div className="cert-front-status">
+                              <span className="cert-holo-badge">✦ HOLOGRAPHIC</span>
+                              <span className="carousel-card__cert-yr">YR // {cert.year}</span>
+                            </div>
+                            <h4 className="carousel-card__cert-title" title={cert.title}>{cert.title}</h4>
+                          </div>
+                        </div>
+
+                        <div className="cert-flip-back">
+                          <div className="cert-back-hologram" aria-hidden="true" />
+                          <div className="cert-back-seal">★ OFFICIAL CREDENTIAL ★</div>
+                          <h5 className="cert-back-title">{cert.title}</h5>
+                          <div className="cert-back-meta">
+                            <div className="cert-back-meta-row">
+                              <span className="cert-back-lbl">STATUS:</span>
+                              <span className="cert-back-val">VERIFIED AUTHENTIC</span>
+                            </div>
+                            <div className="cert-back-meta-row">
+                              <span className="cert-back-lbl">YEAR:</span>
+                              <span className="cert-back-val">{cert.year}</span>
+                            </div>
+                            <div className="cert-back-meta-row">
+                              <span className="cert-back-lbl">REGISTRY:</span>
+                              <span className="cert-back-val">DIGITAL EDEN 3000</span>
+                            </div>
+                          </div>
+                          <div className="cert-back-footer">
+                            <span className="cert-back-click-hint">Buka Lightbox Penuh ↗</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                {/* 3. AWARDS CARDS */}
+                {activeFolder === 'awards' &&
+                  awardsData.map((award) => (
+                    <div
+                      key={award.id}
+                      className="carousel-card carousel-card--award"
+                      onClick={() => setActiveAward(award)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => e.key === 'Enter' && setActiveAward(award)}
+                      title={`Preview ${award.title}`}
+                    >
+                      <div className="carousel-card__cert-frame carousel-card__cert-frame--award">
+                        <img
+                          src={award.image}
+                          alt={award.title}
+                          className="carousel-card__cert-img"
+                          loading="lazy"
+                        />
+                        <span className="carousel-award-badge-floating">{award.badge}</span>
+                        <div className="carousel-card__zoom-overlay">
+                          <span className="zoom-pill">🏆 Piagam Penghargaan</span>
+                        </div>
+                      </div>
+                      <div className="carousel-card__cert-info">
+                        <h4 className="carousel-card__cert-title" title={award.title}>{award.title}</h4>
+                        <span className="carousel-card__cert-yr">YR // {award.year}</span>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            <div className="vault-inside__hint">
+              <span>✦ {viewMode === 'grid' ? 'Klik kartu file untuk membuka preview interaktif & link hasil' : 'Geser horizontal atau klik panah untuk melihat seluruh file di carousel'}</span>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* ─── MODAL 1: Y2K CYBERCORE PROJECT SHOWCASE MODAL ─── */}
-      {/* DESKTOP: PENJELASAN DI KIRI, GAMBAR BESAR DI KANAN | MOBILE: GAMBAR DI ATAS, PENJELASAN DI BAWAH KETIKA SCROLL */}
       {activeProject && (
         <div
           className="y2k-modal"
