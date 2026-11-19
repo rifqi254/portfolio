@@ -68,16 +68,10 @@ export default function ChromeSculpture({ className = '' }) {
     const sculptureGroup = new THREE.Group()
     scene.add(sculptureGroup)
 
-    // Central organic chrome knot (sculpture body)
-    const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.38, 128, 32, 2, 3)
+    // Central organic chrome knot (sculpture body - high resolution silky smooth)
+    const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.38, 256, 64, 2, 3)
     const centralMesh = new THREE.Mesh(knotGeo, chromeMaterial)
     sculptureGroup.add(centralMesh)
-
-    // Outer orbital chrome ring
-    const ringGeo = new THREE.TorusGeometry(2.1, 0.06, 16, 100)
-    const ringMesh = new THREE.Mesh(ringGeo, chromeMaterial)
-    ringMesh.rotation.x = Math.PI / 3
-    sculptureGroup.add(ringMesh)
 
     // Floating metallic satellites / spheres
     const sphereGeo = new THREE.SphereGeometry(0.24, 32, 32)
@@ -170,7 +164,6 @@ export default function ChromeSculpture({ className = '' }) {
         container.removeChild(renderer.domElement)
       }
       knotGeo.dispose()
-      ringGeo.dispose()
       sphereGeo.dispose()
       chromeMaterial.dispose()
       envTexture.dispose()
@@ -179,16 +172,7 @@ export default function ChromeSculpture({ className = '' }) {
   }, [])
 
   return (
-    <div className={`chrome-sculpture-container ${className}`} ref={mountRef}>
-      {/* Scaffolding Frame / Art Installation Mount (Inspired by Reference 01) */}
-      <div className="scaffolding-mount" aria-hidden="true">
-        <span className="scaffold-pole scaffold-pole--left" />
-        <span className="scaffold-pole scaffold-pole--right" />
-        <span className="scaffold-beam scaffold-beam--top" />
-        <span className="scaffold-beam scaffold-beam--bottom" />
-        <span className="scaffold-tag">INSTALLATION // 3D CHROME 2026</span>
-      </div>
-    </div>
+    <div className={`chrome-sculpture-container ${className}`} ref={mountRef} />
   )
 }
 

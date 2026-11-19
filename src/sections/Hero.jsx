@@ -70,13 +70,6 @@ export default function Hero() {
           </defs>
         </svg>
 
-        {/* Scaffolding Ground Anchor Shadows */}
-        <div className="hero__scaffolding">
-          <span className="pole pole--1" />
-          <span className="pole pole--2" />
-          <span className="pole pole--3" />
-        </div>
-
         {/* Scattered Wildflowers across meadow */}
         <div className="hero__wildflowers">
           <span className="flower flower--1" style={{ left: '5%', bottom: '26px' }}>🌸</span>
@@ -90,19 +83,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ─── Film Grain & Editorial Markings Overlay ─── */}
+      {/* ─── Film Grain Overlay ─── */}
       <div className="hero__grain" aria-hidden="true" />
-
-      {/* Red Graphic Markings & White Scribbles (Reference 02) */}
-      <div className="hero__scribble-wrap" aria-hidden="true">
-        <svg className="hero__scribble hero__scribble--1" viewBox="0 0 100 100" fill="none">
-          <path d="M10,50 Q30,10 60,40 T90,20" stroke="#ff2244" strokeWidth="2.5" strokeLinecap="round" opacity="0.75" />
-          <circle cx="90" cy="20" r="4" fill="#ff2244" />
-        </svg>
-        <svg className="hero__scribble hero__scribble--2" viewBox="0 0 120 60" fill="none">
-          <path d="M10,20 C40,50 80,0 110,35" stroke="#ffffff" strokeWidth="2" strokeDasharray="4 4" opacity="0.6" />
-        </svg>
-      </div>
 
       {/* Floating Metallic Y2K Stars */}
       <span className="hero__star hero__star--1" aria-hidden="true">✦</span>
