@@ -16,7 +16,7 @@ export default function ChromeSculpture({ className = '' }) {
     // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100)
-    camera.position.z = 5.2
+    camera.position.z = 6.0
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -69,20 +69,20 @@ export default function ChromeSculpture({ className = '' }) {
     const sculptureGroup = new THREE.Group()
     scene.add(sculptureGroup)
 
-    // Central organic chrome knot
-    const knotGeo = new THREE.TorusKnotGeometry(1.25, 0.4, 256, 64, 2, 3)
+    // Central organic chrome knot (Tuned dimensions so it never clips against canvas edges)
+    const knotGeo = new THREE.TorusKnotGeometry(1.1, 0.35, 256, 64, 2, 3)
     const centralMesh = new THREE.Mesh(knotGeo, chromeMaterial)
     sculptureGroup.add(centralMesh)
 
     // Floating metallic satellites / spheres
-    const sphereGeo = new THREE.SphereGeometry(0.24, 32, 32)
+    const sphereGeo = new THREE.SphereGeometry(0.2, 32, 32)
     const satellite1 = new THREE.Mesh(sphereGeo, chromeMaterial)
-    satellite1.position.set(1.9, 0.9, 0.6)
+    satellite1.position.set(1.65, 0.7, 0.5)
     sculptureGroup.add(satellite1)
 
     const satellite2 = new THREE.Mesh(sphereGeo, chromeMaterial)
-    satellite2.position.set(-1.8, -1.1, -0.4)
-    satellite2.scale.set(0.7, 0.7, 0.7)
+    satellite2.position.set(-1.5, -0.9, -0.4)
+    satellite2.scale.set(0.75, 0.75, 0.75)
     sculptureGroup.add(satellite2)
 
     // 5. Studio & Atmospheric Lighting
@@ -125,16 +125,18 @@ export default function ChromeSculpture({ className = '' }) {
       mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.05
 
       // Base idle rotation + interactive mouse reaction
-      sculptureGroup.rotation.y = elapsedTime * 0.35 + mouseRef.current.x * 0.8
-      sculptureGroup.rotation.x = Math.sin(elapsedTime * 0.25) * 0.2 + mouseRef.current.y * 0.6
-      sculptureGroup.position.y = Math.sin(elapsedTime * 1.2) * 0.12
+      sculptureGroup.rotation.y = elapsedTime * 0.35 + mouseRef.current.x * 0.7
+      sculptureGroup.rotation.x = Math.sin(elapsedTime * 0.25) * 0.18 + mouseRef.current.y * 0.5
+      sculptureGroup.position.y = Math.sin(elapsedTime * 1.2) * 0.1
 
-      // Satellites orbiting
-      satellite1.position.x = Math.cos(elapsedTime * 0.8) * 2.0
-      satellite1.position.z = Math.sin(elapsedTime * 0.8) * 1.4
+      // Satellites orbiting within safe frustum boundaries
+      satellite1.position.x = Math.cos(elapsedTime * 0.7) * 1.6
+      satellite1.position.z = Math.sin(elapsedTime * 0.7) * 0.95
+      satellite1.position.y = Math.sin(elapsedTime * 0.9) * 0.4
 
-      satellite2.position.x = -Math.cos(elapsedTime * 0.6) * 1.8
-      satellite2.position.y = Math.sin(elapsedTime * 0.6) * 1.5
+      satellite2.position.x = -Math.cos(elapsedTime * 0.55) * 1.5
+      satellite2.position.y = Math.sin(elapsedTime * 0.55) * 1.1
+      satellite2.position.z = -Math.sin(elapsedTime * 0.55) * 0.75
 
       renderer.render(scene, camera)
     }

@@ -71,93 +71,93 @@ export default function Hero({ onOpenResume }) {
             </linearGradient>
           </defs>
         </svg>
+      </div>
 
-        {/* ─── Giant Surreal Botanical Flora (Chrome Daisies) ─── */}
-        <div className="hero__surreal-flora">
-          {/* Flower 1: Metallic Chrome Mirror Daisy */}
-          <div className="surreal-flower surreal-flower--lotus" title="Surreal Chrome Daisy">
-            <svg viewBox="0 0 120 140" className="surreal-flower__svg">
-              <path d="M60,140 Q55,100 60,60" stroke="#059669" strokeWidth="4" fill="none" strokeLinecap="round" />
-              <path d="M40,90 Q60,75 55,60" stroke="#10b981" strokeWidth="2.5" fill="none" />
-              {/* Metallic Chrome Mirror Petals */}
-              <ellipse cx="60" cy="50" rx="14" ry="32" fill="url(#chromePetal1)" transform="rotate(-30 60 50)" />
-              <ellipse cx="60" cy="50" rx="14" ry="32" fill="url(#chromePetal1)" transform="rotate(30 60 50)" />
-              <ellipse cx="60" cy="46" rx="13" ry="28" fill="url(#chromePetal2)" transform="rotate(-15 60 46)" />
-              <ellipse cx="60" cy="46" rx="13" ry="28" fill="url(#chromePetal2)" transform="rotate(15 60 46)" />
-              <ellipse cx="60" cy="42" rx="11" ry="24" fill="url(#chromePetal1)" />
-              {/* Glowing Golden Amber Center */}
-              <circle cx="60" cy="44" r="7.5" fill="#f59e0b" filter="drop-shadow(0 0 8px #f59e0b)" />
-              <circle cx="60" cy="44" r="4.5" fill="#fbbf24" />
-              <defs>
-                <linearGradient id="chromePetal1" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="25%" stopColor="#e2e8f0" />
-                  <stop offset="50%" stopColor="#94a3b8" />
-                  <stop offset="75%" stopColor="#ffffff" />
-                  <stop offset="90%" stopColor="#bae6fd" />
-                  <stop offset="100%" stopColor="#64748b" />
-                </linearGradient>
-                <linearGradient id="chromePetal2" x1="1" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="35%" stopColor="#cbd5e1" />
-                  <stop offset="65%" stopColor="#64748b" />
-                  <stop offset="85%" stopColor="#ffffff" />
-                  <stop offset="100%" stopColor="#7dd3fc" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
+      {/* ─── Giant Surreal Botanical Flora (Chrome Daisies) ─── */}
+      <div className="hero__surreal-flora">
+        {/* Flower 1: Metallic Chrome Mirror Daisy */}
+        <div className="surreal-flower surreal-flower--lotus" title="Surreal Chrome Daisy">
+          <svg viewBox="0 0 120 140" className="surreal-flower__svg">
+            <path d="M60,140 Q55,100 60,60" stroke="#059669" strokeWidth="4" fill="none" strokeLinecap="round" />
+            <path d="M40,90 Q60,75 55,60" stroke="#10b981" strokeWidth="2.5" fill="none" />
+            {/* Metallic Chrome Mirror Petals */}
+            <ellipse cx="60" cy="50" rx="14" ry="32" fill="url(#chromePetal1)" transform="rotate(-30 60 50)" />
+            <ellipse cx="60" cy="50" rx="14" ry="32" fill="url(#chromePetal1)" transform="rotate(30 60 50)" />
+            <ellipse cx="60" cy="46" rx="13" ry="28" fill="url(#chromePetal2)" transform="rotate(-15 60 46)" />
+            <ellipse cx="60" cy="46" rx="13" ry="28" fill="url(#chromePetal2)" transform="rotate(15 60 46)" />
+            <ellipse cx="60" cy="42" rx="11" ry="24" fill="url(#chromePetal1)" />
+            {/* Glowing Golden Amber Center */}
+            <circle cx="60" cy="44" r="7.5" fill="#f59e0b" filter="drop-shadow(0 0 8px #f59e0b)" />
+            <circle cx="60" cy="44" r="4.5" fill="#fbbf24" />
+            <defs>
+              <linearGradient id="chromePetal1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="25%" stopColor="#e2e8f0" />
+                <stop offset="50%" stopColor="#94a3b8" />
+                <stop offset="75%" stopColor="#ffffff" />
+                <stop offset="90%" stopColor="#bae6fd" />
+                <stop offset="100%" stopColor="#64748b" />
+              </linearGradient>
+              <linearGradient id="chromePetal2" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="35%" stopColor="#cbd5e1" />
+                <stop offset="65%" stopColor="#64748b" />
+                <stop offset="85%" stopColor="#ffffff" />
+                <stop offset="100%" stopColor="#7dd3fc" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
 
-          {/* Flower 2: Iridescent Liquid Chrome Orchid */}
-          <div className="surreal-flower surreal-flower--orchid" title="Iridescent Liquid Chrome Orchid">
-            <svg viewBox="0 0 100 130" className="surreal-flower__svg">
-              <path d="M50,130 Q45,85 50,55" stroke="#047857" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-              <path d="M50,90 Q70,80 62,65" stroke="#10b981" strokeWidth="2" fill="none" />
-              <ellipse cx="50" cy="48" rx="18" ry="12" fill="url(#iridPetal1)" transform="rotate(-35 50 48)" />
-              <ellipse cx="50" cy="48" rx="18" ry="12" fill="url(#iridPetal1)" transform="rotate(35 50 48)" />
-              <ellipse cx="50" cy="40" rx="14" ry="22" fill="url(#iridPetal2)" />
-              {/* Golden Amber Glowing Stamen */}
-              <circle cx="50" cy="42" r="5.5" fill="#f59e0b" filter="drop-shadow(0 0 10px #f59e0b)" />
-              <circle cx="50" cy="42" r="3" fill="#fbbf24" />
-              <defs>
-                <linearGradient id="iridPetal1" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="25%" stopColor="#fed7aa" />
-                  <stop offset="50%" stopColor="#e2e8f0" />
-                  <stop offset="75%" stopColor="#93c5fd" />
-                  <stop offset="90%" stopColor="#38bdf8" />
-                  <stop offset="100%" stopColor="#ffffff" />
-                </linearGradient>
-                <linearGradient id="iridPetal2" x1="0" y1="1" x2="0" y2="0">
-                  <stop offset="0%" stopColor="#cbd5e1" />
-                  <stop offset="40%" stopColor="#fef08a" />
-                  <stop offset="70%" stopColor="#7dd3fc" />
-                  <stop offset="100%" stopColor="#ffffff" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
+        {/* Flower 2: Iridescent Liquid Chrome Orchid */}
+        <div className="surreal-flower surreal-flower--orchid" title="Iridescent Liquid Chrome Orchid">
+          <svg viewBox="0 0 100 130" className="surreal-flower__svg">
+            <path d="M50,130 Q45,85 50,55" stroke="#047857" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+            <path d="M50,90 Q70,80 62,65" stroke="#10b981" strokeWidth="2" fill="none" />
+            <ellipse cx="50" cy="48" rx="18" ry="12" fill="url(#iridPetal1)" transform="rotate(-35 50 48)" />
+            <ellipse cx="50" cy="48" rx="18" ry="12" fill="url(#iridPetal1)" transform="rotate(35 50 48)" />
+            <ellipse cx="50" cy="40" rx="14" ry="22" fill="url(#iridPetal2)" />
+            {/* Golden Amber Glowing Stamen */}
+            <circle cx="50" cy="42" r="5.5" fill="#f59e0b" filter="drop-shadow(0 0 10px #f59e0b)" />
+            <circle cx="50" cy="42" r="3" fill="#fbbf24" />
+            <defs>
+              <linearGradient id="iridPetal1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="25%" stopColor="#fed7aa" />
+                <stop offset="50%" stopColor="#e2e8f0" />
+                <stop offset="75%" stopColor="#93c5fd" />
+                <stop offset="90%" stopColor="#38bdf8" />
+                <stop offset="100%" stopColor="#ffffff" />
+              </linearGradient>
+              <linearGradient id="iridPetal2" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stopColor="#cbd5e1" />
+                <stop offset="40%" stopColor="#fef08a" />
+                <stop offset="70%" stopColor="#7dd3fc" />
+                <stop offset="100%" stopColor="#ffffff" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
 
-          {/* Flower 3: Liquid Chrome Cyan Flora Bloom */}
-          <div className="surreal-flower surreal-flower--bloom" title="Liquid Chrome Botanical Bloom">
-            <svg viewBox="0 0 90 120" className="surreal-flower__svg">
-              <path d="M45,120 Q50,80 45,50" stroke="#059669" strokeWidth="3" fill="none" strokeLinecap="round" />
-              <ellipse cx="45" cy="42" rx="10" ry="20" fill="url(#bloomChromeGrad)" transform="rotate(-40 45 42)" />
-              <ellipse cx="45" cy="42" rx="10" ry="20" fill="url(#bloomChromeGrad)" transform="rotate(40 45 42)" />
-              <ellipse cx="45" cy="42" rx="10" ry="20" fill="url(#bloomChromeGrad)" transform="rotate(0 45 42)" />
-              <circle cx="45" cy="40" r="4.5" fill="#10b981" filter="drop-shadow(0 0 8px #10b981)" />
-              <circle cx="45" cy="40" r="2" fill="#a3e635" />
-              <defs>
-                <linearGradient id="bloomChromeGrad" x1="0" y1="1" x2="0" y2="0">
-                  <stop offset="0%" stopColor="#64748b" />
-                  <stop offset="35%" stopColor="#cbd5e1" />
-                  <stop offset="65%" stopColor="#ffffff" />
-                  <stop offset="85%" stopColor="#67e8f9" />
-                  <stop offset="100%" stopColor="#ffffff" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
+        {/* Flower 3: Liquid Chrome Cyan Flora Bloom */}
+        <div className="surreal-flower surreal-flower--bloom" title="Liquid Chrome Botanical Bloom">
+          <svg viewBox="0 0 90 120" className="surreal-flower__svg">
+            <path d="M45,120 Q50,80 45,50" stroke="#059669" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <ellipse cx="45" cy="42" rx="10" ry="20" fill="url(#bloomChromeGrad)" transform="rotate(-40 45 42)" />
+            <ellipse cx="45" cy="42" rx="10" ry="20" fill="url(#bloomChromeGrad)" transform="rotate(40 45 42)" />
+            <ellipse cx="45" cy="42" rx="10" ry="20" fill="url(#bloomChromeGrad)" transform="rotate(0 45 42)" />
+            <circle cx="45" cy="40" r="4.5" fill="#10b981" filter="drop-shadow(0 0 8px #10b981)" />
+            <circle cx="45" cy="40" r="2" fill="#a3e635" />
+            <defs>
+              <linearGradient id="bloomChromeGrad" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stopColor="#64748b" />
+                <stop offset="35%" stopColor="#cbd5e1" />
+                <stop offset="65%" stopColor="#ffffff" />
+                <stop offset="85%" stopColor="#67e8f9" />
+                <stop offset="100%" stopColor="#ffffff" />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
       </div>
 
