@@ -7,7 +7,6 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import ScrollEffects from './components/ScrollEffects'
-import DevTerminal from './components/DevTerminal'
 import ResumeModal from './components/ResumeModal'
 
 import Hero from './sections/Hero'
@@ -49,9 +48,6 @@ export default function App() {
         <Timeline />
         <Contact />
       </main>
-
-      {/* Interactive Developer CLI Terminal */}
-      <DevTerminal />
 
       {/* Curriculum Vitae (CV) Interactive Document Modal */}
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
