@@ -128,10 +128,6 @@ export default function ChromeSculpture({ className = '' }) {
       sculptureGroup.rotation.x = Math.sin(elapsedTime * 0.25) * 0.2 + mouseRef.current.y * 0.6
       sculptureGroup.position.y = Math.sin(elapsedTime * 1.2) * 0.12
 
-      // Counter-rotating ring
-      ringMesh.rotation.z = -elapsedTime * 0.2
-      ringMesh.rotation.y = elapsedTime * 0.15
-
       // Satellites orbiting
       satellite1.position.x = Math.cos(elapsedTime * 0.8) * 2.0
       satellite1.position.z = Math.sin(elapsedTime * 0.8) * 1.4
