@@ -161,7 +161,6 @@ export default function ChromeSculpture({ className = '' }) {
         container.removeChild(renderer.domElement)
       }
       knotGeo.dispose()
-      ringGeo.dispose()
       sphereGeo.dispose()
       chromeMaterial.dispose()
       envTexture.dispose()
