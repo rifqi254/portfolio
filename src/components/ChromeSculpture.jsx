@@ -29,34 +29,35 @@ export default function ChromeSculpture({ className = '' }) {
     renderer.toneMappingExposure = 1.3
     container.appendChild(renderer.domElement)
 
-    // 2. Procedural High-End Cyber Chrome Reflection Texture (Specular Silver, Neon Cyan, Ultraviolet, Laser Magenta)
+    // 2. Bright Luminous Neo-Y2K Chrome Reflection Texture (Daylight Specular, Cyan, Magenta)
     const envCanvas = document.createElement('canvas')
     envCanvas.width = 512
     envCanvas.height = 256
     const ctx = envCanvas.getContext('2d')
 
-    // Liquid metal horizon gradient
+    // Radiant daytime reflection gradient
     const grad = ctx.createLinearGradient(0, 0, 0, 256)
-    grad.addColorStop(0, '#ffffff')     // Specular silver top light
-    grad.addColorStop(0.2, '#00d4ff')   // Electric cyan reflection
-    grad.addColorStop(0.48, '#ffffff')  // Sharp chrome horizon flash
-    grad.addColorStop(0.52, '#0a0d1f')  // Deep midnight horizon divide
-    grad.addColorStop(0.75, '#ff007f')  // Hot laser magenta ground reflection
-    grad.addColorStop(1, '#050814')     // Deep cyber abyss
+    grad.addColorStop(0, '#ffffff')     // Specular top light
+    grad.addColorStop(0.22, '#99ddff')  // Crisp icy cyan sky
+    grad.addColorStop(0.42, '#0099ff')  // Electric cobalt horizon
+    grad.addColorStop(0.5, '#ffffff')   // Sharp horizon flash
+    grad.addColorStop(0.53, '#08204d')  // Deep navy horizon split
+    grad.addColorStop(0.72, '#ff3399')  // Vibrant hot pink ground reflection
+    grad.addColorStop(1, '#e0f4ff')     // Bright icy bounce light
     ctx.fillStyle = grad
     ctx.fillRect(0, 0, 512, 256)
 
     // Specular flare highlights for metallic sheen
     const flare1 = ctx.createRadialGradient(160, 60, 2, 160, 60, 90)
-    flare1.addColorStop(0, 'rgba(0, 240, 255, 0.95)')
-    flare1.addColorStop(0.5, 'rgba(0, 150, 255, 0.4)')
+    flare1.addColorStop(0, '#ffffff')
+    flare1.addColorStop(0.4, 'rgba(0, 204, 255, 0.85)')
     flare1.addColorStop(1, 'transparent')
     ctx.fillStyle = flare1
     ctx.fillRect(0, 0, 512, 256)
 
     const flare2 = ctx.createRadialGradient(380, 190, 4, 380, 190, 110)
-    flare2.addColorStop(0, 'rgba(255, 0, 150, 0.9)')
-    flare2.addColorStop(0.6, 'rgba(180, 0, 255, 0.35)')
+    flare2.addColorStop(0, '#ffffff')
+    flare2.addColorStop(0.5, 'rgba(255, 0, 128, 0.75)')
     flare2.addColorStop(1, 'transparent')
     ctx.fillStyle = flare2
     ctx.fillRect(0, 0, 512, 256)
@@ -68,9 +69,9 @@ export default function ChromeSculpture({ className = '' }) {
     const chromeMaterial = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       metalness: 0.98,
-      roughness: 0.03,
+      roughness: 0.04,
       envMap: envTexture,
-      envMapIntensity: 3.2,
+      envMapIntensity: 2.8,
     })
 
     // 4. Group containing organic metallic sculptures
