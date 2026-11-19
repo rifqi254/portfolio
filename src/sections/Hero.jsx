@@ -30,84 +30,38 @@ export default function Hero() {
   }
 
   return (
-    <section className="hero" ref={heroRef} id="hero" aria-label="Hero section — Surrealist Y2K Digital Dreamscape">
-      {/* ─── Surreal Sky Background Layers (Reference 01) ─── */}
-      <div className="hero__sky" aria-hidden="true">
-        <div className="hero__sun" />
-        <div className="hero__flare hero__flare--1" />
-        <div className="hero__flare hero__flare--2" />
-        <div className="hero__flare hero__flare--3" />
-        <div className="hero__clouds">
-          <div className="hero__cloud hero__cloud--1" />
-          <div className="hero__cloud hero__cloud--2" />
-          <div className="hero__cloud hero__cloud--3" />
-        </div>
-      </div>
+    <section className="hero" ref={heroRef} id="hero" aria-label="Hero section — Neo-Y2K Liquid Chrome Digital Lab">
+      {/* ─── High-End Neo-Y2K Cybernetic Matrix Atmosphere ─── */}
+      <div className="hero__cyber-stage" aria-hidden="true">
+        {/* Deep Cyber Ambient Aura Orbs */}
+        <div className="hero__cyber-orb hero__cyber-orb--cyan" />
+        <div className="hero__cyber-orb hero__cyber-orb--magenta" />
+        <div className="hero__cyber-orb hero__cyber-orb--violet" />
 
-      {/* ─── Lush Green Grass Meadow & Rolling Hills (Reference 01 & 02) ─── */}
-      <div className="hero__meadow" aria-hidden="true">
-        {/* Layer 1: Distant rolling green hills */}
-        <svg className="hero__hills hero__hills--back" viewBox="0 0 1440 220" fill="none" preserveAspectRatio="none">
-          <path d="M0,80 C320,160 540,20 860,90 C1140,150 1320,50 1440,70 L1440,220 L0,220 Z" fill="url(#hillGrad1)" />
-          <defs>
-            <linearGradient id="hillGrad1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#2e7d32" />
-              <stop offset="50%" stopColor="#1b5e20" />
-              <stop offset="100%" stopColor="#0a2e0e" />
-            </linearGradient>
-          </defs>
-        </svg>
+        {/* Dynamic Holographic Horizon Laser Beam */}
+        <div className="hero__cyber-horizon" />
 
-        {/* Layer 2: Foreground meadow with wildflowers */}
-        <svg className="hero__hills hero__hills--front" viewBox="0 0 1440 160" fill="none" preserveAspectRatio="none">
-          <path d="M0,60 C280,10 600,100 960,30 C1200,-10 1360,50 1440,40 L1440,160 L0,160 Z" fill="url(#hillGrad2)" />
-          <defs>
-            <linearGradient id="hillGrad2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#43a047" />
-              <stop offset="40%" stopColor="#2e7d32" />
-              <stop offset="100%" stopColor="#1b5e20" />
-            </linearGradient>
-          </defs>
-        </svg>
+        {/* 3D Perspective Cyber Floor Grid */}
+        <div className="hero__cyber-grid" />
 
-        {/* Scaffolding Ground Anchor Shadows */}
-        <div className="hero__scaffolding">
-          <span className="pole pole--1" />
-          <span className="pole pole--2" />
-          <span className="pole pole--3" />
+        {/* Cyber Holographic Vector Rings */}
+        <div className="hero__cyber-vector-rings">
+          <svg viewBox="0 0 800 800" fill="none" className="hero__vector-svg">
+            <circle cx="400" cy="400" r="320" stroke="rgba(0, 240, 255, 0.12)" strokeWidth="1.5" strokeDasharray="8 8" />
+            <circle cx="400" cy="400" r="240" stroke="rgba(255, 0, 150, 0.14)" strokeWidth="1.5" />
+            <circle cx="400" cy="400" r="160" stroke="rgba(0, 240, 255, 0.18)" strokeWidth="1" strokeDasharray="4 6" />
+            <line x1="80" y1="400" x2="720" y2="400" stroke="rgba(0, 240, 255, 0.08)" strokeWidth="1" />
+            <line x1="400" y1="80" x2="400" y2="720" stroke="rgba(255, 0, 150, 0.08)" strokeWidth="1" />
+          </svg>
         </div>
 
-        {/* Scattered Wildflowers across meadow */}
-        <div className="hero__wildflowers">
-          <span className="flower flower--1" style={{ left: '5%', bottom: '26px' }}>🌸</span>
-          <span className="flower flower--2" style={{ left: '14%', bottom: '44px' }}>🌼</span>
-          <span className="flower flower--3" style={{ left: '25%', bottom: '18px' }}>🌺</span>
-          <span className="flower flower--4" style={{ left: '42%', bottom: '50px' }}>🌼</span>
-          <span className="flower flower--5" style={{ left: '60%', bottom: '28px' }}>🌸</span>
-          <span className="flower flower--6" style={{ left: '72%', bottom: '46px' }}>🌼</span>
-          <span className="flower flower--7" style={{ left: '85%', bottom: '22px' }}>🌺</span>
-          <span className="flower flower--8" style={{ left: '95%', bottom: '38px' }}>🌸</span>
-        </div>
+        {/* Subtle Cyber Texture & Laser Sparkles */}
+        <div className="hero__grain" />
+        <span className="hero__cyber-sparkle sparkle--1">✦</span>
+        <span className="hero__cyber-sparkle sparkle--2">✧</span>
+        <span className="hero__cyber-sparkle sparkle--3">★</span>
+        <span className="hero__cyber-sparkle sparkle--4">✦</span>
       </div>
-
-      {/* ─── Film Grain & Editorial Markings Overlay ─── */}
-      <div className="hero__grain" aria-hidden="true" />
-
-      {/* Red Graphic Markings & White Scribbles (Reference 02) */}
-      <div className="hero__scribble-wrap" aria-hidden="true">
-        <svg className="hero__scribble hero__scribble--1" viewBox="0 0 100 100" fill="none">
-          <path d="M10,50 Q30,10 60,40 T90,20" stroke="#ff2244" strokeWidth="2.5" strokeLinecap="round" opacity="0.75" />
-          <circle cx="90" cy="20" r="4" fill="#ff2244" />
-        </svg>
-        <svg className="hero__scribble hero__scribble--2" viewBox="0 0 120 60" fill="none">
-          <path d="M10,20 C40,50 80,0 110,35" stroke="#ffffff" strokeWidth="2" strokeDasharray="4 4" opacity="0.6" />
-        </svg>
-      </div>
-
-      {/* Floating Metallic Y2K Stars */}
-      <span className="hero__star hero__star--1" aria-hidden="true">✦</span>
-      <span className="hero__star hero__star--2" aria-hidden="true">★</span>
-      <span className="hero__star hero__star--3" aria-hidden="true">✧</span>
 
       {/* ─── Main Content Grid — Asymmetric Editorial Layout ─── */}
       <div className="hero__content container">
@@ -117,11 +71,11 @@ export default function Hero() {
           <div className="hero__edition-pill">
             <span className="hero__edition-dot" />
             <span className="hero__edition-text">
-              SURREALIST DIGITAL DREAMSCAPE · 2026
+              ✦ NEO-Y2K DIGITAL ARCHIVE // 2026 ACTIVE
             </span>
           </div>
 
-          {/* Main Oversized Display Typography (Reference 01 Graffiti Chrome) */}
+          {/* Main Oversized Display Typography (Liquid Chrome) */}
           <h1 className="hero__name">
             <span className="hero__name-chrome" data-text="RIFQI">RIFQI</span>
             <span className="hero__name-chrome hero__name-chrome--second" data-text="MAULANA">MAULANA</span>
@@ -129,16 +83,16 @@ export default function Hero() {
 
           {/* Exact Role Badges */}
           <div className="hero__role-badges">
-            <span className="hero__role-badge role--inf">INFORMATICS STUDENT</span>
+            <span className="hero__role-badge role--inf">INFORMATICS STUDENT (S7)</span>
             <span className="hero__role-sep">✦</span>
-            <span className="hero__role-badge role--dev">WEB DEVELOPER</span>
+            <span className="hero__role-badge role--dev">FULL-STACK WEB DEVELOPER</span>
             <span className="hero__role-sep">✦</span>
-            <span className="hero__role-badge role--tech">CREATIVE TECHNOLOGY ENTHUSIAST</span>
+            <span className="hero__role-badge role--tech">CREATIVE TECH ENTHUSIAST</span>
           </div>
 
           {/* Short Bio */}
           <p className="hero__tagline">
-            Passionate about crafting digital experiences that merge technical precision with creative vision. Specializing in full-stack web development, backend architecture, and UI/UX design.
+            Mahasiswa Semester 7 Teknik Informatika UIN Banten &amp; Web Developer. Berdedikasi merancang sistem informasi modern dan antarmuka web interaktif berestetika neo-futuristik.
           </p>
 
           {/* Acrylic Action Buttons */}
