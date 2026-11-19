@@ -1,19 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { playBubblePop } from '../hooks/useAudioFX'
 import './ChromeSculpture.css'
-
-const PRESETS = [
-  { id: 'aero', label: 'Aero Sky', dot: '#38bdf8' },
-  { id: 'silver', label: 'Liquid Silver', dot: '#e2e8f0' },
-  { id: 'emerald', label: 'Emerald Flora', dot: '#10b981' },
-  { id: 'sunset', label: 'Sunset Gold', dot: '#f59e0b' },
-]
 
 export default function ChromeSculpture({ className = '' }) {
   const mountRef = useRef(null)
   const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 })
-  const [activePreset, setActivePreset] = useState('aero')
 
   useEffect(() => {
     const container = mountRef.current
@@ -172,7 +163,6 @@ export default function ChromeSculpture({ className = '' }) {
         aquaFill.color.setHex(0x00bbcc)
         limeAccent.color.setHex(0x84cc16)
       }
-      setActivePreset(presetName)
     }
 
     const handlePresetChange = (e) => {
@@ -250,41 +240,7 @@ export default function ChromeSculpture({ className = '' }) {
     }
   }, [])
 
-  const triggerPreset = (presetId) => {
-    playBubblePop()
-    window.dispatchEvent(
-      new CustomEvent('change-chrome-preset', { detail: { preset: presetId } })
-    )
-  }
-
   return (
-    <div className={`chrome-sculpture-container ${className}`} ref={mountRef}>
-      {/* Scaffolding Frame / Art Installation Mount */}
-      <div className="scaffolding-mount" aria-hidden="true">
-        <span className="scaffold-pole scaffold-pole--left" />
-        <span className="scaffold-pole scaffold-pole--right" />
-        <span className="scaffold-beam scaffold-beam--top" />
-        <span className="scaffold-beam scaffold-beam--bottom" />
-        <span className="scaffold-tag">INSTALLATION // 3D CHROME 2026</span>
-      </div>
-
-      {/* Floating 3D Lighting Preset Pills */}
-      <div className="chrome-preset-bar" aria-label="3D Lighting Presets">
-        {PRESETS.map((p) => (
-          <button
-            key={p.id}
-            className={`preset-pill ${activePreset === p.id ? 'is-active' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation()
-              triggerPreset(p.id)
-            }}
-            title={`Tema 3D: ${p.label}`}
-          >
-            <span className="preset-pill__dot" style={{ backgroundColor: p.dot }} />
-            <span className="preset-pill__label">{p.label}</span>
-          </button>
-        ))}
-      </div>
-    </div>
+    <div className={`chrome-sculpture-container ${className}`} ref={mountRef} />
   )
 }

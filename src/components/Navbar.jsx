@@ -133,19 +133,6 @@ export default function Navbar({ onOpenResume }) {
           >
             <span>{isMuted ? '🔈' : '🔊'}</span>
           </button>
-
-          {/* Quick CV Button */}
-          <button
-            className="navbar__cv-btn"
-            onClick={() => {
-              playChime()
-              if (onOpenResume) onOpenResume()
-              else window.dispatchEvent(new CustomEvent('open-resume'))
-            }}
-            title="Buka Dokumen Resmi CV"
-          >
-            <span>CV</span>
-          </button>
         </div>
 
         {/* CTA */}

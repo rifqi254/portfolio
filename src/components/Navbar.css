@@ -203,7 +203,7 @@
   to { transform: rotate(360deg) scale(1.1); }
 }
 
-/* --- EXTRAS (SOUND & CV BUTTONS) --- */
+/* --- EXTRAS (SOUND BUTTON) --- */
 .navbar__extras {
   display: flex;
   align-items: center;
@@ -236,29 +236,6 @@
 .navbar__sound-btn.is-muted {
   opacity: 0.7;
   border-color: rgba(148, 163, 184, 0.4);
-}
-
-.navbar__cv-btn {
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(236, 253, 245, 0.9);
-  border: 1.5px solid rgba(16, 185, 129, 0.45);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
-  color: #065f46;
-  font-family: var(--font-tech, monospace);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.navbar__cv-btn:hover {
-  transform: translateY(-2px);
-  background: #10b981;
-  color: #ffffff;
-  border-color: #10b981;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
 }
 
 /* --- CTA BUTTON --- */

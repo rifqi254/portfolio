@@ -1,11 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ChromeSculpture from '../components/ChromeSculpture'
 import { InstagramIcon, GitHubIcon, LinkedInIcon, MailIcon } from '../components/SocialIcons'
 import { playBubblePop, playChime } from '../hooks/useAudioFX'
 import './Hero.css'
 
+const CHROME_PRESETS = [
+  { id: 'aero', label: 'Aero', dot: '#38bdf8' },
+  { id: 'silver', label: 'Silver', dot: '#cbd5e1' },
+  { id: 'emerald', label: 'Flora', dot: '#10b981' },
+  { id: 'sunset', label: 'Sunset', dot: '#f59e0b' },
+]
+
 export default function Hero({ onOpenResume }) {
   const heroRef = useRef(null)
+  const [activePreset, setActivePreset] = useState('aero')
 
   // Smooth parallax mouse tracking for typography and 3D depth
   useEffect(() => {
@@ -31,9 +39,17 @@ export default function Hero({ onOpenResume }) {
     )
   }
 
+  const handlePreset = (presetId) => {
+    playBubblePop()
+    setActivePreset(presetId)
+    window.dispatchEvent(
+      new CustomEvent('change-chrome-preset', { detail: { preset: presetId } })
+    )
+  }
+
   return (
     <section className="hero" ref={heroRef} id="hero" aria-label="Hero section — Surrealist Y2K Digital Dreamscape">
-      {/* ─── Surreal Sky Background Layers (Reference 01) ─── */}
+      {/* ─── Surreal Sky Background Layers ─── */}
       <div className="hero__sky" aria-hidden="true">
         <div className="hero__sun" />
         <div className="hero__flare hero__flare--1" />
@@ -46,8 +62,7 @@ export default function Hero({ onOpenResume }) {
         </div>
       </div>
 
-      {/* ─── Lush Green Grass Meadow & Rolling Hills (Reference 01 & 02) ─── */}
-      {/* ─── Lush Emerald Meadow & Rolling Botanical Hills (Surreal Botanical) ─── */}
+      {/* ─── Lush Green Grass Meadow & Rolling Hills ─── */}
       <div className="hero__meadow" aria-hidden="true">
         {/* Layer 1: Distant rolling emerald hills */}
         <svg className="hero__hills hero__hills--back" viewBox="0 0 1440 220" fill="none" preserveAspectRatio="none">
@@ -73,10 +88,10 @@ export default function Hero({ onOpenResume }) {
           </defs>
         </svg>
 
-        {/* ─── Giant Surreal Botanical Flora (20% Surreal Botanical - Metallic Chrome & Iridescent) ─── */}
+        {/* ─── Giant Surreal Botanical Flora (Chrome Daisies) ─── */}
         <div className="hero__surreal-flora">
-          {/* Flower 1: Metallic Chrome Mirror Daisy with Golden Amber Center (Ref: Image 2) */}
-          <div className="surreal-flower surreal-flower--lotus" title="Surreal Chrome Daisy (Y3K Botanical)">
+          {/* Flower 1: Metallic Chrome Mirror Daisy */}
+          <div className="surreal-flower surreal-flower--lotus" title="Surreal Chrome Daisy">
             <svg viewBox="0 0 120 140" className="surreal-flower__svg">
               <path d="M60,140 Q55,100 60,60" stroke="#059669" strokeWidth="4" fill="none" strokeLinecap="round" />
               <path d="M40,90 Q60,75 55,60" stroke="#10b981" strokeWidth="2.5" fill="none" />
@@ -86,7 +101,7 @@ export default function Hero({ onOpenResume }) {
               <ellipse cx="60" cy="46" rx="13" ry="28" fill="url(#chromePetal2)" transform="rotate(-15 60 46)" />
               <ellipse cx="60" cy="46" rx="13" ry="28" fill="url(#chromePetal2)" transform="rotate(15 60 46)" />
               <ellipse cx="60" cy="42" rx="11" ry="24" fill="url(#chromePetal1)" />
-              {/* Glowing Golden Amber Center Pistil (Image 2 style) */}
+              {/* Glowing Golden Amber Center */}
               <circle cx="60" cy="44" r="7.5" fill="#f59e0b" filter="drop-shadow(0 0 8px #f59e0b)" />
               <circle cx="60" cy="44" r="4.5" fill="#fbbf24" />
               <defs>
@@ -109,7 +124,7 @@ export default function Hero({ onOpenResume }) {
             </svg>
           </div>
 
-          {/* Flower 2: Iridescent Liquid Chrome Orchid (Ref: Image 4) */}
+          {/* Flower 2: Iridescent Liquid Chrome Orchid */}
           <div className="surreal-flower surreal-flower--orchid" title="Iridescent Liquid Chrome Orchid">
             <svg viewBox="0 0 100 130" className="surreal-flower__svg">
               <path d="M50,130 Q45,85 50,55" stroke="#047857" strokeWidth="3.5" fill="none" strokeLinecap="round" />
@@ -160,20 +175,9 @@ export default function Hero({ onOpenResume }) {
             </svg>
           </div>
         </div>
-
-        {/* Scattered Wildflowers across meadow */}
-        <div className="hero__wildflowers">
-          <span className="flower flower--1" style={{ left: '6%', bottom: '26px' }}>🌿</span>
-          <span className="flower flower--2" style={{ left: '18%', bottom: '44px' }}>✨</span>
-          <span className="flower flower--3" style={{ left: '32%', bottom: '20px' }}>🌱</span>
-          <span className="flower flower--4" style={{ left: '48%', bottom: '50px' }}>🌸</span>
-          <span className="flower flower--5" style={{ left: '62%', bottom: '28px' }}>✨</span>
-          <span className="flower flower--6" style={{ left: '76%', bottom: '46px' }}>🌿</span>
-          <span className="flower flower--7" style={{ left: '88%', bottom: '22px' }}>🌱</span>
-        </div>
       </div>
 
-      {/* ─── Floating Aero Glass Water Bubbles (70% Frutiger Aero) ─── */}
+      {/* ─── Floating Aero Glass Bubbles ─── */}
       <div className="hero__aero-bubbles" aria-hidden="true">
         <div className="aero-bubble aero-bubble--1" />
         <div className="aero-bubble aero-bubble--2" />
@@ -182,16 +186,16 @@ export default function Hero({ onOpenResume }) {
         <div className="aero-bubble aero-bubble--5" />
       </div>
 
-      {/* Floating Metallic Chrome Stars (10% Y3K) */}
+      {/* Floating Metallic Chrome Stars */}
       <span className="hero__star hero__star--1" aria-hidden="true">✦</span>
       <span className="hero__star hero__star--2" aria-hidden="true">★</span>
       <span className="hero__star hero__star--3" aria-hidden="true">✧</span>
 
-      {/* ─── Main Content Grid — Asymmetric Editorial Layout ─── */}
+      {/* ─── Main Content Grid ─── */}
       <div className="hero__content container">
-        {/* Left Column — Oversized Display Typography, Roles & Profile */}
+        {/* Left Column — Display Typography, Roles & Profile */}
         <div className="hero__left">
-          {/* Status badge with neon green dot */}
+          {/* Status badge with green dot */}
           <div className="hero__edition-pill">
             <span className="hero__edition-dot" />
             <span className="hero__edition-text">
@@ -199,19 +203,19 @@ export default function Hero({ onOpenResume }) {
             </span>
           </div>
 
-          {/* Main Oversized Display Typography (Reference 01 Graffiti Chrome) */}
+          {/* Main Display Typography */}
           <h1 className="hero__name">
             <span className="hero__name-chrome" data-text="RIFQI">RIFQI</span>
             <span className="hero__name-chrome hero__name-chrome--second" data-text="MAULANA">MAULANA</span>
           </h1>
 
-          {/* Exact Role Badges */}
+          {/* Role Badges */}
           <div className="hero__role-badges">
             <span className="hero__role-badge role--inf">INFORMATICS STUDENT</span>
             <span className="hero__role-sep">✦</span>
             <span className="hero__role-badge role--dev">WEB DEVELOPER</span>
             <span className="hero__role-sep">✦</span>
-            <span className="hero__role-badge role--tech">CREATIVE TECHNOLOGY ENTHUSIAST</span>
+            <span className="hero__role-badge role--tech">CREATIVE TECH ENTHUSIAST</span>
           </div>
 
           {/* Short Bio */}
@@ -219,7 +223,7 @@ export default function Hero({ onOpenResume }) {
             Passionate about crafting digital experiences that merge technical precision with creative vision. Specializing in full-stack web development, backend architecture, and UI/UX design.
           </p>
 
-          {/* Acrylic Action Buttons */}
+          {/* Action Buttons */}
           <div className="hero__actions">
             <a
               href="#projects"
@@ -252,7 +256,7 @@ export default function Hero({ onOpenResume }) {
             </a>
           </div>
 
-          {/* Quick Social Media Chips (Direct Sosmed Access in Home) */}
+          {/* Quick Social Media Chips */}
           <div className="hero__socials" aria-label="Sosial Media Resmi">
             <span className="hero__socials-tag">CHANNELS:</span>
             <a
@@ -314,22 +318,35 @@ export default function Hero({ onOpenResume }) {
           </div>
         </div>
 
-        {/* Right Column — 3D Chrome Sculpture Art Installation */}
+        {/* Right Column — 3D Chrome Sculpture & Unified Card */}
         <div className="hero__right">
           <div className="hero__artwork-stage">
             {/* Interactive 3D Liquid Chrome Sculpture (Three.js WebGL) */}
             <ChromeSculpture className="hero__3d-sculpture" />
 
-            {/* Digital Eden Artifact Floating Glass Card */}
+            {/* Clean Pedestal Glass Card with Integrated 3D Preset Switcher */}
             <div className="hero__sculpture-card">
               <div className="sculpture-card__top">
                 <span className="sculpture-card__dot" />
-                <span className="sculpture-card__badge">INTERACTIVE 3D OBJECT</span>
+                <span className="sculpture-card__badge">3D LIQUID CHROME</span>
+                <span className="sculpture-card__meta">WebGL · Real-Time Physics</span>
               </div>
-              <h4 className="sculpture-card__title">LIQUID CHROME TORUS</h4>
-              <p className="sculpture-card__meta">
-                Three.js WebGL · Real-Time Reflection · Cursor Physics
-              </p>
+
+              {/* 3D Lighting Presets */}
+              <div className="chrome-preset-bar" aria-label="Pilihan Tema 3D">
+                {CHROME_PRESETS.map((p) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    className={`preset-pill ${activePreset === p.id ? 'is-active' : ''}`}
+                    onClick={() => handlePreset(p.id)}
+                    title={`Ubah pencahayaan: ${p.label}`}
+                  >
+                    <span className="preset-pill__dot" style={{ backgroundColor: p.dot }} />
+                    <span className="preset-pill__label">{p.label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

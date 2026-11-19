@@ -22,16 +22,14 @@
 .hero__sky {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    #0284c7 0%,
-    #0ea5e9 20%,
-    #38bdf8 42%,
-    #7dd3fc 62%,
-    #bae6fd 80%,
-    #e0f2fe 92%,
-    #f0fdf4 100%
-  );
+  background: linear-gradient(180deg,
+      #0284c7 0%,
+      #0ea5e9 20%,
+      #38bdf8 42%,
+      #7dd3fc 62%,
+      #bae6fd 80%,
+      #e0f2fe 92%,
+      #f0fdf4 100%);
   z-index: 0;
 }
 
@@ -44,15 +42,13 @@
   width: 260px;
   height: 260px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    #ffffff 0%,
-    #fff9e6 20%,
-    #ffdd55 45%,
-    #ff9911 65%,
-    rgba(255, 120, 0, 0.4) 80%,
-    transparent 100%
-  );
+  background: radial-gradient(circle,
+      #ffffff 0%,
+      #fff9e6 20%,
+      #ffdd55 45%,
+      #ff9911 65%,
+      rgba(255, 120, 0, 0.4) 80%,
+      transparent 100%);
   box-shadow:
     0 0 100px 45px rgba(255, 230, 120, 0.85),
     0 0 240px 100px rgba(255, 170, 40, 0.55),
@@ -63,10 +59,13 @@
 }
 
 @keyframes sunRadiance {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-50%) scale(1);
     opacity: 0.95;
   }
+
   50% {
     transform: translateX(-50%) scale(1.06);
     opacity: 1;
@@ -86,16 +85,14 @@
   transform: translateX(-50%);
   width: 720px;
   height: 8px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 15%,
-    rgba(255, 240, 180, 0.7) 40%,
-    #ffffff 50%,
-    rgba(255, 240, 180, 0.7) 60%,
-    rgba(255, 255, 255, 0.1) 85%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 15%,
+      rgba(255, 240, 180, 0.7) 40%,
+      #ffffff 50%,
+      rgba(255, 240, 180, 0.7) 60%,
+      rgba(255, 255, 255, 0.1) 85%,
+      transparent 100%);
   filter: blur(2px);
   animation: flareGlow 4s ease-in-out infinite;
 }
@@ -121,8 +118,15 @@
 }
 
 @keyframes flareGlow {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 /* Dramatic Fluffy Clouds */
@@ -166,9 +170,17 @@
 }
 
 @keyframes cloudFloat {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(-40px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-40px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /* Subtle Cyber Code Overlay (Ref: Image 1 - Y3K Meadow Code) */
@@ -247,9 +259,20 @@
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-.pole--1 { left: 16%; height: 115px; }
-.pole--2 { left: 52%; height: 95px; }
-.pole--3 { right: 18%; height: 125px; }
+.pole--1 {
+  left: 16%;
+  height: 115px;
+}
+
+.pole--2 {
+  left: 52%;
+  height: 95px;
+}
+
+.pole--3 {
+  right: 18%;
+  height: 125px;
+}
 
 /* Wildflowers */
 .hero__wildflowers {
@@ -265,13 +288,31 @@
   animation: flowerBreeze 3.5s ease-in-out infinite;
 }
 
-.flower--2, .flower--6 { animation-delay: 0.7s; }
-.flower--3, .flower--7 { animation-delay: 1.4s; }
-.flower--4, .flower--8 { animation-delay: 2.1s; }
+.flower--2,
+.flower--6 {
+  animation-delay: 0.7s;
+}
+
+.flower--3,
+.flower--7 {
+  animation-delay: 1.4s;
+}
+
+.flower--4,
+.flower--8 {
+  animation-delay: 2.1s;
+}
 
 @keyframes flowerBreeze {
-  0%, 100% { transform: rotate(-6deg) translateY(0); }
-  50% { transform: rotate(6deg) translateY(-3px); }
+
+  0%,
+  100% {
+    transform: rotate(-6deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(6deg) translateY(-3px);
+  }
 }
 
 /* ─── 2.5 Giant Surreal Botanical Flora (Chrome Daisies & Amber Stamen - Ref: Image 2) ─── */
@@ -327,13 +368,23 @@
 }
 
 @keyframes floraSwayLeft {
-  0% { transform: rotate(-3deg) translateY(0); }
-  100% { transform: rotate(4deg) translateY(-6px); }
+  0% {
+    transform: rotate(-3deg) translateY(0);
+  }
+
+  100% {
+    transform: rotate(4deg) translateY(-6px);
+  }
 }
 
 @keyframes floraSwayRight {
-  0% { transform: rotate(4deg) translateY(0); }
-  100% { transform: rotate(-3deg) translateY(-7px); }
+  0% {
+    transform: rotate(4deg) translateY(0);
+  }
+
+  100% {
+    transform: rotate(-3deg) translateY(-7px);
+  }
 }
 
 /* ─── 2.6 Floating Aero Glass Water Bubbles (70% Frutiger Aero) ─── */
@@ -348,14 +399,12 @@
 .aero-bubble {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at 35% 35%,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.4) 22%,
-    rgba(56, 189, 248, 0.25) 50%,
-    rgba(255, 255, 255, 0.7) 95%,
-    rgba(255, 255, 255, 0.9) 100%
-  );
+  background: radial-gradient(circle at 35% 35%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.4) 22%,
+      rgba(56, 189, 248, 0.25) 50%,
+      rgba(255, 255, 255, 0.7) 95%,
+      rgba(255, 255, 255, 0.9) 100%);
   box-shadow:
     inset 0 2px 6px rgba(255, 255, 255, 0.95),
     inset 0 -3px 8px rgba(2, 132, 199, 0.2),
@@ -410,9 +459,17 @@
 }
 
 @keyframes bubbleFloat {
-  0% { transform: translateY(0px) translateX(0px) scale(1); }
-  50% { transform: translateY(-16px) translateX(8px) scale(1.04); }
-  100% { transform: translateY(12px) translateX(-8px) scale(0.97); }
+  0% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-16px) translateX(8px) scale(1.04);
+  }
+
+  100% {
+    transform: translateY(12px) translateX(-8px) scale(0.97);
+  }
 }
 
 /* Floating Metallic Chrome Stars (10% Y3K) */
@@ -428,13 +485,41 @@
   animation: starTwinkle 3s ease-in-out infinite;
 }
 
-.hero__star--1 { top: 12%; left: 10%; font-size: 1.8rem; color: #38bdf8; }
-.hero__star--2 { top: 20%; right: 12%; font-size: 1.3rem; color: #84cc16; animation-delay: 1s; }
-.hero__star--3 { bottom: 25%; left: 6%; font-size: 1.2rem; color: #00bbcc; animation-delay: 1.8s; }
+.hero__star--1 {
+  top: 12%;
+  left: 10%;
+  font-size: 1.8rem;
+  color: #38bdf8;
+}
+
+.hero__star--2 {
+  top: 20%;
+  right: 12%;
+  font-size: 1.3rem;
+  color: #84cc16;
+  animation-delay: 1s;
+}
+
+.hero__star--3 {
+  bottom: 25%;
+  left: 6%;
+  font-size: 1.2rem;
+  color: #00bbcc;
+  animation-delay: 1.8s;
+}
 
 @keyframes starTwinkle {
-  0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.7; }
-  50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+
+  0%,
+  100% {
+    transform: scale(0.9) rotate(0deg);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.2) rotate(15deg);
+    opacity: 1;
+  }
 }
 
 /* ─── 4. Main Content Grid (Editorial Asymmetric Layout) ─── */
@@ -482,8 +567,17 @@
 }
 
 @keyframes dotBlink {
-  0%, 100% { transform: scale(0.85); opacity: 0.6; }
-  50% { transform: scale(1.15); opacity: 1; }
+
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
 }
 
 .hero__edition-text {
@@ -516,34 +610,25 @@
   color: #ffffff;
 
   /* Glossy liquid chrome gradient fill */
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #f2f5fa 18%,
-    #dbe2ee 36%,
-    #ffffff 48%,
-    #9cb3d3 58%,
-    #e8f0fe 78%,
-    #ffffff 92%,
-    #a8bedb 100%
-  );
+  background: linear-gradient(180deg,
+      #ffffff 0%,
+      #f2f5fa 18%,
+      #dbe2ee 36%,
+      #ffffff 48%,
+      #9cb3d3 58%,
+      #e8f0fe 78%,
+      #ffffff 92%,
+      #a8bedb 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 
   /* 3D Extrusion with multi-stage shadow & brilliant ambient glow */
   filter:
-    drop-shadow(0 2px 0 #7c98bf)
-    drop-shadow(0 4px 0 #5778a8)
-    drop-shadow(0 7px 0 #32568a)
-    drop-shadow(0 10px 0 #183a6b)
-    drop-shadow(0 16px 28px rgba(0, 20, 60, 0.45))
-    drop-shadow(0 0 30px rgba(255, 255, 255, 0.6));
+    drop-shadow(0 2px 0 #7c98bf) drop-shadow(0 4px 0 #5778a8) drop-shadow(0 7px 0 #32568a) drop-shadow(0 10px 0 #183a6b) drop-shadow(0 16px 28px rgba(0, 20, 60, 0.45)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.6));
 
-  transform: translate(
-    calc(var(--mx) * 5px),
-    calc(var(--my) * 3px)
-  );
+  transform: translate(calc(var(--mx) * 5px),
+      calc(var(--my) * 3px));
   transition: transform 0.12s ease-out;
 }
 
@@ -736,10 +821,25 @@
   box-shadow: 0 6px 18px rgba(0, 40, 120, 0.25);
 }
 
-.hero__social-chip--ig:hover { color: #e1306c; border-color: #e1306c; }
-.hero__social-chip--gh:hover { color: #0f172a; border-color: #0f172a; }
-.hero__social-chip--li:hover { color: #0a66c2; border-color: #0a66c2; }
-.hero__social-chip--mail:hover { color: #0055ff; border-color: #0055ff; }
+.hero__social-chip--ig:hover {
+  color: #e1306c;
+  border-color: #e1306c;
+}
+
+.hero__social-chip--gh:hover {
+  color: #0f172a;
+  border-color: #0f172a;
+}
+
+.hero__social-chip--li:hover {
+  color: #0a66c2;
+  border-color: #0a66c2;
+}
+
+.hero__social-chip--mail:hover {
+  color: #0055ff;
+  border-color: #0055ff;
+}
 
 /* Stats Glass Bar */
 .hero__stats {
@@ -814,40 +914,45 @@
 /* Interactive 3D Liquid Chrome Sculpture (WebGL / Three.js) */
 .hero__3d-sculpture {
   position: relative;
-  width: 420px;
-  height: 420px;
+  width: 380px;
+  height: 380px;
   z-index: 2;
-  filter: drop-shadow(0 24px 50px rgba(0, 35, 110, 0.45));
+  filter: drop-shadow(0 20px 45px rgba(2, 132, 199, 0.25));
 }
 
 /* Installation Floating Exhibition Card */
 .hero__sculpture-card {
   position: relative;
-  margin-top: -10px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid #ffffff;
-  border-radius: 14px;
-  padding: 10px 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 10px 16px;
   box-shadow:
-    0 10px 28px rgba(0, 40, 120, 0.16),
+    0 10px 28px rgba(2, 132, 199, 0.12),
     inset 0 1px 0 #ffffff;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
   z-index: 3;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hero__sculpture-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(0, 40, 120, 0.22);
+  box-shadow: 0 16px 36px rgba(2, 132, 199, 0.18);
 }
 
 .sculpture-card__top {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 3px;
+  gap: 8px;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #0369a1;
 }
 
 .sculpture-card__dot {
@@ -860,30 +965,59 @@
 }
 
 .sculpture-card__badge {
-  font-family: var(--font-tech, monospace);
-  font-size: 0.58rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
-  color: #0284c7;
-  text-transform: uppercase;
-}
-
-.sculpture-card__title {
-  font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: 0.92rem;
-  font-weight: 900;
-  color: #0f172a;
-  letter-spacing: 0.04em;
-  margin: 0 0 2px;
+  letter-spacing: 0.1em;
 }
 
 .sculpture-card__meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 600;
   color: #64748b;
+  font-size: 0.58rem;
   letter-spacing: 0.04em;
-  margin: 0;
+}
+
+/* Embedded Presets Bar */
+.chrome-preset-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(240, 249, 255, 0.85);
+  padding: 3px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+}
+
+.preset-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #475569;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-pill:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0284c7;
+}
+
+.preset-pill.is-active {
+  background: #ffffff;
+  color: #0284c7;
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15);
+}
+
+.preset-pill__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
 
 /* ═══════════════════════════════════════════

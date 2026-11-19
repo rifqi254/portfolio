@@ -232,7 +232,21 @@ export default function ArchiveVault() {
       }
     }
     window.addEventListener('warp-to-section', handleWarp)
-    return () => window.removeEventListener('warp-to-section', handleWarp)
+
+    // Also support direct anchor navigation (#projects, #certificates, #awards)
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '')
+      if (hash === 'projects' || hash === 'certificates' || hash === 'awards') {
+        setActiveFolder(hash)
+      }
+    }
+    handleHash()
+    window.addEventListener('hashchange', handleHash)
+
+    return () => {
+      window.removeEventListener('warp-to-section', handleWarp)
+      window.removeEventListener('hashchange', handleHash)
+    }
   }, [])
 
   useEffect(() => {
