@@ -35,58 +35,23 @@ export default function ChromeSculpture({ className = '' }) {
     envCanvas.height = 256
     const ctx = envCanvas.getContext('2d')
 
-    const updateEnvTexture = (presetName) => {
-      ctx.clearRect(0, 0, 512, 256)
-      const grad = ctx.createLinearGradient(0, 0, 0, 256)
+    // Natural Frutiger Aero reflection (Daylight sky, white specular, emerald meadow)
+    const grad = ctx.createLinearGradient(0, 0, 0, 256)
+    grad.addColorStop(0, '#0284c7')
+    grad.addColorStop(0.35, '#38bdf8')
+    grad.addColorStop(0.5, '#ffffff')
+    grad.addColorStop(0.68, '#10b981')
+    grad.addColorStop(1, '#064e3b')
+    ctx.fillStyle = grad
+    ctx.fillRect(0, 0, 512, 256)
 
-      if (presetName === 'silver') {
-        grad.addColorStop(0, '#64748b')
-        grad.addColorStop(0.35, '#cbd5e1')
-        grad.addColorStop(0.5, '#ffffff')
-        grad.addColorStop(0.75, '#94a3b8')
-        grad.addColorStop(1, '#334155')
-      } else if (presetName === 'emerald') {
-        grad.addColorStop(0, '#064e3b')
-        grad.addColorStop(0.35, '#059669')
-        grad.addColorStop(0.5, '#ffffff')
-        grad.addColorStop(0.7, '#10b981')
-        grad.addColorStop(1, '#84cc16')
-      } else if (presetName === 'sunset') {
-        grad.addColorStop(0, '#0284c7')
-        grad.addColorStop(0.35, '#f59e0b')
-        grad.addColorStop(0.5, '#ffffff')
-        grad.addColorStop(0.7, '#fbbf24')
-        grad.addColorStop(1, '#ea580c')
-      } else {
-        // Default Aero
-        grad.addColorStop(0, '#0284c7')
-        grad.addColorStop(0.35, '#38bdf8')
-        grad.addColorStop(0.5, '#ffffff')
-        grad.addColorStop(0.68, '#10b981')
-        grad.addColorStop(1, '#064e3b')
-      }
-
-      ctx.fillStyle = grad
-      ctx.fillRect(0, 0, 512, 256)
-
-      // Iridescent flare spot
-      const flareGrad = ctx.createRadialGradient(380, 80, 5, 380, 80, 110)
-      if (presetName === 'sunset') {
-        flareGrad.addColorStop(0, 'rgba(251, 191, 36, 0.85)')
-        flareGrad.addColorStop(0.6, 'rgba(249, 115, 22, 0.4)')
-      } else if (presetName === 'emerald') {
-        flareGrad.addColorStop(0, 'rgba(163, 230, 53, 0.85)')
-        flareGrad.addColorStop(0.6, 'rgba(34, 211, 238, 0.4)')
-      } else {
-        flareGrad.addColorStop(0, 'rgba(132, 204, 22, 0.85)')
-        flareGrad.addColorStop(0.6, 'rgba(34, 211, 238, 0.45)')
-      }
-      flareGrad.addColorStop(1, 'transparent')
-      ctx.fillStyle = flareGrad
-      ctx.fillRect(0, 0, 512, 256)
-    }
-
-    updateEnvTexture('aero')
+    // Iridescent flare spot
+    const flareGrad = ctx.createRadialGradient(380, 80, 5, 380, 80, 110)
+    flareGrad.addColorStop(0, 'rgba(132, 204, 22, 0.85)')
+    flareGrad.addColorStop(0.6, 'rgba(34, 211, 238, 0.45)')
+    flareGrad.addColorStop(1, 'transparent')
+    ctx.fillStyle = flareGrad
+    ctx.fillRect(0, 0, 512, 256)
 
     const envTexture = new THREE.CanvasTexture(envCanvas)
     envTexture.mapping = THREE.EquirectangularReflectionMapping
@@ -135,42 +100,6 @@ export default function ChromeSculpture({ className = '' }) {
     const limeAccent = new THREE.PointLight(0x84cc16, 2.8, 12)
     limeAccent.position.set(2, -2, 2)
     scene.add(limeAccent)
-
-    // Preset update helper
-    const applyPreset = (presetName) => {
-      updateEnvTexture(presetName)
-      envTexture.needsUpdate = true
-
-      if (presetName === 'silver') {
-        ambientLight.color.setHex(0xffffff)
-        sunLight.color.setHex(0xffffff)
-        aquaFill.color.setHex(0x94a3b8)
-        limeAccent.color.setHex(0x38bdf8)
-      } else if (presetName === 'emerald') {
-        ambientLight.color.setHex(0x10b981)
-        sunLight.color.setHex(0xa3e635)
-        aquaFill.color.setHex(0x059669)
-        limeAccent.color.setHex(0x22d3ee)
-      } else if (presetName === 'sunset') {
-        ambientLight.color.setHex(0xfbbf24)
-        sunLight.color.setHex(0xffedd5)
-        aquaFill.color.setHex(0xf97316)
-        limeAccent.color.setHex(0x38bdf8)
-      } else {
-        // Aero
-        ambientLight.color.setHex(0x38bdf8)
-        sunLight.color.setHex(0xfff9e6)
-        aquaFill.color.setHex(0x00bbcc)
-        limeAccent.color.setHex(0x84cc16)
-      }
-    }
-
-    const handlePresetChange = (e) => {
-      const preset = e.detail?.preset
-      if (preset) applyPreset(preset)
-    }
-
-    window.addEventListener('change-chrome-preset', handlePresetChange)
 
     // 6. Mouse Interaction
     const handleMouseMove = (e) => {
@@ -225,7 +154,6 @@ export default function ChromeSculpture({ className = '' }) {
     window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener('change-chrome-preset', handlePresetChange)
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('resize', handleResize)
       cancelAnimationFrame(animId)

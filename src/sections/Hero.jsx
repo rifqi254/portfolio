@@ -1,19 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import ChromeSculpture from '../components/ChromeSculpture'
 import { InstagramIcon, GitHubIcon, LinkedInIcon, MailIcon } from '../components/SocialIcons'
 import { playBubblePop, playChime } from '../hooks/useAudioFX'
 import './Hero.css'
 
-const CHROME_PRESETS = [
-  { id: 'aero', label: 'Aero', dot: '#38bdf8' },
-  { id: 'silver', label: 'Silver', dot: '#cbd5e1' },
-  { id: 'emerald', label: 'Flora', dot: '#10b981' },
-  { id: 'sunset', label: 'Sunset', dot: '#f59e0b' },
-]
-
 export default function Hero({ onOpenResume }) {
   const heroRef = useRef(null)
-  const [activePreset, setActivePreset] = useState('aero')
 
   // Smooth parallax mouse tracking for typography and 3D depth
   useEffect(() => {
@@ -36,14 +28,6 @@ export default function Hero({ onOpenResume }) {
       new CustomEvent('warp-to-section', {
         detail: { id: targetId, name, code },
       })
-    )
-  }
-
-  const handlePreset = (presetId) => {
-    playBubblePop()
-    setActivePreset(presetId)
-    window.dispatchEvent(
-      new CustomEvent('change-chrome-preset', { detail: { preset: presetId } })
     )
   }
 
@@ -318,36 +302,11 @@ export default function Hero({ onOpenResume }) {
           </div>
         </div>
 
-        {/* Right Column — 3D Chrome Sculpture & Unified Card */}
+        {/* Right Column — 3D Chrome Sculpture Art Installation */}
         <div className="hero__right">
           <div className="hero__artwork-stage">
             {/* Interactive 3D Liquid Chrome Sculpture (Three.js WebGL) */}
             <ChromeSculpture className="hero__3d-sculpture" />
-
-            {/* Clean Pedestal Glass Card with Integrated 3D Preset Switcher */}
-            <div className="hero__sculpture-card">
-              <div className="sculpture-card__top">
-                <span className="sculpture-card__dot" />
-                <span className="sculpture-card__badge">3D LIQUID CHROME</span>
-                <span className="sculpture-card__meta">WebGL · Real-Time Physics</span>
-              </div>
-
-              {/* 3D Lighting Presets */}
-              <div className="chrome-preset-bar" aria-label="Pilihan Tema 3D">
-                {CHROME_PRESETS.map((p) => (
-                  <button
-                    key={p.id}
-                    type="button"
-                    className={`preset-pill ${activePreset === p.id ? 'is-active' : ''}`}
-                    onClick={() => handlePreset(p.id)}
-                    title={`Ubah pencahayaan: ${p.label}`}
-                  >
-                    <span className="preset-pill__dot" style={{ backgroundColor: p.dot }} />
-                    <span className="preset-pill__label">{p.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
