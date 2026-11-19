@@ -49,9 +49,8 @@ const skillCategories = [
 ]
 
 const marqueeItems = [
-  'FRUTIGER AERO', 'DIGITAL EDEN 3000', 'HTML5', 'CSS3 3D', 'JAVASCRIPT ES6+',
-  'PHP', 'LARAVEL', 'REACT 19', 'THREE.JS', 'MYSQL', 'REST API', 'POSTMAN',
-  'FIGMA', 'VITE', 'SURREAL BOTANICAL', 'Y3K CHROME',
+  'HTML5', 'CSS3', 'JAVASCRIPT ES6+', 'PHP', 'LARAVEL', 'REACT 19',
+  'THREE.JS', 'MYSQL', 'REST API', 'POSTMAN', 'FIGMA', 'VITE', 'TAILWIND CSS', 'GIT',
 ]
 
 export default function Skills() {
@@ -62,8 +61,8 @@ export default function Skills() {
     : skillCategories.filter((c) => c.id === activeTab)
 
   return (
-    <section className="skills section" id="skills" aria-label="Skills & Digital Capabilities">
-      {/* Botanical Eden Ambient Atmosphere */}
+    <section className="skills section" id="skills" aria-label="Skills & Capabilities">
+      {/* Ambient Atmosphere */}
       <div className="skills__ambient-glow" aria-hidden="true" />
       <div className="skills__floating-bubble skills__floating-bubble--1" aria-hidden="true" />
       <div className="skills__floating-bubble skills__floating-bubble--2" aria-hidden="true" />
@@ -74,13 +73,13 @@ export default function Skills() {
         <div className="section-header skills__header">
           <div className="skills__header-badge">
             <span className="skills__header-dot" />
-            <span className="skills__header-code">DIGITAL EDEN 3000 // AERO CAPSULES</span>
+            <span className="skills__header-code">SKILLS &amp; TECHNOLOGIES</span>
           </div>
           <h2 className="section-title skills__title">
-            <span>FLOATING</span> <span className="skills__title-accent">CAPSULES</span>
+            <span>TECH</span> <span className="skills__title-accent">STACK</span>
           </h2>
           <p className="section-subtitle">
-            Kapsul teknologi kaca aero transparan yang mengambang — instrumen kode dan desain untuk merekayasa dunia digital yang fungsional &amp; estetik.
+            Keahlian teknis dan instrumen pengembangan web yang saya gunakan untuk membangun antarmuka interaktif dan sistem backend yang solid.
           </p>
 
           {/* Filter Pills */}
@@ -89,7 +88,7 @@ export default function Skills() {
               className={`skills__filter-btn ${activeTab === 'all' ? 'is-active' : ''}`}
               onClick={() => setActiveTab('all')}
             >
-              ✦ ALL MATRIX
+              ✦ ALL
             </button>
             <button
               className={`skills__filter-btn ${activeTab === 'dev' ? 'is-active' : ''}`}

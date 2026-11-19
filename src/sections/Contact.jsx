@@ -109,13 +109,13 @@ export default function Contact() {
         <div className="section-header contact__header">
           <div className="contact__header-pill">
             <span className="contact__header-dot" />
-            <span className="contact__header-code">DIGITAL EDEN 3000 // SANCTUARY PORTAL</span>
+            <span className="contact__header-code">GET IN TOUCH // CONTACT</span>
           </div>
           <h2 className="section-title contact__headline">
-            STEP INTO <span className="contact__headline-chrome">THE SANCTUARY.</span>
+            LET'S WORK <span className="contact__headline-chrome">TOGETHER.</span>
           </h2>
           <p className="section-subtitle contact__subtitle">
-            Portal komunikasi terbuka di tengah taman digital. Silakan terhubung untuk kolaborasi web, proyek freelance, atau berdiskusi teknologi.
+            Saluran sosial media dan email resmi saya aktif. Silakan terhubung untuk diskusi proyek, kolaborasi web, atau penawaran kerja sama.
           </p>
         </div>
 

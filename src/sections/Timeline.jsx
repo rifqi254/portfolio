@@ -42,8 +42,8 @@ const timelineItems = [
     title: 'Sertifikasi Pemrograman & Cloud',
     org: 'Dicoding Academy & AWS',
     type: 'Certification',
-    color: '#ff007f',
-    glowColor: 'rgba(255, 0, 127, 0.35)',
+    color: '#0284c7',
+    glowColor: 'rgba(2, 132, 199, 0.35)',
     description: 'Menyelesaikan serangkaian sertifikasi kompetensi pemrograman web JavaScript, back-end development, dan cloud computing AWS:',
     bullets: [
       'Belajar Dasar Pemrograman JavaScript – Dicoding Academy (2025)',
@@ -100,13 +100,13 @@ export default function Timeline() {
         <div className="section-header">
           <div className="timeline__header-badge">
             <span className="timeline__header-dot" />
-            <span className="timeline__header-code">DIGITAL EDEN 3000 // BOTANICAL TRAIL</span>
+            <span className="timeline__header-code">EXPERIENCE &amp; JOURNEY</span>
           </div>
           <h2 className="section-title">
-            <span>CAREER</span> <span className="timeline__title-accent">EXPEDITION</span>
+            <span>CAREER &amp;</span> <span className="timeline__title-accent">EXPERIENCE</span>
           </h2>
           <p className="section-subtitle">
-            Jalur penjelajahan karier, kepemimpinan organisasi kampus, dan pencapaian kompetensi teknologi yang mekar di lanskap Digital Eden.
+            Rekam jejak pengalaman magang kerja, kepemimpinan organisasi kemahasiswaan, dan pelatihan kompetensi teknologi.
           </p>
         </div>
 

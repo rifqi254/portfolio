@@ -63,12 +63,12 @@ const projectsData = [
     subtitle: 'AI-Powered English Learning Environment',
     category: 'AI EdTech Platform',
     tagCode: 'AI-CLASSROOM',
-    label: 'label-pink',
+    label: 'label-cyan',
     description: 'Platform edukasi bertenaga Artificial Intelligence untuk mentransformasi pembelajaran bahasa Inggris di kelas. Mengintegrasikan Large Language Model (LLM) untuk mengubah Rencana Pelaksanaan Pembelajaran (RPP) menjadi materi Self Learning interaktif, generator Live Quiz adaptif otomatis, penilaian tugas siswa instan, serta asisten mengajar cerdas bagi guru.',
     tech: ['AI / LLM', 'Prompt Engineering', 'React', 'Python / FastAPI', 'EdTech', 'Tailwind'],
     year: '2024',
-    color: '#fce7f3',
-    accent: '#e11d48',
+    color: '#e0f2fe',
+    accent: '#0284c7',
     emoji: '🤖',
     image: '/projects/englai.png',
     hostedUrl: 'https://englai.my.id/',
@@ -201,7 +201,6 @@ const awardsData = [
 
 export default function ArchiveVault() {
   const [activeFolder, setActiveFolder] = useState(null)
-  const [viewMode, setViewMode] = useState('reel') // 'reel' | 'grid'
 
   // Modals
   const [activeProject, setActiveProject] = useState(null)
@@ -294,16 +293,16 @@ export default function ArchiveVault() {
         <div className="section-header vault-header">
           <div className="vault-header-badge">
             <span className="vault-header-dot" />
-            <span className="vault-header-code">DIGITAL EDEN 3000 // WORKS &amp; CREDENTIALS</span>
+            <span className="vault-header-code">📁 Portfolio &amp; Archive</span>
           </div>
           <h2 className="section-title vault-title">
             PORTFOLIO &amp; <span className="vault-title-accent">ARCHIVE</span>
           </h2>
           <p className="section-subtitle vault-subtitle">
             {activeFolder ? (
-              <span>Sedang membuka folder <strong>{activeFolder.toUpperCase()}</strong>. Klik tombol kembali untuk melihat semua folder.</span>
+              <span>Membuka folder <strong>{activeFolder === 'projects' ? 'Projects' : activeFolder === 'certificates' ? 'Certificates' : 'Awards'}</strong>.</span>
             ) : (
-              <span>Koleksi proyek web, sertifikasi resmi, dan penghargaan terkurasi dalam 3 folder interaktif. Sentuh atau klik folder untuk masuk ke dalamnya.</span>
+              <span>Koleksi karya proyek, sertifikasi, dan penghargaan. Sentuh atau klik folder untuk membuka isinya.</span>
             )}
           </p>
 
@@ -575,10 +574,10 @@ export default function ArchiveVault() {
           </div>
         )}
 
-        {/* ─── TAMPILAN 2: MASUK KE DALAM FOLDER (CAROUSEL & GRID) ─── */}
+        {/* ─── TAMPILAN 2: MASUK KE DALAM FOLDER ─── */}
         {activeFolder && (
           <div className="vault-inside-view">
-            {/* Top Bar with Back Button, Breadcrumb & View Toggle */}
+            {/* Top Bar with Back Button & Quick Switchers */}
             <div className="vault-inside__bar">
               <div className="vault-inside__bar-left">
                 <button
@@ -586,38 +585,19 @@ export default function ArchiveVault() {
                   onClick={() => setActiveFolder(null)}
                   title="Kembali ke semua folder"
                 >
-                  <span>‹ KEMBALI KE SEMUA FOLDER</span>
+                  <span>‹ Kembali ke Semua Folder</span>
                 </button>
 
-                <div className="vault-inside__breadcrumb">
-                  <span className="bc-root">SYS.ARCHIVE //</span>
-                  <span className="bc-folder">
-                    {activeFolder === 'projects' && '📁 PROJECTS [7 FILES]'}
-                    {activeFolder === 'certificates' && '📜 CERTIFICATES [7 CERTS]'}
-                    {activeFolder === 'awards' && '🏆 AWARDS [3 AWARDS]'}
+                <div className="vault-inside__folder-badge">
+                  <span>
+                    {activeFolder === 'projects' && '📁 Projects (7)'}
+                    {activeFolder === 'certificates' && '📜 Certificates (7)'}
+                    {activeFolder === 'awards' && '🏆 Awards (3)'}
                   </span>
                 </div>
               </div>
 
               <div className="vault-inside__bar-right">
-                {/* View Mode Toggle: Carousel vs Grid */}
-                <div className="vault-view-toggle">
-                  <button
-                    className={`vault-view-btn ${viewMode === 'reel' ? 'is-active' : ''}`}
-                    onClick={() => setViewMode('reel')}
-                    title="Tampilan Carousel Horizontal"
-                  >
-                    <span>⇄ Carousel</span>
-                  </button>
-                  <button
-                    className={`vault-view-btn ${viewMode === 'grid' ? 'is-active' : ''}`}
-                    onClick={() => setViewMode('grid')}
-                    title="Tampilan Grid Katalog"
-                  >
-                    <span>⊞ Grid</span>
-                  </button>
-                </div>
-
                 {/* Quick Folder Switch Pills */}
                 <div className="vault-inside__switchers">
                   <button
@@ -630,7 +610,7 @@ export default function ArchiveVault() {
                     className={`drawer-switch-pill ${activeFolder === 'certificates' ? 'is-active' : ''}`}
                     onClick={() => setActiveFolder('certificates')}
                   >
-                    Certs (7)
+                    Certificates (7)
                   </button>
                   <button
                     className={`drawer-switch-pill ${activeFolder === 'awards' ? 'is-active' : ''}`}
@@ -642,31 +622,24 @@ export default function ArchiveVault() {
               </div>
             </div>
 
-            {/* Content Container (Reel or Grid) */}
-            <div className={`vault-content-container vault-content-container--${viewMode}`}>
-              {viewMode === 'reel' && (
-                <>
-                  <button
-                    className="reel-arrow reel-arrow--prev"
-                    onClick={() => scrollCarousel('left')}
-                    aria-label="Geser ke kiri"
-                  >
-                    ‹
-                  </button>
-                  <button
-                    className="reel-arrow reel-arrow--next"
-                    onClick={() => scrollCarousel('right')}
-                    aria-label="Geser ke kanan"
-                  >
-                    ›
-                  </button>
-                </>
-              )}
-
-              <div
-                className={`vault-files-track ${viewMode === 'reel' ? 'vault-files-track--reel' : 'vault-files-track--grid'}`}
-                ref={carouselTrackRef}
+            {/* Folder Items Horizontal Scroll Track with Arrows */}
+            <div className="vault-content-container">
+              <button
+                className="reel-arrow reel-arrow--prev"
+                onClick={() => scrollCarousel('left')}
+                aria-label="Geser ke kiri"
               >
+                ‹
+              </button>
+              <button
+                className="reel-arrow reel-arrow--next"
+                onClick={() => scrollCarousel('right')}
+                aria-label="Geser ke kanan"
+              >
+                ›
+              </button>
+
+              <div className="vault-files-track" ref={carouselTrackRef}>
                 {/* 1. PROJECTS CARDS */}
                 {activeFolder === 'projects' &&
                   projectsData.map((project) => (
@@ -774,7 +747,7 @@ export default function ArchiveVault() {
                             </div>
                             <div className="cert-back-meta-row">
                               <span className="cert-back-lbl">REGISTRY:</span>
-                              <span className="cert-back-val">DIGITAL EDEN 3000</span>
+                              <span className="cert-back-val">OFFICIAL CREDENTIAL</span>
                             </div>
                           </div>
                           <div className="cert-back-footer">
@@ -819,7 +792,7 @@ export default function ArchiveVault() {
             </div>
 
             <div className="vault-inside__hint">
-              <span>✦ {viewMode === 'grid' ? 'Klik kartu file untuk membuka preview interaktif & link hasil' : 'Geser horizontal atau klik panah untuk melihat seluruh file di carousel'}</span>
+              <span>✦ Klik kartu untuk melihat detail & dokumentasi</span>
             </div>
           </div>
         )}

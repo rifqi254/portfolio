@@ -42,16 +42,6 @@ export default function Hero() {
           <div className="hero__cloud hero__cloud--2" />
           <div className="hero__cloud hero__cloud--3" />
         </div>
-
-        {/* Subtle Cyber Code Overlay (Ref: Image 1 - Y3K Meadow Code) */}
-        <div className="hero__code-backdrop">
-          <div className="hero__code-text">
-            <span>canvas.bind("&lt;Button-1&gt;", spawnBotanical)</span>
-            <span>def yaxis(event): return getRGB(sky, meadow)</span>
-            <span>import &#123; Three, FrutigerAero, SurrealFlora &#125; from 'eden-3000'</span>
-            <span>blame it on a chrome dying star // 3000.A.D</span>
-          </div>
-        </div>
       </div>
 
       {/* ─── Lush Green Grass Meadow & Rolling Hills (Reference 01 & 02) ─── */}
@@ -125,21 +115,21 @@ export default function Hero() {
               <ellipse cx="50" cy="48" rx="18" ry="12" fill="url(#iridPetal1)" transform="rotate(-35 50 48)" />
               <ellipse cx="50" cy="48" rx="18" ry="12" fill="url(#iridPetal1)" transform="rotate(35 50 48)" />
               <ellipse cx="50" cy="40" rx="14" ry="22" fill="url(#iridPetal2)" />
-              {/* Iridescent Glowing Stamen */}
-              <circle cx="50" cy="42" r="5" fill="#f43f5e" filter="drop-shadow(0 0 10px #f43f5e)" />
-              <circle cx="50" cy="42" r="2.5" fill="#ffffff" />
+              {/* Golden Amber Glowing Stamen */}
+              <circle cx="50" cy="42" r="5.5" fill="#f59e0b" filter="drop-shadow(0 0 10px #f59e0b)" />
+              <circle cx="50" cy="42" r="3" fill="#fbbf24" />
               <defs>
                 <linearGradient id="iridPetal1" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stopColor="#ffffff" />
                   <stop offset="25%" stopColor="#fed7aa" />
                   <stop offset="50%" stopColor="#e2e8f0" />
-                  <stop offset="75%" stopColor="#c084fc" />
+                  <stop offset="75%" stopColor="#93c5fd" />
                   <stop offset="90%" stopColor="#38bdf8" />
                   <stop offset="100%" stopColor="#ffffff" />
                 </linearGradient>
                 <linearGradient id="iridPetal2" x1="0" y1="1" x2="0" y2="0">
                   <stop offset="0%" stopColor="#cbd5e1" />
-                  <stop offset="40%" stopColor="#fda4af" />
+                  <stop offset="40%" stopColor="#fef08a" />
                   <stop offset="70%" stopColor="#7dd3fc" />
                   <stop offset="100%" stopColor="#ffffff" />
                 </linearGradient>
@@ -203,7 +193,7 @@ export default function Hero() {
           <div className="hero__edition-pill">
             <span className="hero__edition-dot" />
             <span className="hero__edition-text">
-              DIGITAL EDEN 3000 // 70% AERO · 20% BOTANICAL · 10% Y3K
+              Available for Opportunities · Full-Stack Web Developer
             </span>
           </div>
 
@@ -319,7 +309,7 @@ export default function Hero() {
             <div className="hero__sculpture-card">
               <div className="sculpture-card__top">
                 <span className="sculpture-card__dot" />
-                <span className="sculpture-card__badge">DIGITAL EDEN // ARTIFACT 01</span>
+                <span className="sculpture-card__badge">INTERACTIVE 3D OBJECT</span>
               </div>
               <h4 className="sculpture-card__title">LIQUID CHROME TORUS</h4>
               <p className="sculpture-card__meta">

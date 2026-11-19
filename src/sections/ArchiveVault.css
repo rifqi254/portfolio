@@ -498,110 +498,70 @@
   gap: 8px;
 }
 
-.bc-root {
-  color: #64748b;
-}
-
-.bc-folder {
-  color: #0044ee;
-  background: rgba(0, 140, 255, 0.1);
-  padding: 4px 12px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 140, 255, 0.3);
-}
-
-/* View Mode Switcher: Grid vs Carousel */
-.vault-view-toggle {
-  display: flex;
-  align-items: center;
-  background: rgba(0, 102, 255, 0.06);
-  border: 1px solid rgba(0, 180, 255, 0.3);
-  border-radius: 9999px;
-  padding: 3px;
-  gap: 4px;
-}
-
-.vault-view-btn {
+.vault-inside__folder-badge {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #0369a1;
+  background: rgba(2, 132, 199, 0.08);
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(2, 132, 199, 0.25);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-tech, monospace);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  border: none;
-  background: transparent;
-  color: #64748b;
-  cursor: pointer;
-  transition: all 200ms ease;
-}
-
-.vault-view-btn:hover {
-  color: #0055ff;
-}
-
-.vault-view-btn.is-active {
-  background: linear-gradient(135deg, #0055ff 0%, #00b4ff 100%);
-  color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 102, 255, 0.4);
 }
 
 .vault-inside__switchers {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .drawer-switch-pill {
   font-family: var(--font-tech, monospace);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 700;
   padding: 6px 14px;
   border-radius: 9999px;
-  border: 1px solid rgba(0, 102, 255, 0.2);
+  border: 1px solid rgba(2, 132, 199, 0.22);
   background: rgba(255, 255, 255, 0.85);
-  color: #475569;
+  color: #334155;
   cursor: pointer;
   transition: all 200ms ease;
 }
 
 .drawer-switch-pill:hover {
-  border-color: #0055ff;
-  color: #0055ff;
-  background: rgba(0, 150, 255, 0.1);
+  border-color: #0284c7;
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.08);
 }
 
 .drawer-switch-pill.is-active {
-  background: linear-gradient(135deg, #0044ee 0%, #00ccff 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
   color: #ffffff;
-  border-color: #00eeff;
-  box-shadow: 0 2px 12px rgba(0, 150, 255, 0.4);
+  border-color: #38bdf8;
+  box-shadow: 0 2px 12px rgba(2, 132, 199, 0.35);
 }
 
-/* ─── VAULT CONTENT CONTAINER & TRACK ─── */
+/* ─── VAULT CONTENT CONTAINER & HORIZONTAL TRACK ─── */
 .vault-content-container {
   position: relative;
   width: 100%;
-}
-
-.vault-content-container--reel {
-  position: relative;
 }
 
 .reel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(0, 150, 255, 0.4);
-  box-shadow: 0 4px 20px rgba(0, 68, 238, 0.15);
-  color: #0055ff;
-  font-size: 1.8rem;
+  border: 1.5px solid rgba(2, 132, 199, 0.35);
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.15);
+  color: #0284c7;
+  font-size: 1.6rem;
   font-weight: 700;
   line-height: 1;
   display: flex;
@@ -613,19 +573,19 @@
 }
 
 .reel-arrow:hover {
-  background: #0055ff;
-  border-color: #00eeff;
+  background: #0284c7;
+  border-color: #38bdf8;
   color: #ffffff;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 24px rgba(0, 150, 255, 0.4);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
 }
 
 .reel-arrow--prev {
-  left: -20px;
+  left: -16px;
 }
 
 .reel-arrow--next {
-  right: -20px;
+  right: -16px;
 }
 
 @media (max-width: 768px) {
@@ -634,33 +594,24 @@
   }
 }
 
-/* Track: Grid Mode (Prominent & Spacious) */
-.vault-files-track--grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 24px;
-  width: 100%;
-  padding: 8px 0 16px;
-}
-
-/* Track: Reel Mode (Large Horizontal Scroll) */
-.vault-files-track--reel {
+/* Track: Clean Horizontal Scrolling */
+.vault-files-track {
   display: flex;
-  gap: 24px;
+  gap: 22px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 10px 4px 18px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 150, 255, 0.4) transparent;
   -webkit-overflow-scrolling: touch;
+  padding: 10px 4px 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(2, 132, 199, 0.35) transparent;
 }
 
-.vault-files-track--reel::-webkit-scrollbar {
+.vault-files-track::-webkit-scrollbar {
   height: 6px;
 }
 
-.vault-files-track--reel::-webkit-scrollbar-thumb {
-  background: rgba(0, 150, 255, 0.4);
+.vault-files-track::-webkit-scrollbar-thumb {
+  background: rgba(2, 132, 199, 0.35);
   border-radius: 9999px;
 }
 
@@ -787,14 +738,7 @@
 }
 
 
-/* Responsive overrides for cards when inside Grid mode */
-.vault-files-track--grid .carousel-card--project,
-.vault-files-track--grid .carousel-card--cert.cert-flip-container,
-.vault-files-track--grid .carousel-card--award {
-  flex: none;
-  max-width: 100%;
-  width: 100%;
-}
+
 
 
 /* ─── 01. CAROUSEL PROJECT CARD ─── */
@@ -1058,11 +1002,10 @@
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(255, 0, 128, 0.15) 0%,
-    rgba(0, 204, 255, 0.18) 25%,
-    rgba(16, 185, 129, 0.18) 50%,
-    rgba(250, 204, 21, 0.18) 75%,
-    rgba(255, 0, 128, 0.15) 100%
+    rgba(56, 189, 248, 0.18) 0%,
+    rgba(163, 230, 53, 0.18) 33%,
+    rgba(251, 191, 36, 0.18) 66%,
+    rgba(56, 189, 248, 0.18) 100%
   );
   opacity: 0.6;
   mix-blend-mode: overlay;
@@ -1116,10 +1059,10 @@
     transparent 8px
   ), linear-gradient(
     120deg,
-    rgba(255, 0, 128, 0.25) 0%,
-    rgba(0, 204, 255, 0.28) 35%,
-    rgba(16, 185, 129, 0.28) 70%,
-    rgba(255, 255, 255, 0.2) 100%
+    rgba(56, 189, 248, 0.28) 0%,
+    rgba(163, 230, 53, 0.25) 35%,
+    rgba(251, 191, 36, 0.25) 70%,
+    rgba(255, 255, 255, 0.3) 100%
   );
   pointer-events: none;
 }

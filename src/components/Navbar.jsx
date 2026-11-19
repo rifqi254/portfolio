@@ -86,7 +86,7 @@ export default function Navbar() {
             <span className="logo-main">Rifqi</span>
             <span className="logo-accent">M.</span>
           </span>
-          <span className="navbar__logo-badge">EDEN 3000</span>
+          <span className="navbar__logo-badge">DEV</span>
         </a>
 
         {/* Desktop Nav */}
