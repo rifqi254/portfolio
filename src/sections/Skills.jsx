@@ -9,41 +9,45 @@ const skillCategories = [
     icon: '⚡',
     color: '#0284c7',
     accent: '#10b981',
-    description: 'Modern front-end, reactive systems, and solid back-end architecture with high-precision engineering.',
+    summary: 'Full-Stack Web & Reactive Architecture',
+    count: '6 Technologies',
     skills: [
-      { name: 'HTML5', icon: '🌐', tag: 'Semantic 5', desc: 'Modern semantic structure, SEO & accessibility' },
-      { name: 'CSS3', icon: '🎨', tag: 'Aero FX & 3D', desc: 'Custom layouts, glassmorphism, 3D transforms & animation engines' },
-      { name: 'JavaScript', icon: '⚡', tag: 'ES6+ / Async', desc: 'Modern ECMAScript, reactive state & async DOM manipulation' },
-      { name: 'PHP', icon: '🐘', tag: 'Server-side', desc: 'Object-oriented programming, secure MVC architectures' },
-      { name: 'Laravel', icon: '🔺', tag: 'Full Framework', desc: 'Eloquent ORM, Blade templating, migrations & multi-tier auth' },
-      { name: 'React 19', icon: '⚛️', tag: 'UI Library', desc: 'Component architectures, custom hooks & performance optimization' },
+      { name: 'HTML5', icon: '🌐', tag: 'Semantic 5', desc: 'Semantic structure & SEO' },
+      { name: 'CSS3', icon: '🎨', tag: 'Aero FX & 3D', desc: 'Glassmorphism & animations' },
+      { name: 'JavaScript', icon: '⚡', tag: 'ES6+ / Async', desc: 'Reactive state & async DOM' },
+      { name: 'PHP', icon: '🐘', tag: 'Server-side', desc: 'OOP & MVC architecture' },
+      { name: 'Laravel', icon: '🔺', tag: 'Framework', desc: 'Eloquent ORM & multi-tier auth' },
+      { name: 'React 19', icon: '⚛️', tag: 'UI Library', desc: 'Component tree & custom hooks' },
     ],
   },
   {
     id: 'db',
     category: 'Database & Cloud API',
     code: '02 // DATA_SYNAPSE',
-    icon: '📡',
+    icon: '🐬',
     color: '#10b981',
     accent: '#84cc16',
-    description: 'Relational data modeling, optimized transactions, and high-throughput RESTful endpoints.',
+    summary: 'Relational DB & High-Throughput APIs',
+    count: '3 Technologies',
     skills: [
-      { name: 'MySQL', icon: '🐬', tag: 'RDBMS', desc: 'Relational data modeling, indexing, foreign keys & ACID transactions' },
-      { name: 'REST API', icon: '📡', tag: 'Architecture', desc: 'Stateless endpoints, JSON schemas, token auth & error resilience' },
-      { name: 'Postman', icon: '🚀', tag: 'Testing / Docs', desc: 'Automated test scripts, mock servers & API collection documentation' },
+      { name: 'MySQL', icon: '🐬', tag: 'RDBMS', desc: 'Relational modeling & ACID' },
+      { name: 'REST API', icon: '📡', tag: 'Architecture', desc: 'Stateless endpoints & JSON auth' },
+      { name: 'Postman', icon: '🚀', tag: 'Testing / Docs', desc: 'API test suites & mock servers' },
     ],
   },
   {
     id: 'design',
     category: 'Design & Productivity',
     code: '03 // CREATIVE_LAB',
-    icon: '✦',
+    icon: '❖',
     color: '#06b6d4',
     accent: '#a855f7',
-    description: 'Vector UI/UX prototyping, design systems, and analytical business productivity documentation.',
+    summary: 'UI/UX Prototyping & Collaboration',
+    count: '3 Technologies',
     skills: [
-      { name: 'Figma', icon: '❖', tag: 'UI/UX Design', desc: 'Design systems, auto-layout, components & interactive high-fi prototypes' },
-      { name: 'Microsoft Office', icon: '📊', tag: 'Productivity', desc: 'Technical documentation, data analysis & spreadsheet modeling' },
+      { name: 'Figma', icon: '❖', tag: 'UI/UX Design', desc: 'Design systems & prototypes' },
+      { name: 'Microsoft Office', icon: '📊', tag: 'Productivity', desc: 'Technical docs & Excel modeling' },
+      { name: 'Git & GitHub', icon: '🐙', tag: 'Version Control', desc: 'Branching & code collaboration' },
     ],
   },
 ]
@@ -55,10 +59,33 @@ const marqueeItems = [
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState('all')
+  const [flippedCards, setFlippedCards] = useState({})
 
-  const filteredCategories = activeTab === 'all'
-    ? skillCategories
-    : skillCategories.filter((c) => c.id === activeTab)
+  const toggleCard = (id) => {
+    setFlippedCards((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }))
+  }
+
+  const allFlipped =
+    Boolean(flippedCards['dev']) &&
+    Boolean(flippedCards['db']) &&
+    Boolean(flippedCards['design'])
+
+  const toggleAll = () => {
+    const nextState = !allFlipped
+    setFlippedCards({
+      dev: nextState,
+      db: nextState,
+      design: nextState,
+    })
+  }
+
+  const filteredCategories =
+    activeTab === 'all'
+      ? skillCategories
+      : skillCategories.filter((c) => c.id === activeTab)
 
   return (
     <section className="skills section" id="skills" aria-label="Skills & Capabilities">
@@ -79,10 +106,10 @@ export default function Skills() {
             <span>TECH</span> <span className="skills__title-accent">STACK</span>
           </h2>
           <p className="section-subtitle">
-            Keahlian teknis dan instrumen pengembangan web yang saya gunakan untuk membangun antarmuka interaktif dan sistem backend yang solid.
+            Keahlian teknis dan instrumen pengembangan web yang saya gunakan. Klik kartu untuk membalik dan melihat rincian teknologi di dalamnya.
           </p>
 
-          {/* Filter Pills */}
+          {/* Filter Bar & Quick Flip Toggle */}
           <div className="skills__filter-bar">
             <button
               className={`skills__filter-btn ${activeTab === 'all' ? 'is-active' : ''}`}
@@ -108,67 +135,140 @@ export default function Skills() {
             >
               DESIGN &amp; TOOLS
             </button>
+
+            {/* Quick Flip All Button */}
+            <button
+              className="skills__flip-all-btn"
+              onClick={toggleAll}
+              title={allFlipped ? 'Tutup semua kartu' : 'Buka semua kartu'}
+            >
+              <span className="flip-btn-icon">↻</span>
+              <span>{allFlipped ? 'Tutup Semua' : 'Buka Semua Kartu'}</span>
+            </button>
           </div>
         </div>
 
-        {/* Categories Grid */}
+        {/* 3D Flip Cards Grid */}
         <div className="skills__grid">
-          {filteredCategories.map((group) => (
-            <div
-              key={group.id}
-              className="skills__card"
-              style={{
-                '--cat-color': group.color,
-                '--cat-accent': group.accent,
-              }}
-            >
-              {/* Card Header */}
-              <div className="skills__card-header">
-                <div className="skills__card-badge">
-                  <span className="skills__card-icon">{group.icon}</span>
-                  <span className="skills__card-code">{group.code}</span>
-                </div>
-                <h3 className="skills__card-title">{group.category}</h3>
-                <p className="skills__card-desc">{group.description}</p>
-              </div>
+          {filteredCategories.map((group) => {
+            const isFlipped = Boolean(flippedCards[group.id])
 
-              {/* Floating Aero Glass Capsules */}
-              <div className="skills__pills">
-                {group.skills.map((skill, sIdx) => (
-                  <div
-                    key={skill.name}
-                    className="skills__pill"
-                    style={{
-                      '--float-delay': `${(sIdx % 4) * 0.45}s`,
-                      '--float-duration': `${3.8 + (sIdx % 3) * 0.5}s`,
-                    }}
-                  >
-                    {/* Glass capsule specular highlight & inner depth */}
-                    <span className="skills__capsule-specular" aria-hidden="true" />
-                    
-                    <div className="skills__pill-top">
-                      <div className="skills__pill-name-wrap">
-                        <span className="skills__pill-3d-icon">{skill.icon}</span>
-                        <span className="skills__pill-name">{skill.name}</span>
-                      </div>
-                      <span className="skills__pill-tag">{skill.tag}</span>
+            return (
+              <div
+                key={group.id}
+                className={`skills__card-container ${isFlipped ? 'is-flipped' : ''}`}
+                style={{
+                  '--cat-color': group.color,
+                  '--cat-accent': group.accent,
+                }}
+                onClick={() => toggleCard(group.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    toggleCard(group.id)
+                  }
+                }}
+                aria-label={`Kartu skill ${group.category}. Klik untuk ${isFlipped ? 'menutup' : 'membuka'}.`}
+              >
+                <div className="skills__card-inner">
+                  {/* ─── SISI 1: SAMPUL BELAKANG KARTU (POSISI AWAL / DECK COVER) ─── */}
+                  <div className="skills__face skills__face--front">
+                    {/* Top Accent Line */}
+                    <div className="skills__deck-top-stripe" aria-hidden="true" />
+
+                    {/* Header Bar */}
+                    <div className="skills__deck-header">
+                      <span className="skills__deck-code">{group.code}</span>
+                      <span className="skills__deck-status">● VERIFIED STACK</span>
                     </div>
 
-                    <span className="skills__pill-detail">{skill.desc}</span>
+                    {/* Center Emblem & Title */}
+                    <div className="skills__deck-body">
+                      <div className="skills__deck-emblem-wrap">
+                        <div className="skills__deck-emblem-glow" aria-hidden="true" />
+                        <span className="skills__deck-emblem-icon">{group.icon}</span>
+                      </div>
 
-                    {/* Iridescent shimmer sweep */}
-                    <span className="skills__pill-sheen" aria-hidden="true" />
+                      <h3 className="skills__deck-title">{group.category}</h3>
+                      <p className="skills__deck-summary">{group.summary}</p>
+                      
+                      <div className="skills__deck-count-pill">
+                        <span>{group.count}</span>
+                      </div>
+                    </div>
+
+                    {/* Bottom Action / Flip Trigger */}
+                    <div className="skills__deck-footer">
+                      <div className="skills__deck-action-pill">
+                        <span className="deck-action-text">KLIK UNTUK BUKA SKILL</span>
+                        <span className="deck-action-icon">↻</span>
+                      </div>
+                      <span className="skills__deck-hint">3D Backflip Card Interaction</span>
+                    </div>
+
+                    {/* Corner Chrome Accents */}
+                    <div className="skills__corner-rivet skills__corner-rivet--tl" aria-hidden="true" />
+                    <div className="skills__corner-rivet skills__corner-rivet--tr" aria-hidden="true" />
+                    <div className="skills__corner-rivet skills__corner-rivet--bl" aria-hidden="true" />
+                    <div className="skills__corner-rivet skills__corner-rivet--br" aria-hidden="true" />
                   </div>
-                ))}
-              </div>
 
-              {/* Chrome corner spheres */}
-              <div className="skills__chrome-orb skills__chrome-orb--tl" aria-hidden="true" />
-              <div className="skills__chrome-orb skills__chrome-orb--tr" aria-hidden="true" />
-              <div className="skills__chrome-orb skills__chrome-orb--bl" aria-hidden="true" />
-              <div className="skills__chrome-orb skills__chrome-orb--br" aria-hidden="true" />
-            </div>
-          ))}
+                  {/* ─── SISI 2: ISIAN SKILL (TERBUKA SETELAH BACKFLIP) ─── */}
+                  <div className="skills__face skills__face--back">
+                    {/* Top Header */}
+                    <div className="skills__back-header">
+                      <div className="skills__back-title-wrap">
+                        <span className="skills__back-icon">{group.icon}</span>
+                        <div>
+                          <h4 className="skills__back-title">{group.category}</h4>
+                          <span className="skills__back-count">{group.count}</span>
+                        </div>
+                      </div>
+
+                      <button
+                        className="skills__back-flip-btn"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          toggleCard(group.id)
+                        }}
+                        title="Tutup kartu"
+                      >
+                        <span>Tutup</span>
+                        <span>↺</span>
+                      </button>
+                    </div>
+
+                    {/* Skills Content Grid */}
+                    <div className={`skills__back-content ${group.id === 'dev' ? 'skills__back-content--dev' : ''}`}>
+                      {group.skills.map((skill) => (
+                        <div key={skill.name} className="skills__back-item">
+                          <div className="skills__back-item-head">
+                            <span className="skills__back-item-icon">{skill.icon}</span>
+                            <span className="skills__back-item-name">{skill.name}</span>
+                            <span className="skills__back-item-tag">{skill.tag}</span>
+                          </div>
+                          <p className="skills__back-item-desc">{skill.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Bottom Back Footer */}
+                    <div className="skills__back-footer">
+                      <span className="skills__back-hint">✦ Klik kartu untuk menutup kembali</span>
+                    </div>
+
+                    {/* Corner Chrome Accents */}
+                    <div className="skills__corner-rivet skills__corner-rivet--tl" aria-hidden="true" />
+                    <div className="skills__corner-rivet skills__corner-rivet--tr" aria-hidden="true" />
+                    <div className="skills__corner-rivet skills__corner-rivet--bl" aria-hidden="true" />
+                    <div className="skills__corner-rivet skills__corner-rivet--br" aria-hidden="true" />
+                  </div>
+                </div>
+              </div>
+            )
+          })}
         </div>
 
         {/* Horizontal Marquee Ticker */}
