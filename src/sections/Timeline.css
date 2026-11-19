@@ -1,10 +1,51 @@
 /* ============================================================
-   TIMELINE SECTION - REDESIGNED Y2K CYBERCORE
+   TIMELINE SECTION — DIGITAL EDEN 3000 BOTANICAL TRAIL
    ============================================================ */
 
 .timeline {
   position: relative;
   overflow: hidden;
+  padding: 100px 0 110px;
+  background: linear-gradient(180deg, #f0fdf4 0%, #e0f2fe 50%, #f0fdf4 100%);
+}
+
+.timeline__header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
+  margin-bottom: 14px;
+}
+
+.timeline__header-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulseEdenDot 2s ease-in-out infinite;
+}
+
+.timeline__header-code {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #065f46;
+  text-transform: uppercase;
+}
+
+.timeline__title-accent {
+  background: linear-gradient(135deg, #0284c7 0%, #10b981 60%, #84cc16 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .timeline__container {
@@ -14,23 +55,23 @@
   padding: 20px 0 40px;
 }
 
-/* --- CONTINUOUS CENTER LASER SPINE --- */
+/* --- CONTINUOUS BOTANICAL TRAIL PATH --- */
 .timeline__spine {
   position: absolute;
   top: 10px;
   bottom: 50px;
   left: 50%;
-  width: 3px;
+  width: 4px;
   transform: translateX(-50%);
   background: linear-gradient(
     180deg,
-    rgba(0, 204, 255, 0.2) 0%,
-    #00ccff 15%,
-    #0055ff 45%,
-    #ff007f 75%,
-    rgba(0, 204, 255, 0.4) 100%
+    rgba(56, 189, 248, 0.25) 0%,
+    #38bdf8 20%,
+    #10b981 50%,
+    #84cc16 75%,
+    rgba(56, 189, 248, 0.35) 100%
   );
-  box-shadow: 0 0 14px rgba(0, 204, 255, 0.55), 0 0 28px rgba(0, 85, 255, 0.25);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45), 0 0 28px rgba(16, 185, 129, 0.3);
   border-radius: 999px;
   z-index: 1;
 }
@@ -179,7 +220,7 @@
   transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 320ms ease, border-color 320ms ease;
 }
 
-/* Cyber Accent Top Line */
+/* Digital Eden Botanical Top Accent */
 .timeline-card::before {
   content: '';
   position: absolute;
@@ -187,8 +228,8 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--card-accent, #0066ff), #00ccff, #ff007f);
-  opacity: 0.85;
+  background: linear-gradient(90deg, var(--card-accent, #0284c7), #38bdf8, #10b981, #84cc16);
+  opacity: 0.9;
 }
 
 /* Holographic sheen highlight */
@@ -199,17 +240,17 @@
   left: 0;
   right: 0;
   height: 40%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, transparent 100%);
   pointer-events: none;
   border-radius: 18px 18px 0 0;
 }
 
 .timeline-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(0, 204, 255, 0.6);
+  border-color: rgba(56, 189, 248, 0.6);
   box-shadow:
-    0 18px 45px rgba(0, 68, 238, 0.16),
-    0 4px 12px rgba(0, 204, 255, 0.12),
+    0 18px 45px rgba(2, 132, 199, 0.16),
+    0 4px 16px rgba(16, 185, 129, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 

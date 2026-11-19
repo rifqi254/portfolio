@@ -8,11 +8,11 @@
   overflow: hidden;
   background: linear-gradient(
     180deg,
-    #e8f3ff 0%,
-    #d7ecff 25%,
-    #bfe2ff 55%,
-    #0044ee 85%,
-    #00248a 100%
+    #f0fdf4 0%,
+    #e0f2fe 30%,
+    #bae6fd 60%,
+    #ecfdf5 85%,
+    #d1fae5 100%
   );
 }
 
@@ -66,11 +66,11 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 18px;
+  padding: 6px 18px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.95);
-  border: 1.5px solid #0055ff;
-  box-shadow: 0 4px 16px rgba(0, 85, 255, 0.18);
+  border: 1.5px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
   margin-bottom: 14px;
 }
 
@@ -78,17 +78,17 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #ff0077;
-  box-shadow: 0 0 10px #ff0077;
-  animation: dotBlink 1.6s ease-in-out infinite;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulseEdenDot 1.8s ease-in-out infinite;
 }
 
 .contact__header-code {
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.65rem;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.16em;
-  color: #003da5;
+  color: #065f46;
   text-transform: uppercase;
 }
 
@@ -107,14 +107,14 @@
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #f0f4fa 25%,
-    #0055ff 68%,
-    #ff0077 100%
+    #e0f2fe 30%,
+    #0284c7 65%,
+    #10b981 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 4px rgba(0, 30, 90, 0.25));
+  filter: drop-shadow(0 2px 6px rgba(2, 132, 199, 0.2));
 }
 
 .contact__subtitle {
@@ -540,23 +540,23 @@
   gap: 10px;
   padding: 13px 26px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #0055ff 0%, #0077ff 50%, #ff0077 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 45%, #10b981 100%);
   color: #ffffff;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.86rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 85, 255, 0.35);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.32);
   transition: all 0.25s ease;
   margin-top: 4px;
 }
 
 .contact__submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0, 85, 255, 0.45);
+  box-shadow: 0 10px 28px rgba(2, 132, 199, 0.45);
 }
 
 .contact__btn-arrow {

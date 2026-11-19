@@ -15,10 +15,11 @@
 
 .section-header::after {
   content: '';
-  width: 120px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #00ccff, #ff0099, transparent);
+  width: 140px;
+  height: 2.5px;
+  background: linear-gradient(90deg, transparent, #38bdf8, #10b981, #84cc16, transparent);
   border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
 }
 
 .section-title {

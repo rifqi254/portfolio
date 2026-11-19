@@ -79,14 +79,14 @@ export default function Footer() {
             <span className="footer__badge-icon">⚡</span>
             <div>
               <div className="footer__badge-title">Built with React 19 + Three.js</div>
-              <div className="footer__badge-sub">Surrealist Y2K Edition — {year}</div>
+              <div className="footer__badge-sub">Digital Eden 3000 Edition — {year}</div>
             </div>
           </div>
           <div className="footer__badge glass-card" style={{ marginTop: 12 }}>
-            <span className="footer__badge-icon">🎨</span>
+            <span className="footer__badge-icon">🌿</span>
             <div>
-              <div className="footer__badge-title">Surrealist Design System</div>
-              <div className="footer__badge-sub">Chrome • Scaffolding • Digital Dreamscape</div>
+              <div className="footer__badge-title">Visual Paradigm System</div>
+              <div className="footer__badge-sub">70% Aero • 20% Botanical • 10% Y3K</div>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function Footer() {
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
           <span className="footer__copy">© {year} Rifqi Maulana. All rights reserved.</span>
-          <span className="footer__made">Made with 💙 &amp; Y2K Surrealist Aesthetics</span>
+          <span className="footer__made">Crafted with 🌿 &amp; Digital Eden 3000 Aesthetics</span>
         </div>
       </div>
     </footer>

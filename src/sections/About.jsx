@@ -7,7 +7,7 @@ export default function About() {
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <span className="label label-pink">✦ About Me</span>
+          <span className="label label-lime">✦ Digital Eden // Biosphere</span>
           <h2 className="section-title">Who Am I?</h2>
         </div>
 

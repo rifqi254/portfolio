@@ -45,66 +45,127 @@ export default function Hero() {
       </div>
 
       {/* ─── Lush Green Grass Meadow & Rolling Hills (Reference 01 & 02) ─── */}
+      {/* ─── Lush Emerald Meadow & Rolling Botanical Hills (Surreal Botanical) ─── */}
       <div className="hero__meadow" aria-hidden="true">
-        {/* Layer 1: Distant rolling green hills */}
+        {/* Layer 1: Distant rolling emerald hills */}
         <svg className="hero__hills hero__hills--back" viewBox="0 0 1440 220" fill="none" preserveAspectRatio="none">
           <path d="M0,80 C320,160 540,20 860,90 C1140,150 1320,50 1440,70 L1440,220 L0,220 Z" fill="url(#hillGrad1)" />
           <defs>
             <linearGradient id="hillGrad1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#2e7d32" />
-              <stop offset="50%" stopColor="#1b5e20" />
-              <stop offset="100%" stopColor="#0a2e0e" />
+              <stop offset="0%" stopColor="#10b981" />
+              <stop offset="50%" stopColor="#059669" />
+              <stop offset="100%" stopColor="#064e3b" />
             </linearGradient>
           </defs>
         </svg>
 
-        {/* Layer 2: Foreground meadow with wildflowers */}
+        {/* Layer 2: Foreground meadow with soft dew reflection */}
         <svg className="hero__hills hero__hills--front" viewBox="0 0 1440 160" fill="none" preserveAspectRatio="none">
           <path d="M0,60 C280,10 600,100 960,30 C1200,-10 1360,50 1440,40 L1440,160 L0,160 Z" fill="url(#hillGrad2)" />
           <defs>
             <linearGradient id="hillGrad2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#43a047" />
-              <stop offset="40%" stopColor="#2e7d32" />
-              <stop offset="100%" stopColor="#1b5e20" />
+              <stop offset="0%" stopColor="#34d399" />
+              <stop offset="40%" stopColor="#10b981" />
+              <stop offset="100%" stopColor="#047857" />
             </linearGradient>
           </defs>
         </svg>
 
-        {/* Scaffolding Ground Anchor Shadows */}
-        <div className="hero__scaffolding">
-          <span className="pole pole--1" />
-          <span className="pole pole--2" />
-          <span className="pole pole--3" />
+        {/* ─── Giant Surreal Botanical Flora (20% Surreal Botanical) ─── */}
+        <div className="hero__surreal-flora">
+          {/* Flower 1: Giant Azure Lotus (Left) */}
+          <div className="surreal-flower surreal-flower--lotus" title="Surreal Digital Lotus">
+            <svg viewBox="0 0 120 140" className="surreal-flower__svg">
+              <path d="M60,140 Q55,100 60,60" stroke="#059669" strokeWidth="4" fill="none" strokeLinecap="round" />
+              <path d="M40,90 Q60,75 55,60" stroke="#10b981" strokeWidth="2.5" fill="none" />
+              {/* Petals */}
+              <ellipse cx="60" cy="50" rx="14" ry="32" fill="url(#lotusPetal1)" transform="rotate(-25 60 50)" />
+              <ellipse cx="60" cy="50" rx="14" ry="32" fill="url(#lotusPetal1)" transform="rotate(25 60 50)" />
+              <ellipse cx="60" cy="46" rx="12" ry="28" fill="url(#lotusPetal2)" transform="rotate(-10 60 46)" />
+              <ellipse cx="60" cy="46" rx="12" ry="28" fill="url(#lotusPetal2)" transform="rotate(10 60 46)" />
+              <ellipse cx="60" cy="42" rx="10" ry="24" fill="#ffffff" opacity="0.9" />
+              {/* Glowing Stamen */}
+              <circle cx="60" cy="44" r="5" fill="#a3e635" filter="drop-shadow(0 0 6px #a3e635)" />
+              <defs>
+                <linearGradient id="lotusPetal1" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stopColor="#0284c7" />
+                  <stop offset="70%" stopColor="#38bdf8" />
+                  <stop offset="100%" stopColor="#ffffff" />
+                </linearGradient>
+                <linearGradient id="lotusPetal2" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stopColor="#00bbcc" />
+                  <stop offset="80%" stopColor="#7dd3fc" />
+                  <stop offset="100%" stopColor="#ffffff" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          {/* Flower 2: Surreal Cyber Orchid (Center-Right) */}
+          <div className="surreal-flower surreal-flower--orchid" title="Surreal Blooming Orchid">
+            <svg viewBox="0 0 100 130" className="surreal-flower__svg">
+              <path d="M50,130 Q45,85 50,55" stroke="#047857" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+              <path d="M50,90 Q70,80 62,65" stroke="#10b981" strokeWidth="2" fill="none" />
+              <ellipse cx="50" cy="48" rx="18" ry="12" fill="url(#orchidPetal1)" transform="rotate(-35 50 48)" />
+              <ellipse cx="50" cy="48" rx="18" ry="12" fill="url(#orchidPetal1)" transform="rotate(35 50 48)" />
+              <ellipse cx="50" cy="40" rx="14" ry="22" fill="url(#orchidPetal2)" />
+              <circle cx="50" cy="42" r="4.5" fill="#84cc16" filter="drop-shadow(0 0 8px #84cc16)" />
+              <defs>
+                <linearGradient id="orchidPetal1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#ffffff" />
+                  <stop offset="50%" stopColor="#38bdf8" />
+                  <stop offset="100%" stopColor="#10b981" />
+                </linearGradient>
+                <linearGradient id="orchidPetal2" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stopColor="#059669" />
+                  <stop offset="60%" stopColor="#38bdf8" />
+                  <stop offset="100%" stopColor="#ffffff" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          {/* Flower 3: Bioluminescent Flora Bloom (Right) */}
+          <div className="surreal-flower surreal-flower--bloom" title="Bioluminescent Botanical Bloom">
+            <svg viewBox="0 0 90 120" className="surreal-flower__svg">
+              <path d="M45,120 Q50,80 45,50" stroke="#059669" strokeWidth="3" fill="none" strokeLinecap="round" />
+              <ellipse cx="45" cy="42" rx="10" ry="20" fill="url(#bloomGrad)" transform="rotate(-40 45 42)" />
+              <ellipse cx="45" cy="42" rx="10" ry="20" fill="url(#bloomGrad)" transform="rotate(40 45 42)" />
+              <ellipse cx="45" cy="42" rx="10" ry="20" fill="url(#bloomGrad)" transform="rotate(0 45 42)" />
+              <circle cx="45" cy="40" r="4" fill="#a3e635" filter="drop-shadow(0 0 6px #a3e635)" />
+              <defs>
+                <linearGradient id="bloomGrad" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stopColor="#059669" />
+                  <stop offset="70%" stopColor="#67e8f9" />
+                  <stop offset="100%" stopColor="#ffffff" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
         </div>
 
         {/* Scattered Wildflowers across meadow */}
         <div className="hero__wildflowers">
-          <span className="flower flower--1" style={{ left: '5%', bottom: '26px' }}>🌸</span>
-          <span className="flower flower--2" style={{ left: '14%', bottom: '44px' }}>🌼</span>
-          <span className="flower flower--3" style={{ left: '25%', bottom: '18px' }}>🌺</span>
-          <span className="flower flower--4" style={{ left: '42%', bottom: '50px' }}>🌼</span>
-          <span className="flower flower--5" style={{ left: '60%', bottom: '28px' }}>🌸</span>
-          <span className="flower flower--6" style={{ left: '72%', bottom: '46px' }}>🌼</span>
-          <span className="flower flower--7" style={{ left: '85%', bottom: '22px' }}>🌺</span>
-          <span className="flower flower--8" style={{ left: '95%', bottom: '38px' }}>🌸</span>
+          <span className="flower flower--1" style={{ left: '6%', bottom: '26px' }}>🌿</span>
+          <span className="flower flower--2" style={{ left: '18%', bottom: '44px' }}>✨</span>
+          <span className="flower flower--3" style={{ left: '32%', bottom: '20px' }}>🌱</span>
+          <span className="flower flower--4" style={{ left: '48%', bottom: '50px' }}>🌸</span>
+          <span className="flower flower--5" style={{ left: '62%', bottom: '28px' }}>✨</span>
+          <span className="flower flower--6" style={{ left: '76%', bottom: '46px' }}>🌿</span>
+          <span className="flower flower--7" style={{ left: '88%', bottom: '22px' }}>🌱</span>
         </div>
       </div>
 
-      {/* ─── Film Grain & Editorial Markings Overlay ─── */}
-      <div className="hero__grain" aria-hidden="true" />
-
-      {/* Red Graphic Markings & White Scribbles (Reference 02) */}
-      <div className="hero__scribble-wrap" aria-hidden="true">
-        <svg className="hero__scribble hero__scribble--1" viewBox="0 0 100 100" fill="none">
-          <path d="M10,50 Q30,10 60,40 T90,20" stroke="#ff2244" strokeWidth="2.5" strokeLinecap="round" opacity="0.75" />
-          <circle cx="90" cy="20" r="4" fill="#ff2244" />
-        </svg>
-        <svg className="hero__scribble hero__scribble--2" viewBox="0 0 120 60" fill="none">
-          <path d="M10,20 C40,50 80,0 110,35" stroke="#ffffff" strokeWidth="2" strokeDasharray="4 4" opacity="0.6" />
-        </svg>
+      {/* ─── Floating Aero Glass Water Bubbles (70% Frutiger Aero) ─── */}
+      <div className="hero__aero-bubbles" aria-hidden="true">
+        <div className="aero-bubble aero-bubble--1" />
+        <div className="aero-bubble aero-bubble--2" />
+        <div className="aero-bubble aero-bubble--3" />
+        <div className="aero-bubble aero-bubble--4" />
+        <div className="aero-bubble aero-bubble--5" />
       </div>
 
-      {/* Floating Metallic Y2K Stars */}
+      {/* Floating Metallic Chrome Stars (10% Y3K) */}
       <span className="hero__star hero__star--1" aria-hidden="true">✦</span>
       <span className="hero__star hero__star--2" aria-hidden="true">★</span>
       <span className="hero__star hero__star--3" aria-hidden="true">✧</span>
@@ -117,7 +178,7 @@ export default function Hero() {
           <div className="hero__edition-pill">
             <span className="hero__edition-dot" />
             <span className="hero__edition-text">
-              SURREALIST DIGITAL DREAMSCAPE · 2026
+              DIGITAL EDEN 3000 // 70% AERO · 20% BOTANICAL · 10% Y3K
             </span>
           </div>
 
@@ -229,15 +290,15 @@ export default function Hero() {
             {/* Interactive 3D Liquid Chrome Sculpture (Three.js WebGL) */}
             <ChromeSculpture className="hero__3d-sculpture" />
 
-            {/* Installation Exhibition Floating Card */}
+            {/* Digital Eden Artifact Floating Glass Card */}
             <div className="hero__sculpture-card">
               <div className="sculpture-card__top">
                 <span className="sculpture-card__dot" />
-                <span className="sculpture-card__badge">EXHIBITION // PIECE 01</span>
+                <span className="sculpture-card__badge">DIGITAL EDEN // ARTIFACT 01</span>
               </div>
               <h4 className="sculpture-card__title">LIQUID CHROME TORUS</h4>
               <p className="sculpture-card__meta">
-                Interactive Three.js · Equirectangular Reflection · Real-Time Physics
+                Three.js WebGL · Real-Time Reflection · Cursor Physics
               </p>
             </div>
           </div>

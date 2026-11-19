@@ -1,58 +1,123 @@
 /* ============================================================
-   SKILLS SECTION — SURREALIST Y2K DIGITAL EXPERIMENTS
+   SKILLS SECTION — DIGITAL EDEN 3000 FLOATING AERO CAPSULES
+   70% Frutiger Aero (Gloss, Bubbles, Translucency)
+   20% Surreal Botanical (Emerald & Lime Flora Aura)
+   10% Y3K Chrome (Polished Spheres & Iridescence)
    ============================================================ */
 
 .skills {
   position: relative;
-  padding: 90px 0 100px;
+  padding: 100px 0 110px;
   overflow: hidden;
-  background: linear-gradient(180deg, #f0f7ff 0%, #e6f2ff 100%);
+  background: linear-gradient(180deg, #f0fdf4 0%, #e0f2fe 50%, #f0fdf4 100%);
 }
 
 .skills__ambient-glow {
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
-  width: 800px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(0, 140, 255, 0.12) 0%, rgba(255, 0, 128, 0.08) 50%, transparent 70%);
-  filter: blur(80px);
+  width: 900px;
+  height: 480px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(56, 189, 248, 0.22) 0%,
+    rgba(16, 185, 129, 0.16) 45%,
+    rgba(132, 204, 22, 0.08) 70%,
+    transparent 85%
+  );
+  filter: blur(90px);
   pointer-events: none;
+}
+
+/* Floating Decorative Bubbles */
+.skills__floating-bubble {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.95), rgba(186, 230, 253, 0.35) 45%, rgba(16, 185, 129, 0.2) 80%, rgba(255, 255, 255, 0.6) 100%);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.95),
+    inset -2px -2px 6px rgba(2, 132, 199, 0.2),
+    0 12px 28px rgba(2, 132, 199, 0.14);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  animation: aeroBubbleFloat 8s ease-in-out infinite alternate;
+}
+
+.skills__floating-bubble--1 {
+  width: 80px;
+  height: 80px;
+  top: 12%;
+  left: 6%;
+  animation-duration: 7s;
+}
+
+.skills__floating-bubble--2 {
+  width: 120px;
+  height: 120px;
+  top: 48%;
+  right: 4%;
+  animation-duration: 9.5s;
+  animation-delay: -2s;
+}
+
+.skills__floating-bubble--3 {
+  width: 60px;
+  height: 60px;
+  bottom: 14%;
+  left: 10%;
+  animation-duration: 6.5s;
+  animation-delay: -4s;
+}
+
+@keyframes aeroBubbleFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(12px, -24px) scale(1.05); }
+  100% { transform: translate(-8px, -45px) scale(0.98); }
 }
 
 /* ─── Section Header ─── */
 .skills__header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 50px;
 }
 
 .skills__header-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 16px;
+  padding: 6px 18px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1.5px solid #0055ff;
-  box-shadow: 0 4px 14px rgba(0, 85, 255, 0.15);
-  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
+  margin-bottom: 14px;
 }
 
 .skills__header-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: #ff0077;
-  box-shadow: 0 0 8px #ff0077;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulseEdenDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseEdenDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
 }
 
 .skills__header-code {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.65rem;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.14em;
-  color: #003da5;
+  color: #065f46;
   text-transform: uppercase;
 }
 
@@ -67,7 +132,7 @@
 }
 
 .skills__title-accent {
-  background: linear-gradient(135deg, #0055ff 0%, #ff0077 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #10b981 60%, #84cc16 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -84,64 +149,71 @@
 
 .skills__filter-btn {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  padding: 8px 20px;
+  letter-spacing: 0.08em;
+  padding: 9px 22px;
   border-radius: 999px;
-  border: 1.5px solid rgba(0, 85, 255, 0.2);
+  border: 1.5px solid rgba(2, 132, 199, 0.25);
   background: rgba(255, 255, 255, 0.85);
-  color: #334d75;
+  color: #0f4c6e;
   cursor: pointer;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
 }
 
 .skills__filter-btn:hover {
-  border-color: #0055ff;
-  color: #0055ff;
+  border-color: #0284c7;
+  color: #0284c7;
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.18);
 }
 
 .skills__filter-btn.is-active {
-  background: linear-gradient(135deg, #0055ff 0%, #0088ff 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 50%, #10b981 100%);
   color: #ffffff;
-  border-color: #0055ff;
-  box-shadow: 0 4px 18px rgba(0, 85, 255, 0.35);
+  border-color: #38bdf8;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* ─── Skills Grid ─── */
 .skills__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
-  margin-bottom: 56px;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
 }
 
-/* Skill Group Card */
+/* Skill Group Card — Aero Glass Biosphere Frame */
 .skills__card {
   position: relative;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 2px solid rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 28px 24px 24px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 32px 26px 28px;
   box-shadow:
-    0 12px 36px rgba(0, 45, 120, 0.08),
-    0 0 1px rgba(0, 85, 255, 0.2),
-    inset 0 1px 0 #ffffff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    0 16px 40px rgba(2, 132, 199, 0.09),
+    0 2px 6px rgba(16, 185, 129, 0.05),
+    inset 0 1.5px 0.5px #ffffff,
+    inset 0 -8px 24px rgba(224, 242, 254, 0.3);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   overflow: hidden;
 }
 
 .skills__card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  border-color: rgba(56, 189, 248, 0.6);
   box-shadow:
-    0 20px 45px rgba(0, 45, 120, 0.14),
-    0 0 24px rgba(0, 85, 255, 0.2);
+    0 24px 55px rgba(2, 132, 199, 0.16),
+    0 0 28px rgba(16, 185, 129, 0.18),
+    inset 0 1.5px 0.5px #ffffff;
 }
 
+/* Top Gloss Arch */
 .skills__card::before {
   content: '';
   position: absolute;
@@ -149,11 +221,12 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--cat-color, #0055ff), var(--cat-accent, #ff0077));
+  background: linear-gradient(90deg, var(--cat-color, #0284c7), #38bdf8 45%, var(--cat-accent, #10b981));
+  box-shadow: 0 0 12px var(--cat-accent, #10b981);
 }
 
 .skills__card-header {
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .skills__card-badge {
@@ -164,15 +237,16 @@
 }
 
 .skills__card-icon {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .skills__card-code {
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.62rem;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.64rem;
   font-weight: 800;
   letter-spacing: 0.14em;
-  color: var(--cat-color, #0055ff);
+  color: var(--cat-color, #0284c7);
   text-transform: uppercase;
 }
 
@@ -182,113 +256,158 @@
   font-weight: 900;
   letter-spacing: -0.01em;
   color: #0b1a3d;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
 }
 
 .skills__card-desc {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  color: #556c8a;
-  line-height: 1.5;
+  color: #4b6382;
+  line-height: 1.55;
   margin: 0;
 }
 
-/* ─── Badges Matrix ─── */
+/* ─── Floating Aero Glass Capsules ─── */
 .skills__pills {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .skills__pill {
   position: relative;
-  background: linear-gradient(135deg, #ffffff 0%, #f4f8fe 100%);
-  border: 1.5px solid rgba(0, 60, 160, 0.12);
-  border-radius: 12px;
-  padding: 12px 14px;
-  transition: all 0.25s ease;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 249, 255, 0.85) 60%, rgba(236, 253, 245, 0.85) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.28);
+  border-radius: 16px;
+  padding: 14px 16px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+  box-shadow:
+    0 6px 20px rgba(2, 132, 199, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  animation: aeroCapsuleFloat var(--float-duration, 4s) ease-in-out infinite alternate;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes aeroCapsuleFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
 }
 
 .skills__pill:hover {
-  transform: translateX(4px);
-  border-color: var(--cat-color, #0055ff);
-  box-shadow: 0 6px 18px rgba(0, 60, 160, 0.12);
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--cat-accent, #10b981);
+  box-shadow:
+    0 14px 30px rgba(2, 132, 199, 0.15),
+    0 0 20px rgba(16, 185, 129, 0.25),
+    inset 0 1.5px 0.5px #ffffff;
   background: #ffffff;
+}
+
+/* Specular Highlight Curve on Top of Capsule */
+.skills__capsule-specular {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 16px 16px 60% 60%;
+  pointer-events: none;
+  opacity: 0.8;
 }
 
 .skills__pill-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.skills__pill-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skills__pill-3d-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
 }
 
 .skills__pill-name {
   font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 800;
   color: #0b1a3d;
   letter-spacing: 0.01em;
 }
 
 .skills__pill-tag {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.58rem;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--cat-color, #0055ff);
-  background: rgba(0, 85, 255, 0.08);
-  padding: 2px 8px;
+  color: #0369a1;
+  background: rgba(2, 132, 199, 0.09);
+  padding: 3px 9px;
   border-radius: 999px;
-  border: 1px solid rgba(0, 85, 255, 0.15);
+  border: 1px solid rgba(2, 132, 199, 0.22);
 }
 
 .skills__pill-detail {
   font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  color: #637792;
-  line-height: 1.4;
+  font-size: 0.74rem;
+  color: #556c88;
+  line-height: 1.45;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
-/* Holographic sheen line */
+/* Iridescent shimmer sweep on hover */
 .skills__pill-sheen {
   position: absolute;
   top: 0;
   left: -100%;
-  width: 60%;
+  width: 65%;
   height: 100%;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.85) 45%,
+    rgba(165, 243, 252, 0.6) 65%,
     transparent 100%
   );
   transform: skewX(-25deg);
   pointer-events: none;
-  transition: left 0.6s ease;
+  transition: left 0.65s ease;
+  z-index: 2;
 }
 
 .skills__pill:hover .skills__pill-sheen {
   left: 140%;
 }
 
-/* Screws */
-.skills__screw {
+/* Chrome Corner Spheres (Y3K polished metal studs) */
+.skills__chrome-orb {
   position: absolute;
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: #a0b5d0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.4);
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #cbd5e1 50%, #64748b 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
-.skills__screw--tl { top: 8px; left: 8px; }
-.skills__screw--tr { top: 8px; right: 8px; }
-.skills__screw--bl { bottom: 8px; left: 8px; }
-.skills__screw--br { bottom: 8px; right: 8px; }
+.skills__chrome-orb--tl { top: 12px; left: 12px; }
+.skills__chrome-orb--tr { top: 12px; right: 12px; }
+.skills__chrome-orb--bl { bottom: 12px; left: 12px; }
+.skills__chrome-orb--br { bottom: 12px; right: 12px; }
 
 /* ─── Horizontal Marquee Ticker ─── */
 .skills__ticker {
@@ -296,17 +415,19 @@
   width: 100%;
   overflow: hidden;
   padding: 16px 0;
-  background: #003da5;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(0, 60, 160, 0.25);
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 40%, #10b981 100%);
+  border-radius: 16px;
+  box-shadow:
+    0 12px 30px rgba(2, 132, 199, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   margin-top: 10px;
 }
 
 .skills__ticker-track {
   display: flex;
-  gap: 28px;
+  gap: 32px;
   width: max-content;
-  animation: marqueeRoll 24s linear infinite;
+  animation: marqueeRoll 26s linear infinite;
 }
 
 .skills__ticker-track:hover {
@@ -326,22 +447,23 @@
 }
 
 .skills__ticker-star {
-  color: #ffdd00;
-  font-size: 0.9rem;
+  color: #a3e635; /* Vibrant Eden Lime Star */
+  font-size: 1rem;
+  filter: drop-shadow(0 0 6px #a3e635);
 }
 
 .skills__ticker-text {
   font-family: 'Unbounded', 'Syne', sans-serif;
   font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: #ffffff;
   text-transform: uppercase;
 }
 
 @media (max-width: 640px) {
   .skills {
-    padding: 60px 0;
+    padding: 70px 0;
   }
   .skills__grid {
     grid-template-columns: 1fr;

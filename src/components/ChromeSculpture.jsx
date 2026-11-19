@@ -35,21 +35,22 @@ export default function ChromeSculpture({ className = '' }) {
     envCanvas.height = 256
     const ctx = envCanvas.getContext('2d')
 
-    // Sky to meadow gradient
+    // Sky to meadow gradient (Digital Eden 3000: Azure Sky to Emerald Meadow)
     const grad = ctx.createLinearGradient(0, 0, 0, 256)
-    grad.addColorStop(0, '#0044ee')     // Electric cobalt sky
-    grad.addColorStop(0.35, '#00ccff')  // Cyan horizon
-    grad.addColorStop(0.5, '#fff8e0')   // Glowing sun band
-    grad.addColorStop(0.65, '#2e7d32')  // Lush meadow green
-    grad.addColorStop(1, '#0a2e0e')     // Deep grass shade
+    grad.addColorStop(0, '#0284c7')     // Deep azure sky
+    grad.addColorStop(0.35, '#38bdf8')  // Luminous sky blue horizon
+    grad.addColorStop(0.5, '#ffffff')   // Pure solar specular highlight
+    grad.addColorStop(0.68, '#10b981')  // Emerald botanical meadow
+    grad.addColorStop(1, '#064e3b')     // Deep flora shade
     ctx.fillStyle = grad
     ctx.fillRect(0, 0, 512, 256)
 
-    // Hot pink and neon lime specular flare spots
-    const pinkGrad = ctx.createRadialGradient(380, 80, 5, 380, 80, 100)
-    pinkGrad.addColorStop(0, 'rgba(255, 0, 127, 0.8)')
-    pinkGrad.addColorStop(1, 'transparent')
-    ctx.fillStyle = pinkGrad
+    // Lime & cyan iridescent flares
+    const flareGrad = ctx.createRadialGradient(380, 80, 5, 380, 80, 110)
+    flareGrad.addColorStop(0, 'rgba(132, 204, 22, 0.85)')
+    flareGrad.addColorStop(0.6, 'rgba(34, 211, 238, 0.45)')
+    flareGrad.addColorStop(1, 'transparent')
+    ctx.fillStyle = flareGrad
     ctx.fillRect(0, 0, 512, 256)
 
     const envTexture = new THREE.CanvasTexture(envCanvas)
@@ -59,9 +60,9 @@ export default function ChromeSculpture({ className = '' }) {
     const chromeMaterial = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       metalness: 0.98,
-      roughness: 0.04,
+      roughness: 0.03,
       envMap: envTexture,
-      envMapIntensity: 2.8,
+      envMapIntensity: 2.9,
     })
 
     // 4. Group containing organic metallic sculptures
@@ -69,12 +70,12 @@ export default function ChromeSculpture({ className = '' }) {
     scene.add(sculptureGroup)
 
     // Central organic chrome knot (sculpture body)
-    const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.38, 128, 32, 2, 3)
+    const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.38, 256, 64, 2, 3)
     const centralMesh = new THREE.Mesh(knotGeo, chromeMaterial)
     sculptureGroup.add(centralMesh)
 
     // Outer orbital chrome ring
-    const ringGeo = new THREE.TorusGeometry(2.1, 0.06, 16, 100)
+    const ringGeo = new THREE.TorusGeometry(2.1, 0.05, 16, 120)
     const ringMesh = new THREE.Mesh(ringGeo, chromeMaterial)
     ringMesh.rotation.x = Math.PI / 3
     sculptureGroup.add(ringMesh)
@@ -90,21 +91,21 @@ export default function ChromeSculpture({ className = '' }) {
     satellite2.scale.set(0.7, 0.7, 0.7)
     sculptureGroup.add(satellite2)
 
-    // 5. Studio & Surreal Lighting
-    const ambientLight = new THREE.AmbientLight(0x0066ff, 1.2)
+    // 5. Studio & Surreal Lighting (Eden 3000 Atmosphere)
+    const ambientLight = new THREE.AmbientLight(0x38bdf8, 1.3)
     scene.add(ambientLight)
 
-    const sunLight = new THREE.DirectionalLight(0xfff5dd, 2.5)
+    const sunLight = new THREE.DirectionalLight(0xfff9e6, 2.8)
     sunLight.position.set(4, 5, 3)
     scene.add(sunLight)
 
-    const cobaltFill = new THREE.DirectionalLight(0x0088ff, 2.0)
-    cobaltFill.position.set(-4, -2, -2)
-    scene.add(cobaltFill)
+    const aquaFill = new THREE.DirectionalLight(0x00bbcc, 2.0)
+    aquaFill.position.set(-4, -2, -2)
+    scene.add(aquaFill)
 
-    const pinkAccent = new THREE.PointLight(0xff0088, 3.0, 10)
-    pinkAccent.position.set(2, -2, 2)
-    scene.add(pinkAccent)
+    const limeAccent = new THREE.PointLight(0x84cc16, 2.8, 12)
+    limeAccent.position.set(2, -2, 2)
+    scene.add(limeAccent)
 
     // 6. Mouse Interaction
     const handleMouseMove = (e) => {

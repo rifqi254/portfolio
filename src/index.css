@@ -8,96 +8,103 @@
 
 /* --- CSS CUSTOM PROPERTIES / DESIGN TOKENS --- */
 :root {
-  /* === Core Y2K Color Palette === */
-  --col-bg:          #c8e8ff;
+  /* === DIGITAL EDEN 3000 DESIGN SYSTEM === */
+  /* Composition: 70% Frutiger Aero + 20% Surreal Botanical + 10% Y3K */
+  
+  /* 01. Frutiger Aero (70%): Sky Blue, Aqua, Aero Glass & Glossy Bubbles */
+  --eden-sky-deep:    #0284c7;
+  --eden-sky:         #38bdf8;
+  --eden-sky-mid:     #7dd3fc;
+  --eden-sky-light:   #e0f2fe;
+  --eden-sky-pale:    #f0f9ff;
+  --eden-aqua:        #00bbcc;
+  --eden-aqua-glow:   rgba(0, 187, 204, 0.4);
+  --eden-glass:       rgba(255, 255, 255, 0.82);
+  --eden-glass-ultra: rgba(255, 255, 255, 0.94);
+  --eden-glass-border:rgba(255, 255, 255, 0.88);
+  --eden-glass-blur:  blur(22px);
 
-  /* Electric & Metallic Blues */
-  --col-electric:    #0044ee;
-  --col-electric-lt: #3377ff;
-  --col-cyan:        #00ccff;
-  --col-cyan-bright: #00eeff;
-  --col-cyan-light:  #aaebff;
-  --col-icy-blue:    #c0eaff;
+  /* 02. Surreal Botanical (20%): Emerald, Glowing Flora & Lime Stamen */
+  --eden-emerald-deep:#064e3b;
+  --eden-emerald:     #059669;
+  --eden-emerald-light:#10b981;
+  --eden-emerald-glow:rgba(16, 185, 129, 0.35);
+  --eden-lime:        #84cc16;
+  --eden-lime-bright: #a3e635;
+  --eden-lime-glow:   rgba(132, 204, 22, 0.45);
+  --eden-floral-cyan: #22d3ee;
+  --eden-floral-lotus:#38bdf8;
+
+  /* 03. Y3K (10%): Liquid Chrome, Holographic Foil & Reflective Metals */
+  --eden-chrome-bright:#ffffff;
+  --eden-chrome:       #e2e8f0;
+  --eden-chrome-mid:   #cbd5e1;
+  --eden-chrome-dark:  #64748b;
+  --eden-chrome-reflection: linear-gradient(135deg, #ffffff 0%, #cbd5e1 30%, #f8fafc 55%, #94a3b8 80%, #ffffff 100%);
+  --eden-iridescent:   linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(56,189,248,0.45) 25%, rgba(167,139,250,0.35) 50%, rgba(52,211,153,0.45) 75%, rgba(255,255,255,0.95) 100%);
+  --eden-hologram-border: 1.5px solid rgba(56, 189, 248, 0.5);
+
+  /* Legacy Compat Tokens mapped to Digital Eden 3000 */
+  --col-bg:          var(--eden-sky-light);
+  --col-electric:    #0284c7;
+  --col-electric-lt: #38bdf8;
+  --col-cyan:        #00bbcc;
+  --col-cyan-bright: #38bdf8;
+  --col-cyan-light:  #e0f2fe;
+  --col-icy-blue:    #bae6fd;
   --col-aqua:        #00bbcc;
-  --col-baby-blue:   #99d8ff;
+  --col-baby-blue:   #7dd3fc;
+  --col-pink:        #059669; /* Soft botanical shift */
+  --col-pink-hot:    #10b981;
+  --col-chrome:      var(--eden-chrome);
+  --col-chrome-dark: var(--eden-chrome-dark);
+  --col-chrome-shine:var(--eden-chrome-bright);
+  --col-silver:      #cbd5e1;
+  --col-pearlescent: #f0fdf4;
+  --col-lime:        var(--eden-lime);
+  --col-lime-soft:   var(--eden-lime-bright);
 
-  /* Hot Pink & Bubblegum */
-  --col-pink:        #ff0099;
-  --col-pink-hot:    #ff1ab4;
-  --col-pink-bubble: #ff55cc;
-  --col-pink-light:  #ffaadd;
-  --col-pink-pale:   #ffe0f5;
-
-  /* Chrome & Metallic */
-  --col-chrome:      #bcd0e8;
-  --col-chrome-dark: #7799bb;
-  --col-chrome-shine:#eef4ff;
-  --col-silver:      #b0c8dc;
-  --col-pearlescent: #eef8ff;
-
-  /* Lime Green & Other Accents */
-  --col-lime:        #55ff00;
-  --col-lime-soft:   #aaff66;
-  --col-mint:        #00ffcc;
-  --col-mint-soft:   #77ffd4;
-  --col-mint-light:  #ccffe8;
-  --col-turquoise:   #00ddbb;
-  --col-lavender:    #cc88ff;
-  --col-lavender-lt: #eeddff;
-
-  /* Surface Colors */
-  --col-surface:     rgba(255, 255, 255, 0.92);
-  --col-surface-alt: rgba(210, 235, 255, 0.88);
-  --col-glass:       rgba(170, 215, 255, 0.3);
-  --col-glass-border:rgba(255, 255, 255, 0.75);
-
-  /* === Text === */
-  --col-text:        #080820;
-  --col-text-muted:  #223355;
-  --col-text-light:  #4466aa;
+  /* Surfaces & Text */
+  --col-surface:     rgba(255, 255, 255, 0.94);
+  --col-surface-alt: rgba(240, 249, 255, 0.9);
+  --col-glass:       rgba(255, 255, 255, 0.78);
+  --col-glass-border:rgba(255, 255, 255, 0.9);
+  --col-text:        #0f172a;
+  --col-text-muted:  #334155;
+  --col-text-light:  #64748b;
   --col-text-on-dark:#ffffff;
 
-  /* === Gradients === */
+  /* Digital Eden Gradients */
   --grad-bg: linear-gradient(
-    135deg,
-    #aadcff 0%,
-    #ddf0ff 12%,
-    #ffddee 25%,
-    #e0ccff 38%,
-    #ccf5ff 50%,
-    #ffbbee 62%,
-    #aadcff 75%,
-    #ddf0ff 88%,
-    #aadcff 100%
+    180deg,
+    #bae6fd 0%,
+    #e0f2fe 20%,
+    #f0fdf4 45%,
+    #e0f2fe 70%,
+    #f0fdfa 85%,
+    #dcfce7 100%
   );
-  --grad-hero: linear-gradient(135deg, #001899 0%, #0044ee 25%, #0088ff 55%, #00ccff 75%, #ff0099 100%);
-  --grad-chrome: linear-gradient(145deg, #e0f0ff 0%, #ffffff 22%, #bbd0ee 44%, #f5faff 66%, #ccdfff 85%, #eef4ff 100%);
-  --grad-holographic: linear-gradient(135deg, #ff0099 0%, #bb22ff 14%, #0044ee 28%, #00ccff 42%, #00ffcc 57%, #55ff00 71%, #ffcc00 85%, #ff0099 100%);
-  --grad-card: linear-gradient(145deg, rgba(255,255,255,0.97) 0%, rgba(210,238,255,0.93) 100%);
-  --grad-pink-cyan: linear-gradient(135deg, #ff0099, #00ccff);
-  --grad-cyan-lime: linear-gradient(135deg, #00ccff, #55ff00);
-  --grad-electric:  linear-gradient(135deg, #001aaa, #0044ee, #00aaff);
-  --grad-chrome-btn: linear-gradient(180deg, #ffffff 0%, #ddeeff 40%, #aabcdd 70%, #7799cc 100%);
-  --grad-hot-pink: linear-gradient(135deg, #ff0099, #ff55cc, #cc0077);
-  --grad-metallic-blue: linear-gradient(180deg, #77bbff 0%, #0055ee 40%, #002299 80%, #0044ee 100%);
-  --grad-section-divider: linear-gradient(90deg, transparent 0%, #00ccff 25%, #ff0099 50%, #55ff00 75%, transparent 100%);
+  --grad-hero: linear-gradient(135deg, #0284c7 0%, #38bdf8 45%, #059669 85%, #84cc16 100%);
+  --grad-chrome: var(--eden-chrome-reflection);
+  --grad-holographic: var(--eden-iridescent);
+  --grad-card: linear-gradient(145deg, rgba(255,255,255,0.96) 0%, rgba(224,242,254,0.85) 100%);
+  --grad-pink-cyan: linear-gradient(135deg, #0284c7, #10b981);
+  --grad-cyan-lime: linear-gradient(135deg, #38bdf8, #84cc16);
+  --grad-electric:  linear-gradient(135deg, #0284c7, #00bbcc, #10b981);
+  --grad-chrome-btn: linear-gradient(180deg, #ffffff 0%, #f0f9ff 40%, #cbd5e1 75%, #94a3b8 100%);
 
-  /* === Borders === */
-  --border-chrome:   1.5px solid rgba(170, 200, 235, 0.85);
-  --border-pink:     1.5px solid rgba(255, 0, 153, 0.45);
-  --border-cyan:     1.5px solid rgba(0, 204, 255, 0.55);
-  --border-electric: 1.5px solid rgba(0, 68, 238, 0.4);
-  --border-glass:    1px solid rgba(255, 255, 255, 0.72);
+  /* Borders & Shadows */
+  --border-chrome:   1.5px solid rgba(203, 213, 225, 0.85);
+  --border-cyan:     1.5px solid rgba(56, 189, 248, 0.5);
+  --border-electric: 1.5px solid rgba(2, 132, 199, 0.4);
+  --border-glass:    1.5px solid rgba(255, 255, 255, 0.85);
 
-  /* === Shadows === */
-  --shadow-soft:   0 4px 24px rgba(0, 68, 238, 0.1), 0 1px 6px rgba(0, 68, 238, 0.07);
-  --shadow-card:   0 8px 32px rgba(0, 68, 238, 0.14), 0 2px 8px rgba(0, 68, 238, 0.08);
-  --shadow-lift:   0 20px 60px rgba(0, 68, 238, 0.22), 0 6px 20px rgba(0, 68, 238, 0.13);
-  --shadow-pink:   0 8px 32px rgba(255, 0, 153, 0.28), 0 2px 8px rgba(255, 0, 153, 0.16);
-  --shadow-cyan:   0 8px 32px rgba(0, 204, 255, 0.32), 0 2px 8px rgba(0, 204, 255, 0.18);
-  --shadow-glow:   0 0 30px rgba(0, 204, 255, 0.55), 0 0 60px rgba(0, 204, 255, 0.25);
-  --shadow-pink-glow: 0 0 30px rgba(255, 0, 153, 0.55), 0 0 60px rgba(255, 0, 153, 0.25);
-  --shadow-chrome: 0 4px 16px rgba(0, 68, 238, 0.14), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,80,200,0.12);
+  --shadow-soft:     0 4px 24px rgba(2, 132, 199, 0.08), 0 1px 4px rgba(0, 0, 0, 0.03);
+  --shadow-card:     0 12px 36px rgba(2, 132, 199, 0.1), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-lift:     0 22px 65px rgba(2, 132, 199, 0.16), 0 6px 20px rgba(0, 0, 0, 0.06);
+  --shadow-glow:     0 0 32px rgba(56, 189, 248, 0.45);
+  --shadow-emerald:  0 0 32px rgba(16, 185, 129, 0.4);
+  --shadow-chrome:   0 8px 24px rgba(15, 23, 42, 0.1), inset 0 1.5px 0 #ffffff;
   --shadow-inner:  inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -1px 0 rgba(0,100,220,0.12);
 
   /* === Border Radius === */

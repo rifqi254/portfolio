@@ -347,7 +347,11 @@ export default function ArchiveVault() {
             {projectsData.map((project) => (
               <div
                 key={project.id}
-                className="carousel-card carousel-card--project"
+                className={`carousel-card carousel-card--project carousel-card--stage-${project.id}`}
+                style={{
+                  '--proj-accent': project.accent,
+                  '--proj-bg': project.color,
+                }}
                 onClick={() => setActiveProject(project)}
                 role="button"
                 tabIndex={0}
@@ -361,8 +365,13 @@ export default function ArchiveVault() {
                     className="carousel-card__img"
                     loading="lazy"
                   />
+                  {/* Distinct Project Stage Aura */}
+                  <div className="carousel-card__stage-aura" aria-hidden="true" />
                   <div className="carousel-card__meta-bar">
-                    <span className="carousel-meta-cat">{project.category}</span>
+                    <span className="carousel-meta-cat">
+                      <span className="carousel-meta-emoji">{project.emoji}</span>
+                      {project.category}
+                    </span>
                     <span className="carousel-meta-year">{project.year}</span>
                   </div>
                   {project.isHosted && (
@@ -384,7 +393,7 @@ export default function ArchiveVault() {
                   </div>
 
                   <div className="carousel-card__footer">
-                    <span className="card-action-text">Preview Project</span>
+                    <span className="card-action-text">{project.actionText || 'Preview Project'}</span>
                     <span className="card-action-arrow">↗</span>
                   </div>
                 </div>
@@ -393,7 +402,7 @@ export default function ArchiveVault() {
           </div>
         </div>
 
-        {/* ─── 02. CERTIFICATES CAROUSEL (7 ITEMS) ─── */}
+        {/* ─── 02. CERTIFICATES CAROUSEL (7 ITEMS - HOLOGRAPHIC 3D FLIP) ─── */}
         <div className="vault-carousel-block" id="certificates-section">
           <div className="vault-carousel-header">
             <div className="vault-carousel-header__left">
@@ -404,7 +413,7 @@ export default function ArchiveVault() {
               <h3 className="vault-carousel-title">Licenses &amp; Certifications</h3>
             </div>
             <div className="vault-carousel-header__right">
-              <span className="carousel-drag-hint">⇄ Drag / Geser</span>
+              <span className="carousel-drag-hint">⇄ Drag / Flip Card</span>
               <div className="carousel-nav-arrows">
                 <button
                   className="carousel-arrow carousel-arrow--prev"
@@ -428,27 +437,61 @@ export default function ArchiveVault() {
             {certificatesData.map((cert) => (
               <div
                 key={cert.id}
-                className="carousel-card carousel-card--cert"
+                className="carousel-card carousel-card--cert cert-flip-container"
                 onClick={() => setActiveCert(cert)}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => e.key === 'Enter' && setActiveCert(cert)}
                 title={`Preview ${cert.title}`}
               >
-                <div className="carousel-card__cert-frame">
-                  <img
-                    src={cert.image}
-                    alt={cert.title}
-                    className="carousel-card__cert-img"
-                    loading="lazy"
-                  />
-                  <div className="carousel-card__zoom-overlay">
-                    <span className="zoom-pill">🔍 Lossless View</span>
+                <div className="cert-flip-inner">
+                  {/* Front Face: Holographic Card & Image Preview */}
+                  <div className="cert-flip-front">
+                    <div className="carousel-card__cert-frame">
+                      <img
+                        src={cert.image}
+                        alt={cert.title}
+                        className="carousel-card__cert-img"
+                        loading="lazy"
+                      />
+                      {/* Holographic Iridescent Foil Sheen */}
+                      <div className="cert-holo-foil" aria-hidden="true" />
+                      <div className="carousel-card__zoom-overlay">
+                        <span className="zoom-pill">🔍 Lossless View</span>
+                      </div>
+                    </div>
+                    <div className="carousel-card__cert-info">
+                      <div className="cert-front-status">
+                        <span className="cert-holo-badge">✦ HOLOGRAPHIC</span>
+                        <span className="carousel-card__cert-yr">YR // {cert.year}</span>
+                      </div>
+                      <h4 className="carousel-card__cert-title" title={cert.title}>{cert.title}</h4>
+                    </div>
                   </div>
-                </div>
-                <div className="carousel-card__cert-info">
-                  <h4 className="carousel-card__cert-title" title={cert.title}>{cert.title}</h4>
-                  <span className="carousel-card__cert-yr">YR // {cert.year}</span>
+
+                  {/* Back Face: Holographic Security Credentials Pass */}
+                  <div className="cert-flip-back">
+                    <div className="cert-back-hologram" aria-hidden="true" />
+                    <div className="cert-back-seal">★ OFFICIAL CREDENTIAL ★</div>
+                    <h5 className="cert-back-title">{cert.title}</h5>
+                    <div className="cert-back-meta">
+                      <div className="cert-back-meta-row">
+                        <span className="cert-back-lbl">STATUS:</span>
+                        <span className="cert-back-val">VERIFIED AUTHENTIC</span>
+                      </div>
+                      <div className="cert-back-meta-row">
+                        <span className="cert-back-lbl">YEAR:</span>
+                        <span className="cert-back-val">{cert.year}</span>
+                      </div>
+                      <div className="cert-back-meta-row">
+                        <span className="cert-back-lbl">REGISTRY:</span>
+                        <span className="cert-back-val">DIGITAL EDEN 3000</span>
+                      </div>
+                    </div>
+                    <div className="cert-back-footer">
+                      <span className="cert-back-click-hint">Buka Lightbox Penuh ↗</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}

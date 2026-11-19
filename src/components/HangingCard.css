@@ -74,33 +74,33 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(191, 255, 0, 0.85);
+  background: rgba(132, 204, 22, 0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 2px solid #ffffff;
   box-shadow:
-    0 0 14px rgba(191, 255, 0, 0.7),
+    0 0 14px rgba(132, 204, 22, 0.75),
     0 4px 12px rgba(0, 0, 0, 0.25),
     inset 0 1px 2px rgba(255, 255, 255, 0.9);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #0a1b02;
+  color: #064e3b;
   font-family: 'Syne', sans-serif;
   transform: rotate(12deg);
   animation: charmGlow 3s ease-in-out infinite;
 }
 
 @keyframes charmGlow {
-  0%, 100% { filter: drop-shadow(0 0 4px rgba(191, 255, 0, 0.6)); }
-  50% { filter: drop-shadow(0 0 10px rgba(191, 255, 0, 0.9)); }
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(132, 204, 22, 0.6)); }
+  50% { filter: drop-shadow(0 0 10px rgba(132, 204, 22, 0.9)); }
 }
 
 .floppy-keychain__charm-icon {
   font-size: 0.9rem;
   line-height: 1;
-  color: #0f2e03;
+  color: #064e3b;
 }
 
 .floppy-keychain__charm-text {
@@ -121,19 +121,19 @@
   display: flex;
   flex-direction: column;
 
-  /* Translucent Pink Acrylic Body */
+  /* Translucent Luminous Digital Eden Aero Glass */
   background: linear-gradient(
-    135deg,
-    rgba(255, 0, 128, 0.58) 0%,
-    rgba(220, 0, 110, 0.48) 45%,
-    rgba(255, 50, 160, 0.62) 100%
+    145deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(224, 242, 254, 0.84) 40%,
+    rgba(240, 253, 250, 0.9) 100%
   );
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
 
-  /* Glass Beveled Acrylic Border */
-  border: 2.5px solid rgba(255, 170, 225, 0.82);
-  border-radius: 18px 18px 14px 14px;
+  /* Glass Beveled Iridescent Border */
+  border: 2.5px solid rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -143,13 +143,13 @@
   box-sizing: border-box;
   transform-origin: center center;
 
-  /* Glossy Acrylic Depth Shadows */
+  /* Glossy Depth Shadows with Aqua & Emerald Radiance */
   box-shadow:
-    0 22px 50px rgba(255, 0, 128, 0.28),
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(255, 0, 128, 0.2),
-    inset 0 1.5px 3px rgba(255, 255, 255, 0.9),
-    inset 0 -1.5px 3px rgba(180, 0, 80, 0.4);
+    0 24px 60px rgba(2, 132, 199, 0.18),
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 0 25px rgba(56, 189, 248, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 6px rgba(16, 185, 129, 0.2);
 }
 
 .hanging-badge-container.is-dragging .hanging-badge__card {

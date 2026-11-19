@@ -98,10 +98,15 @@ export default function Timeline() {
       <div className="container">
         {/* Header */}
         <div className="section-header">
-          <span className="label label-cyan">✦ Chronological Log</span>
-          <h2 className="section-title">Career &amp; Learning Journey</h2>
+          <div className="timeline__header-badge">
+            <span className="timeline__header-dot" />
+            <span className="timeline__header-code">DIGITAL EDEN 3000 // BOTANICAL TRAIL</span>
+          </div>
+          <h2 className="section-title">
+            <span>CAREER</span> <span className="timeline__title-accent">EXPEDITION</span>
+          </h2>
           <p className="section-subtitle">
-            Rekam jejak kepemimpinan organisasi, penyelenggaraan acara IT, dan sertifikasi keahlian teknologi profesional.
+            Jalur penjelajahan karier, kepemimpinan organisasi kampus, dan pencapaian kompetensi teknologi yang mekar di lanskap Digital Eden.
           </p>
         </div>
 

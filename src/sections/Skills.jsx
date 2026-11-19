@@ -4,33 +4,33 @@ import './Skills.css'
 const skillCategories = [
   {
     id: 'dev',
-    category: 'Development',
-    code: '01 // DEV_CORE',
+    category: 'Development Ecosystem',
+    code: '01 // DEV_ECOSYSTEM',
     icon: '⚡',
-    color: '#0055ff',
-    accent: '#ff0077',
-    description: 'Modern front-end, reactive systems, and solid back-end architecture.',
+    color: '#0284c7',
+    accent: '#10b981',
+    description: 'Modern front-end, reactive systems, and solid back-end architecture with high-precision engineering.',
     skills: [
-      { name: 'HTML', tag: 'Semantic 5', desc: 'Modern semantic structure & accessibility' },
-      { name: 'CSS', tag: 'Styling & FX', desc: 'Custom layouts, 3D transforms, animation engines' },
-      { name: 'JavaScript', tag: 'ES6+ / Async', desc: 'Modern ECMAScript, DOM manipulation & state' },
-      { name: 'PHP', tag: 'Server-side', desc: 'Object-oriented programming, MVC frameworks' },
-      { name: 'Laravel', tag: 'Full Framework', desc: 'Eloquent ORM, Blade, migrations, auth systems' },
-      { name: 'React', tag: 'UI Library', desc: 'Component architectures, hooks & performance' },
+      { name: 'HTML5', icon: '🌐', tag: 'Semantic 5', desc: 'Modern semantic structure, SEO & accessibility' },
+      { name: 'CSS3', icon: '🎨', tag: 'Aero FX & 3D', desc: 'Custom layouts, glassmorphism, 3D transforms & animation engines' },
+      { name: 'JavaScript', icon: '⚡', tag: 'ES6+ / Async', desc: 'Modern ECMAScript, reactive state & async DOM manipulation' },
+      { name: 'PHP', icon: '🐘', tag: 'Server-side', desc: 'Object-oriented programming, secure MVC architectures' },
+      { name: 'Laravel', icon: '🔺', tag: 'Full Framework', desc: 'Eloquent ORM, Blade templating, migrations & multi-tier auth' },
+      { name: 'React 19', icon: '⚛️', tag: 'UI Library', desc: 'Component architectures, custom hooks & performance optimization' },
     ],
   },
   {
     id: 'db',
-    category: 'Database & API',
-    code: '02 // DATA_SYNC',
+    category: 'Database & Cloud API',
+    code: '02 // DATA_SYNAPSE',
     icon: '📡',
-    color: '#00cc88',
-    accent: '#00ccff',
-    description: 'Relational data design, optimized queries, and RESTful web protocols.',
+    color: '#10b981',
+    accent: '#84cc16',
+    description: 'Relational data modeling, optimized transactions, and high-throughput RESTful endpoints.',
     skills: [
-      { name: 'MySQL', tag: 'RDBMS', desc: 'Relational modeling, indexing, ACID transactions' },
-      { name: 'REST API', tag: 'Architecture', desc: 'RESTful endpoints, JSON schemas, auth tokens' },
-      { name: 'Postman', tag: 'Testing / Docs', desc: 'API debugging, mock servers, automated testing' },
+      { name: 'MySQL', icon: '🐬', tag: 'RDBMS', desc: 'Relational data modeling, indexing, foreign keys & ACID transactions' },
+      { name: 'REST API', icon: '📡', tag: 'Architecture', desc: 'Stateless endpoints, JSON schemas, token auth & error resilience' },
+      { name: 'Postman', icon: '🚀', tag: 'Testing / Docs', desc: 'Automated test scripts, mock servers & API collection documentation' },
     ],
   },
   {
@@ -38,20 +38,20 @@ const skillCategories = [
     category: 'Design & Productivity',
     code: '03 // CREATIVE_LAB',
     icon: '✦',
-    color: '#ff0077',
-    accent: '#ffdd00',
-    description: 'Vector UI/UX prototyping, visual systems, and documentation tooling.',
+    color: '#06b6d4',
+    accent: '#a855f7',
+    description: 'Vector UI/UX prototyping, design systems, and analytical business productivity documentation.',
     skills: [
-      { name: 'Figma', tag: 'UI/UX Design', desc: 'Design systems, auto-layout, interactive prototypes' },
-      { name: 'Microsoft Office', tag: 'Productivity', desc: 'Technical documentation, analysis, sheets' },
+      { name: 'Figma', icon: '❖', tag: 'UI/UX Design', desc: 'Design systems, auto-layout, components & interactive high-fi prototypes' },
+      { name: 'Microsoft Office', icon: '📊', tag: 'Productivity', desc: 'Technical documentation, data analysis & spreadsheet modeling' },
     ],
   },
 ]
 
 const marqueeItems = [
-  'HTML5', 'CSS3', 'JAVASCRIPT (ES6+)', 'PHP', 'LARAVEL', 'REACT 19',
-  'MYSQL', 'REST API', 'POSTMAN', 'FIGMA', 'THREE.JS', 'VITE',
-  'MICROSOFT OFFICE', 'GIT & GITHUB', 'RESPONSIVE WEB', 'CREATIVE TECH',
+  'FRUTIGER AERO', 'DIGITAL EDEN 3000', 'HTML5', 'CSS3 3D', 'JAVASCRIPT ES6+',
+  'PHP', 'LARAVEL', 'REACT 19', 'THREE.JS', 'MYSQL', 'REST API', 'POSTMAN',
+  'FIGMA', 'VITE', 'SURREAL BOTANICAL', 'Y3K CHROME',
 ]
 
 export default function Skills() {
@@ -63,21 +63,24 @@ export default function Skills() {
 
   return (
     <section className="skills section" id="skills" aria-label="Skills & Digital Capabilities">
-      {/* Background Ambience */}
+      {/* Botanical Eden Ambient Atmosphere */}
       <div className="skills__ambient-glow" aria-hidden="true" />
+      <div className="skills__floating-bubble skills__floating-bubble--1" aria-hidden="true" />
+      <div className="skills__floating-bubble skills__floating-bubble--2" aria-hidden="true" />
+      <div className="skills__floating-bubble skills__floating-bubble--3" aria-hidden="true" />
 
       <div className="container">
         {/* Section Header */}
         <div className="section-header skills__header">
           <div className="skills__header-badge">
             <span className="skills__header-dot" />
-            <span className="skills__header-code">SKILL MATRIX // Y2K DIGITAL LAB</span>
+            <span className="skills__header-code">DIGITAL EDEN 3000 // AERO CAPSULES</span>
           </div>
           <h2 className="section-title skills__title">
-            <span>DIGITAL</span> <span className="skills__title-accent">EXPERIMENTS</span>
+            <span>FLOATING</span> <span className="skills__title-accent">CAPSULES</span>
           </h2>
           <p className="section-subtitle">
-            Fondasi teknis dan instrumen kreatif yang saya gunakan untuk mengeksekusi ide menjadi produk web fungsional &amp; berkarakter.
+            Kapsul teknologi kaca aero transparan yang mengambang — instrumen kode dan desain untuk merekayasa dunia digital yang fungsional &amp; estetik.
           </p>
 
           {/* Filter Pills */}
@@ -86,7 +89,7 @@ export default function Skills() {
               className={`skills__filter-btn ${activeTab === 'all' ? 'is-active' : ''}`}
               onClick={() => setActiveTab('all')}
             >
-              ALL MATRIX
+              ✦ ALL MATRIX
             </button>
             <button
               className={`skills__filter-btn ${activeTab === 'dev' ? 'is-active' : ''}`}
@@ -130,25 +133,41 @@ export default function Skills() {
                 <p className="skills__card-desc">{group.description}</p>
               </div>
 
-              {/* Badges Matrix */}
+              {/* Floating Aero Glass Capsules */}
               <div className="skills__pills">
-                {group.skills.map((skill) => (
-                  <div key={skill.name} className="skills__pill">
+                {group.skills.map((skill, sIdx) => (
+                  <div
+                    key={skill.name}
+                    className="skills__pill"
+                    style={{
+                      '--float-delay': `${(sIdx % 4) * 0.45}s`,
+                      '--float-duration': `${3.8 + (sIdx % 3) * 0.5}s`,
+                    }}
+                  >
+                    {/* Glass capsule specular highlight & inner depth */}
+                    <span className="skills__capsule-specular" aria-hidden="true" />
+                    
                     <div className="skills__pill-top">
-                      <span className="skills__pill-name">{skill.name}</span>
+                      <div className="skills__pill-name-wrap">
+                        <span className="skills__pill-3d-icon">{skill.icon}</span>
+                        <span className="skills__pill-name">{skill.name}</span>
+                      </div>
                       <span className="skills__pill-tag">{skill.tag}</span>
                     </div>
+
                     <span className="skills__pill-detail">{skill.desc}</span>
+
+                    {/* Iridescent shimmer sweep */}
                     <span className="skills__pill-sheen" aria-hidden="true" />
                   </div>
                 ))}
               </div>
 
-              {/* Decorative Corner Screws */}
-              <div className="skills__screw skills__screw--tl" aria-hidden="true" />
-              <div className="skills__screw skills__screw--tr" aria-hidden="true" />
-              <div className="skills__screw skills__screw--bl" aria-hidden="true" />
-              <div className="skills__screw skills__screw--br" aria-hidden="true" />
+              {/* Chrome corner spheres */}
+              <div className="skills__chrome-orb skills__chrome-orb--tl" aria-hidden="true" />
+              <div className="skills__chrome-orb skills__chrome-orb--tr" aria-hidden="true" />
+              <div className="skills__chrome-orb skills__chrome-orb--bl" aria-hidden="true" />
+              <div className="skills__chrome-orb skills__chrome-orb--br" aria-hidden="true" />
             </div>
           ))}
         </div>
@@ -158,7 +177,7 @@ export default function Skills() {
           <div className="skills__ticker-track">
             {[...marqueeItems, ...marqueeItems].map((item, index) => (
               <span key={index} className="skills__ticker-item">
-                <span className="skills__ticker-star">★</span>
+                <span className="skills__ticker-star">✦</span>
                 <span className="skills__ticker-text">{item}</span>
               </span>
             ))}

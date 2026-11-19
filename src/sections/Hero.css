@@ -18,21 +18,19 @@
   --my: 0;
 }
 
-/* ─── 1. Electric Blue Sky Background (Reference 01) ─── */
+/* ─── 1. Digital Eden 3000 Azure Sky Background (70% Frutiger Aero) ─── */
 .hero__sky {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    #0038b8 0%,
-    #0052e0 18%,
-    #006ef5 34%,
-    #008cff 50%,
-    #29adff 66%,
-    #70cdff 80%,
-    #bce5ff 90%,
-    #fff5db 98%,
-    #ffe29a 100%
+    #0284c7 0%,
+    #0ea5e9 20%,
+    #38bdf8 42%,
+    #7dd3fc 62%,
+    #bae6fd 80%,
+    #e0f2fe 92%,
+    #f0fdf4 100%
   );
   z-index: 0;
 }
@@ -232,7 +230,7 @@
 .hero__wildflowers .flower {
   position: absolute;
   font-size: 1.15rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   animation: flowerBreeze 3.5s ease-in-out infinite;
 }
 
@@ -245,41 +243,148 @@
   50% { transform: rotate(6deg) translateY(-3px); }
 }
 
-/* ─── 3. Subtle Film Grain & Scribbles ─── */
-.hero__grain {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  background-size: 128px 128px;
-  pointer-events: none;
-  z-index: 1;
-  mix-blend-mode: overlay;
-}
-
-.hero__scribble-wrap {
+/* ─── 2.5 Giant Surreal Botanical Flora (20% Surreal Botanical) ─── */
+.hero__surreal-flora {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 2;
 }
 
-.hero__scribble--1 {
+.surreal-flower {
   position: absolute;
-  top: 14%;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 380ms cubic-bezier(0.18, 0.89, 0.32, 1.28), filter 380ms ease;
+  transform-origin: bottom center;
+}
+
+.surreal-flower--lotus {
   left: 2%;
+  bottom: 12px;
+  width: 140px;
+  height: 160px;
+  animation: floraSwayLeft 5.5s ease-in-out infinite alternate;
+}
+
+.surreal-flower--orchid {
+  right: 18%;
+  bottom: 24px;
+  width: 120px;
+  height: 150px;
+  animation: floraSwayRight 6.2s ease-in-out infinite alternate 0.8s;
+}
+
+.surreal-flower--bloom {
+  right: 3%;
+  bottom: 18px;
+  width: 105px;
+  height: 135px;
+  animation: floraSwayLeft 4.8s ease-in-out infinite alternate 1.4s;
+}
+
+.surreal-flower__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 8px 18px rgba(6, 78, 59, 0.2));
+}
+
+.surreal-flower:hover {
+  transform: scale(1.18) translateY(-10px);
+  filter: drop-shadow(0 0 20px rgba(132, 204, 22, 0.65)) drop-shadow(0 0 35px rgba(56, 189, 248, 0.45));
+}
+
+@keyframes floraSwayLeft {
+  0% { transform: rotate(-3deg) translateY(0); }
+  100% { transform: rotate(4deg) translateY(-6px); }
+}
+
+@keyframes floraSwayRight {
+  0% { transform: rotate(4deg) translateY(0); }
+  100% { transform: rotate(-3deg) translateY(-7px); }
+}
+
+/* ─── 2.6 Floating Aero Glass Water Bubbles (70% Frutiger Aero) ─── */
+.hero__aero-bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.aero-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.4) 22%,
+    rgba(56, 189, 248, 0.25) 50%,
+    rgba(255, 255, 255, 0.7) 95%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.95),
+    inset 0 -3px 8px rgba(2, 132, 199, 0.2),
+    0 10px 24px rgba(2, 132, 199, 0.15);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: bubbleFloat 8s ease-in-out infinite alternate;
+}
+
+.aero-bubble--1 {
+  width: 64px;
+  height: 64px;
+  top: 18%;
+  left: 8%;
+  animation-duration: 7s;
+}
+
+.aero-bubble--2 {
   width: 90px;
   height: 90px;
+  top: 28%;
+  right: 14%;
+  animation-duration: 9.5s;
+  animation-delay: -2s;
 }
 
-.hero__scribble--2 {
-  position: absolute;
-  bottom: 22%;
-  right: 4%;
+.aero-bubble--3 {
+  width: 48px;
+  height: 48px;
+  bottom: 35%;
+  left: 45%;
+  animation-duration: 6.2s;
+  animation-delay: -3.5s;
+}
+
+.aero-bubble--4 {
   width: 110px;
-  height: 55px;
+  height: 110px;
+  top: 48%;
+  left: 2%;
+  animation-duration: 11s;
+  animation-delay: -1.2s;
 }
 
-/* Floating Y2K Stars */
+.aero-bubble--5 {
+  width: 52px;
+  height: 52px;
+  top: 14%;
+  right: 32%;
+  animation-duration: 8.4s;
+  animation-delay: -4s;
+}
+
+@keyframes bubbleFloat {
+  0% { transform: translateY(0px) translateX(0px) scale(1); }
+  50% { transform: translateY(-16px) translateX(8px) scale(1.04); }
+  100% { transform: translateY(12px) translateX(-8px) scale(0.97); }
+}
+
+/* Floating Metallic Chrome Stars (10% Y3K) */
 .hero__star {
   position: absolute;
   pointer-events: none;
@@ -287,14 +392,14 @@
   font-size: 1.4rem;
   color: #ffffff;
   text-shadow:
-    0 0 10px rgba(255, 255, 255, 0.9),
-    0 0 20px rgba(0, 200, 255, 0.6);
+    0 0 10px rgba(255, 255, 255, 0.95),
+    0 0 20px rgba(56, 189, 248, 0.7);
   animation: starTwinkle 3s ease-in-out infinite;
 }
 
-.hero__star--1 { top: 12%; left: 10%; font-size: 1.8rem; color: #ff0077; }
-.hero__star--2 { top: 20%; right: 12%; font-size: 1.3rem; color: #ffdd00; animation-delay: 1s; }
-.hero__star--3 { bottom: 25%; left: 6%; font-size: 1.2rem; color: #00ffaa; animation-delay: 1.8s; }
+.hero__star--1 { top: 12%; left: 10%; font-size: 1.8rem; color: #38bdf8; }
+.hero__star--2 { top: 20%; right: 12%; font-size: 1.3rem; color: #84cc16; animation-delay: 1s; }
+.hero__star--3 { bottom: 25%; left: 6%; font-size: 1.2rem; color: #00bbcc; animation-delay: 1.8s; }
 
 @keyframes starTwinkle {
   0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.7; }
@@ -703,17 +808,17 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #ff0077;
-  box-shadow: 0 0 8px #ff0077;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
   animation: dotBlink 1.5s infinite;
 }
 
 .sculpture-card__badge {
-  font-family: 'Space Grotesk', monospace;
+  font-family: var(--font-tech, monospace);
   font-size: 0.58rem;
   font-weight: 800;
   letter-spacing: 0.14em;
-  color: #ff0077;
+  color: #0284c7;
   text-transform: uppercase;
 }
 
@@ -721,7 +826,7 @@
   font-family: 'Unbounded', 'Syne', sans-serif;
   font-size: 0.92rem;
   font-weight: 900;
-  color: #0b1a3d;
+  color: #0f172a;
   letter-spacing: 0.04em;
   margin: 0 0 2px;
 }
@@ -730,7 +835,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.62rem;
   font-weight: 600;
-  color: #556c8a;
+  color: #64748b;
   letter-spacing: 0.04em;
   margin: 0;
 }
