@@ -26,66 +26,37 @@ export default function About() {
           {/* Right — Text Content */}
           <div className="about__content">
             <p className="about__intro">
-              Halo! Saya <strong>Muhammad Rifqi Maulana</strong> — mahasiswa aktif <strong>Semester 7 Teknik Informatika</strong> di <strong>UIN Sultan Maulana Hasanuddin Banten</strong> (Fakultas Sains &amp; Teknologi). Berfokus pada <strong>Full-Stack Web Development</strong>, perancangan sistem informasi, serta eksplorasi antarmuka digital modern berestetika Y2K &amp; retro-futuristik.
+              Halo! Saya <strong>Muhammad Rifqi Maulana</strong> — mahasiswa Semester 7 Teknik Informatika di <strong>UIN Sultan Maulana Hasanuddin Banten</strong> sekaligus seorang Web Developer. Saya menyukai perpaduan antara presisi logika pemrograman dengan perancangan antarmuka web modern yang interaktif dan fungsional.
             </p>
 
             <p className="about__body">
-              Selama masa perkuliahan, saya aktif mengasah keahlian teknis dan kepemimpinan secara langsung melalui pengalaman nyata:
+              Dengan fokus di bidang Full-Stack Web Development, saya terbiasa mengembangkan aplikasi menggunakan JavaScript, React, dan Node.js REST API. Selama masa perkuliahan, saya telah menyelesaikan program magang kerja di Diskominfo Kota Tangerang Selatan dengan predikat Sangat Baik, serta aktif memimpin Divisi Komunikasi &amp; Informasi di himpunan mahasiswa (HMPS Informatika) dalam pengelolaan platform digital dan media organisasi.
             </p>
 
-            <ul className="about__highlights">
-              <li>
-                <span className="about__highlight-icon">🏛️</span>
-                <div>
-                  <strong>Magang Kerja Diskominfo Kota Tangerang Selatan</strong> — Menyelesaikan program magang di Dinas Komunikasi &amp; Informatika Kota Tangerang Selatan dengan predikat evaluasi <em>SANGAT BAIK</em>.
-                </div>
-              </li>
-              <li>
-                <span className="about__highlight-icon">⚡</span>
-                <div>
-                  <strong>Ketua Divisi Komunikasi &amp; Informasi HMPS Informatika</strong> — Memimpin pengelolaan publikasi resmi, aset digital, media sosial, dan dokumentasi organisasi mahasiswa Informatika.
-                </div>
-              </li>
-              <li>
-                <span className="about__highlight-icon">💻</span>
-                <div>
-                  <strong>Pengembangan Web &amp; Sertifikasi Cloud</strong> — Berpengalaman membangun aplikasi web berbasis React dan Node.js REST API, serta tersertifikasi Cloud AWS &amp; JavaScript (Dicoding) dan Analisis Data (Coursera).
-                </div>
-              </li>
-            </ul>
-
             <p className="about__body">
-              Saat ini saya berfokus menyelesaikan studi tingkat akhir sembari terus terbuka untuk peluang kolaborasi proyek, magang lanjutan, maupun freelance pengembangan aplikasi web.
+              Saat ini saya sedang fokus menempuh semester akhir perkuliahan sembari terus mengeksplorasi arsitektur web modern, cloud computing, serta terbuka untuk kesempatan proyek freelance, magang lanjutan, maupun kolaborasi dalam pengembangan produk digital yang solutif.
             </p>
 
             {/* Info grid */}
             <div className="about__info-grid">
               <div className="about__info-item">
-                <span className="about__info-label">Status Akademik</span>
-                <span className="about__info-value">🎓 Mahasiswa Semester 7</span>
+                <span className="about__info-label">Pendidikan</span>
+                <span className="about__info-value">🎓 UIN Banten (Informatika S7)</span>
               </div>
               <div className="about__info-item">
-                <span className="about__info-label">Universitas</span>
-                <span className="about__info-value">🏛️ UIN SMH Banten (Saintek)</span>
-              </div>
-              <div className="about__info-item">
-                <span className="about__info-label">Program Studi</span>
-                <span className="about__info-value">⚡ Teknik Informatika</span>
-              </div>
-              <div className="about__info-item">
-                <span className="about__info-label">Pengalaman Magang</span>
-                <span className="about__info-value">🏢 Diskominfo Tangsel</span>
+                <span className="about__info-label">Status</span>
+                <span className="about__info-value about__info-value--available">
+                  <span className="about__status-dot" />
+                  Available for Hire
+                </span>
               </div>
               <div className="about__info-item">
                 <span className="about__info-label">Fokus Utama</span>
-                <span className="about__info-value">💻 Web Dev &amp; Full-Stack</span>
+                <span className="about__info-value">Full-Stack Web Dev</span>
               </div>
               <div className="about__info-item">
-                <span className="about__info-label">Ketersediaan</span>
-                <span className="about__info-value about__info-value--available">
-                  <span className="about__status-dot" />
-                  Open for Projects / Hire
-                </span>
+                <span className="about__info-label">Lokasi</span>
+                <span className="about__info-value">📍 Banten &amp; Tangsel, ID</span>
               </div>
             </div>
 
@@ -98,7 +69,7 @@ export default function About() {
               <a href="#projects" className="btn btn-ghost" onClick={(e) => {
                 e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
               }}>
-                Lihat Proyek &amp; Arsip
+                View Projects
               </a>
             </div>
           </div>
