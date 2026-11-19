@@ -29,37 +29,27 @@ export default function ChromeSculpture({ className = '' }) {
     renderer.toneMappingExposure = 1.3
     container.appendChild(renderer.domElement)
 
-    // 2. Bright Luminous Neo-Y2K Chrome Reflection Texture (Daylight Specular, Cyan, Magenta)
+    // 2. Procedural Dreamscape Reflection Texture (Sky Blue top, Sun Flare middle, Grass Green bottom)
     const envCanvas = document.createElement('canvas')
     envCanvas.width = 512
     envCanvas.height = 256
     const ctx = envCanvas.getContext('2d')
 
-    // Radiant daytime reflection gradient
+    // Sky to meadow gradient
     const grad = ctx.createLinearGradient(0, 0, 0, 256)
-    grad.addColorStop(0, '#ffffff')     // Specular top light
-    grad.addColorStop(0.22, '#99ddff')  // Crisp icy cyan sky
-    grad.addColorStop(0.42, '#0099ff')  // Electric cobalt horizon
-    grad.addColorStop(0.5, '#ffffff')   // Sharp horizon flash
-    grad.addColorStop(0.53, '#08204d')  // Deep navy horizon split
-    grad.addColorStop(0.72, '#ff3399')  // Vibrant hot pink ground reflection
-    grad.addColorStop(1, '#e0f4ff')     // Bright icy bounce light
+    grad.addColorStop(0, '#0044ee')     // Electric cobalt sky
+    grad.addColorStop(0.35, '#00ccff')  // Cyan horizon
+    grad.addColorStop(0.5, '#fff8e0')   // Glowing sun band
+    grad.addColorStop(0.65, '#2e7d32')  // Lush meadow green
+    grad.addColorStop(1, '#0a2e0e')     // Deep grass shade
     ctx.fillStyle = grad
     ctx.fillRect(0, 0, 512, 256)
 
-    // Specular flare highlights for metallic sheen
-    const flare1 = ctx.createRadialGradient(160, 60, 2, 160, 60, 90)
-    flare1.addColorStop(0, '#ffffff')
-    flare1.addColorStop(0.4, 'rgba(0, 204, 255, 0.85)')
-    flare1.addColorStop(1, 'transparent')
-    ctx.fillStyle = flare1
-    ctx.fillRect(0, 0, 512, 256)
-
-    const flare2 = ctx.createRadialGradient(380, 190, 4, 380, 190, 110)
-    flare2.addColorStop(0, '#ffffff')
-    flare2.addColorStop(0.5, 'rgba(255, 0, 128, 0.75)')
-    flare2.addColorStop(1, 'transparent')
-    ctx.fillStyle = flare2
+    // Hot pink and neon lime specular flare spots
+    const pinkGrad = ctx.createRadialGradient(380, 80, 5, 380, 80, 100)
+    pinkGrad.addColorStop(0, 'rgba(255, 0, 127, 0.8)')
+    pinkGrad.addColorStop(1, 'transparent')
+    ctx.fillStyle = pinkGrad
     ctx.fillRect(0, 0, 512, 256)
 
     const envTexture = new THREE.CanvasTexture(envCanvas)
