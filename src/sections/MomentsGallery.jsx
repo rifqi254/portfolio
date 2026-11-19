@@ -12,8 +12,10 @@ const momentsPhotos = [
     type: 'portrait',
     image: '/gallery/gallery-01-merbabu-selo.jpg',
     caption: 'Menembus kabut dan jalur terjal Selo menuju puncak Gunung Merbabu bersama sahabat pejuang.',
-    initRotate: -4.5,
-    offsetY: 18,
+    initRotate: -3.5,
+    offsetY: -55,
+    marginLeft: 0,
+    zIndex: 2,
     floatDuration: 4.8,
     floatDelay: 0,
   },
@@ -27,8 +29,10 @@ const momentsPhotos = [
     type: 'landscape',
     image: '/gallery/gallery-02-uin-event.jpg',
     caption: 'Delegasi mahasiswa Informatika dalam agenda resmi universitas dan pekan kreativitas kampus.',
-    initRotate: 3.5,
-    offsetY: -20,
+    initRotate: 3,
+    offsetY: 48,
+    marginLeft: -55,
+    zIndex: 4,
     floatDuration: 5.2,
     floatDelay: -1.5,
   },
@@ -42,8 +46,10 @@ const momentsPhotos = [
     type: 'portrait',
     image: '/gallery/gallery-03-saintek-uin.jpg',
     caption: 'Keluarga besar mahasiswa dan civitas akademika Fakultas Sains dan Teknologi UIN Banten.',
-    initRotate: -3,
-    offsetY: 15,
+    initRotate: 2.5,
+    offsetY: -60,
+    marginLeft: -45,
+    zIndex: 1,
     floatDuration: 4.3,
     floatDelay: -0.8,
   },
@@ -57,8 +63,10 @@ const momentsPhotos = [
     type: 'portrait',
     image: '/gallery/gallery-04-hmps-hallway.jpg',
     caption: 'Kekompakan pengurus Himpunan Mahasiswa Program Studi Informatika periode kepengurusan aktif.',
-    initRotate: 5,
-    offsetY: -18,
+    initRotate: -4,
+    offsetY: 52,
+    marginLeft: -50,
+    zIndex: 3,
     floatDuration: 5.6,
     floatDelay: -2.1,
   },
@@ -72,8 +80,10 @@ const momentsPhotos = [
     type: 'landscape',
     image: '/gallery/gallery-05-himti-hall.jpg',
     caption: 'Forum sidang dan rapat kerja tahunan merumuskan arah gerak organisasi teknologi informasi.',
-    initRotate: -4,
-    offsetY: 20,
+    initRotate: -2.5,
+    offsetY: -50,
+    marginLeft: -35,
+    zIndex: 2,
     floatDuration: 4.6,
     floatDelay: -1.2,
   },
@@ -88,7 +98,9 @@ const momentsPhotos = [
     image: '/gallery/gallery-06-it-camp.jpg',
     caption: 'Pelatihan kepemimpinan, bonding, dan eksplorasi teknologi luar ruangan Kabinet Sinergi HMPS.',
     initRotate: 3.5,
-    offsetY: -16,
+    offsetY: 50,
+    marginLeft: -60,
+    zIndex: 4,
     floatDuration: 5.0,
     floatDelay: -0.4,
   },
@@ -102,8 +114,10 @@ const momentsPhotos = [
     type: 'landscape',
     image: '/gallery/gallery-07-outdoor-group.jpg',
     caption: 'Malam keakraban mahasiswa Informatika mempererat solidaritas, cerita, dan kolaborasi bersama.',
-    initRotate: -5,
-    offsetY: 16,
+    initRotate: 4,
+    offsetY: -58,
+    marginLeft: -40,
+    zIndex: 1,
     floatDuration: 4.4,
     floatDelay: -1.8,
   },
@@ -117,8 +131,10 @@ const momentsPhotos = [
     type: 'landscape',
     image: '/gallery/gallery-08-bkd-street.jpg',
     caption: 'Kunjungan kerja dan implementasi sistem informasi pada badan instansi pemerintahan daerah.',
-    initRotate: 4,
-    offsetY: -20,
+    initRotate: -3,
+    offsetY: 54,
+    marginLeft: -55,
+    zIndex: 3,
     floatDuration: 5.3,
     floatDelay: -0.9,
   },
@@ -132,8 +148,10 @@ const momentsPhotos = [
     type: 'landscape',
     image: '/gallery/gallery-09-auditorium-sinergi.jpg',
     caption: 'Momen khidmat pelantikan resmi jajaran pengurus HMPS Informatika Kabinet Sinergi 2025.',
-    initRotate: -3.5,
-    offsetY: 15,
+    initRotate: -4,
+    offsetY: -56,
+    marginLeft: -40,
+    zIndex: 2,
     floatDuration: 4.7,
     floatDelay: -2.3,
   },
@@ -147,8 +165,10 @@ const momentsPhotos = [
     type: 'landscape',
     image: '/gallery/gallery-10-ibad-rahman.jpg',
     caption: 'Program edukasi digital, motivasi beasiswa, dan pendampingan santri muda di bidang teknologi.',
-    initRotate: 5.5,
-    offsetY: -16,
+    initRotate: 3,
+    offsetY: 46,
+    marginLeft: -60,
+    zIndex: 4,
     floatDuration: 5.1,
     floatDelay: -1.1,
   },
@@ -162,8 +182,10 @@ const momentsPhotos = [
     type: 'landscape',
     image: '/gallery/gallery-11-almamater-campus.jpg',
     caption: 'Bangga mengenakan almamater kehormatan bersama rekan seperjuangan teknik informatika.',
-    initRotate: -4,
-    offsetY: 18,
+    initRotate: 3.5,
+    offsetY: -52,
+    marginLeft: -45,
+    zIndex: 2,
     floatDuration: 4.5,
     floatDelay: -0.6,
   },
@@ -177,18 +199,20 @@ const momentsPhotos = [
     type: 'portrait',
     image: '/gallery/gallery-12-ramadan-iftar.jpg',
     caption: 'Hangatnya silaturahmi buka puasa bersama Ramadan lintas angkatan dan dosen pembimbing.',
-    initRotate: 4.5,
-    offsetY: -15,
+    initRotate: -3.5,
+    offsetY: 50,
+    marginLeft: -50,
+    zIndex: 3,
     floatDuration: 5.4,
     floatDelay: -1.7,
   },
 ]
 
-// Interactive Draggable Floating Photo (FULL GAMBAR — TANPA CARD / TANPA HOVER EFFECT)
-function FloatingPhoto({ item, onPhotoClick, zIndexBase = 1 }) {
+// Interactive Draggable Floating Photo (ORGANIC SCATTERED COLLAGE — GAYA EKA WAHYU)
+function FloatingPhoto({ item, onPhotoClick }) {
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
-  const [zIndex, setZIndex] = useState(zIndexBase)
+  const [zIndex, setZIndex] = useState(item.zIndex || 1)
   const dragStartRef = useRef({ x: 0, y: 0, startX: 0, startY: 0, hasMoved: false })
 
   const handlePointerDown = (e) => {
@@ -238,7 +262,8 @@ function FloatingPhoto({ item, onPhotoClick, zIndexBase = 1 }) {
       className={`floating-photo-item ${isDragging ? 'is-dragging' : ''}`}
       style={{
         transform: `translate3d(${dragOffset.x}px, ${dragOffset.y + (item.offsetY || 0)}px, 0)`,
-        zIndex: isDragging ? 150 : zIndex,
+        zIndex: isDragging ? 200 : zIndex,
+        marginLeft: item.marginLeft ? `${item.marginLeft}px` : '0px',
         '--base-rot': `${item.initRotate}deg`,
         '--float-dur': `${item.floatDuration}s`,
         '--float-delay': `${item.floatDelay}s`,
@@ -392,12 +417,11 @@ export default function MomentsGallery() {
             ref={trackRef}
             style={{ transform: `translate3d(-${translateX}px, 0, 0)` }}
           >
-            {momentsPhotos.map((item, idx) => (
+            {momentsPhotos.map((item) => (
               <FloatingPhoto
                 key={item.id}
                 item={item}
                 onPhotoClick={setActivePhoto}
-                zIndexBase={idx + 1}
               />
             ))}
           </div>
