@@ -310,8 +310,17 @@ export default function ArchiveVault() {
           {/* Quick Category Jump Pills */}
           <div className="vault-nav-pills">
             <button
+              className={`vault-nav-pill ${activeFolder === null ? 'is-active' : ''}`}
+              onClick={() => setActiveFolder(null)}
+              title="Tampilkan semua 3 folder arsip"
+            >
+              <span className="pill-icon">📁</span>
+              <span className="pill-text">All Folders</span>
+              <span className="pill-count">3</span>
+            </button>
+            <button
               className={`vault-nav-pill ${activeFolder === 'projects' ? 'is-active' : ''}`}
-              onClick={() => setActiveFolder('projects')}
+              onClick={() => setActiveFolder(activeFolder === 'projects' ? null : 'projects')}
             >
               <span className="pill-icon">💻</span>
               <span className="pill-text">Projects</span>
@@ -319,7 +328,7 @@ export default function ArchiveVault() {
             </button>
             <button
               className={`vault-nav-pill ${activeFolder === 'certificates' ? 'is-active' : ''}`}
-              onClick={() => setActiveFolder('certificates')}
+              onClick={() => setActiveFolder(activeFolder === 'certificates' ? null : 'certificates')}
             >
               <span className="pill-icon">📜</span>
               <span className="pill-text">Certificates</span>
@@ -327,7 +336,7 @@ export default function ArchiveVault() {
             </button>
             <button
               className={`vault-nav-pill ${activeFolder === 'awards' ? 'is-active' : ''}`}
-              onClick={() => setActiveFolder('awards')}
+              onClick={() => setActiveFolder(activeFolder === 'awards' ? null : 'awards')}
             >
               <span className="pill-icon">🏆</span>
               <span className="pill-text">Awards</span>

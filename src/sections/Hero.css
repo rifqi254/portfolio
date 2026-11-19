@@ -171,6 +171,35 @@
   100% { transform: translateX(0); }
 }
 
+/* Subtle Cyber Code Overlay (Ref: Image 1 - Y3K Meadow Code) */
+.hero__code-backdrop {
+  position: absolute;
+  top: 15%;
+  right: 6%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.22;
+  user-select: none;
+}
+
+.hero__code-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(2, 132, 199, 0.45);
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 900px) {
+  .hero__code-backdrop {
+    display: none;
+  }
+}
+
 /* ─── 2. Lush Green Grass Meadow & Rolling Hills ─── */
 .hero__meadow {
   position: absolute;
