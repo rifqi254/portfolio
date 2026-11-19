@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import './index.css'
 import './App.css'
 import { useScrollReveal } from './hooks/useScrollReveal'
@@ -6,6 +7,8 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import ScrollEffects from './components/ScrollEffects'
+import DevTerminal from './components/DevTerminal'
+import ResumeModal from './components/ResumeModal'
 
 import Hero from './sections/Hero'
 import About from './sections/About'
@@ -17,6 +20,13 @@ import Contact from './sections/Contact'
 
 export default function App() {
   useScrollReveal()
+  const [isResumeOpen, setIsResumeOpen] = useState(false)
+
+  useEffect(() => {
+    const handleOpenResume = () => setIsResumeOpen(true)
+    window.addEventListener('open-resume', handleOpenResume)
+    return () => window.removeEventListener('open-resume', handleOpenResume)
+  }, [])
 
   return (
     <>
@@ -27,18 +37,24 @@ export default function App() {
       <ScrollEffects />
 
       {/* Navigation */}
-      <Navbar />
+      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
 
       {/* Main Content */}
       <main id="main-content">
-        <Hero />
-        <About />
+        <Hero onOpenResume={() => setIsResumeOpen(true)} />
+        <About onOpenResume={() => setIsResumeOpen(true)} />
         <ArchiveVault />
         <MomentsGallery />
         <Skills />
         <Timeline />
         <Contact />
       </main>
+
+      {/* Interactive Developer CLI Terminal */}
+      <DevTerminal />
+
+      {/* Curriculum Vitae (CV) Interactive Document Modal */}
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
 
       {/* Footer */}
       <Footer />

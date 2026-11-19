@@ -68,23 +68,84 @@
   bottom: -32px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.52rem;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.55rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
-  color: #ff3355;
-  background: rgba(10, 11, 16, 0.7);
+  letter-spacing: 0.14em;
+  color: #0284c7;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 3px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 51, 85, 0.4);
-  box-shadow: 0 0 10px rgba(255, 51, 85, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15);
   white-space: nowrap;
+}
+
+/* ─── 3D Preset Floating Bar ─── */
+.chrome-preset-bar {
+  position: absolute;
+  bottom: -72px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.15), inset 0 1px 0 #ffffff;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.preset-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #475569;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-pill:hover {
+  background: rgba(2, 132, 199, 0.08);
+  color: #0284c7;
+}
+
+.preset-pill.is-active {
+  background: #ffffff;
+  color: #0284c7;
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.14);
+}
+
+.preset-pill__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px currentColor;
 }
 
 @media (max-width: 900px) {
   .chrome-sculpture-container {
     width: 300px;
     height: 300px;
+  }
+  .chrome-preset-bar {
+    bottom: -64px;
+    gap: 4px;
   }
 }
 
@@ -93,5 +154,8 @@
     width: 250px;
     height: 250px;
   }
+  .chrome-preset-bar {
+    bottom: -58px;
+    transform: translateX(-50%) scale(0.9);
+  }
 }
-

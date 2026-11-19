@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { playBubblePop, playChime } from '../hooks/useAudioFX'
 import './Navbar.css'
 
 const navLinks = [
@@ -10,10 +11,20 @@ const navLinks = [
   { label: 'Contact', href: '#contact', code: '06', name: 'Let’s Collaborate' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ onOpenResume }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+  const [isMuted, setIsMuted] = useState(() => {
+    return localStorage.getItem('porto_sound_muted') === 'true'
+  })
+
+  const toggleSound = () => {
+    const nextState = !isMuted
+    setIsMuted(nextState)
+    localStorage.setItem('porto_sound_muted', String(nextState))
+    if (!nextState) playBubblePop()
+  }
 
   useEffect(() => {
     const sectionIds = ['about', 'archive', 'moments', 'skills', 'timeline', 'contact']
@@ -112,11 +123,39 @@ export default function Navbar() {
           </ul>
         </nav>
 
+        <div className="navbar__extras">
+          {/* Sound FX Toggle Button */}
+          <button
+            className={`navbar__sound-btn ${isMuted ? 'is-muted' : ''}`}
+            onClick={toggleSound}
+            title={isMuted ? 'Suara FX: Nonaktif (Klik untuk Mengaktifkan)' : 'Suara FX: Aktif (Klik untuk Mematikan)'}
+            aria-label="Toggle Sound Effects"
+          >
+            <span>{isMuted ? '🔈' : '🔊'}</span>
+          </button>
+
+          {/* Quick CV Button */}
+          <button
+            className="navbar__cv-btn"
+            onClick={() => {
+              playChime()
+              if (onOpenResume) onOpenResume()
+              else window.dispatchEvent(new CustomEvent('open-resume'))
+            }}
+            title="Buka Dokumen Resmi CV"
+          >
+            <span>CV</span>
+          </button>
+        </div>
+
         {/* CTA */}
         <a
           href="#contact"
           className="navbar__cta btn btn-primary"
-          onClick={(e) => handleNavClick(e, '#contact')}
+          onClick={(e) => {
+            playBubblePop()
+            handleNavClick(e, '#contact')
+          }}
         >
           <span>Hire Me</span>
           <span>✦</span>

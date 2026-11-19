@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
 import ChromeSculpture from '../components/ChromeSculpture'
 import { InstagramIcon, GitHubIcon, LinkedInIcon, MailIcon } from '../components/SocialIcons'
+import { playBubblePop, playChime } from '../hooks/useAudioFX'
 import './Hero.css'
 
-export default function Hero() {
+export default function Hero({ onOpenResume }) {
   const heroRef = useRef(null)
 
   // Smooth parallax mouse tracking for typography and 3D depth
@@ -22,6 +23,7 @@ export default function Hero() {
 
   const handleScrollTo = (e, targetId, name, code) => {
     e.preventDefault()
+    playBubblePop()
     window.dispatchEvent(
       new CustomEvent('warp-to-section', {
         detail: { id: targetId, name, code },
@@ -227,12 +229,25 @@ export default function Hero() {
               <span className="hero__btn-text">Explore Works</span>
               <span className="hero__btn-arrow">→</span>
             </a>
+            <button
+              type="button"
+              className="hero__btn hero__btn--cv"
+              onClick={() => {
+                playChime()
+                if (onOpenResume) onOpenResume()
+                else window.dispatchEvent(new CustomEvent('open-resume'))
+              }}
+              title="Buka Dokumen Resmi CV (Curriculum Vitae)"
+            >
+              <span className="hero__btn-icon">📄</span>
+              <span className="hero__btn-text">Curriculum Vitae</span>
+            </button>
             <a
               href="#contact"
               className="hero__btn hero__btn--secondary"
               onClick={(e) => handleScrollTo(e, 'contact', 'Let\'s Collaborate', '06')}
             >
-              <span className="hero__btn-text">Connect With Me</span>
+              <span className="hero__btn-text">Connect</span>
               <span className="hero__btn-spark">✦</span>
             </a>
           </div>

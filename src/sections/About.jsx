@@ -1,7 +1,8 @@
 import HangingCard from '../components/HangingCard'
+import { playChime } from '../hooks/useAudioFX'
 import './About.css'
 
-export default function About() {
+export default function About({ onOpenResume }) {
   return (
     <section className="about section" id="about" aria-label="About me">
       <div className="container">
@@ -66,6 +67,18 @@ export default function About() {
               }}>
                 Let's Collaborate ✦
               </a>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  playChime()
+                  if (onOpenResume) onOpenResume()
+                  else window.dispatchEvent(new CustomEvent('open-resume'))
+                }}
+              >
+                📄 Buka CV / Resume
+              </button>
               <a href="#projects" className="btn btn-ghost" onClick={(e) => {
                 e.preventDefault(); document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
               }}>

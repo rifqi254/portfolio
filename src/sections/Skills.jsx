@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { playFlipSound } from '../hooks/useAudioFX'
 import './Skills.css'
 
 const skillCategories = [
@@ -62,6 +63,7 @@ export default function Skills() {
   const [flippedCards, setFlippedCards] = useState({})
 
   const toggleCard = (id) => {
+    playFlipSound()
     setFlippedCards((prev) => ({
       ...prev,
       [id]: !prev[id],
@@ -74,6 +76,7 @@ export default function Skills() {
     Boolean(flippedCards['design'])
 
   const toggleAll = () => {
+    playFlipSound()
     const nextState = !allFlipped
     setFlippedCards({
       dev: nextState,
@@ -193,7 +196,7 @@ export default function Skills() {
 
                       <h3 className="skills__deck-title">{group.category}</h3>
                       <p className="skills__deck-summary">{group.summary}</p>
-                      
+
                       <div className="skills__deck-count-pill">
                         <span>{group.count}</span>
                       </div>
