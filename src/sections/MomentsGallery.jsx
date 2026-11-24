@@ -387,7 +387,8 @@ export default function MomentsGallery() {
             </div>
             <SplitTitle
               parts={[
-                { text: 'MOMENTS &' },
+                { text: 'MOMENTS' },
+                { text: '&', className: 'vault-title-amp' },
                 { text: 'MEMORIES', className: 'moments-title-accent' },
               ]}
               className="moments-title"

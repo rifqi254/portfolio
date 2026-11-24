@@ -309,11 +309,12 @@ export default function ArchiveVault() {
         <div className="section-header vault-header">
           <div className="vault-header-badge">
             <span className="vault-header-dot" />
-            <span className="vault-header-code">📁 Portfolio &amp; Archive</span>
+            <span className="vault-header-code">✦ CURATED REPOSITORY // ARCHIVE</span>
           </div>
           <SplitTitle
             parts={[
-              { text: 'PORTFOLIO &' },
+              { text: 'PORTFOLIO' },
+              { text: '&', className: 'vault-title-amp' },
               { text: 'ARCHIVE', className: 'vault-title-accent' },
             ]}
             className="section-title vault-title"

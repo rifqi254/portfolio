@@ -5,20 +5,35 @@
 .split-title-container {
   display: inline-flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  perspective: 1000px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.1em 0.32em;
+  line-height: 1.18;
 }
 
 .split-word-mask {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   overflow: hidden;
-  vertical-align: top;
-  margin-right: 0.26em;
-  padding-bottom: 0.08em;
+  vertical-align: middle;
+  padding: 0.08em 0.04em 0.14em;
+  margin: -0.08em -0.04em -0.14em;
 }
 
 .split-word-inner {
   display: inline-block;
-  transform-origin: center bottom;
   will-change: transform, opacity;
+  line-height: inherit;
+}
+
+/* Common ampersand styling in section titles */
+.title-amp,
+.vault-title-amp {
+  font-weight: 600;
+  color: #0284c7;
+  opacity: 0.88;
+  font-size: 0.88em;
+  display: inline-block;
+  vertical-align: middle;
 }

@@ -106,7 +106,8 @@ export default function Timeline() {
           </div>
           <SplitTitle
             parts={[
-              { text: 'CAREER &' },
+              { text: 'CAREER' },
+              { text: '&', className: 'vault-title-amp' },
               { text: 'EXPERIENCE', className: 'timeline__title-accent' },
             ]}
             className="section-title"

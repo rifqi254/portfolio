@@ -69,9 +69,8 @@ export default function SplitTitle({
       gsap.fromTo(
         words,
         {
-          y: '115%',
+          y: '100%',
           opacity: 0,
-          rotateX: -30,
         },
         {
           scrollTrigger: {
@@ -81,11 +80,11 @@ export default function SplitTitle({
           },
           y: '0%',
           opacity: 1,
-          rotateX: 0,
-          duration: 0.75,
-          stagger: 0.08,
+          duration: 0.65,
+          stagger: 0.07,
           delay,
           ease: 'power3.out',
+          clearProps: 'transform,willChange,opacity',
         }
       )
     }, el)
