@@ -1,3 +1,5 @@
+import { motion } from 'motion/react'
+import SplitTitle from '../components/SplitTitle'
 import './Timeline.css'
 
 const timelineItems = [
@@ -102,9 +104,13 @@ export default function Timeline() {
             <span className="timeline__header-dot" />
             <span className="timeline__header-code">EXPERIENCE &amp; JOURNEY</span>
           </div>
-          <h2 className="section-title">
-            <span>CAREER &amp;</span> <span className="timeline__title-accent">EXPERIENCE</span>
-          </h2>
+          <SplitTitle
+            parts={[
+              { text: 'CAREER &' },
+              { text: 'EXPERIENCE', className: 'timeline__title-accent' },
+            ]}
+            className="section-title"
+          />
           <p className="section-subtitle">
             Rekam jejak pengalaman magang kerja, kepemimpinan organisasi kemahasiswaan, dan pelatihan kompetensi teknologi.
           </p>
@@ -127,7 +133,7 @@ export default function Timeline() {
                 >
                   {/* Left Column (Card for even, spacer for odd) */}
                   <div className="timeline__col timeline__col--left">
-                    {isEven && <TimelineCard item={item} />}
+                    {isEven && <TimelineCard item={item} isEven={true} />}
                   </div>
 
                   {/* Center Node (Spine anchor) */}
@@ -148,7 +154,7 @@ export default function Timeline() {
 
                   {/* Right Column (Spacer for even, card for odd) */}
                   <div className="timeline__col timeline__col--right">
-                    {!isEven && <TimelineCard item={item} />}
+                    {!isEven && <TimelineCard item={item} isEven={false} />}
                   </div>
                 </div>
               )
@@ -167,10 +173,15 @@ export default function Timeline() {
   )
 }
 
-function TimelineCard({ item }) {
+function TimelineCard({ item, isEven = true }) {
   return (
-    <div
+    <motion.div
       className="timeline-card glass-card card-hover"
+      initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.55, ease: 'easeOut' }}
+      whileHover={{ y: -5, scale: 1.015, transition: { duration: 0.22 } }}
       style={{
         '--card-accent': item.color,
       }}
@@ -226,6 +237,6 @@ function TimelineCard({ item }) {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

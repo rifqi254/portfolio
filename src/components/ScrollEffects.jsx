@@ -34,16 +34,28 @@ export default function ScrollEffects() {
     const handleWarp = (e) => {
       const { id } = e.detail || {}
       if (id) {
+        if (id === 'hero') {
+          if (window.__lenis) {
+            window.__lenis.scrollTo(0, { duration: 1.2 })
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }
+          return
+        }
+
         const targetEl = document.getElementById(id)
         if (targetEl) {
-          const navHeight = 70
-          const elementPosition = targetEl.getBoundingClientRect().top
-          const offsetPosition = elementPosition + window.pageYOffset - navHeight
-
-          window.scrollTo({
-            top: id === 'hero' ? 0 : offsetPosition,
-            behavior: 'smooth',
-          })
+          if (window.__lenis) {
+            window.__lenis.scrollTo(targetEl, { offset: -70, duration: 1.2 })
+          } else {
+            const navHeight = 70
+            const elementPosition = targetEl.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - navHeight
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth',
+            })
+          }
         }
       }
     }

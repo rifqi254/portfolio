@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import SplitTitle from '../components/SplitTitle'
 import './MomentsGallery.css'
 
 const momentsPhotos = [
@@ -384,9 +385,13 @@ export default function MomentsGallery() {
               <span className="moments-badge-dot" />
               <span className="moments-badge-code">✦ LIFE &amp; COMMUNITY CHRONICLES // 2024–2026</span>
             </div>
-            <h2 className="moments-title">
-              MOMENTS &amp; <span className="moments-title-accent">MEMORIES</span>
-            </h2>
+            <SplitTitle
+              parts={[
+                { text: 'MOMENTS &' },
+                { text: 'MEMORIES', className: 'moments-title-accent' },
+              ]}
+              className="moments-title"
+            />
             <p className="moments-subtitle">
               Dokumentasi perjalanan hidup, organisasi mahasiswa HMPS Informatika, petualangan alam, dan kebersamaan.
             </p>

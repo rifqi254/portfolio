@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { motion } from 'motion/react'
+import SplitTitle from '../components/SplitTitle'
 import {
   InstagramIcon,
   GitHubIcon,
@@ -111,9 +113,13 @@ export default function Contact() {
             <span className="contact__header-dot" />
             <span className="contact__header-code">GET IN TOUCH // CONTACT</span>
           </div>
-          <h2 className="section-title contact__headline">
-            LET'S WORK <span className="contact__headline-chrome">TOGETHER.</span>
-          </h2>
+          <SplitTitle
+            parts={[
+              { text: "LET'S WORK" },
+              { text: 'TOGETHER.', className: 'contact__headline-chrome' },
+            ]}
+            className="section-title contact__headline"
+          />
           <p className="section-subtitle contact__subtitle">
             Saluran sosial media dan email resmi saya aktif. Silakan terhubung untuk diskusi proyek, kolaborasi web, atau penawaran kerja sama.
           </p>
@@ -121,7 +127,13 @@ export default function Contact() {
 
         <div className="contact__grid">
           {/* Left Column: Dedicated Social Media Channels (Sosmed) */}
-          <div className="contact__sosmed-panel">
+          <motion.div
+            className="contact__sosmed-panel"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="contact__sosmed-heading-bar">
               <div className="contact__sosmed-title-wrap">
                 <span className="contact__sosmed-spark">✦</span>
@@ -138,15 +150,21 @@ export default function Contact() {
             </p>
 
             <div className="contact__sosmed-list">
-              {socialChannels.map((item) => {
+              {socialChannels.map((item, index) => {
                 const IconComponent = item.icon
                 const isCopied = copiedId === item.id
 
                 return (
-                  <div
+                  <motion.div
                     key={item.id}
                     className={`sosmed-card ${item.themeClass}`}
                     style={{ '--accent': item.accentColor }}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    whileHover={{ y: -4, scale: 1.015 }}
+                    whileTap={{ scale: 0.985 }}
                   >
                     {/* Left: Brand Icon */}
                     <div className="sosmed-card__icon-box">
@@ -202,14 +220,20 @@ export default function Contact() {
 
                     {/* Holographic Sheen Layer */}
                     <span className="sosmed-card__sheen" aria-hidden="true" />
-                  </div>
+                  </motion.div>
                 )
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Direct Message Dispatch Form */}
-          <div className="contact__form-wrap">
+          <motion.div
+            className="contact__form-wrap"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="contact__form-header">
               <span className="contact__form-badge">TRANSMISSION // DIRECT DISPATCH</span>
               <h3 className="contact__form-title">Kirim Pesan Langsung</h3>
@@ -311,7 +335,7 @@ export default function Contact() {
                 </p>
               )}
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

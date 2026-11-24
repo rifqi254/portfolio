@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { motion } from 'motion/react'
+import SplitTitle from '../components/SplitTitle'
 import { playFlipSound } from '../hooks/useAudioFX'
 import './Skills.css'
 
@@ -105,9 +107,13 @@ export default function Skills() {
             <span className="skills__header-dot" />
             <span className="skills__header-code">SKILLS &amp; TECHNOLOGIES</span>
           </div>
-          <h2 className="section-title skills__title">
-            <span>TECH</span> <span className="skills__title-accent">STACK</span>
-          </h2>
+          <SplitTitle
+            parts={[
+              { text: 'TECH' },
+              { text: 'STACK', className: 'skills__title-accent' },
+            ]}
+            className="section-title skills__title"
+          />
           <p className="section-subtitle">
             Keahlian teknis dan instrumen pengembangan web yang saya gunakan. Klik kartu untuk membalik dan melihat rincian teknologi di dalamnya.
           </p>
@@ -153,13 +159,18 @@ export default function Skills() {
 
         {/* 3D Flip Cards Grid */}
         <div className="skills__grid">
-          {filteredCategories.map((group) => {
+          {filteredCategories.map((group, groupIdx) => {
             const isFlipped = Boolean(flippedCards[group.id])
 
             return (
-              <div
+              <motion.div
                 key={group.id}
                 className={`skills__card-container ${isFlipped ? 'is-flipped' : ''}`}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: groupIdx * 0.12 }}
+                whileHover={{ y: -4 }}
                 style={{
                   '--cat-color': group.color,
                   '--cat-accent': group.accent,
@@ -269,7 +280,7 @@ export default function Skills() {
                     <div className="skills__corner-rivet skills__corner-rivet--br" aria-hidden="true" />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )
           })}
         </div>

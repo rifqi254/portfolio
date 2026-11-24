@@ -1,0 +1,24 @@
+/* ============================================================
+   GSAP SPLIT TITLE WORD-BY-WORD ANIMATION STYLES
+   ============================================================ */
+
+.split-title-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  perspective: 1000px;
+}
+
+.split-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  margin-right: 0.26em;
+  padding-bottom: 0.08em;
+}
+
+.split-word-inner {
+  display: inline-block;
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+}

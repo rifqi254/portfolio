@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './index.css'
 import './App.css'
 import { useScrollReveal } from './hooks/useScrollReveal'
+import { useLenisScroll } from './hooks/useLenisScroll'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -18,6 +19,7 @@ import Timeline from './sections/Timeline'
 import Contact from './sections/Contact'
 
 export default function App() {
+  useLenisScroll()
   useScrollReveal()
   const [isResumeOpen, setIsResumeOpen] = useState(false)
 

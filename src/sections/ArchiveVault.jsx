@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
+import { motion } from 'motion/react'
+import SplitTitle from '../components/SplitTitle'
 import './ArchiveVault.css'
 
 // ─── 01. PROJECTS DATA (7 Items) ───
@@ -309,9 +311,13 @@ export default function ArchiveVault() {
             <span className="vault-header-dot" />
             <span className="vault-header-code">📁 Portfolio &amp; Archive</span>
           </div>
-          <h2 className="section-title vault-title">
-            PORTFOLIO &amp; <span className="vault-title-accent">ARCHIVE</span>
-          </h2>
+          <SplitTitle
+            parts={[
+              { text: 'PORTFOLIO &' },
+              { text: 'ARCHIVE', className: 'vault-title-accent' },
+            ]}
+            className="section-title vault-title"
+          />
           <p className="section-subtitle vault-subtitle">
             {activeFolder ? (
               <span>Membuka folder <strong>{activeFolder === 'projects' ? 'Projects' : activeFolder === 'certificates' ? 'Certificates' : 'Awards'}</strong>.</span>
@@ -362,8 +368,14 @@ export default function ArchiveVault() {
         {!activeFolder && (
           <div className="vault-folders__deck" aria-label="Pilih Folder Arsip">
             {/* 📁 FOLDER 1: PROJECTS (CYBER ICE CYAN Y2K) */}
-            <div
+            <motion.div
               className="vault-folder-card vault-folder-card--projects"
+              initial={{ opacity: 0, y: 35, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: 0.06 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setActiveFolder('projects')}
               role="button"
               tabIndex={0}
@@ -435,11 +447,17 @@ export default function ArchiveVault() {
               <div className="folder-open-hover-hint">
                 <span>Masuk ke Folder ↗</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* 📁 FOLDER 2: CERTIFICATES (CYBER LAVENDER VIOLET Y2K) */}
-            <div
+            <motion.div
               className="vault-folder-card vault-folder-card--certs"
+              initial={{ opacity: 0, y: 35, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: 0.16 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setActiveFolder('certificates')}
               role="button"
               tabIndex={0}
@@ -511,11 +529,17 @@ export default function ArchiveVault() {
               <div className="folder-open-hover-hint">
                 <span>Masuk ke Folder ↗</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* 📁 FOLDER 3: AWARDS (CYBER SUNBEAM AMBER Y2K) */}
-            <div
+            <motion.div
               className="vault-folder-card vault-folder-card--awards"
+              initial={{ opacity: 0, y: 35, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: 0.26 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setActiveFolder('awards')}
               role="button"
               tabIndex={0}
@@ -584,7 +608,7 @@ export default function ArchiveVault() {
               <div className="folder-open-hover-hint">
                 <span>Masuk ke Folder ↗</span>
               </div>
-            </div>
+            </motion.div>
           </div>
         )}
 

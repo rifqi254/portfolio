@@ -1,4 +1,6 @@
+import { motion } from 'motion/react'
 import HangingCard from '../components/HangingCard'
+import SplitTitle from '../components/SplitTitle'
 import { playChime } from '../hooks/useAudioFX'
 import './About.css'
 
@@ -9,7 +11,7 @@ export default function About({ onOpenResume }) {
         {/* Section Header */}
         <div className="section-header">
           <span className="label label-cyan">✦ About Me</span>
-          <h2 className="section-title">Who Am I?</h2>
+          <SplitTitle text="Who Am I?" className="section-title" />
         </div>
 
         <div className="about__grid">
@@ -40,25 +42,56 @@ export default function About({ onOpenResume }) {
 
             {/* Info grid */}
             <div className="about__info-grid">
-              <div className="about__info-item">
+              <motion.div
+                className="about__info-item"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.05 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+              >
                 <span className="about__info-label">Pendidikan</span>
                 <span className="about__info-value">🎓 UIN Banten (Informatika S7)</span>
-              </div>
-              <div className="about__info-item">
+              </motion.div>
+
+              <motion.div
+                className="about__info-item"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.12 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+              >
                 <span className="about__info-label">Status</span>
                 <span className="about__info-value about__info-value--available">
                   <span className="about__status-dot" />
                   Available for Hire
                 </span>
-              </div>
-              <div className="about__info-item">
+              </motion.div>
+
+              <motion.div
+                className="about__info-item"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.19 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+              >
                 <span className="about__info-label">Fokus Utama</span>
                 <span className="about__info-value">Full-Stack Web Dev</span>
-              </div>
-              <div className="about__info-item">
+              </motion.div>
+
+              <motion.div
+                className="about__info-item"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.26 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+              >
                 <span className="about__info-label">Lokasi</span>
                 <span className="about__info-value">📍 Banten &amp; Tangsel, ID</span>
-              </div>
+              </motion.div>
             </div>
 
             <div className="about__actions">
