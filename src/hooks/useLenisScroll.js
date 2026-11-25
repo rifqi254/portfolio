@@ -8,15 +8,19 @@ gsap.registerPlugin(ScrollTrigger)
 
 export function useLenisScroll() {
   useEffect(() => {
-    // Instantiate Lenis smooth scroll
+    // Disable on touch devices to ensure 100% native 120Hz smooth momentum touch scroll
+    const isTouch = window.matchMedia('(pointer: coarse)').matches
+    if (isTouch) {
+      return
+    }
+
+    // Instantiate Lenis smooth scroll for desktop fine-pointer devices
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
-      gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.8,
+      syncTouch: false,
     })
 
     // Synchronize Lenis scroll with GSAP ScrollTrigger

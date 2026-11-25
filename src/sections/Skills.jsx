@@ -166,11 +166,8 @@ export default function Skills() {
               <motion.div
                 key={group.id}
                 className={`skills__card-container ${isFlipped ? 'is-flipped' : ''}`}
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: groupIdx * 0.12 }}
                 whileHover={{ y: -4 }}
+                whileTap={{ scale: 0.98 }}
                 style={{
                   '--cat-color': group.color,
                   '--cat-accent': group.accent,

@@ -127,13 +127,7 @@ export default function Contact() {
 
         <div className="contact__grid">
           {/* Left Column: Dedicated Social Media Channels (Sosmed) */}
-          <motion.div
-            className="contact__sosmed-panel"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <div className="contact__sosmed-panel">
             <div className="contact__sosmed-heading-bar">
               <div className="contact__sosmed-title-wrap">
                 <span className="contact__sosmed-spark">✦</span>
@@ -159,10 +153,6 @@ export default function Contact() {
                     key={item.id}
                     className={`sosmed-card ${item.themeClass}`}
                     style={{ '--accent': item.accentColor }}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
                     whileHover={{ y: -4, scale: 1.015 }}
                     whileTap={{ scale: 0.985 }}
                   >
@@ -224,16 +214,10 @@ export default function Contact() {
                 )
               })}
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Direct Message Dispatch Form */}
-          <motion.div
-            className="contact__form-wrap"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <div className="contact__form-wrap">
             <div className="contact__form-header">
               <span className="contact__form-badge">TRANSMISSION // DIRECT DISPATCH</span>
               <h3 className="contact__form-title">Kirim Pesan Langsung</h3>
@@ -335,7 +319,7 @@ export default function Contact() {
                 </p>
               )}
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

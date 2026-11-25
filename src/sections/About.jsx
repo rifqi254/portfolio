@@ -44,10 +44,6 @@ export default function About({ onOpenResume }) {
             <div className="about__info-grid">
               <motion.div
                 className="about__info-item"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.05 }}
                 whileHover={{ y: -4, scale: 1.02 }}
               >
                 <span className="about__info-label">Pendidikan</span>
@@ -56,10 +52,6 @@ export default function About({ onOpenResume }) {
 
               <motion.div
                 className="about__info-item"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.12 }}
                 whileHover={{ y: -4, scale: 1.02 }}
               >
                 <span className="about__info-label">Status</span>
@@ -71,10 +63,6 @@ export default function About({ onOpenResume }) {
 
               <motion.div
                 className="about__info-item"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.19 }}
                 whileHover={{ y: -4, scale: 1.02 }}
               >
                 <span className="about__info-label">Fokus Utama</span>
@@ -83,10 +71,6 @@ export default function About({ onOpenResume }) {
 
               <motion.div
                 className="about__info-item"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.26 }}
                 whileHover={{ y: -4, scale: 1.02 }}
               >
                 <span className="about__info-label">Lokasi</span>

@@ -35,3 +35,10 @@
     height: 260px;
   }
 }
+
+@media (hover: none) {
+  .chrome-sculpture-container,
+  .chrome-sculpture-container canvas {
+    pointer-events: none !important;
+  }
+}

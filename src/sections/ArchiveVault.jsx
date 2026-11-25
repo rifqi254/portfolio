@@ -371,10 +371,6 @@ export default function ArchiveVault() {
             {/* 📁 FOLDER 1: PROJECTS (CYBER ICE CYAN Y2K) */}
             <motion.div
               className="vault-folder-card vault-folder-card--projects"
-              initial={{ opacity: 0, y: 35, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: 0.06 }}
               whileHover={{ y: -8, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setActiveFolder('projects')}
@@ -453,10 +449,6 @@ export default function ArchiveVault() {
             {/* 📁 FOLDER 2: CERTIFICATES (CYBER LAVENDER VIOLET Y2K) */}
             <motion.div
               className="vault-folder-card vault-folder-card--certs"
-              initial={{ opacity: 0, y: 35, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: 0.16 }}
               whileHover={{ y: -8, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setActiveFolder('certificates')}
@@ -535,10 +527,6 @@ export default function ArchiveVault() {
             {/* 📁 FOLDER 3: AWARDS (CYBER SUNBEAM AMBER Y2K) */}
             <motion.div
               className="vault-folder-card vault-folder-card--awards"
-              initial={{ opacity: 0, y: 35, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: 0.26 }}
               whileHover={{ y: -8, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setActiveFolder('awards')}

@@ -178,10 +178,6 @@ function TimelineCard({ item, isEven = true }) {
   return (
     <motion.div
       className="timeline-card glass-card card-hover"
-      initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.55, ease: 'easeOut' }}
       whileHover={{ y: -5, scale: 1.015, transition: { duration: 0.22 } }}
       style={{
         '--card-accent': item.color,
